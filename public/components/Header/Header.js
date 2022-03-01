@@ -1,0 +1,1 @@
+!function(){var n=Handlebars.template;(document.components=document.components||{}).Header=n({compiler:[8,">= 4.3.0"],main:function(n,e,a,t,d){return'<div class="header">\n  some header!\n</div>\n<div id="internal" class="internal"></div>'},useData:!0})}();

@@ -1,0 +1,1 @@
+!function(){var o=Handlebars.template;(document.components=document.components||{}).Footer=o({compiler:[8,">= 4.3.0"],main:function(o,n,t,e,a){return'<div class="footer">\n  that\'s some footer\n</div>'},useData:!0})}();
