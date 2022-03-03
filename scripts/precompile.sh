@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 path="public/components"
-handlebars_opts="--min --commonjs --namespace document.components"
+handlebars_opts="--min --commonjs"
 for component in $(ls $path); do
   template="$path/$component/$component.handlebars"
   compiled="$path/$component/$component.js"
@@ -10,4 +10,3 @@ for component in $(ls $path); do
     handlebars $template $handlebars_opts -f $compiled
   fi
 done
-

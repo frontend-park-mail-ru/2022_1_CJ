@@ -1,44 +1,14 @@
-import './components/Header/Header.js'
-import './components/Footer/Footer.js'
-import './components/Footer/Footer.js'
+import Signup from "./views/SignupView.js";
+import Login from "./views/LoginView.js";
+import Router from "./libs/router.js";
+import NotFound from "./views/NotFound.js";
 
 const root = document.getElementById('root');
-const { Header, Footer, Menu } = document.components;
+const router = new Router(root);
 
-const configApp = {
-  menu: {
-    href: '/menu',
-    openMethod: menuPage,
-  },
-  signup: {
-    href: '/sighup',
-    text: 'Зарегистрироваться',
-    openMethod: signupPage,
-  },
-  login: {
-    href: '/login',
-    text: 'Войти',
-    openMethod: loginPage,
-  },
-  profile: {
-    href: '/profile',
-    text: 'Профиль',
-    openMethod: profilePage,
-  },
-  about: {
-    href: '/about',
-    text: safe('<iframe src="https://example.com" onload="alert(1);"></iframe>')
-  }
-};
-
-const render = () => {
-  root.innerHTML += Header();
-  root.innerHTML += Footer();
-}
-
-render();
-const internal = document.getElementById('internal');
-
-root.addEventListener('click', (e) => {
-  internal.innerHTML = 'clicked';
+document.addEventListener("DOMContentLoaded", () => {
+  router.setRoute("/signup", Signup);
+  router.setRoute("/login", Login);
+  router.setNotFoundHandler(NotFound);
+  router.run();
 });

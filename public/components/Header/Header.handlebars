@@ -1,4 +1,8 @@
-<div class="header">
-  some header!
-</div>
-<div id="internal" class="internal"></div>
+<nav class="header">
+  some header [{{authorized}}]
+  <ul>
+    {{#each items}}
+    <li><a class="nav__link" href="{{link}}" data-link>{{title}}</a></li>
+    {{/each}}
+  </ul>
+</nav>
