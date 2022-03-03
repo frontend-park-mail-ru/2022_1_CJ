@@ -1,5 +1,5 @@
-import AbstractView from "./AbstractView.js";
-import '../components/NotFound/NotFound.js'
+import AbstractView from "../AbstractView.js";
+import '../templates/NotFound.js'
 
 export default class extends AbstractView {
   constructor(state) {

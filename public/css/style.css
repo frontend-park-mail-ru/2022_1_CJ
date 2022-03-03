@@ -1,0 +1,23 @@
+:root {
+  --root-bg-color: #E3E3E3;
+  --root-accent-color: #357DED;
+  --root-secondary-color: #0B4F6C;
+  --root-positive-color: #1C7C54;
+  --root-negative-color: #C83E4D;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  background-color: var(--root-bg-color);
+}

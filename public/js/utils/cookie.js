@@ -1,6 +1,5 @@
 const cookieDelimiter = "; ";
 export const CookiePropMaxAge = "max-age";
-export const CookieKeyAuthorized = "authorized";
 
 export function getCookie(name) {
   const decoded = decodeURIComponent(document.cookie);

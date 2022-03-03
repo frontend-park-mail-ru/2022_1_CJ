@@ -1,9 +1,9 @@
-import '../components/Header/Header.js'
-import '../components/Footer/Footer.js'
+import './templates/Header.js'
+import { authMiddleware } from '../js/utils/middlewares.js';
 
 export default class {
-  constructor(state) {
-    this.state = state;
+  constructor(state = {}) {
+    this.state = authMiddleware(state);
   }
 
   setTitle(title) {
@@ -15,7 +15,7 @@ export default class {
   }
 
   async wrapHTML(html) {
-    return Handlebars.templates.Header(this.state) + await this.getHTML() + Handlebars.templates.Footer(this.state);
+    return Handlebars.templates.Header(this.state) + await this.getHTML();
   }
 
   async getHTML() {

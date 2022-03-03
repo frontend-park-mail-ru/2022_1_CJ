@@ -1,7 +1,7 @@
-import Signup from "./views/SignupView.js";
-import Login from "./views/LoginView.js";
+import Signup from "../views/Signup/SignupView.js";
+import Login from "../views/Login/LoginView.js";
 import Router from "./libs/router.js";
-import NotFound from "./views/NotFound.js";
+import NotFound from "../views/NotFound/NotFoundView.js";
 
 const root = document.getElementById('root');
 const router = new Router(root);

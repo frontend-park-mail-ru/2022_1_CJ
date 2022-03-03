@@ -39,8 +39,8 @@ export default class Router {
     }
 
     this.#route();
-    window.addEventListener("popstate", this.#handlePopState);
-    document.body.addEventListener("click", this.#handleClick);
+    window.addEventListener("popstate", this.#handlePopState.bind(this));
+    document.body.addEventListener("click", this.#handleClick.bind(this));
   }
 
   async #handleClick(event) {
