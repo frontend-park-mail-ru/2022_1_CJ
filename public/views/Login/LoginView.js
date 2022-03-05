@@ -3,32 +3,41 @@ import { TemplatesRegistry } from '../../core/modules/Registry.js';
 import { AuthController } from '../../core/controllers/auth.js';
 import { LoginUserDTO } from '../../core/dto/auth.js';
 import EventBus, { AuthEvents, EventBusChannels } from '../../core/modules/EventBus.js';
+import { URL } from '../../core/constants.js';
 
 export default class LoginView extends View {
   constructor() {
     super(null, TemplatesRegistry.Login);
     this.setTitle('Login');
+    this.onSubmitCallback = this.onSubmit.bind(this);
   }
 
   addEventListeners() {
     super.addEventListeners();
-    document.getElementById('submit').addEventListener('click', onSubmit);
+    document.getElementById('submit').addEventListener('click', this.onSubmitCallback);
   }
-}
 
-function onSubmit() {
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+  removeEventListeners() {
+    super.removeEventListeners();
+    document.getElementById('submit')?.removeEventListener('click', this.onSubmitCallback);
+  }
 
-  EventBus.subscribe(EventBusChannels.Auth, AuthEvents.LoginSuccess, onSuccess);
-  EventBus.subscribe(EventBusChannels.Auth, AuthEvents.LoginFailure, onFailure);
-  AuthController.LoginUser(new LoginUserDTO(email, password));
-}
+  onSubmit() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-function onFailure() {
-  console.log('failed');
-}
+    EventBus.subscribe(EventBusChannels.Auth, AuthEvents.LoginFailure, this.onFailure.bind(this));
+    EventBus.subscribe(EventBusChannels.Auth, AuthEvents.LoginSuccess, this.onSuccess.bind(this));
+    AuthController.LoginUser(new LoginUserDTO(email, password));
+  }
 
-function onSuccess() {
-  console.log('success');
+  onFailure() {
+    console.log('failed');
+  }
+
+  onSuccess() {
+    console.log('success');
+    this.removeEventListeners();
+    Router.navigateTo(URL.Feed);
+  }
 }

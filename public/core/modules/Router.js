@@ -21,7 +21,7 @@ class Router {
   }
 
   setRoute(path, handler, ...middlewares) {
-    this.routes.push({path, handler});
+    this.routes.push({ path, handler });
   }
 
   setNotFoundHandler(handler) {
@@ -42,19 +42,20 @@ class Router {
     document.body.addEventListener('click', this.#handleClick.bind(this));
   }
 
+
+  async navigateTo(url) {
+    history.pushState(null, null, url);
+    this.#route();
+  }
+
   async #handleClick(event) {
     if (event.target.matches('[data-link]')) {
       event.preventDefault();
-      this.#navigateTo(event.target.href);
+      this.navigateTo(event.target.href);
     }
   }
 
   async #handlePopState() {
-    this.#route();
-  }
-
-  async #navigateTo(url) {
-    history.pushState(null, null, url);
     this.#route();
   }
 
