@@ -4,6 +4,7 @@ handlebars_opts="--min --commonjs"
 paths=("public/views" "public/components")
 outdir="public/precompiled"
 
+mkdir -p $outdir
 for path in ${paths[@]}; do
   for component in $(ls $path); do
     template="$path/$component/$component.handlebars"
