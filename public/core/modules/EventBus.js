@@ -6,7 +6,7 @@ export const AuthEvents = {
   SignupSuccess: 'signup success',
   SignupFailure: 'signup failure',
   LoginSuccess: 'login success',
-  LoginSuccess: 'login failure',
+  LoginFailure: 'login failure',
 };
 
 class EventBus {

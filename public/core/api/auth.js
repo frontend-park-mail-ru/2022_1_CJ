@@ -16,7 +16,19 @@ export const AuthAPI = {
     if (!response.ok) {
       return null;
     }
+    return response.json();
+  },
 
+  /**
+   * @param {LoginUserDTO} dto
+   * @return {Promise<JSON>}
+   */
+  async LoginUser(dto) {
+    const body = JSON.stringify(dto);
+    const response = await fetchAPI(userMethods.login, 'POST', body);
+    if (!response.ok) {
+      return null;
+    }
     return response.json();
   }
 }

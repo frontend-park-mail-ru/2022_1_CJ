@@ -13,4 +13,16 @@ export const AuthService = {
       EventBus.emit(EventBusChannels.Auth, AuthEvents.SignupSuccess);
     }
   },
+
+  /**
+   * @param {LoginUserDTO} dto
+   */
+  async LoginUser(dto) {
+    const response = await AuthAPI.LoginUser(dto);
+    if (!response) {
+      EventBus.emit(EventBusChannels.Auth, AuthEvents.LoginFailure);
+    } else {
+      EventBus.emit(EventBusChannels.Auth, AuthEvents.LoginSuccess);
+    }
+  }
 };

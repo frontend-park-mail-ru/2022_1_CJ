@@ -1,11 +1,1 @@
-!(function () {
-  const n = Handlebars.template; (Handlebars.templates = Handlebars.templates || {}).Signup = n({
-    compiler: [8, '>= 4.3.0'],
-    main(n, e, l, a, t) {
-      let r = n.lookupProperty || function (n, e) { if (Object.prototype.hasOwnProperty.call(n, e)) return n[e]; }; return `${(r = typeof (l = (l = r(l, 'header') || (e != null ? r(e, 'header') : e)) != null ? l : n.hooks.helperMissing) === 'function' ? l.call(e != null ? e : n.nullContext || {}, {
-        name: 'header', hash: {}, data: t, loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 12 } },
-      }) : l) != null ? r : ''}\n\nJoin us!`;
-    },
-    useData: !0,
-  });
-}());
+!function(){var e=Handlebars.template;(Handlebars.templates=Handlebars.templates||{}).Signup=e({compiler:[8,">= 4.3.0"],main:function(e,n,a,l,s){var r=e.lookupProperty||function(e,n){if(Object.prototype.hasOwnProperty.call(e,n))return e[n]};return(null!=(r="function"==typeof(a=null!=(a=r(a,"header")||(null!=n?r(n,"header"):n))?a:e.hooks.helperMissing)?a.call(null!=n?n:e.nullContext||{},{name:"header",hash:{},data:s,loc:{start:{line:1,column:0},end:{line:1,column:12}}}):a)?r:"")+'\n\n<div class="form">\n  <div class="form__field">\n    <label for="email">Email</label>\n    <input id="email" name="email" type="email" class="form__input" placeholder="Enter your email...">\n  </div>\n  <div class="form__field">\n    <div class="form__fullname">\n      <label for="first-name">First Name</label>\n      <input id="first-name" name="first-name" type="text" class="form__input" placeholder="Enter your first name...">\n\n      <label for="second-name">Second Name</label>\n      <input id="second-name" name="second-name" type="text" class="form__input"\n        placeholder="Enter your second name...">\n    </div>\n  </div>\n  <div class="form__field">\n    <label for="password">Password</label>\n    <input id="password" name="password" type="password" class="form__input" placeholder="Enter your password...">\n  </div>\n  <div class="form__field">\n    <label for="password">Repeat Password</label>\n    <input id="password" name="password" type="password" class="form__input" placeholder="Repeat your password...">\n  </div>\n  <div class="form__submit">\n    <button id="submit" type="submit" class="form__btn__submit">Signup</button>\n  </div>\n</div>'},useData:!0})}();
