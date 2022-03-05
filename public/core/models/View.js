@@ -1,5 +1,5 @@
-import { TemplatesRegistry } from "../modules/Registry.js";
-import Component from "./Component.js";
+import {TemplatesRegistry} from '../modules/Registry.js';
+import Component from './Component.js';
 
 export default class View extends Component {
   /**
@@ -9,7 +9,7 @@ export default class View extends Component {
    */
   constructor(context, template) {
     super(context, template);
-    this.addComponent("header", new Component(null, TemplatesRegistry.Header));
+    this.addComponent('header', new Component(null, TemplatesRegistry.Header));
   }
 
   /**

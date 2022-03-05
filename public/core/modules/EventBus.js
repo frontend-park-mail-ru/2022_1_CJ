@@ -1,24 +1,22 @@
 export const EventBusChannels = {
-  Auth: "auth",
+  Auth: 'auth',
 };
 
 export const AuthEvents = {
-  Signup: "signup",
-  Login: "login",
-}
+  SignupSuccess: 'signup success',
+  SignupFailure: 'signup failure',
+  LoginSuccess: 'login success',
+  LoginSuccess: 'login failure',
+};
 
 class EventBus {
   #channels;
+
   constructor() {
     this.#channels = {};
-  }
-
-  /**
-   * Add new channel to the bus
-   * @param {String} channelName - name of the channel 
-   */
-  addChannel(channelName) {
-    this.#channels[channelName] = {};
+    for (const property in EventBusChannels) {
+      this.#channels[EventBusChannels[property]] = {};
+    }
   }
 
   /**

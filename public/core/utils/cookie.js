@@ -1,5 +1,5 @@
-const cookieDelimiter = "; ";
-export const CookiePropMaxAge = "max-age";
+const cookieDelimiter = '; ';
+export const CookiePropMaxAge = 'max-age';
 
 export function getCookie(name) {
   const decoded = decodeURIComponent(document.cookie);
@@ -8,7 +8,6 @@ export function getCookie(name) {
   decoded.split(cookieDelimiter).forEach((value) => {
     if (value.indexOf(name) === 0) {
       result = value.substring(name.length + 1);
-      return;
     }
   });
 
@@ -24,5 +23,5 @@ export function setCookie(name, value, options = {}) {
 }
 
 export function deleteCookie(name) {
-  setCookie(name, "", { CookiePropMaxAge: -1 });
+  setCookie(name, '', {CookiePropMaxAge: -1});
 }

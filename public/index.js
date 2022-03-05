@@ -1,10 +1,10 @@
-import Router from "./core/modules/Router.js";
-import { URL } from "./core/constants.js";
-import { ViewsRegistry } from "./core/modules/Registry.js";
+import Router from './core/modules/Router.js';
+import {URL} from './core/constants.js';
+import {ViewsRegistry} from './core/modules/Registry.js';
 
 const root = document.getElementById('root');
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   Router.setRoot(root);
 
   Router.setRoute(URL.Signup, ViewsRegistry.SignupView);
@@ -18,4 +18,4 @@ document.addEventListener("DOMContentLoaded", () => {
 window.onerror = (message, url, line, col, error) => {
   console.log(`[${url}][${line}:${col}]: [${error}]`);
   return true;
-}
+};

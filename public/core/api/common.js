@@ -1,20 +1,20 @@
-import { BackendBaseURL } from "../constants.js";
+import { BackendBaseURL } from '../constants.js';
 
 /**
  * @param {String} apiMethod
- * @param {String} method 
+ * @param {String} method
  * @param {JSON} body
- * @returns 
+ * @return {Promise<Response>}
  */
 export function fetchAPI(apiMethod, method, body) {
   // TODO: make it more safe
   return fetch(BackendBaseURL + apiMethod, {
-    method: method,
-    body: body,
-    credentials: "include",
+    method,
+    body,
+    credentials: 'include',
     headers: {
-      "Accept": "application/json",
-      "Content-Type": "application/json",
-    }
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
   });
 }

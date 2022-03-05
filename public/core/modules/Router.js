@@ -1,18 +1,14 @@
 const ParameterRegExp = /:(\w+)/g;
-const SolidStringPattern = "(.+)";
-const EscapedURLDelimiter = "\\/";
+const SolidStringPattern = '(.+)';
+const EscapedURLDelimiter = '\\/';
 
-const pathToRegex = (path) => {
-  return new RegExp("^" + path.replaceAll("/", EscapedURLDelimiter).replace(ParameterRegExp, SolidStringPattern) + "$");
-}
+const pathToRegex = (path) => new RegExp(`^${path.replaceAll('/', EscapedURLDelimiter).replace(ParameterRegExp, SolidStringPattern)}$`);
 
 const getParams = (match) => {
   const values = match.result.slice(1);
   const keys = Array.from(match.route.path.matchAll(ParameterRegExp)).map((result) => result[1]);
 
-  return Object.fromEntries(keys.map((key, i) => {
-    return [key, values[i]];
-  }));
+  return Object.fromEntries(keys.map((key, i) => [key, values[i]]));
 };
 
 class Router {
@@ -25,7 +21,7 @@ class Router {
   }
 
   setRoute(path, handler, ...middlewares) {
-    this.routes.push({ path, handler });
+    this.routes.push({path, handler});
   }
 
   setNotFoundHandler(handler) {
@@ -34,20 +30,20 @@ class Router {
 
   run() {
     if (this.routes.length === 0) {
-      throw new Error("no routes are set up");
+      throw new Error('no routes are set up');
     }
 
     if (!this.notFoundHandler) {
-      throw new Error("not found hander is not set up");
+      throw new Error('not found hander is not set up');
     }
 
     this.#route();
-    window.addEventListener("popstate", this.#handlePopState.bind(this));
-    document.body.addEventListener("click", this.#handleClick.bind(this));
+    window.addEventListener('popstate', this.#handlePopState.bind(this));
+    document.body.addEventListener('click', this.#handleClick.bind(this));
   }
 
   async #handleClick(event) {
-    if (event.target.matches("[data-link]")) {
+    if (event.target.matches('[data-link]')) {
       event.preventDefault();
       this.#navigateTo(event.target.href);
     }
@@ -63,12 +59,10 @@ class Router {
   }
 
   async #route() {
-    const potentialMatches = this.routes.map((route) => {
-      return {
-        route: route,
-        result: location.pathname.match(pathToRegex(route.path))
-      };
-    });
+    const potentialMatches = this.routes.map((route) => ({
+      route,
+      result: location.pathname.match(pathToRegex(route.path)),
+    }));
 
     const match = potentialMatches.find((potentialMatch) => potentialMatch.result !== null);
 

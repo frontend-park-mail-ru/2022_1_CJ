@@ -1,10 +1,16 @@
-class AuthService {
-  /** 
-   * @param {SignupUserDTO} dto 
-   */
-  SignupUser(dto) {
-    console.log(dto);
-  }
-}
+import { AuthAPI } from '../api/auth.js';
+import EventBus, { AuthEvents, EventBusChannels } from '../modules/EventBus.js';
 
-export default new AuthService();
+export const AuthService = {
+  /**
+   * @param {SignupUserDTO} dto
+   */
+  async SignupUser(dto) {
+    const response = await AuthAPI.SignupUser(dto);
+    if (!response) {
+      EventBus.emit(EventBusChannels.Auth, AuthEvents.SignupFailure);
+    } else {
+      EventBus.emit(EventBusChannels.Auth, AuthEvents.SignupSuccess);
+    }
+  },
+};
