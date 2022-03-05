@@ -7,9 +7,9 @@
 
 .header {
   width: 100vw;
-  padding: .5rem;
+  padding: 0.5rem;
 
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   position: sticky;
 
   display: flex;
@@ -28,7 +28,7 @@
 }
 
 .nav__link {
-  padding: .1rem;
+  padding: 0.1rem;
   color: var(--root-accent-color);
 }
 

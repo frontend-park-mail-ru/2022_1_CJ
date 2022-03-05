@@ -1,9 +1,9 @@
 :root {
-  --root-bg-color: #E3E3E3;
-  --root-accent-color: #357DED;
-  --root-secondary-color: #0B4F6C;
-  --root-positive-color: #1C7C54;
-  --root-negative-color: #C83E4D;
+  --root-bg-color: #e3e3e3;
+  --root-accent-color: #357ded;
+  --root-secondary-color: #0b4f6c;
+  --root-positive-color: #1c7c54;
+  --root-negative-color: #c83e4d;
 
   --root-border-radius: 2px;
   --root-border-width: 2px;
