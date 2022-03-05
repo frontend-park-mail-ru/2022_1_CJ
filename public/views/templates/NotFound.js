@@ -1,1 +1,0 @@
-!function(){var a=Handlebars.template;(Handlebars.templates=Handlebars.templates||{}).NotFound=a({compiler:[8,">= 4.3.0"],main:function(a,e,t,n,l){return"Not found :("},useData:!0})}();

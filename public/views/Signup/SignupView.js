@@ -1,13 +1,10 @@
-import AbstractView from "../AbstractView.js";
-import '../templates/Signup.js'
+import View from "../../core/models/View.js";
+import { TemplatesRegistry } from "../../core/modules/Registry.js";
 
-export default class extends AbstractView {
-  constructor(state) {
-    super(state);
+export default class SignupView extends View {
+  constructor() {
+    super(null, TemplatesRegistry.Signup);
     this.setTitle("Signup");
-  }
-
-  async getHTML() {
-    return Handlebars.templates.Signup(this.state);
+    this.render();
   }
 }

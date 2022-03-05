@@ -1,13 +1,10 @@
-import AbstractView from "../AbstractView.js";
-import '../templates/NotFound.js'
+import View from "../../core/models/View.js";
+import { TemplatesRegistry } from "../../core/modules/Registry.js";
 
-export default class extends AbstractView {
-  constructor(state) {
-    super(state);
+export default class NotFoundView extends View {
+  constructor() {
+    super(null, TemplatesRegistry.NotFound);
     this.setTitle("Not Found");
-  }
-
-  async getHTML() {
-    return Handlebars.templates.NotFound(this.state);
+    this.render();
   }
 }

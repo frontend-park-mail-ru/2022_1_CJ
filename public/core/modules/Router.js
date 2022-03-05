@@ -15,13 +15,16 @@ const getParams = (match) => {
   }));
 };
 
-export default class Router {
-  constructor(root) {
-    this.root = root;
+class Router {
+  constructor() {
     this.routes = [];
   }
 
-  setRoute(path, handler) {
+  setRoot(root) {
+    this.root = root;
+  }
+
+  setRoute(path, handler, ...middlewares) {
     this.routes.push({ path, handler });
   }
 
@@ -72,7 +75,8 @@ export default class Router {
     // const params = getParams(match);
 
     const view = (match ? new match.route.handler() : new this.notFoundHandler());
-    this.root.innerHTML = await view.GetHTML();
+    view.render(root);
   }
-
 }
+
+export default new Router();
