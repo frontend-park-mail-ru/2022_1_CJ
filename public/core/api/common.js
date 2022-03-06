@@ -1,4 +1,4 @@
-import { BackendBaseURL } from '../constants.js';
+import { BackendBaseURL } from '../constants/constants.js';
 
 /**
  * @param {String} apiMethod

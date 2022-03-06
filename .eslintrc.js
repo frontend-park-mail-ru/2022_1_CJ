@@ -11,8 +11,9 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    "import/extensions": "off",
-    "class-methods-use-this": "off",
+    'import/extensions': 'off',
+    'class-methods-use-this': 'off',
+    'no-console': 'off',
   },
-  ignorePatterns: ["**/precompiled/*", "handlebars.runtime.min.js"]
+  ignorePatterns: ['**/precompiled/*', 'handlebars.runtime.min.js']
 };

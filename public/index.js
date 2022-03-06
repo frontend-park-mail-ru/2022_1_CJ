@@ -1,6 +1,6 @@
 import { Router } from './core/modules/Router.js';
-import { URL } from './core/constants.js';
-import { ViewsRegistry } from './core/modules/Registry.js';
+import { URL } from './core/constants/constants.js';
+import { ViewsRegistry } from './core/constants/views_registry.js';
 
 const root = document.getElementById('root');
 

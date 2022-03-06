@@ -1,10 +1,10 @@
-import { URL } from '../../core/constants.js';
+import { URL } from '../../core/constants/constants.js';
 import { AuthController } from '../../core/controllers/auth.js';
 import { SignupUserDTO } from '../../core/dto/auth.js';
 import View from '../../core/models/View.js';
 import { EventBus, AuthEvents, EventBusChannels } from '../../core/modules/EventBus.js';
-import { TemplatesRegistry } from '../../core/modules/Registry.js';
 import { Router } from '../../core/modules/Router.js';
+import { TemplatesRegistry } from '../../core/constants/templates_registry.js';
 
 export default class SignupView extends View {
   constructor() {

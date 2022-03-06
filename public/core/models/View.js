@@ -1,5 +1,5 @@
-import { TemplatesRegistry } from '../modules/Registry.js';
 import Component from './Component.js';
+import { TemplatesRegistry } from '../constants/templates_registry.js';
 
 export default class View extends Component {
   /**
