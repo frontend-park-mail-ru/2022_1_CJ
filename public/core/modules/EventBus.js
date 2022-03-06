@@ -75,4 +75,5 @@ class EventBus {
   }
 }
 
-export default new EventBus();
+const instance = new EventBus();
+export { instance as EventBus };

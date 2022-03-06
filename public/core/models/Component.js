@@ -46,7 +46,7 @@ export default class Component {
    * @return {String} - produced HTML
    */
   render() {
-    const contextWithComponents = {...this.#renderComponents(), ...this.context};
+    const contextWithComponents = { ...this.#renderComponents(), ...this.context };
     return this.template(contextWithComponents);
   }
 
@@ -111,19 +111,19 @@ export default class Component {
    */
   #renderComponents() {
     const renderedComponents = Object
-        .entries(this.subComponents)
-        .reduce((obj, [name, component]) => ({
-          ...obj,
-          [name]: component.render(),
-        }), {});
+      .entries(this.subComponents)
+      .reduce((obj, [name, component]) => ({
+        ...obj,
+        [name]: component.render(),
+      }), {});
 
     const renderedLists = Object
-        .entries(this.subComponentsLists)
-        .reduce((obj, [name, list]) => ({
-          ...obj,
-          [name]: list.map((component) => component.render()),
-        }), {});
+      .entries(this.subComponentsLists)
+      .reduce((obj, [name, list]) => ({
+        ...obj,
+        [name]: list.map((component) => component.render()),
+      }), {});
 
-    return {...renderedComponents, ...renderedLists};
+    return { ...renderedComponents, ...renderedLists };
   }
 }

@@ -42,7 +42,6 @@ class Router {
     document.body.addEventListener('click', this.#handleClick.bind(this));
   }
 
-
   async navigateTo(url) {
     history.pushState(null, null, url);
     this.#route();
@@ -74,4 +73,5 @@ class Router {
   }
 }
 
-export default new Router();
+const instance = new Router;
+export { instance as Router };
