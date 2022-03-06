@@ -14,9 +14,9 @@ class EventBus {
 
   constructor() {
     this.#channels = {};
-    for (const property in EventBusChannels) {
-      this.#channels[EventBusChannels[property]] = {};
-    }
+    Object.values(EventBusChannels).forEach((channel) => {
+      this.#channels[channel] = {};
+    });
   }
 
   /**

@@ -5,8 +5,7 @@
   "scripts": {
     "start": "node server/index.js",
     "lint:fix": "eslint --ext .js public --fix",
-    "lint": "eslint --ext .js public --color",
-    "format": "prettier --write 'public/**/*.{scss,css,json}'"
+    "lint": "eslint --ext .js public --color"
   },
   "dependencies": {
     "dotenv": "^16.0.0",

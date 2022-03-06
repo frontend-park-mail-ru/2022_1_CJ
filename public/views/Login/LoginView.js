@@ -42,3 +42,6 @@ export default class LoginView extends View {
     Router.navigateTo(URL.Feed);
   }
 }
+
+const instance = new LoginView();
+export { instance as LoginView };

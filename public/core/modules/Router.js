@@ -1,5 +1,3 @@
-import View from '../models/View.js';
-
 const ParameterRegExp = /:(\w+)/g;
 const SolidStringPattern = '(.+)';
 const EscapedURLDelimiter = '\\/';
@@ -14,7 +12,11 @@ const getParams = (match) => {
 };
 
 class Router {
+  #root;
+
   #routes;
+
+  #notFoundView;
 
   constructor() {
     this.#routes = [];
@@ -25,7 +27,7 @@ class Router {
    * @param {HTMLElement} root - HTML Element for output
    */
   setRoot(root) {
-    this.root = root;
+    this.#root = root;
   }
 
   /**
@@ -41,8 +43,8 @@ class Router {
    * Set view for not found routes
    * @param {View} view - not found page's view
    */
-  setNotFoundHandler(view) {
-    this.notFoundHandler = view;
+  setNotFoundView(view) {
+    this.#notFoundView = view;
   }
 
   /**
@@ -53,8 +55,8 @@ class Router {
       throw new Error('no routes are set up');
     }
 
-    if (!this.notFoundHandler) {
-      throw new Error('not found hander is not set up');
+    if (!this.#notFoundView) {
+      throw new Error('not found view is not set up');
     }
 
     this.#route();
@@ -67,7 +69,7 @@ class Router {
    * @param {String} path - path to navigate to
    */
   async navigateTo(path) {
-    history.pushState(null, null, path);
+    window.history.pushState(null, null, path);
     this.#route();
   }
 
@@ -85,15 +87,15 @@ class Router {
   async #route() {
     const potentialMatches = this.#routes.map((route) => ({
       route,
-      result: location.pathname.match(pathToRegex(route.path)),
+      result: window.location.pathname.match(pathToRegex(route.path)),
     }));
 
     const match = potentialMatches.find((potentialMatch) => potentialMatch.result !== null);
 
     const params = getParams(match);
 
-    const view = (match ? new match.route.view() : new this.notFoundHandler());
-    view.render(root, params);
+    const view = (match ? match.route.view : this.#notFoundView);
+    view.render(this.#root, params);
   }
 }
 
