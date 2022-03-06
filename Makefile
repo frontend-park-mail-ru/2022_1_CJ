@@ -1,4 +1,8 @@
-all: stop build run
+all:
+	sh scripts/precompile.sh
+	node server/index.js
+
+docker: stop build run
 
 build:
 	sh scripts/build.sh
@@ -8,7 +12,3 @@ run:
 
 stop:
 	sh scripts/stop.sh
-
-debug:
-	sh scripts/precompile.sh
-	node server/index.js

@@ -2,6 +2,6 @@
 Репозиторий команды CJ проект VK
 
 ## usage
-`make debug` - run locally
+`make` - run locally
 
-`make` - run in docker
+`make docker` - build and run in docker
