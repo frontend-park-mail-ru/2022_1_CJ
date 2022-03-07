@@ -1,8 +1,8 @@
 import { fetchAPI } from './common.js';
 
-const userMethods = {
+const authMethods = {
   signup: '/auth/signup',
-  login: '/user/login',
+  login: '/auth/login',
 };
 
 export const AuthAPI = {
@@ -12,8 +12,7 @@ export const AuthAPI = {
    */
   async SignupUser(dto) {
     const body = JSON.stringify(dto);
-    console.log(body);
-    const response = await fetchAPI(userMethods.signup, 'POST', body);
+    const response = await fetchAPI(authMethods.signup, 'POST', body);
     if (!response.ok) {
       return null;
     }
@@ -26,7 +25,7 @@ export const AuthAPI = {
    */
   async LoginUser(dto) {
     const body = JSON.stringify(dto);
-    const response = await fetchAPI(userMethods.login, 'POST', body);
+    const response = await fetchAPI(authMethods.login, 'POST', body);
     if (!response.ok) {
       return null;
     }
