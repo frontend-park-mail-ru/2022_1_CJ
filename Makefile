@@ -1,14 +1,14 @@
 all:
-	sh scripts/precompile.sh
+	bash scripts/precompile.sh
 	node server/index.js
 
 docker: stop build run
 
 build:
-	sh scripts/build.sh
+	bash scripts/build.sh
 
 run:
-	sh scripts/run.sh
+	bash scripts/run.sh
 
 stop:
-	sh scripts/stop.sh
+	bash scripts/stop.sh
