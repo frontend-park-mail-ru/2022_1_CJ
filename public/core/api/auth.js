@@ -1,7 +1,7 @@
 import { fetchAPI } from './common.js';
 
 const userMethods = {
-  signup: '/user/signup',
+  signup: '/auth/signup',
   login: '/user/login',
 };
 
