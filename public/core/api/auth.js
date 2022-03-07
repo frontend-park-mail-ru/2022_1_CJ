@@ -12,6 +12,7 @@ export const AuthAPI = {
    */
   async SignupUser(dto) {
     const body = JSON.stringify(dto);
+    console.log(body);
     const response = await fetchAPI(userMethods.signup, 'POST', body);
     if (!response.ok) {
       return null;

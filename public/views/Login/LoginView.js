@@ -15,15 +15,20 @@ export default class LoginView extends View {
 
   addEventListeners() {
     super.addEventListeners();
-    document.getElementById('submit').addEventListener('click', this.onSubmitCallback);
+    document.getElementById('signup-form').addEventListener('submit', this.onSubmitCallback);
   }
 
   removeEventListeners() {
     super.removeEventListeners();
-    document.getElementById('submit')?.removeEventListener('click', this.onSubmitCallback);
+    document.getElementById('signup-form')?.removeEventListener('submit', this.onSubmitCallback);
   }
 
-  onSubmit() {
+  /**
+   * @param {Event} e 
+   */
+  onSubmit(e) {
+    e.preventDefault();
+
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 

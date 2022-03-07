@@ -15,21 +15,28 @@ class SignupView extends View {
 
   addEventListeners() {
     super.addEventListeners();
-    document.getElementById('submit').addEventListener('click', this.onSubmitCallback);
+    document.getElementById('login-form').addEventListener('submit', this.onSubmitCallback);
   }
 
   removeEventListeners() {
     super.removeEventListeners();
-    document.getElementById('submit')?.removeEventListener('click', this.onSubmitCallback);
+    document.getElementById('login-form')?.removeEventListener('submit', this.onSubmitCallback);
   }
 
-  onSubmit() {
+  /**
+   * @param {Event} e 
+   */
+  onSubmit(e) {
+    e.preventDefault();
+
     const email = document.getElementById('email').value;
+    const firstname = document.getElementById('firstname').value;
+    const lastname = document.getElementById('lastname').value;
     const password = document.getElementById('password').value;
 
     EventBus.subscribe(EventBusChannels.Auth, AuthEvents.SignupFailure, this.onFailure.bind(this));
     EventBus.subscribe(EventBusChannels.Auth, AuthEvents.SignupSuccess, this.onSuccess.bind(this));
-    AuthController.SignupUser(new SignupUserDTO(email, password));
+    AuthController.SignupUser(new SignupUserDTO(email, firstname, lastname, password));
   }
 
   onFailure() {
