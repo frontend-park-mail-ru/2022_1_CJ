@@ -92,10 +92,8 @@ class Router {
 
     const match = potentialMatches.find((potentialMatch) => potentialMatch.result !== null);
 
-    const params = getParams(match);
-
     const view = (match ? match.route.view : this.#notFoundView);
-    view.render(this.#root, params);
+    view.render(this.#root);
   }
 }
 
