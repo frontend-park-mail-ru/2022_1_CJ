@@ -8,10 +8,7 @@
     "lint": "eslint --ext .js public --color"
   },
   "dependencies": {
-    "dotenv": "^16.0.0",
-    "express": "^4.17.3",
-    "handlebars": "^4.7.7",
-    "path": "^0.12.7"
+    "handlebars": "^4.7.7"
   },
   "devDependencies": {
     "eslint": "^8.10.0",
