@@ -13,5 +13,5 @@
 
   width: 100vw;
   min-height: 100vh;
-  background-color: var(--root-bg-color);
+  background-color: var(--main-background-color);
 }

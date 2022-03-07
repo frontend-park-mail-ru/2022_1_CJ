@@ -1,0 +1,153 @@
+{{{header}}}
+
+<div class="main-container">
+  <div class="left-container">
+    <div class="main-menu">
+      <div class="info">
+        <p>Main</p>
+        <hr>
+      </div>
+      {{#if menu-elements}}
+      {{#each menu-elements}}
+      <div class="element">
+        <img src={{icon}} alt="">
+        <p>{{name}}</p>
+      </div>
+      {{/each}}
+      {{else}}
+      <div class="element">
+        <img src="../../static/icons/1946382.png" alt="">
+        <p>some text</p>
+      </div>
+      <div class="element">
+        <img src="../../static/icons/1946382.png" alt="">
+        <p>messages</p>
+      </div>
+      <div class="element">
+        <img src="../../static/icons/1946382.png" alt="">
+        <p>some long long text</p>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+
+  {{!-- aka middle container --}}
+  <div class="feed-background">
+    {{#if posts}}
+    {{#each posts}}
+    <div class="post">
+      <div class="author">
+        <img src={{ author.img }} alt="">
+      </div>
+      {{ author }} {{ settings }}
+      {{#if text}}
+      <p>{{ text }}</p>
+      {{/if}}
+      {{ post }}
+      {{ reactions }}
+    </div>
+    {{/each}}
+    {{else}}
+    <div class="post">
+      <div class="post-header">
+        <div class="author">
+          <img src="../../static/images/shrek.jpg" alt="">
+          <div class="info">
+            <div class="status">
+              <p>status</p>
+              <img src="../../static/icons/1946488.png" alt="">
+            </div>
+            <p>Boris Britva</p>
+          </div>
+        </div>
+        <div class="settings">
+          <img src="../../static/icons/1946488.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="post">
+      <div class="post-header">
+        <div class="author">
+          <img src="../../static/images/shrek.jpg" alt="">
+          <div class="info">
+            <div class="status">
+              <p>status</p>
+              <img src="../../static/icons/1946488.png" alt="">
+            </div>
+            <p>Boris Britva</p>
+          </div>
+        </div>
+        <div class="settings">
+          <img src="../../static/icons/1946488.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="post">
+      <div class="post-header">
+        <div class="author">
+          <img src="../../static/images/shrek.jpg" alt="">
+          <div class="info">
+            <div class="status">
+              <p>status</p>
+              <img src="../../static/icons/1946488.png" alt="">
+            </div>
+            <p>Boris Britva</p>
+          </div>
+        </div>
+        <div class="settings">
+          <img src="../../static/icons/1946488.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="post">
+      <div class="post-header">
+        <div class="author">
+          <img src="../../static/images/shrek.jpg" alt="">
+          <div class="info">
+            <div class="status">
+              <p>status</p>
+              <img src="../../static/icons/1946488.png" alt="">
+            </div>
+            <p>Boris Britva</p>
+          </div>
+        </div>
+        <div class="settings">
+          <img src="../../static/icons/1946488.png" alt="">
+        </div>
+      </div>
+      <div class="body">
+        <p>This is my post, suckers</p>
+        <img class="post-image" src="../../static/images/shrek.jpg" alt="">
+        <div class="reactions">
+          <div class="reactions-left">
+            <div class="like-reaction">
+              <img src="../../static/icons/1946382.png" alt="">
+              <p>1.45m</p>
+            </div>
+            <div class="comment-reaction">
+              <img src="../../static/icons/1946382.png" alt="">
+              <p>comment</p>
+            </div>
+            <div class="repost-reaction">
+              <img src="../../static/icons/1946382.png" alt="">
+              <p>repost</p>
+            </div>
+          </div>
+          <div class="reactions-right">
+            <div class="dislike-reaction">
+              <img src="../../static/icons/1946382.png" alt="">
+            </div>
+            <div class="watch-info">
+              <img src="../../static/icons/1946382.png" alt="">
+              <p>1.2k</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/if}}
+  </div>
+
+  <div class="right-container">
+  </div>
+</div>

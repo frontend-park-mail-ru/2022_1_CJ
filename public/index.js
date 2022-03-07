@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   Router.setRoute(URL.Signup, ViewsRegistry.SignupView);
   Router.setRoute(URL.Login, ViewsRegistry.LoginView);
+  Router.setRoute(URL.Feed, ViewsRegistry.FeedView);
 
   Router.setNotFoundView(ViewsRegistry.NotFoundView);
 

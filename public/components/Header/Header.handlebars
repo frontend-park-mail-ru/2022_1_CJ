@@ -1,14 +1,47 @@
 <nav class="header">
-  <div class="logo">
-    <a href="/" class="nav__link__logo" data-link>CJ</a>
+  <div class="header-left">
+    <div class="logo">
+      <a href="/" class="nav__link__logo" data-link>CJ</a>
+    </div>
+  </div>
+  <div class="header-middle">
+    <div class="search">
+      <img src="../../static/icons/1946488.png" alt="">
+      <div class="text">
+        <input type="text" placeholder="Search">
+      </div>
+    </div>
+    <div class="notifications">
+      <img src="../../static/icons/1946424.png" alt="">
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="profile">
+      {{!-- <img src={{profile.img}} alt=""> --}}
+      <img class="image" src="../../static/images/shrek.jpg" alt="">
+      <img class="settings" src="../../static/icons/1946436.png" alt="">
+    </div>
+    <div class="red-rectangle"></div>
   </div>
 
-  <ul class="nav__list">
-    {{#if authorized}}
-    TODO: authorized
-    {{else}}
-    <a href="/login" class="nav__link" data-link>login</a>
-    <a href="/signup" class="nav__link" data-link>signup</a>
-    {{/if}}
-  </ul>
+  {{#if needed}}
+  {{#if authorized}}
+  <div class="search">
+    <img src="../../static/icons/1946488.png" alt="">
+    <div class="text">
+      <p>Search</p>
+    </div>
+  </div>
+  <div class="notifications">
+    {{!-- <img src="../../static/icons/1946424.png" alt=""> --}}
+  </div>
+  <div class="profile">
+    {{!-- <img src={{profile.img}} alt=""> --}}
+    <img src="../../static/images/shrek.jpg" alt="">
+  </div>
+  {{else}}
+  <a href="/login" class="nav__link" data-link>login</a>
+  <a href="/signup" class="nav__link" data-link>signup</a>
+  {{/if}}
+  {{/if}}
 </nav>
