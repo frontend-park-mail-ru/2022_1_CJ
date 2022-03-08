@@ -1,7 +1,7 @@
 import { fetchAPI } from './common.js';
 
 const userMethods = {
-  getData: '/user/get',
+  getData: '/api/user/get',
 };
 
 export const UserAPI = {

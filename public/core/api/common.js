@@ -1,5 +1,3 @@
-import { BackendBaseURL } from '../constants/constants.js';
-
 /**
  * @param {String} apiMethod
  * @param {String} method
@@ -7,10 +5,10 @@ import { BackendBaseURL } from '../constants/constants.js';
  * @return {Promise<Response>}
  */
 export function fetchAPI(apiMethod, method, body) {
-  return fetch(BackendBaseURL + apiMethod, {
+  return fetch(apiMethod, {
     method,
     body,
-    credentials: 'include',
+    credentials: 'same-origin',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',

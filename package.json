@@ -7,9 +7,6 @@
     "lint:fix": "eslint --ext .js public --fix",
     "lint": "eslint --ext .js public --color"
   },
-  "dependencies": {
-    "handlebars": "^4.7.7"
-  },
   "devDependencies": {
     "eslint": "^8.10.0",
     "eslint-config-airbnb-base": "^15.0.0",

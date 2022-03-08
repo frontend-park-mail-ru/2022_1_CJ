@@ -94,10 +94,7 @@ class Router {
     }));
 
     const match = potentialMatches.find((potentialMatch) => potentialMatch.result !== null);
-
     const view = (match ? match.route.view : this.#notFoundView);
-    const json = await UserAPI.GetUserData(new GetUserDataDTO());
-    console.log(json);
     view.render(this.#root);
   }
 }
