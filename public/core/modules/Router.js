@@ -76,6 +76,9 @@ class Router {
     this.#route();
   }
 
+  /**
+   * @param {Event} event 
+   */
   async #handleClick(event) {
     if (event.target.matches('[data-link]')) {
       event.preventDefault();
