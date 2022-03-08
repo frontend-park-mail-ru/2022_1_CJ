@@ -6,7 +6,7 @@ import { URL } from '../../core/constants/constants.js';
 import { Router } from '../../core/modules/Router.js';
 import { TemplatesRegistry } from '../../core/constants/templates_registry.js';
 
-export default class LoginView extends View {
+class LoginView extends View {
   constructor() {
     super(null, TemplatesRegistry.Login);
     this.setTitle('Login');
