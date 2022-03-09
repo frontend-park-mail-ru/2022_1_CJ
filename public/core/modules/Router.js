@@ -1,6 +1,3 @@
-import { UserAPI } from "../api/user.js";
-import { GetUserDataDTO } from "../dto/user.js";
-
 const ParameterRegExp = /:(\w+)/g;
 const SolidStringPattern = '(.+)';
 const EscapedURLDelimiter = '\\/';
@@ -98,6 +95,7 @@ class Router {
 
     const match = potentialMatches.find((potentialMatch) => potentialMatch.result !== null);
     const view = (match ? match.route.view : this.#notFoundView);
+
     view.render(this.#root);
   }
 }

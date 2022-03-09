@@ -3,6 +3,7 @@ import { fetchAPI } from './common.js';
 const authMethods = {
   signup: '/api/auth/signup',
   login: '/api/auth/login',
+  logout: '/api/auth/logout',
 };
 
 export const AuthAPI = {
@@ -26,6 +27,14 @@ export const AuthAPI = {
   async LoginUser(dto) {
     const body = JSON.stringify(dto);
     const response = await fetchAPI(authMethods.login, 'POST', body);
+    if (!response.ok) {
+      return null;
+    }
+    return response.json();
+  },
+
+  async LogoutUser() {
+    const response = await fetchAPI(authMethods.logout, 'GET', null);
     if (!response.ok) {
       return null;
     }

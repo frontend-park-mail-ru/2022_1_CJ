@@ -5,7 +5,8 @@
 
   <ul class="nav__list">
     {{#if authorized}}
-    TODO: authorized
+    Hi, {{user.name.first}}
+    <a id="logout" href="/logout" class="nav__link">logout</a>
     {{else}}
     <a href="/login" class="nav__link" data-link>login</a>
     <a href="/signup" class="nav__link" data-link>signup</a>

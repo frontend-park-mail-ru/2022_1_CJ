@@ -6,7 +6,7 @@ import { URL } from '../../core/constants/constants.js';
 import { Router } from '../../core/modules/Router.js';
 import { TemplatesRegistry } from '../../core/constants/templates_registry.js';
 
-class LoginView extends View {
+export class LoginView extends View {
   constructor() {
     super(null, TemplatesRegistry.Login);
     this.setTitle('Login');
@@ -38,15 +38,11 @@ class LoginView extends View {
   }
 
   onFailure() {
-    console.log('failed');
+    // TODO:
   }
 
   onSuccess() {
-    console.log('success');
     this.removeEventListeners();
     Router.navigateTo(URL.Feed);
   }
 }
-
-const instance = new LoginView();
-export { instance as LoginView };

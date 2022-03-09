@@ -6,7 +6,7 @@ import { EventBus, AuthEvents, EventBusChannels } from '../../core/modules/Event
 import { Router } from '../../core/modules/Router.js';
 import { TemplatesRegistry } from '../../core/constants/templates_registry.js';
 
-class SignupView extends View {
+export class SignupView extends View {
   constructor() {
     super(null, TemplatesRegistry.Signup);
     this.setTitle('Signup');
@@ -40,15 +40,11 @@ class SignupView extends View {
   }
 
   onFailure() {
-    console.log('failed');
+    // TODO:
   }
 
   onSuccess() {
-    console.log('success');
     this.removeEventListeners();
     Router.navigateTo(URL.Login);
   }
 }
-
-const instance = new SignupView();
-export { instance as SignupView };

@@ -1,4 +1,7 @@
-docker: stop build run
+docker: precompile stop build run
+
+precompile:
+	bash scripts/precompile.sh
 
 stop:
 	bash scripts/stop.sh
@@ -15,5 +18,5 @@ enable-local:
 	cp -r public/* /var/www/web
 	ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
 
-disbable-local:
+disable-local:
 	unlink /etc/nginx/sites-enabled/default.conf

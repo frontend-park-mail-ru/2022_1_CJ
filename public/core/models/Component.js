@@ -1,17 +1,20 @@
 export default class Component {
+  context; // TODO: make a way to keep it private
+  #template;
+
   /**
    * @constructor
    * @param {Object} context - context for rendering the template
    * @param {Function} template - function for generating the HTML
    */
   constructor(context, template) {
-    this.context = context;
-    this.template = template;
+    this.context = context || {};
+    this.#template = template;
 
     // Children components of the component
-    this.subComponents = new Map();
+    this.subComponents = {};
     // Children list components of the component
-    this.subComponentsLists = new Map();
+    this.subComponentsLists = {};
   }
 
   /**
@@ -33,32 +36,23 @@ export default class Component {
   }
 
   /**
-   * Update given component's context
-   * @param {String} name - component's name
-   * @param {Object} context - new context
-   */
-  setContextByComponentName(name, context) {
-    this.subComponents.get(name).setContext(context);
-  }
-
-  /**
    * Produce HTML
    * @return {String} - produced HTML
    */
-  render() {
-    const contextWithComponents = { ...this.#renderComponents(), ...this.context };
-    return this.template(contextWithComponents);
+  render(context = this.context) {
+    const contextWithComponents = { ...this.#renderComponents(context), ...context };
+    return this.#template(contextWithComponents);
   }
 
   /**
    * Recursively add event listeners
    */
   addEventListeners() {
-    this.subComponents.forEach((component) => {
+    Object.values(this.subComponents).forEach((component) => {
       component.addEventListeners();
     });
 
-    this.subComponentsLists.forEach((componentList) => {
+    Object.values(this.subComponentsLists).forEach((componentList) => {
       componentList.forEach((component) => {
         component.addEventListeners();
       });
@@ -69,11 +63,11 @@ export default class Component {
    * Recursively remove event listeners
    */
   removeEventListeners() {
-    this.subComponents.forEach((component) => {
+    Object.values(this.subComponents).forEach((component) => {
       component.removeEventListeners();
     });
 
-    this.subComponentsLists.forEach((componentList) => {
+    Object.values(this.subComponentsLists).forEach((componentList) => {
       componentList.forEach((component) => {
         component.removeEventListeners();
       });
@@ -109,19 +103,19 @@ export default class Component {
   /**
    * @return {Component[]}
    */
-  #renderComponents() {
+  #renderComponents(context) {
     const renderedComponents = Object
       .entries(this.subComponents)
       .reduce((obj, [name, component]) => ({
         ...obj,
-        [name]: component.render(),
+        [name]: component.render(context),
       }), {});
 
     const renderedLists = Object
       .entries(this.subComponentsLists)
       .reduce((obj, [name, list]) => ({
         ...obj,
-        [name]: list.map((component) => component.render()),
+        [name]: list.map((component) => component.render(context)),
       }), {});
 
     return { ...renderedComponents, ...renderedLists };
