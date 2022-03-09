@@ -17,12 +17,22 @@
     </div>
   </div>
 
-  <div class="header-right">
-    <div id="profile">
-      {{!-- user image --}}
-      <img class="image" src="../../static/images/shrek.jpg" alt="">
-      <img class="settings" src="../../static/icons/settings.png" alt="">
+  <ul class="nav__list">
+    <div class="header-right">
+      <div id="profile">
+        {{!-- user image --}}
+        <img class="image" src="../../static/images/shrek.jpg" alt="">
+        <img class="settings" src="../../static/icons/settings.png" alt="">
+      </div>
+      <div class="red-rectangle"></div>
     </div>
-    <div class="red-rectangle"></div>
-  </div>
+
+    {{#if authorized}}
+    Hi, {{user.name.first}}
+    <a id="logout" href="/logout" class="nav__link">logout</a>
+    {{else}}
+    <a href="/login" class="nav__link" data-link>login</a>
+    <a href="/signup" class="nav__link" data-link>signup</a>
+    {{/if}}
+  </ul>
 </nav>

@@ -7,11 +7,11 @@ const root = document.getElementById('root');
 document.addEventListener('DOMContentLoaded', () => {
   Router.setRoot(root);
 
-  Router.setRoute(URL.Signup, ViewsRegistry.SignupView);
-  Router.setRoute(URL.Login, ViewsRegistry.LoginView);
-  Router.setRoute(URL.Feed, ViewsRegistry.FeedView);
+  Router.setRoute(URL.Signup, new ViewsRegistry.SignupView());
+  Router.setRoute(URL.Login, new ViewsRegistry.LoginView());
+  Router.setRoute(URL.Feed, new ViewsRegistry.FeedView());
 
-  Router.setNotFoundView(ViewsRegistry.NotFoundView);
+  Router.setNotFoundView(new ViewsRegistry.NotFoundView());
 
   Router.run();
 });

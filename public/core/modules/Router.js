@@ -73,6 +73,9 @@ class Router {
     this.#route();
   }
 
+  /**
+   * @param {Event} event 
+   */
   async #handleClick(event) {
     if (event.target.matches('[data-link]')) {
       event.preventDefault();
@@ -91,8 +94,8 @@ class Router {
     }));
 
     const match = potentialMatches.find((potentialMatch) => potentialMatch.result !== null);
-
     const view = (match ? match.route.view : this.#notFoundView);
+
     view.render(this.#root);
   }
 }

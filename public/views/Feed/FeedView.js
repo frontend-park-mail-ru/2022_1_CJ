@@ -1,7 +1,7 @@
 import View from '../../core/models/View.js';
 import { TemplatesRegistry } from '../../core/constants/templates_registry.js';
 
-export default class FeedView extends View {
+export class FeedView extends View {
   constructor() {
     super(null, TemplatesRegistry.Feed);
     this.setTitle('Feed');
@@ -11,7 +11,7 @@ export default class FeedView extends View {
     super.addEventListeners();
 
     // user profile settings
-    document.getElementById('profile').onclick=this.redirect;
+    document.getElementById('profile').onclick = this.redirect;
 
     // main menu buttons
     var elements = document.querySelectorAll("#main-menu .element");
@@ -122,7 +122,7 @@ export default class FeedView extends View {
    */
   commentReaction(e) {
     let comments = e.currentTarget.parentNode.parentNode.nextElementSibling;
-    
+
     if (!comments.style.display || comments.style.display == 'none') {
       comments.style.display = 'block';
     } else {
@@ -139,6 +139,3 @@ export default class FeedView extends View {
   }
 
 }
-
-const instance = new FeedView();
-export { instance as FeedView };
