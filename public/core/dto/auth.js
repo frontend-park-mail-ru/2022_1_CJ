@@ -7,9 +7,7 @@ export class SignupUserDTO {
    */
   constructor(email, firstname, lastname, password) {
     this.email = email;
-    this.first_name = firstname;
-    this.last_name = lastname;
-    // this.name = { first: firstname, last: lastname };
+    this.name = { first: firstname, last: lastname };
     this.password = password;
   }
 }
