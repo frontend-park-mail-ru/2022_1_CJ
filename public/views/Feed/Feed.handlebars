@@ -2,152 +2,433 @@
 
 <div class="main-container">
   <div class="left-container">
-    <div class="main-menu">
+    <div id="main-menu">
+
       <div class="info">
         <p>Main</p>
         <hr>
       </div>
-      {{#if menu-elements}}
-      {{#each menu-elements}}
+
       <div class="element">
-        <img src={{icon}} alt="">
-        <p>{{name}}</p>
+        <img src="../../static/icons/feed.png" alt="">
+        <p>feed</p>
       </div>
-      {{/each}}
-      {{else}}
+
       <div class="element">
-        <img src="../../static/icons/1946382.png" alt="">
-        <p>some text</p>
-      </div>
-      <div class="element">
-        <img src="../../static/icons/1946382.png" alt="">
+        <img src="../../static/icons/messages.png" alt="">
         <p>messages</p>
       </div>
+
       <div class="element">
-        <img src="../../static/icons/1946382.png" alt="">
-        <p>some long long text</p>
+        <img src="../../static/icons/groups.png" alt="">
+        <p>groups</p>
       </div>
-      {{/if}}
+
     </div>
   </div>
 
   {{!-- aka middle container --}}
   <div class="feed-background">
+
     {{#if posts}}
     {{#each posts}}
-    <div class="post">
-      <div class="author">
-        <img src={{ author.img }} alt="">
-      </div>
-      {{ author }} {{ settings }}
-      {{#if text}}
-      <p>{{ text }}</p>
-      {{/if}}
-      {{ post }}
-      {{ reactions }}
-    </div>
+      {{!-- post info here --}}
     {{/each}}
-    {{else}}
+    {{/if}}
+
     <div class="post">
       <div class="post-header">
+
         <div class="author">
+          {{!-- post author image --}}
           <img src="../../static/images/shrek.jpg" alt="">
           <div class="info">
             <div class="status">
+              {{!-- post author status --}}
               <p>status</p>
+              {{!-- post author status icon --}}
               <img src="../../static/icons/1946488.png" alt="">
             </div>
+            {{!-- post author name --}}
             <p>Boris Britva</p>
           </div>
         </div>
+
         <div class="settings">
-          <img src="../../static/icons/1946488.png" alt="">
+          <img src="../../static/icons/arrow.png" alt="">
         </div>
-      </div>
-    </div>
-    <div class="post">
-      <div class="post-header">
-        <div class="author">
-          <img src="../../static/images/shrek.jpg" alt="">
-          <div class="info">
-            <div class="status">
-              <p>status</p>
-              <img src="../../static/icons/1946488.png" alt="">
-            </div>
-            <p>Boris Britva</p>
-          </div>
-        </div>
-        <div class="settings">
-          <img src="../../static/icons/1946488.png" alt="">
-        </div>
-      </div>
-    </div>
-    <div class="post">
-      <div class="post-header">
-        <div class="author">
-          <img src="../../static/images/shrek.jpg" alt="">
-          <div class="info">
-            <div class="status">
-              <p>status</p>
-              <img src="../../static/icons/1946488.png" alt="">
-            </div>
-            <p>Boris Britva</p>
-          </div>
-        </div>
-        <div class="settings">
-          <img src="../../static/icons/1946488.png" alt="">
-        </div>
-      </div>
-    </div>
-    <div class="post">
-      <div class="post-header">
-        <div class="author">
-          <img src="../../static/images/shrek.jpg" alt="">
-          <div class="info">
-            <div class="status">
-              <p>status</p>
-              <img src="../../static/icons/1946488.png" alt="">
-            </div>
-            <p>Boris Britva</p>
-          </div>
-        </div>
-        <div class="settings">
-          <img src="../../static/icons/1946488.png" alt="">
-        </div>
+
       </div>
       <div class="body">
+        {{!-- post body text (if exist) --}}
         <p>This is my post, suckers</p>
+        {{!-- post body image (if exist) --}}
+        {{#if post.images}}
+        {{#each post.images}}
+          <img class="post-image" src={{image}} alt="">
+        {{/each}}
+        {{/if}}
         <img class="post-image" src="../../static/images/shrek.jpg" alt="">
+
         <div class="reactions">
           <div class="reactions-left">
             <div class="like-reaction">
-              <img src="../../static/icons/1946382.png" alt="">
-              <p>1.45m</p>
+              <img src="../../static/icons/like.png" alt="">
+              {{!-- reactions likes count --}}
+              <p>499</p>
             </div>
             <div class="comment-reaction">
-              <img src="../../static/icons/1946382.png" alt="">
+              <img src="../../static/icons/comment.png" alt="">
+              {{!-- reactions comments count (if needed) --}}
               <p>comment</p>
             </div>
             <div class="repost-reaction">
-              <img src="../../static/icons/1946382.png" alt="">
+              <img src="../../static/icons/share.png" alt="">
+              {{!-- reactions reposts count (if needed) --}}
               <p>repost</p>
             </div>
           </div>
           <div class="reactions-right">
             <div class="dislike-reaction">
-              <img src="../../static/icons/1946382.png" alt="">
+              <img src="../../static/icons/dislike.png" alt="">
+              {{!-- reactions dilikes count --}}
+              <p>0</p>
             </div>
             <div class="watch-info">
-              <img src="../../static/icons/1946382.png" alt="">
+              <img src="../../static/icons/eye.png" alt="">
+              {{!-- reactions watch count --}}
               <p>1.2k</p>
             </div>
           </div>
         </div>
+
+        <div class="comments">
+          <div class="comments-header">
+            <p>commentaries</p>
+            <hr>
+          </div>
+          {{#each comments}}
+            <div class="one-comment">
+              <div class="author">
+              {{!-- post author image --}}
+                <img src={{comment.author.image}} alt="">
+                <div class="info">
+                  {{!-- post author name --}}
+                  <p>{{comment.author.name}}</p>
+                </div>
+              </div>
+              <div class="text">
+                <p>{{comment.text}}</p>
+              </div>
+            </div>
+          {{/each}}
+          <div class="one-comment">
+            <div class="author">
+            {{!-- post author image --}}
+              <img src="../../static/images/shrek.jpg" alt="">
+              <div class="info">
+                {{!-- post author name --}}
+                <p>Boris Britva</p>
+              </div>
+            </div>
+            <div class="text">
+              <p>some comment from</p>
+            </div>
+          </div>
+          <div class="one-comment">
+            <div class="author">
+            {{!-- post author image --}}
+              <img src="../../static/images/shrek.jpg" alt="">
+              <div class="info">
+                {{!-- post author name --}}
+                <p>Boris Britva</p>
+              </div>
+            </div>
+            <div class="text">
+              <p>some comment from</p>
+            </div>
+          </div>
+          <div class="one-comment">
+            <div class="author">
+            {{!-- post author image --}}
+              <img src="../../static/images/shrek.jpg" alt="">
+              <div class="info">
+                {{!-- post author name --}}
+                <p>Boris Britva</p>
+              </div>
+            </div>
+            <div class="text">
+              <p>some comment from</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
-    {{/if}}
+
+    <div class="post">
+      <div class="post-header">
+
+        <div class="author">
+          {{!-- post author image --}}
+          <img src="../../static/images/shrek.jpg" alt="">
+          <div class="info">
+            <div class="status">
+              {{!-- post author status --}}
+              <p>status</p>
+              {{!-- post author status icon --}}
+              <img src="../../static/icons/1946488.png" alt="">
+            </div>
+            {{!-- post author name --}}
+            <p>Boris Britva</p>
+          </div>
+        </div>
+
+        <div class="settings">
+          <img src="../../static/icons/arrow.png" alt="">
+        </div>
+
+      </div>
+      <div class="body">
+        {{!-- post body text (if exist) --}}
+        <p>This is my post, suckers</p>
+        {{!-- post body image (if exist) --}}
+        {{#if post.images}}
+        {{#each post.images}}
+          <img class="post-image" src={{image}} alt="">
+        {{/each}}
+        {{/if}}
+        <img class="post-image" src="../../static/images/shrek.jpg" alt="">
+
+        <div class="reactions">
+          <div class="reactions-left">
+            <div class="like-reaction">
+              <img src="../../static/icons/like.png" alt="">
+              {{!-- reactions likes count --}}
+              <p>499</p>
+            </div>
+            <div class="comment-reaction">
+              <img src="../../static/icons/comment.png" alt="">
+              {{!-- reactions comments count (if needed) --}}
+              <p>comment</p>
+            </div>
+            <div class="repost-reaction">
+              <img src="../../static/icons/share.png" alt="">
+              {{!-- reactions reposts count (if needed) --}}
+              <p>repost</p>
+            </div>
+          </div>
+          <div class="reactions-right">
+            <div class="dislike-reaction">
+              <img src="../../static/icons/dislike.png" alt="">
+              {{!-- reactions dilikes count --}}
+              <p>0</p>
+            </div>
+            <div class="watch-info">
+              <img src="../../static/icons/eye.png" alt="">
+              {{!-- reactions watch count --}}
+              <p>1.2k</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="comments">
+          <div class="comments-header">
+            <p>commentaries</p>
+            <hr>
+          </div>
+          {{#each comments}}
+            <div class="one-comment">
+              <div class="author">
+              {{!-- post author image --}}
+                <img src={{comment.author.image}} alt="">
+                <div class="info">
+                  {{!-- post author name --}}
+                  <p>{{comment.author.name}}</p>
+                </div>
+              </div>
+              <div class="text">
+                <p>{{comment.text}}</p>
+              </div>
+            </div>
+          {{/each}}
+          <div class="one-comment">
+            <div class="author">
+            {{!-- post author image --}}
+              <img src="../../static/images/shrek.jpg" alt="">
+              <div class="info">
+                {{!-- post author name --}}
+                <p>Boris Britva</p>
+              </div>
+            </div>
+            <div class="text">
+              <p>some comment from</p>
+            </div>
+          </div>
+          <div class="one-comment">
+            <div class="author">
+            {{!-- post author image --}}
+              <img src="../../static/images/shrek.jpg" alt="">
+              <div class="info">
+                {{!-- post author name --}}
+                <p>Boris Britva</p>
+              </div>
+            </div>
+            <div class="text">
+              <p>some comment from</p>
+            </div>
+          </div>
+          <div class="one-comment">
+            <div class="author">
+            {{!-- post author image --}}
+              <img src="../../static/images/shrek.jpg" alt="">
+              <div class="info">
+                {{!-- post author name --}}
+                <p>Boris Britva</p>
+              </div>
+            </div>
+            <div class="text">
+              <p>some comment from</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    
+    <div class="post">
+      <div class="post-header">
+
+        <div class="author">
+          {{!-- post author image --}}
+          <img src="../../static/images/shrek.jpg" alt="">
+          <div class="info">
+            <div class="status">
+              {{!-- post author status --}}
+              <p>status</p>
+              {{!-- post author status icon --}}
+              <img src="../../static/icons/1946488.png" alt="">
+            </div>
+            {{!-- post author name --}}
+            <p>Boris Britva</p>
+          </div>
+        </div>
+
+        <div class="settings">
+          <img src="../../static/icons/arrow.png" alt="">
+        </div>
+
+      </div>
+      <div class="body">
+        {{!-- post body text (if exist) --}}
+        <p>This is my post, suckers</p>
+        {{!-- post body image (if exist) --}}
+        {{#if post.images}}
+        {{#each post.images}}
+          <img class="post-image" src={{image}} alt="">
+        {{/each}}
+        {{/if}}
+        <img class="post-image" src="../../static/images/shrek.jpg" alt="">
+
+        <div class="reactions">
+          <div class="reactions-left">
+            <div class="like-reaction">
+              <img src="../../static/icons/like.png" alt="">
+              {{!-- reactions likes count --}}
+              <p>499</p>
+            </div>
+            <div class="comment-reaction">
+              <img src="../../static/icons/comment.png" alt="">
+              {{!-- reactions comments count (if needed) --}}
+              <p>comment</p>
+            </div>
+            <div class="repost-reaction">
+              <img src="../../static/icons/share.png" alt="">
+              {{!-- reactions reposts count (if needed) --}}
+              <p>repost</p>
+            </div>
+          </div>
+          <div class="reactions-right">
+            <div class="dislike-reaction">
+              <img src="../../static/icons/dislike.png" alt="">
+              {{!-- reactions dilikes count --}}
+              <p>0</p>
+            </div>
+            <div class="watch-info">
+              <img src="../../static/icons/eye.png" alt="">
+              {{!-- reactions watch count --}}
+              <p>1.2k</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="comments">
+          <div class="comments-header">
+            <p>commentaries</p>
+            <hr>
+          </div>
+          {{#each comments}}
+            <div class="one-comment">
+              <div class="author">
+              {{!-- post author image --}}
+                <img src={{comment.author.image}} alt="">
+                <div class="info">
+                  {{!-- post author name --}}
+                  <p>{{comment.author.name}}</p>
+                </div>
+              </div>
+              <div class="text">
+                <p>{{comment.text}}</p>
+              </div>
+            </div>
+          {{/each}}
+          <div class="one-comment">
+            <div class="author">
+            {{!-- post author image --}}
+              <img src="../../static/images/shrek.jpg" alt="">
+              <div class="info">
+                {{!-- post author name --}}
+                <p>Boris Britva</p>
+              </div>
+            </div>
+            <div class="text">
+              <p>some comment from</p>
+            </div>
+          </div>
+          <div class="one-comment">
+            <div class="author">
+            {{!-- post author image --}}
+              <img src="../../static/images/shrek.jpg" alt="">
+              <div class="info">
+                {{!-- post author name --}}
+                <p>Boris Britva</p>
+              </div>
+            </div>
+            <div class="text">
+              <p>some comment from</p>
+            </div>
+          </div>
+          <div class="one-comment">
+            <div class="author">
+            {{!-- post author image --}}
+              <img src="../../static/images/shrek.jpg" alt="">
+              <div class="info">
+                {{!-- post author name --}}
+                <p>Boris Britva</p>
+              </div>
+            </div>
+            <div class="text">
+              <p>some comment from</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 
+  {{!-- in the future --}}
   <div class="right-container">
   </div>
 </div>

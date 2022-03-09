@@ -1,0 +1,34 @@
+.post-settings {
+    width: 100%;
+    height: 100%;
+
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+
+    background-color: var(--main-color-primary);
+    border-radius: var(--border-radius-16);
+}
+
+.post-settings .settings-icon {
+    background-color: var(--form-accent-color);
+}
+
+.post-settings .settings-element {
+}
+
+.settings-element p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.settings-element hr {
+    width: 100%;
+    border: 1px solid black;
+    top: 100%;
+    position: sticky;
+}
