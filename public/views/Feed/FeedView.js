@@ -10,7 +10,7 @@ export class FeedView extends View {
   addEventListeners() {
     super.addEventListeners();
 
-    // user profile settings
+    // user profile settingsf
     document.getElementById('profile').onclick = this.redirect;
 
     // main menu buttons
@@ -57,7 +57,7 @@ export class FeedView extends View {
    * @param {Event} e 
    */
   postSettingsOnClick(e) {
-    e.currentTarget.parentNode.innerHTML += TemplatesRegistry.PostSettings;
+    e.currentTarget.parentNode.innerHTML += TemplatesRegistry.PostSettings();
     // if (e.currentTarget.hidden)
     //   e.currentTarget.firstElementChild.hidden = false;
     // else {
