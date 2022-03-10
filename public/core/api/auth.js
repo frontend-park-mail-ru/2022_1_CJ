@@ -34,7 +34,7 @@ export const AuthAPI = {
   },
 
   async LogoutUser() {
-    const response = await fetchAPI(authMethods.logout, 'GET', null);
+    const response = await fetchAPI(authMethods.logout, 'DELETE', null);
     if (!response.ok) {
       return null;
     }
