@@ -1,13 +1,7 @@
-FROM node:17-alpine3.14 as builder
-
-WORKDIR /frontend
-COPY . .
-RUN npm install --production
-
 FROM nginx:1.21.6-alpine as nginx
 
-COPY --from=builder /frontend/src /var/www/web
-COPY  ./nginx/default.conf /etc/nginx/sites-enabled/default
+COPY /src /var/www/web
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx/default.conf /etc/nginx/sites-enabled/default
 
 EXPOSE 80
