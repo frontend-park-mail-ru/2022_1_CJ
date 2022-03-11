@@ -1,123 +1,90 @@
-export default class Component {
-  context; // TODO: make a way to keep it private
+export class Component {
+  /** @member {Function} template - is a function that returns HTML provided some context Object. */
   #template;
+
+  /** @member {Object} context - is an object containing information for rendering a template. */
+  #context;
+
+  /** @member {Object} subComponents  - children components of the component. */
+  #subComponents;
 
   /**
    * @constructor
-   * @param {Object} context - context for rendering the template
-   * @param {Function} template - function for generating the HTML
+   * @param {Function} template - function for generating the HTML.
    */
-  constructor(context, template) {
-    this.context = context || {};
+  constructor(template) {
+    this.#context = {};
     this.#template = template;
-
-    // Children components of the component
-    this.subComponents = {};
-    // Children list components of the component
-    this.subComponentsLists = {};
+    this.#subComponents = {};
   }
 
   /**
-   * Set context and pass it to children components
-   * @param {Object} context
+   * Set context and pass it to children components.
+   * @param {Object} context - context for rendering the template.
    */
   setContext(context) {
-    this.context = context;
-
-    this.subComponents.forEach((component) => {
-      component.context = this.context;
-    });
-
-    this.subComponentsLists.forEach((componentList) => {
-      componentList.forEach((component) => {
-        component.context = this.context;
-      });
+    this.#context = context;
+    this.#subComponents.forEach((component) => {
+      component.context = this.#context;
     });
   }
 
   /**
-   * Produce HTML
-   * @return {String} - produced HTML
+   * @param {String} key
+   * @param {Object} value 
    */
-  render(context = this.context) {
-    const contextWithComponents = { ...this.#renderComponents(context), ...context };
+  addContext(key, value) {
+    this.#context[key] = value;
+  }
+
+  /**
+   * @param {String} name - name of the component.
+   * @param {Component} component - the component.
+   */
+  addComponent(name, component) {
+    this.#subComponents[name] = component;
+  }
+
+  /**
+   * Produce HTML. Context is supposed to be set before rendering.
+   * @return {String} - produced HTML.
+   */
+  render() {
+    const contextWithComponents = { ...this.#renderComponents(), ...this.#context };
     return this.#template(contextWithComponents);
   }
 
   /**
-   * Recursively add event listeners
+   * Recursively add event listeners.
+   * If redefined, super method is supposed to be called.
    */
   addEventListeners() {
-    Object.values(this.subComponents).forEach((component) => {
+    Object.values(this.#subComponents).forEach((component) => {
       component.addEventListeners();
     });
-
-    Object.values(this.subComponentsLists).forEach((componentList) => {
-      componentList.forEach((component) => {
-        component.addEventListeners();
-      });
-    });
   }
 
   /**
-   * Recursively remove event listeners
+   * Recursively remove event listeners.
+   * If redefined, super method is supposed to be called.
    */
   removeEventListeners() {
-    Object.values(this.subComponents).forEach((component) => {
+    Object.values(this.#subComponents).forEach((component) => {
       component.removeEventListeners();
     });
-
-    Object.values(this.subComponentsLists).forEach((componentList) => {
-      componentList.forEach((component) => {
-        component.removeEventListeners();
-      });
-    });
-  }
-
-  /**
-   * @param {String} name - name of the component
-   * @param {Component} component - the component
-   */
-  addComponent(name, component) {
-    this.subComponents[name] = component;
-  }
-
-  /**
-   * @param {String} name - name of the component list
-   * @param {Component} component - the component
-   */
-  addComponentToList(name, component) {
-    if (!this.subComponentsLists.name) {
-      this.subComponentsLists[name] = [];
-    }
-    this.subComponentsLists[name].push(component);
-  }
-
-  /**
-   * @param {String} name - name of the component list
-   */
-  removeComponentsList(name) {
-    delete this.subComponentsLists[name];
   }
 
   /**
    * @return {Component[]}
    */
-  #renderComponents(context) {
+  #renderComponents() {
     const renderedComponents = Object
-      .entries(this.subComponents)
+      .entries(this.#subComponents)
       .reduce((obj, [name, component]) => ({
         ...obj,
-        [name]: component.render(context),
+        [name]: component.render(),
       }), {});
 
-    const renderedLists = Object
-      .entries(this.subComponentsLists)
-      .reduce((obj, [name, list]) => ({
-        ...obj,
-        [name]: list.map((component) => component.render(context)),
-      }), {});
-
-    return { ...renderedComponents, ...renderedLists };
+    return { ...renderedComponents };
   }
 }
