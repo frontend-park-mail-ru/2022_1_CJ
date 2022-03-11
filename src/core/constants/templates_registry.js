@@ -7,12 +7,9 @@ import '../../precompiled/NotFound.js';
 
 export const TemplatesRegistry = {
   Header: Handlebars.templates.Header,
-  // HeaderSettings: Handlebars.templates.HeaderSettings,
-
   Login: Handlebars.templates.Login,
   NotFound: Handlebars.templates.NotFound,
   Signup: Handlebars.templates.Signup,
-
   Feed: Handlebars.templates.Feed,
   PostSettings: Handlebars.templates.PostSettings,
 };

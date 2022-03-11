@@ -3,9 +3,8 @@
   "private": true,
   "repository": "github:frontend-park-mail-ru/2022_1_CJ",
   "scripts": {
-    "start": "node server/index.js",
-    "lint:fix": "eslint --ext .js public --fix",
-    "lint": "eslint --ext .js public --color"
+    "lint:fix": "eslint --ext .js src --fix",
+    "lint": "eslint --ext .js src --color"
   },
   "devDependencies": {
     "eslint": "^8.10.0",

@@ -15,7 +15,7 @@ run:
 enable-local:
 	cp nginx/nginx.conf /etc/nginx/nginx.conf
 	cp nginx/default.conf /etc/nginx/sites-available/default.conf
-	cp -r public/* /var/www/web
+	cp -r src/* /var/www/web
 	ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
 
 disable-local:

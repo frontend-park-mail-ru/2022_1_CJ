@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 handlebars_opts="--min --commonjs"
-paths=("public/views" "public/components" "public/components/popups")
-outdir="public/precompiled"
+paths=("src/views" "src/components" "src/components/popups")
+outdir="src/precompiled"
 
 mkdir -p $outdir
 for path in ${paths[@]}; do
