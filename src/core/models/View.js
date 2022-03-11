@@ -1,44 +1,38 @@
-import Component from './Component.js';
-import { TemplatesRegistry } from '../constants/templates_registry.js';
-import { UserAPI } from '../api/user.js';
-import { ComponentsRegistry } from '../constants/components_registry.js';
+import { Component } from './Component.js';
 
-export default class View extends Component {
+export class View extends Component {
+  /** @member {Function[]} adapters - functions to be called before rendering to obtain a context. */
+  #adapters;
+
   /**
    * @constructor
-   * @param {Object} context - context for rendering the template
-   * @param {Function} template - function for generating the HTML
+   * @param {Function} template - function for generating the HTML.
+   * @param  {...Function} adapters 
    */
-  constructor(context, template) {
-    super(context, template);
-    this.addComponent('header', new ComponentsRegistry.HeaderComponent(null, TemplatesRegistry.Header));
+  constructor(template, ...adapters) {
+    super(template);
+    this.#adapters = adapters;
+    // TODO: move to adapters
+    // this.addComponent('header', new ComponentsRegistry.HeaderComponent(null, TemplatesRegistry.Header));
   }
 
   /**
-   * @param {HTMLElement} parent - parent HTML Element for output
-   */
-  async render(parent) {
-
-    // TODO: a complete mess
-    const [json, _] = await UserAPI.GetUserData(null);
-    if (json != null) {
-      this.context["user"] = json["user"];
-      this.context["authorized"] = true;
-    } else {
-      this.context["user"] = null;
-      this.context["authorized"] = false;
-    }
-    //
-
-    parent.innerHTML = super.render();
-    this.addEventListeners();
-  }
-
-  /**
-   * Set document's title
+   * Set document's title.
    * @param {String} title
    */
   setTitle(title) {
     document.title = title;
+  }
+
+  /**
+   * Call adapters, super render method and add event listeners.
+   * @param {HTMLElement} parent - parent HTML Element for output
+   */
+  async render(parent) {
+    this.#adapters.forEach((adapter) => {
+      adapter(this);
+    });
+    parent.innerHTML = super.render();
+    this.addEventListeners();
   }
 }
