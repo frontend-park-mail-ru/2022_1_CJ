@@ -24,9 +24,6 @@ export class Component {
    */
   setContext(context) {
     this.#context = context;
-    this.#subComponents.forEach((component) => {
-      component.context = this.#context;
-    });
   }
 
   /**
@@ -47,10 +44,11 @@ export class Component {
 
   /**
    * Produce HTML. Context is supposed to be set before rendering.
+   * @param {Object?} context - context to be passed to sub components, for parent node supposed to be not pased.
    * @return {String} - produced HTML.
    */
-  render() {
-    const contextWithComponents = { ...this.#renderComponents(), ...this.#context };
+  render(context = this.#context) {
+    const contextWithComponents = { ...this.#renderComponents(context), ...context };
     return this.#template(contextWithComponents);
   }
 
@@ -75,16 +73,16 @@ export class Component {
   }
 
   /**
+   * @param {Object} context
    * @return {Component[]}
    */
-  #renderComponents() {
+  #renderComponents(context) {
     const renderedComponents = Object
       .entries(this.#subComponents)
       .reduce((obj, [name, component]) => ({
         ...obj,
-        [name]: component.render(),
+        [name]: component.render(context),
       }), {});
-
     return { ...renderedComponents };
   }
 }

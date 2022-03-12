@@ -1,14 +1,19 @@
 import { URL } from '../../core/constants/constants.js';
 import { AuthController } from '../../core/controllers/auth.js';
 import { SignupUserDTO } from '../../core/dto/auth.js';
-import View from '../../core/models/View.js';
+import { View } from '../../core/models/View.js';
 import { EventBus, AuthEvents, EventBusChannels } from '../../core/modules/EventBus.js';
 import { Router } from '../../core/modules/Router.js';
 import { TemplatesRegistry } from '../../core/constants/templates_registry.js';
 
 export class SignupView extends View {
-  constructor() {
-    super(null, TemplatesRegistry.Signup);
+  /**
+   * @constructor
+   * @param {Function} template - function for generating the HTML.
+   * @param  {...Function} adapters 
+   */
+  constructor(...adapters) {
+    super(TemplatesRegistry.Signup, ...adapters);
     this.setTitle('Signup');
     this.onSubmitCallback = this.onSubmit.bind(this);
   }

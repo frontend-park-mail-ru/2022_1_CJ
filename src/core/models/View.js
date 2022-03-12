@@ -24,13 +24,18 @@ export class View extends Component {
 
   /**
    * Call adapters, super render method and add event listeners.
-   * @param {HTMLElement} parent - parent HTML Element for output
+   * @param {HTMLElement} parent - parent HTML Element for output.
    */
   async render(parent) {
-    this.#adapters.forEach((adapter) => {
-      adapter(this);
-    });
+    await this.#applyAdapters();
     parent.innerHTML = super.render();
     this.addEventListeners();
+  }
+
+  /** Applies all the adapters. */
+  async #applyAdapters() {
+    for (const adapter in this.#adapters) {
+      await this.#adapters[adapter](this);
+    }
   }
 }

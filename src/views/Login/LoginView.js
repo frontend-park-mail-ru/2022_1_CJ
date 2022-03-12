@@ -1,4 +1,4 @@
-import View from '../../core/models/View.js';
+import { View } from '../../core/models/View.js';
 import { AuthController } from '../../core/controllers/auth.js';
 import { LoginUserDTO } from '../../core/dto/auth.js';
 import { EventBus, AuthEvents, EventBusChannels } from '../../core/modules/EventBus.js';
@@ -7,8 +7,13 @@ import { Router } from '../../core/modules/Router.js';
 import { TemplatesRegistry } from '../../core/constants/templates_registry.js';
 
 export class LoginView extends View {
-  constructor() {
-    super(null, TemplatesRegistry.Login);
+  /**
+   * @constructor
+   * @param {Function} template - function for generating the HTML.
+   * @param  {...Function} adapters 
+   */
+  constructor(...adapters) {
+    super(TemplatesRegistry.Login, ...adapters);
     this.setTitle('Login');
     this.onSubmitCallback = this.onSubmit.bind(this);
   }
