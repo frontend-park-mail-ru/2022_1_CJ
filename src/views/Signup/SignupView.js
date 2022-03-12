@@ -18,6 +18,14 @@ export class SignupView extends View {
     this.onSubmitCallback = this.onSubmit.bind(this);
   }
 
+  checkStateBeforeRender() {
+    return this.getContextByKey(ContextKey.IsAuthorized) == false;
+  }
+
+  onInvalidState() {
+    Router.navigateTo(URL.Feed);
+  }
+
   addEventListeners() {
     super.addEventListeners();
     document.getElementById('login-form').addEventListener('submit', this.onSubmitCallback);

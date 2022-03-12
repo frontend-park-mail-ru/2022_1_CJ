@@ -16,7 +16,7 @@ export function HeaderAdapter(view) {
  * Adds information about user.
  * @param {View} view 
  */
-export async function AuthAdapter(view) {
+export async function UserAdapter(view) {
   const [json, err] = await UserAPI.GetUserData(null);
   if (err != null && err.code != HttpStatus.Unauthorized) {
     throw err;

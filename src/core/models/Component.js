@@ -35,6 +35,13 @@ export class Component {
   }
 
   /**
+   * @param {String} key
+   */
+  getContextByKey(key) {
+    return this.#context[key];
+  }
+
+  /**
    * @param {String} name - name of the component.
    * @param {Component} component - the component.
    */

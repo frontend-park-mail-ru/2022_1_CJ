@@ -28,8 +28,12 @@ export class View extends Component {
    */
   async render(parent) {
     await this.#applyAdapters();
-    parent.innerHTML = super.render();
-    this.addEventListeners();
+    if (this.checkStateBeforeRender()) {
+      parent.innerHTML = super.render();
+      this.addEventListeners();
+    } else {
+      this.onInvalidState();
+    }
   }
 
   /** Applies all the adapters. */
@@ -38,4 +42,16 @@ export class View extends Component {
       await this.#adapters[adapter](this);
     }
   }
+
+  /**
+   * Tells whether the state (i.g. context) is valid in the context of the view.
+   * If redefined, onInvalidState is supposed to be redefined too.
+   * @returns {Boolean}
+   */
+  checkStateBeforeRender() {
+    return true;
+  }
+
+  /** Takes control of the flow if state turned out to be invalid. */
+  onInvalidState() { }
 }

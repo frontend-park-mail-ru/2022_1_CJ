@@ -2,7 +2,7 @@ import { View } from '../../core/models/View.js';
 import { AuthController } from '../../core/controllers/auth.js';
 import { LoginUserDTO } from '../../core/dto/auth.js';
 import { EventBus, AuthEvents, EventBusChannels } from '../../core/modules/EventBus.js';
-import { URL } from '../../core/constants/constants.js';
+import { ContextKey, URL } from '../../core/constants/constants.js';
 import { Router } from '../../core/modules/Router.js';
 import { TemplatesRegistry } from '../../core/constants/templates_registry.js';
 
@@ -16,6 +16,14 @@ export class LoginView extends View {
     super(TemplatesRegistry.Login, ...adapters);
     this.setTitle('Login');
     this.onSubmitCallback = this.onSubmit.bind(this);
+  }
+
+  checkStateBeforeRender() {
+    return this.getContextByKey(ContextKey.IsAuthorized) == false;
+  }
+
+  onInvalidState() {
+    Router.navigateTo(URL.Feed);
   }
 
   addEventListeners() {
@@ -41,6 +49,7 @@ export class LoginView extends View {
     EventBus.subscribe(EventBusChannels.Auth, AuthEvents.LoginSuccess, this.onSuccess.bind(this));
     AuthController.LoginUser(new LoginUserDTO(email, password));
   }
+
 
   onFailure() {
     // TODO:
