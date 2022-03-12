@@ -8,3 +8,12 @@ export class CodedError extends Error {
     this.code = code
   }
 }
+
+/**
+ * Generate new CodedError from JSON
+ * @param {JSON} json 
+ * @returns 
+ */
+export function NewCodedError(json) {
+  return new CodedError(json["message"], json["code"]);
+}

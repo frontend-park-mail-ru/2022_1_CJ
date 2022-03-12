@@ -1,4 +1,4 @@
-import { CodedError } from '../../constants/errors.js';
+import { CodedError, NewCodedError } from '../../constants/errors.js';
 import { fetchAPI } from './common.js';
 
 const userMethods = {
@@ -16,7 +16,7 @@ export const UserAPI = {
 
     const json = await response.json();
     if (!response.ok) {
-      return [null, new CodedError(json["message"], json["code"])];
+      return [null, NewCodedError(json)];
     }
 
     return [json, null];
