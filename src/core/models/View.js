@@ -12,8 +12,6 @@ export class View extends Component {
   constructor(template, ...adapters) {
     super(template);
     this.#adapters = adapters;
-    // TODO: move to adapters
-    // this.addComponent('header', new ComponentsRegistry.HeaderComponent(null, TemplatesRegistry.Header));
   }
 
   /**

@@ -1,3 +1,4 @@
+import { CodedError } from '../../constants/errors.js';
 import { fetchAPI } from './common.js';
 
 const userMethods = {
@@ -6,15 +7,18 @@ const userMethods = {
 
 export const UserAPI = {
   /**
-   * @param {GetUserDataDTO} dto
-   * @return {Promise<JSON>, Error}
+   * @param {Object} dto 
+   * @returns {Promise<[JSON, CodedError]>}
    */
   async GetUserData(dto) {
     const body = JSON.stringify(dto);
     const response = await fetchAPI(userMethods.getData, 'POST', body);
+
+    const json = await response.json();
     if (!response.ok) {
-      return [null, new Error(response.statusText)]; // TODO: switch to predefined errors and mapping from Status Code to them
+      return [null, new CodedError(json["message"], json["code"])];
     }
-    return [await response.json(), null];
+
+    return [json, null];
   },
 };

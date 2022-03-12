@@ -33,7 +33,7 @@ export class Component {
    * @param {String} key
    * @param {Object} value 
    */
-  addContext(key, value) {
+  setContextByKey(key, value) {
     this.#context[key] = value;
   }
 
