@@ -1,14 +1,27 @@
-all: stop build run
+docker: precompile stop build run
 
-build:
-	sh scripts/build.sh
-
-run:
-	sh scripts/run.sh
+precompile:
+	bash scripts/precompile.sh
 
 stop:
-	sh scripts/stop.sh
+	bash scripts/stop.sh
 
-debug:
-	sh scripts/precompile.sh
-	node server/index.js
+build:
+	bash scripts/build.sh
+
+run:
+	bash scripts/run.sh
+
+local: precompile enable-local restart-nginx
+
+enable-local:
+	cp nginx/nginx.conf /etc/nginx/nginx.conf
+	cp nginx/default.conf /etc/nginx/sites-available/default.conf
+	cp -r src/* /var/www/web
+	ln -sf /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
+
+restart-nginx:
+	systemctl restart nginx.service
+
+disable-local:
+	unlink /etc/nginx/sites-enabled/default.conf

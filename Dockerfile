@@ -1,11 +1,7 @@
-FROM node:17-alpine3.14 as builder
+FROM nginx:1.21.6-alpine as nginx
 
-WORKDIR /frontend
+COPY /src /var/www/web
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx/default.conf /etc/nginx/sites-enabled/default
 
-COPY . .
-
-RUN npm install
-
-EXPOSE 8080
-
-CMD ["node", "server/index.js"]
+EXPOSE 80

@@ -3,23 +3,12 @@
   "private": true,
   "repository": "github:frontend-park-mail-ru/2022_1_CJ",
   "scripts": {
-    "start": "node server/index.js",
-    "lint:fix": "eslint --ext .js,.jsx public --fix",
-    "lint": "eslint --ext .js,.jsx public --color",
-    "format": "prettier --write 'public/**/*.{scss,css,json}'"
-  },
-  "dependencies": {
-    "dotenv": "^16.0.0",
-    "express": "^4.17.3",
-    "handlebars": "^4.7.7",
-    "path": "^0.12.7"
+    "lint:fix": "eslint --ext .js src --fix",
+    "lint": "eslint --ext .js src --color"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.13.0",
-    "@typescript-eslint/parser": "^5.13.0",
     "eslint": "^8.10.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.4",
-    "prettier": "^2.5.1"
+    "eslint-plugin-import": "^2.25.4"
   }
 }

@@ -1,0 +1,10 @@
+<nav id="header">
+  {{#if isAuthorized}}
+  Hi, {{user.name.first}}
+  <a id="logout" href="/logout" class="nav__link">logout</a>
+  {{else}}
+  <a href="/login" class="nav__link" data-link>login</a>
+  <a href="/signup" class="nav__link" data-link>signup</a>
+  {{/if}}
+  </ul>
+</nav>
