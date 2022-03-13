@@ -1,4 +1,4 @@
-import { CodedError, NewCodedError } from '../../constants/errors.js';
+import { CodedError } from '../../constants/errors.js';
 import { fetchAPI } from './common.js';
 
 const authMethods = {
@@ -28,24 +28,22 @@ export const AuthAPI = {
   async LoginUser(dto) {
     const body = JSON.stringify(dto);
     const response = await fetchAPI(authMethods.login, 'POST', body);
-
-    const json = await response.json();
     if (!response.ok) {
-      return [null, NewCodedError(json)];
+      return [null, new CodedError(response.statusText, response.status)];
     }
 
+    const json = await response.json();
     return [json, null];
   },
 
   /** 
-   * @returns {Promise<[JSON, CodedError]>}
+   * @returns {Promise<CodedError>}
    */
   async LogoutUser() {
     const response = await fetchAPI(authMethods.logout, 'DELETE', null);
-    const json = await response.json();
     if (!response.ok) {
-      return [null, NewCodedError(json)];
+      return new CodedError(response.statusText, response.status);
     }
-    return [json, null];
+    return null;
   },
 };

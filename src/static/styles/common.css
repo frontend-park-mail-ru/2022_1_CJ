@@ -1,3 +1,5 @@
+/* -------------------------------- Basic Settings -------------------------------- */
+
 *,
 *::before,
 *::after {
@@ -8,10 +10,24 @@
 }
 
 #root {
-  display: flex;
-  flex-direction: column;
-
   width: 100vw;
   min-height: 100vh;
   background-color: var(--main-background-color);
+}
+
+img, picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* -------------------------------- Utility Classes -------------------------------- */
+
+.flex {
+  display: flex;
+  gap: var(--gap, 1rem); 
+}
+
+.grid {
+  display: grid;
+  gap: var(--gap, 1rem);
 }

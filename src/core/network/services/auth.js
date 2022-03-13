@@ -1,5 +1,5 @@
 import { AuthAPI } from '../api/auth.js';
-import { AuthEvents, EventBus, EventBusChannels } from '../modules/EventBus.js';
+import { AuthEvents, EventBus, EventBusChannels } from '../../modules/EventBus.js';
 
 export const AuthService = {
   /**

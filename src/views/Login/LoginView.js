@@ -1,6 +1,6 @@
 import { View } from '../../core/models/View.js';
-import { AuthController } from '../../core/controllers/auth.js';
-import { LoginUserDTO } from '../../core/dto/auth.js';
+import { AuthController } from '../../core/network/controllers/auth.js';
+import { LoginUserDTO } from '../../core/network/dto/auth.js';
 import { EventBus, AuthEvents, EventBusChannels } from '../../core/modules/EventBus.js';
 import { ContextKey, URL } from '../../core/constants/constants.js';
 import { Router } from '../../core/modules/Router.js';
@@ -19,7 +19,7 @@ export class LoginView extends View {
   }
 
   checkStateBeforeRender() {
-    return this.getContextByKey(ContextKey.IsAuthorized) == false;
+    return this.getContextByKey(ContextKey.IsAuthorized) !== true;
   }
 
   onInvalidState() {

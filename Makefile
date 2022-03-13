@@ -1,27 +1,22 @@
-docker: precompile stop build run
+docker: precompile down build up
 
 precompile:
 	bash scripts/precompile.sh
 
-stop:
+down:
 	bash scripts/stop.sh
 
 build:
 	bash scripts/build.sh
 
-run:
+up:
 	bash scripts/run.sh
 
-local: precompile enable-local restart-nginx
+local: precompile local-up
 
-enable-local:
-	cp nginx/nginx.conf /etc/nginx/nginx.conf
-	cp nginx/default.conf /etc/nginx/sites-available/default.conf
-	cp -r src/* /var/www/web
-	ln -sf /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
+local-up:
+	bash scripts/local.sh
 
-restart-nginx:
-	systemctl restart nginx.service
-
-disable-local:
+local-down:
 	unlink /etc/nginx/sites-enabled/default.conf
+	systemctl restart nginx.service

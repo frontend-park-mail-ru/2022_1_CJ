@@ -1,6 +1,6 @@
 import { ContextKey, URL } from '../../core/constants/constants.js';
-import { AuthController } from '../../core/controllers/auth.js';
-import { SignupUserDTO } from '../../core/dto/auth.js';
+import { AuthController } from '../../core/network/controllers/auth.js';
+import { SignupUserDTO } from '../../core/network/dto/auth.js';
 import { View } from '../../core/models/View.js';
 import { EventBus, AuthEvents, EventBusChannels } from '../../core/modules/EventBus.js';
 import { Router } from '../../core/modules/Router.js';
@@ -19,7 +19,7 @@ export class SignupView extends View {
   }
 
   checkStateBeforeRender() {
-    return this.getContextByKey(ContextKey.IsAuthorized) == false;
+    return this.getContextByKey(ContextKey.IsAuthorized) !== false;
   }
 
   onInvalidState() {
