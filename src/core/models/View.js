@@ -27,19 +27,13 @@ export class View extends Component {
    * @param {HTMLElement} parent - parent HTML Element for output.
    */
   async render(parent) {
-    await this.#applyAdapters();
+    // Call all the adapters and efficiently wait for them to finish.
+    await Promise.all(this.#adapters.map((adapter) => adapter(this)));
     if (this.checkStateBeforeRender()) {
       parent.innerHTML = super.render();
       this.addEventListeners();
     } else {
       this.onInvalidState();
-    }
-  }
-
-  /** Applies all the adapters. */
-  async #applyAdapters() {
-    for (const adapter in this.#adapters) {
-      await this.#adapters[adapter](this);
     }
   }
 
