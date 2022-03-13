@@ -47,5 +47,7 @@ export class View extends Component {
   }
 
   /** Takes control of the flow if state turned out to be invalid. */
-  onInvalidState() { }
+  onInvalidState() {
+    throw new Error("must be redefined");
+  }
 }
