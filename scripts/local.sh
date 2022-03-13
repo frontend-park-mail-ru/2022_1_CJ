@@ -6,6 +6,6 @@ ln -sf /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.
 systemctl restart nginx.service
 
 rsync -az src/ /var/www/web
-while inotifywait -r src/*; do
+while inotifywait -rq src/*; do
     rsync -az src/ /var/www/web
 done
