@@ -7,15 +7,34 @@ const pathToRegex = (path) => new RegExp(`^${path.replaceAll('/', EscapedURLDeli
 const getParams = (match) => {
   const values = match.result.slice(1);
   const keys = Array.from(match.route.path.matchAll(ParameterRegExp)).map((result) => result[1]);
-
   return Object.fromEntries(keys.map((key, i) => [key, values[i]]));
 };
 
+class Route {
+  /** @member {String} path */
+  path;
+
+  /** @member {View} view */
+  view;
+
+  /**
+   * @param {String} path 
+   * @param {View} view 
+   */
+  constructor(path, view) {
+    this.path = path;
+    this.view = view;
+  }
+};
+
 class Router {
+  /** @member {HTMLElement} root */
   #root;
 
+  /** @member {Route[]} routes */
   #routes;
 
+  /** @member {View} notFoundView */
   #notFoundView;
 
   constructor() {
@@ -23,8 +42,8 @@ class Router {
   }
 
   /**
-   * Set HTML Element for output
-   * @param {HTMLElement} root - HTML Element for output
+   * Set HTML Element for output.
+   * @param {HTMLElement} root - HTML Element for output.
    */
   setRoot(root) {
     this.#root = root;
@@ -36,7 +55,7 @@ class Router {
    * @param {View} view - route's view
    */
   setRoute(path, view) {
-    this.#routes.push({ path, view });
+    this.#routes.push(new Route(path, view));
   }
 
   /**
@@ -88,14 +107,8 @@ class Router {
   }
 
   async #route() {
-    const potentialMatches = this.#routes.map((route) => ({
-      route,
-      result: window.location.pathname.match(pathToRegex(route.path)),
-    }));
-
-    const match = potentialMatches.find((potentialMatch) => potentialMatch.result !== null);
-    const view = (match ? match.route.view : this.#notFoundView);
-
+    const route = this.#routes.find((route) => window.location.pathname.match(pathToRegex(route.path)) !== null);
+    const view = (route ? route.view : this.#notFoundView);
     view.render(this.#root);
   }
 }
