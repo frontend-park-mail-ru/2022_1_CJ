@@ -22,8 +22,7 @@ export class LoginFormComponent extends Component {
     super.addEventListeners();
 
     this.#inputs.push(document.getElementById('email'));
-    // TODO: think how to check only for nonemptiness
-    // this.#inputs.push(document.getElementById('password'));
+    this.#inputs.push(document.getElementById('password'));
     
     this.#inputs.forEach((input) => {
       ValidateOnInput(input);

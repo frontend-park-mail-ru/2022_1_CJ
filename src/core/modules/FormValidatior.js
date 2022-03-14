@@ -82,7 +82,9 @@ export const ValidateInput = (input) => {
 export const ValidateOnInput = (input) => {
   input.oninput = (e) => {
     if (input.id === 'password') {
-      ValidateInput(document.getElementById('password-confirmation'));
+      if (document.getElementById('password-confirmation')) {
+        ValidateInput(document.getElementById('password-confirmation'));
+      }
     }
     ValidateInput(input);
   };
