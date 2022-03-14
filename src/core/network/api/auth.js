@@ -10,15 +10,17 @@ const authMethods = {
 export const AuthAPI = {
   /**
    * @param {SignupUserDTO} dto
-   * @return {Promise<JSON>}
+   * @returns {Promise<[JSON, CodedError]>}
    */
   async SignupUser(dto) {
     const body = JSON.stringify(dto);
     const response = await fetchAPI(authMethods.signup, 'POST', body);
     if (!response.ok) {
-      return null;
+      return [null, new CodedError(response.statusText, response.status)];
     }
-    return response.json();
+    
+    const json = await response.json();
+    return [json, null];
   },
 
   /**

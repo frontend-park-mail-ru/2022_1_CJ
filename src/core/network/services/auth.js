@@ -6,8 +6,9 @@ export const AuthService = {
    * @param {SignupUserDTO} dto
    */
   async SignupUser(dto) {
-    const response = await AuthAPI.SignupUser(dto);
-    if (!response) {
+    const [json, err] = await AuthAPI.SignupUser(dto);
+    if (err) {
+      console.log(err, json);
       EventBus.emit(EventBusChannels.Auth, AuthEvents.SignupFailure);
     } else {
       EventBus.emit(EventBusChannels.Auth, AuthEvents.SignupSuccess);
@@ -18,8 +19,9 @@ export const AuthService = {
    * @param {LoginUserDTO} dto
    */
   async LoginUser(dto) {
-    const response = await AuthAPI.LoginUser(dto);
-    if (!response) {
+    const [json, err] = await AuthAPI.LoginUser(dto);
+    if (err) {
+      console.log(err, json);
       EventBus.emit(EventBusChannels.Auth, AuthEvents.LoginFailure);
     } else {
       EventBus.emit(EventBusChannels.Auth, AuthEvents.LoginSuccess);

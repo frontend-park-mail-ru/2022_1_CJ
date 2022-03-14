@@ -64,7 +64,6 @@ export class LoginFormComponent extends Component {
 
   onSuccess() {
     this.removeEventListeners();
-    
     Router.navigateTo(URL.Feed);
   }
 }
