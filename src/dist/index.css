@@ -295,8 +295,12 @@ select {
   outline: 1px solid hsl(var(--clr-primary));
 }
 
-.input-field.invalid {
+.input-field.error {
   outline: 1px solid hsl(var(--clr-negative));
+}
+
+.input-field.ok {
+  outline: 1px solid hsl(var(--clr-positive));
 }
 
 /* helpers */
@@ -304,7 +308,7 @@ select {
 .helper {
   height: 0;
   overflow: visible;
-  padding-top: 2px;
+  overflow-wrap: anywhere;
   font-size: var(--fs-200);
 }
 

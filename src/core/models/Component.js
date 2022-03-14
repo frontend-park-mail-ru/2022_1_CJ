@@ -49,6 +49,7 @@ export class Component {
     this.#subComponents[name] = component;
   }
 
+  // TODO: add afterRender method
   /**
    * Produce HTML. Context is supposed to be set before rendering.
    * @param {Object?} context - context to be passed to sub components, for parent node supposed to be not pased.
