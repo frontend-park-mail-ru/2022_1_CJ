@@ -11,5 +11,5 @@ echo "listening to changes in src directory..."
 while inotifywait -rqq src/*; do
     bash scripts/pack.sh
     bash scripts/precompile.sh
-    rsync -az src/ /var/www/web
+    rsync -az --delete src/ /var/www/web
 done
