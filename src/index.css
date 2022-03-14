@@ -190,7 +190,7 @@ select {
 }
 
 .text-shadow {
-  text-shadow: 0px 1px 2px;
+  text-shadow: 0px 1px 1px;
 }
 
 /* typography */
@@ -284,18 +284,35 @@ select {
 
 .input-field {
   width: 100%;
-  border: 1px solid hsl(var(--clr-border));
+  border-style: none;
   border-radius: 8px;
   padding: 0.5rem;
-  outline: none;
   color: hsl(var(--clr-text) / 0.75);
+  outline: 1px solid hsl(var(--clr-border));
+}
+
+.input-field:where(:hover, :focus) {
+  outline: 1px solid hsl(var(--clr-primary));
+}
+
+.input-field.invalid {
+  outline: 1px solid hsl(var(--clr-negative));
+}
+
+.error-message {
+  width: 0;
+  height: 0;
+  overflow: visible;
+  white-space: nowrap;
+  color: hsl(var(--clr-negative));
+  font-size: var(--fs-200);
 }
 
 /* forms */
 
 .form {
   background-color: hsl(var(--clr-white));
-  width: 50%;
+  width: 35rem;
   padding: 5rem;
   place-self: center;
 }
@@ -316,7 +333,8 @@ select {
 .btn {
   border: none;
   outline: none;
-  padding: 0.4rem 0.8rem;
+  width: fit-content;
+  padding: 0.5rem 2rem;
   border-radius: 8px;
   cursor: pointer;
 }

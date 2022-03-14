@@ -2,6 +2,7 @@ export const URL = {
   Signup: '/signup',
   Login: '/login',
   Feed: '/feed',
+  Logout: '/logout',
 };
 
 export const HttpStatus = {

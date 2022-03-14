@@ -7,7 +7,6 @@ import { ComponentsRegistry } from '../../core/constants/components_registry.js'
 export class SignupView extends View {
   /**
    * @constructor
-   * @param {Function} template - function for generating the HTML.
    * @param  {...Function} adapters
    */
   constructor(...adapters) {
@@ -17,7 +16,7 @@ export class SignupView extends View {
   }
 
   checkStateBeforeRender() {
-    return this.getContextByKey(ContextKey.IsAuthorized) !== false;
+    return this.getContextByKey(ContextKey.IsAuthorized) !== true;
   }
 
   onInvalidState() {

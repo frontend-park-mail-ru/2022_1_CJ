@@ -2,4 +2,7 @@
     <div>
       <span class="ff-sans fs-700 fw-700 letter-spacing-1 text-shadow text-primary">CJ</span>
     </div>
+    {{#if isAuthorized}}
+      <a class="link" href="/logout" data-link>Logout</a>
+    {{/if}}
 </header>

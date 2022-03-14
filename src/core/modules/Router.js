@@ -1,3 +1,5 @@
+import { View } from "../models/View.js";
+
 const ParameterRegExp = /:(\w+)/g;
 const SolidStringPattern = '(.+)';
 const EscapedURLDelimiter = '\\/';
@@ -16,6 +18,15 @@ class Route {
   /** @member {String} path */
   path;
 
+  /**
+   * @param {String} path
+   */
+   constructor(path) {
+    this.path = path;
+  }
+};
+
+class ViewRoute extends Route {
   /** @member {View} view */
   view;
 
@@ -24,8 +35,22 @@ class Route {
    * @param {View} view
    */
   constructor(path, view) {
-    this.path = path;
+    super(path);
     this.view = view;
+  }
+}
+
+class ActionRoute extends Route {
+  /** @member {Function} action */
+  action;
+
+  /**
+   * @param {String} path
+   * @param {Function} action
+   */
+  constructor(path, action) {
+    super(path);
+    this.action = action;
   }
 }
 
@@ -52,17 +77,26 @@ class Router {
   }
 
   /**
-   * Add route with the given path and view
-   * @param {String} path - route's path
-   * @param {View} view - route's view
+   * Add route with the given path and view.
+   * @param {String} path - route's path.
+   * @param {View} view - route's view.
    */
-  setRoute(path, view) {
-    this.#routes.push(new Route(path, view));
+  setViewRoute(path, view) {
+    this.#routes.push(new ViewRoute(path, view));
   }
 
   /**
-   * Set view for not found routes
-   * @param {View} view - not found page's view
+   * Add route with the given path and view.
+   * @param {String} path - route's path.
+   * @param {Function} action - route's action.
+   */
+   setActonRoute(path, action) {
+    this.#routes.push(new ActionRoute(path, action));
+  }
+
+  /**
+   * Set view for not found routes.
+   * @param {View} view - not found page's view.
    */
   setNotFoundView(view) {
     this.#notFoundView = view;
@@ -110,8 +144,13 @@ class Router {
 
   async #route() {
     const match = this.#routes.find((route) => window.location.pathname.match(pathToRegex(route.path)) !== null);
-    const view = (match ? match.view : this.#notFoundView);
-    view.render(this.#root);
+    if (match instanceof ViewRoute) {
+      match.view.render(this.#root);
+    } else if (match instanceof ActionRoute) {
+      match.action();
+    } else {
+      this.#notFoundView.render(this.#root);
+    }
   }
 }
 
