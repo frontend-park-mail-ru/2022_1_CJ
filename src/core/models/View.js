@@ -7,7 +7,7 @@ export class View extends Component {
   /**
    * @constructor
    * @param {Function} template - function for generating the HTML.
-   * @param  {...Function} adapters 
+   * @param  {...Function} adapters
    */
   constructor(template, ...adapters) {
     super(template);
@@ -50,6 +50,6 @@ export class View extends Component {
 
   /** Takes control of the flow if state turned out to be invalid. */
   onInvalidState() {
-    throw new Error("must be redefined");
+    throw new Error('must be redefined');
   }
 }

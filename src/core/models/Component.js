@@ -28,7 +28,7 @@ export class Component {
 
   /**
    * @param {String} key
-   * @param {Object} value 
+   * @param {Object} value
    */
   setContextByKey(key, value) {
     this.#context[key] = value;

@@ -18,6 +18,9 @@ module.exports = {
     'no-undef': 'warn',
     'max-classes-per-file': 'off',
     'no-param-reassign': 'off',
+    'camelcase': 'off',
+    'max-len': ['warn', 120],
+    'no-unused-vars': ['warn'],
   },
   ignorePatterns: ['**/precompiled/*', 'handlebars.runtime.min.js']
 };

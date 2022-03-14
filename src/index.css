@@ -1,0 +1,230 @@
+/* -------------------------------- Custom Properties -------------------------------- */
+
+:root {
+  /* colors */
+  --clr-bg: 220, 9%, 94%;
+  --clr-ordinary: 0, 0%, 0%;
+  --clr-primary: 217, 60%, 47%;
+  --clr-secondary: 210, 78%, 64%;
+  --clr-positive: 148, 55%, 42%;
+  --clr-negative: 345, 69%, 50%;
+  --clr-white: 0, 0%, 100%;
+
+  /* font-sizes */
+  --fs-800: 2rem;
+  --fs-700: 1.75rem;
+  --fs-600: 1.5rem;
+  --fs-500: 1.25rem;
+  --fs-400: 1rem;
+  --fs-300: 0.75rem;
+  --fs-200: 0.5rem;
+
+  /* font-families */
+  --ff-serif: "Poppins", serif;
+  --ff-sans: "Poppins", sans-serif;
+}
+
+/* -------------------------------- Basic Settings -------------------------------- */
+
+/* Note: checkout https://piccalil.li/blog/a-modern-css-reset */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+#root {
+  min-height: 100vh;
+  background-color: var(--main-background-color);
+
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+
+  font-family: var(--ff-sans);
+  font-size: var(--fs-400);
+  color: hsl(var(--clr-ordinary));
+  background-color: hsl(var(--clr-bg));
+
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  overflow-x: hidden;
+}
+
+#root > * {
+  margin-inline: 10rem;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* -------------------------------- Utility Classes -------------------------------- */
+
+/* general */
+
+.flex {
+  display: flex;
+  gap: var(--gap, 1rem);
+}
+
+.grid {
+  display: grid;
+  gap: var(--gap, 1rem);
+}
+
+.d-block {
+  display: block;
+}
+
+.flow > *:where(:not(:first-child)) {
+  margin-top: var(--flow-space, 1rem);
+}
+
+.container {
+  padding-inline: 2em;
+  margin-inline: auto;
+  max-width: 80rem;
+}
+
+/* colors */
+
+.bg-negative {
+  background-color: hsl(var(--clr-negative));
+}
+
+.bg-positive {
+  background-color: hsl(var(--clr-positive));
+}
+
+.bg-primary {
+  background-color: hsl(var(--clr-primary));
+}
+
+.bg-secondary {
+  background-color: hsl(var(--clr-secondary));
+}
+
+.bg-white {
+  background-color: hsl(var(--clr-white));
+}
+
+.text-negative {
+  color: hsl(var(--clr-negative));
+}
+
+.text-positive {
+  color: hsl(var(--clr-positive));
+}
+
+.text-primary {
+  color: hsl(var(--clr-primary));
+}
+
+.text-secondary {
+  color: hsl(var(--clr-secondary));
+}
+
+.text-white {
+  color: hsl(var(--clr-white));
+}
+
+/* typography */
+
+.ff-serif {
+  font-family: var(--ff-serif);
+}
+
+.ff-sans {
+  font-family: var(--ff-sans);
+}
+
+.letter-spacing-1 {
+  letter-spacing: 4.75px;
+}
+
+.letter-spacing-2 {
+  letter-spacing: 2.7px;
+}
+
+.letter-spacing-3 {
+  letter-spacing: 2.35px;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.fs-800 {
+  font-size: var(--fs-800);
+}
+
+.fs-700 {
+  font-size: var(--fs-700);
+}
+
+.fs-600 {
+  font-size: var(--fs-600);
+}
+
+.fs-500 {
+  font-size: var(--fs-500);
+}
+
+.fs-400 {
+  font-size: var(--fs-400);
+}
+
+.fs-300 {
+  font-size: var(--fs-300);
+}
+
+.fs-200 {
+  font-size: var(--fs-200);
+}
+
+.fs-900,
+.fs-800,
+.fs-700,
+.fs-600 {
+  line-height: 1.1;
+}

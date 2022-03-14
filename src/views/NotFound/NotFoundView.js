@@ -5,7 +5,7 @@ export class NotFoundView extends View {
   /**
    * @constructor
    * @param {Function} template - function for generating the HTML.
-   * @param  {...Function} adapters 
+   * @param  {...Function} adapters
    */
   constructor(...adapters) {
     super(TemplatesRegistry.NotFound, ...adapters);

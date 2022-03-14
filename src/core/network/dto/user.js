@@ -2,7 +2,7 @@ export class GetUserDataDTO {
   /**
    * @param {String} userID
    */
-  constructor(userID = "") {
+  constructor(userID = '') {
     // TODO: maybe backend should switch to js style naming
     this.user_id = userID;
   }

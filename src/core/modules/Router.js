@@ -2,7 +2,9 @@ const ParameterRegExp = /:(\w+)/g;
 const SolidStringPattern = '(.+)';
 const EscapedURLDelimiter = '\\/';
 
-const pathToRegex = (path) => new RegExp(`^${path.replaceAll('/', EscapedURLDelimiter).replace(ParameterRegExp, SolidStringPattern)}$`);
+const pathToRegex = (path) => new RegExp(`^${path
+  .replaceAll('/', EscapedURLDelimiter)
+  .replace(ParameterRegExp, SolidStringPattern)}$`);
 
 const getParams = (match) => {
   const values = match.result.slice(1);
@@ -18,14 +20,14 @@ class Route {
   view;
 
   /**
-   * @param {String} path 
-   * @param {View} view 
+   * @param {String} path
+   * @param {View} view
    */
   constructor(path, view) {
     this.path = path;
     this.view = view;
   }
-};
+}
 
 class Router {
   /** @member {HTMLElement} root */
@@ -93,7 +95,7 @@ class Router {
   }
 
   /**
-   * @param {Event} event 
+   * @param {Event} event
    */
   async #handleClick(event) {
     if (event.target.matches('[data-link]')) {
@@ -107,8 +109,8 @@ class Router {
   }
 
   async #route() {
-    const route = this.#routes.find((route) => window.location.pathname.match(pathToRegex(route.path)) !== null);
-    const view = (route ? route.view : this.#notFoundView);
+    const match = this.#routes.find((route) => window.location.pathname.match(pathToRegex(route.path)) !== null);
+    const view = (match ? match.view : this.#notFoundView);
     view.render(this.#root);
   }
 }

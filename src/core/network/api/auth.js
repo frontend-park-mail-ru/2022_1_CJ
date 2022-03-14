@@ -36,7 +36,7 @@ export const AuthAPI = {
     return [json, null];
   },
 
-  /** 
+  /**
    * @returns {Promise<CodedError>}
    */
   async LogoutUser() {

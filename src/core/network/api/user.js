@@ -7,7 +7,7 @@ const userMethods = {
 
 export const UserAPI = {
   /**
-   * @param {Object} dto 
+   * @param {Object} dto
    * @returns {Promise<[JSON, CodedError]>}
    */
   async GetUserData(dto) {

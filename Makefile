@@ -1,7 +1,10 @@
-docker: precompile down build up
+docker: pack precompile down build up
 
 precompile:
 	bash scripts/precompile.sh
+
+pack:
+	bash scripts/pack.sh
 
 down:
 	bash scripts/stop.sh
@@ -12,7 +15,7 @@ build:
 up:
 	bash scripts/run.sh
 
-local: precompile local-up
+local: pack precompile local-up
 
 local-up:
 	bash scripts/local.sh

@@ -4,8 +4,12 @@ cp nginx/nginx.conf /etc/nginx/nginx.conf
 cp nginx/default.conf /etc/nginx/sites-available/default.conf
 ln -sf /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
 systemctl restart nginx.service
+trap "echo -e '\nstopping nginx...'; systemctl stop nginx.service" SIGINT
 
-rsync -az src/ /var/www/web
-while inotifywait -rq src/*; do
+rsync -az --delete src/ /var/www/web
+echo "listening to changes in src directory..."
+while inotifywait -rqq src/*; do
+    bash scripts/pack.sh
+    bash scripts/precompile.sh
     rsync -az src/ /var/www/web
 done

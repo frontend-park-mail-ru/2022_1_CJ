@@ -10,7 +10,7 @@ export class LoginView extends View {
   /**
    * @constructor
    * @param {Function} template - function for generating the HTML.
-   * @param  {...Function} adapters 
+   * @param  {...Function} adapters
    */
   constructor(...adapters) {
     super(TemplatesRegistry.Login, ...adapters);
@@ -37,7 +37,7 @@ export class LoginView extends View {
   }
 
   /**
-   * @param {Event} e 
+   * @param {Event} e
    */
   onSubmit(e) {
     e.preventDefault();
@@ -49,7 +49,6 @@ export class LoginView extends View {
     EventBus.subscribe(EventBusChannels.Auth, AuthEvents.LoginSuccess, this.onSuccess.bind(this));
     AuthController.LoginUser(new LoginUserDTO(email, password));
   }
-
 
   onFailure() {
     // TODO:
