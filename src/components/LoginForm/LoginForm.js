@@ -1,3 +1,4 @@
+import { URL } from '../../core/constants/constants.js';
 import { Component } from '../../core/models/Component.js';
 import { EventBus, AuthEvents, EventBusChannels } from '../../core/modules/EventBus.js';
 import { ValidateInput, ValidateOnInput } from '../../core/modules/FormValidatior.js';
@@ -63,6 +64,7 @@ export class LoginFormComponent extends Component {
 
   onSuccess() {
     this.removeEventListeners();
+    
     Router.navigateTo(URL.Feed);
   }
 }
