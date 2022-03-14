@@ -1,4 +1,4 @@
-import { View } from "../models/View.js";
+import { View } from '../models/View.js';
 
 const ParameterRegExp = /:(\w+)/g;
 const SolidStringPattern = '(.+)';
@@ -21,10 +21,10 @@ class Route {
   /**
    * @param {String} path
    */
-   constructor(path) {
+  constructor(path) {
     this.path = path;
   }
-};
+}
 
 class ViewRoute extends Route {
   /** @member {View} view */
@@ -90,7 +90,7 @@ class Router {
    * @param {String} path - route's path.
    * @param {Function} action - route's action.
    */
-   setActonRoute(path, action) {
+  setActonRoute(path, action) {
     this.#routes.push(new ActionRoute(path, action));
   }
 
