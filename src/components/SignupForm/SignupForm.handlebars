@@ -6,11 +6,14 @@
   <div class="form-field">
     <span><input id="email" name="email" type="email" class="input-field" placeholder="Email"></span>
   </div>
-  <div class="form-field grid grid-c">
-    <span><input id="password" name="password" type="password" class="input-field" placeholder="Password"></span>
-    <span><input id="password" name="password" type="password" class="input-field" placeholder="Confirm"></span>
+  <div class="form-field grid grid-r">
+    <div class="grid grid-c">
+      <span><input id="password" name="password" type="password" class="input-field" placeholder="Password"></span>
+      <span><input id="password" name="password" type="password" class="input-field" placeholder="Confirm"></span>
+    </div>
+    <div class="helper helper-hint">Use 8 or more characters with a mix of letters, numbers & symbols</div>
   </div>
-  <div class="form__submit grid grid-c">
+  <div class="form-actions grid grid-c">
     <button class="btn btn-primary" id="submit" type="submit" class="form__btn__submit">Sign up</button>
     <a class="link" href="/login" data-link>Want to sign in instead?</a>
   </div>

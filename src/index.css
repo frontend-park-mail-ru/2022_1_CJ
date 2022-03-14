@@ -3,13 +3,13 @@
 :root {
   /* colors */
   --clr-bg: 220 9% 94%;
-  --clr-text: 0, 0%, 30%;
+  --clr-text: 0 0% 30%;
 
   --clr-primary: 217 60% 47%;
-  --clr-primary-d: 217, 60%, 36%;
+  --clr-primary-d: 217 60% 36%;
 
   --clr-secondary: 210 78% 64%;
-  --clr-secondary-d: 210, 78%, 52%;
+  --clr-secondary-d: 210 78% 52%;
 
   --clr-positive: 148 55% 42%;
   --clr-negative: 345 69% 50%;
@@ -299,22 +299,34 @@ select {
   outline: 1px solid hsl(var(--clr-negative));
 }
 
-.error-message {
-  width: 0;
+/* helpers */
+
+.helper {
   height: 0;
   overflow: visible;
-  white-space: nowrap;
-  color: hsl(var(--clr-negative));
+  padding-top: 2px;
   font-size: var(--fs-200);
+}
+
+.helper-error {
+  color: hsl(var(--clr-negative) / 0.75);
+}
+
+.helper-hint {
+  color: hsl(var(--clr-text) / 0.75);
 }
 
 /* forms */
 
 .form {
   background-color: hsl(var(--clr-white));
-  width: 35rem;
-  padding: 5rem;
+  width: 33rem;
+  padding: 2rem;
   place-self: center;
+}
+
+.form-actions {
+  padding-top: 3rem;
 }
 
 /* links */
