@@ -1,7 +1,7 @@
 import { URL } from '../../core/constants/constants.js';
 import { Component } from '../../core/models/Component.js';
 import { EventBus, AuthEvents, EventBusChannels } from '../../core/modules/EventBus.js';
-import { ValidateInput, ValidateOnInput } from '../../core/modules/FormValidatior.js';
+import { ValidateInput, ValidateOnInput } from '../../core/modules/InputValidator.js';
 import { Router } from '../../core/modules/Router.js';
 import { AuthController } from '../../core/network/controllers/auth.js';
 import { SignupUserDTO } from '../../core/network/dto/auth.js';
