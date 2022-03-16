@@ -1,5 +1,5 @@
 /**
- * @param {String} message 
+ * @param {String} message
  * @returns {HTMLElement}
  */
 const createErrorHelper = (message) => {
@@ -7,7 +7,7 @@ const createErrorHelper = (message) => {
   helper.innerText = message;
   helper.classList.add('helper', 'helper-error');
   return helper;
-}
+};
 
 /**
  * @param {HTMLInputElement} input
@@ -28,7 +28,7 @@ const setStatus = (input, message, status) => {
       input.insertAdjacentElement('afterend', createErrorHelper(message));
     }
   }
-}
+};
 
 /**
  * @param {HTMLInputElement} input
@@ -36,18 +36,18 @@ const setStatus = (input, message, status) => {
 export const ValidateInput = (input) => {
   // TODO: check for 'required' option
   if (input.value.trim().length === 0) {
-    setStatus(input, 'cannot be blank', 'error')
+    setStatus(input, 'cannot be blank', 'error');
   } else {
-    setStatus(input, null, 'ok')
+    setStatus(input, null, 'ok');
   }
 
   // check for a valid email address
   if (input.type === 'email') {
-    const re = /\S+@\S+\.\S+/
+    const re = /\S+@\S+\.\S+/;
     if (re.test(input.value)) {
-      setStatus(input, null, 'ok')
+      setStatus(input, null, 'ok');
     } else {
-      setStatus(input, 'invalid email address', 'error')
+      setStatus(input, 'invalid email address', 'error');
     }
   }
 
@@ -56,16 +56,16 @@ export const ValidateInput = (input) => {
     // TODO: make it more safe
     const passwordinput = document.getElementById('password');
     if (input.value.trim() == '') {
-      setStatus(input, 'Password confirmation required', 'error')
+      setStatus(input, 'Password confirmation required', 'error');
     } else if (input.value !== passwordinput.value) {
-      setStatus(input, 'Passwords mismatch', 'error')
+      setStatus(input, 'Passwords mismatch', 'error');
     } else {
-      setStatus(input, null, 'ok')
+      setStatus(input, null, 'ok');
     }
   }
 
   if (input.id === 'password') {
-    setStatus(input, null, 'ok')
+    setStatus(input, null, 'ok');
     // // let's believe it works as expected: https://www.w3resource.com/javascript/form/password-validation.php
     // const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
     // if (re.test(input.value)) {
@@ -74,7 +74,7 @@ export const ValidateInput = (input) => {
     //   setStatus(input, 'Invalid password', 'error')
     // }
   }
-}
+};
 
 // TODO: refactor
 /**
@@ -89,4 +89,4 @@ export const ValidateOnInput = (input) => {
     }
     ValidateInput(input);
   };
-}
+};

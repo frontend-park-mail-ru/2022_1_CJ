@@ -23,14 +23,14 @@ export class SignupFormComponent extends Component {
 
   addEventListeners() {
     super.addEventListeners();
-     
+
     // TODO: refactor
     this.#inputs.push(document.getElementById('firstname'));
     this.#inputs.push(document.getElementById('lastname'));
     this.#inputs.push(document.getElementById('email'));
     this.#inputs.push(document.getElementById('password'));
     this.#inputs.push(document.getElementById('password-confirmation'));
-    
+
     this.#inputs.forEach((input) => {
       ValidateOnInput(input);
     });
@@ -48,13 +48,6 @@ export class SignupFormComponent extends Component {
    */
   onSubmit(e) {
     e.preventDefault();
-
-    for (const key in this.#inputs) {
-      ValidateInput(this.#inputs[key]);
-      if (this.#inputs[key].classList.contains('error')) {
-        return;
-      }
-    }
 
     const email = document.getElementById('email').value;
     const firstname = document.getElementById('firstname').value;

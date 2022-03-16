@@ -7,12 +7,12 @@ export const AuthService = {
    */
   async SignupUser(dto) {
     AuthAPI.SignupUser(dto)
-    .then((json) => {
-      CallbackBus.emit(Events.AuthSignup, json);
-    })
-    .catch((err) => {
-      FallbackBus.emit(Events.AuthSignup, err);
-    });
+      .then((json) => {
+        CallbackBus.emit(Events.AuthSignup, json);
+      })
+      .catch((err) => {
+        FallbackBus.emit(Events.AuthSignup, err);
+      });
   },
 
   /**
@@ -20,11 +20,11 @@ export const AuthService = {
    */
   async LoginUser(dto) {
     AuthAPI.LoginUser(dto)
-    .then((json) => {
-      CallbackBus.emit(Events.AuthLogin, json);
-    })
-    .catch((err) => {
-      FallbackBus.emit(Events.AuthLogin, err);
-    });
+      .then((json) => {
+        CallbackBus.emit(Events.AuthLogin, json);
+      })
+      .catch((err) => {
+        FallbackBus.emit(Events.AuthLogin, err);
+      });
   },
 };

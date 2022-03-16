@@ -1,7 +1,7 @@
 export const Events = {
   AuthSignup: 'auth:signup',
   AuthLogin: 'auth:login',
-}
+};
 
 class EventBus {
   /** @member {Map<String, Function>} */
@@ -31,9 +31,9 @@ class EventBus {
    * @param {String} event - name of the event.
    * @param {Object?} args - optional args for the actor.
    */
-   emit(event, args = null) {
+  emit(event, args = null) {
     this.#actors.get(event).forEach((actor) => {
-        actor(args);
+      actor(args);
     });
   }
 }

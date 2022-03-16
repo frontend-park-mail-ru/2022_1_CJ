@@ -26,10 +26,10 @@ export class LoginFormComponent extends Component {
 
     this.#inputs.push(document.getElementById('email'));
     this.#inputs.push(document.getElementById('password'));
-    
+
     this.#inputs.forEach((input) => {
       ValidateOnInput(input);
-    })
+    });
 
     document.getElementById('login-form').addEventListener('submit', this.onSubmitCallback);
   }
@@ -45,19 +45,12 @@ export class LoginFormComponent extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    for (const key in this.#inputs) {
-      ValidateInput(this.#inputs[key]);
-      if (this.#inputs[key].classList.contains('error')) {
-        return;
-      }
-    }
-
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
     CallbackBus.subscribe(Events.AuthLogin, this.onSuccessCallback);
     FallbackBus.subscribe(Events.AuthLogin, this.onFailureCallback);
-    
+
     AuthController.LoginUser(new LoginUserDTO(email, password));
   }
 
