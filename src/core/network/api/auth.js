@@ -10,32 +10,28 @@ const authMethods = {
 export const AuthAPI = {
   /**
    * @param {SignupUserDTO} dto
-   * @returns {Promise<[JSON, CodedError]>}
+   * @returns {Promise<JSON>}
    */
   async SignupUser(dto) {
     const body = JSON.stringify(dto);
     const response = await fetchAPI(authMethods.signup, 'POST', body);
     if (!response.ok) {
-      return [null, new CodedError(response.statusText, response.status)];
+      throw new CodedError(response.statusText, response.status);
     }
-    
-    const json = await response.json();
-    return [json, null];
+    return response.json();
   },
 
   /**
    * @param {LoginUserDTO} dto
-   * @returns {Promise<[JSON, CodedError]>}
+   * @returns {Promise<JSON>}
    */
   async LoginUser(dto) {
     const body = JSON.stringify(dto);
     const response = await fetchAPI(authMethods.login, 'POST', body);
     if (!response.ok) {
-      return [null, new CodedError(response.statusText, response.status)];
+      throw new CodedError(response.statusText, response.status);
     }
-
-    const json = await response.json();
-    return [json, null];
+    return response.json();
   },
 
   /**

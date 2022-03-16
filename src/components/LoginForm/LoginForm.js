@@ -1,6 +1,6 @@
 import { URL } from '../../core/constants/constants.js';
 import { Component } from '../../core/models/Component.js';
-import { EventBus, AuthEvents, EventBusChannels } from '../../core/modules/EventBus.js';
+import { CallbackBus, FallbackBus, Events } from '../../core/modules/EventBus.js';
 import { ValidateInput, ValidateOnInput } from '../../core/modules/InputValidator.js';
 import { Router } from '../../core/modules/Router.js';
 import { AuthController } from '../../core/network/controllers/auth.js';
@@ -17,6 +17,8 @@ export class LoginFormComponent extends Component {
     super(template);
     this.#inputs = [];
     this.onSubmitCallback = this.onSubmit.bind(this);
+    this.onSuccessCallback = this.onSuccess.bind(this);
+    this.onFailureCallback = this.onFailure.bind(this);
   }
 
   addEventListeners() {
@@ -53,12 +55,14 @@ export class LoginFormComponent extends Component {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    EventBus.subscribe(EventBusChannels.Auth, AuthEvents.LoginFailure, this.onFailure.bind(this));
-    EventBus.subscribe(EventBusChannels.Auth, AuthEvents.LoginSuccess, this.onSuccess.bind(this));
+    CallbackBus.subscribe(Events.AuthLogin, this.onSuccessCallback);
+    FallbackBus.subscribe(Events.AuthLogin, this.onFailureCallback);
+    
     AuthController.LoginUser(new LoginUserDTO(email, password));
   }
 
-  onFailure() {
+  onFailure(args) {
+    console.log(`login failed: ${args}`);
     // TODO:
   }
 

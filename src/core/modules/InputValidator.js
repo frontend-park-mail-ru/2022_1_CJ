@@ -65,13 +65,14 @@ export const ValidateInput = (input) => {
   }
 
   if (input.id === 'password') {
-    // let's believe it works as expected: https://www.w3resource.com/javascript/form/password-validation.php
-    const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
-    if (re.test(input.value)) {
-      setStatus(input, null, 'ok')
-    } else {
-      setStatus(input, 'Invalid password', 'error')
-    }
+    setStatus(input, null, 'ok')
+    // // let's believe it works as expected: https://www.w3resource.com/javascript/form/password-validation.php
+    // const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+    // if (re.test(input.value)) {
+    //   setStatus(input, null, 'ok')
+    // } else {
+    //   setStatus(input, 'Invalid password', 'error')
+    // }
   }
 }
 

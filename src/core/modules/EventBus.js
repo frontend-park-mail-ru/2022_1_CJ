@@ -1,79 +1,45 @@
-export const EventBusChannels = {
-  Auth: 'auth',
-};
-
-export const AuthEvents = {
-  SignupSuccess: 'signup success',
-  SignupFailure: 'signup failure',
-  LoginSuccess: 'login success',
-  LoginFailure: 'login failure',
-};
+export const Events = {
+  AuthSignup: 'auth:signup',
+  AuthLogin: 'auth:login',
+}
 
 class EventBus {
-  #channels;
+  /** @member {Map<String, Function>} */
+  #actors;
 
   constructor() {
-    this.#channels = {};
-    Object.values(EventBusChannels).forEach((channel) => {
-      this.#channels[channel] = {};
-    });
+    this.#actors = new Map(Object.values(Events).map((event) => [event, new Set()]));
   }
 
   /**
-   * Add listener to the event in the channel
-   * @param {String} channelName - name of the channel
-   * @param {String} event - name of the event
-   * @param {Function} callback - callback on the event in the channel
+   * @param {String} event - name of the event.
+   * @param {Function} actor - actor on the event.
    */
-  subscribe(channelName, event, callback) {
-    const channel = this.#channels[channelName];
-    if (!channel) {
-      throw new Error(`channel with [${channel}] does not exist`);
-    }
-
-    if (!channel[event]) {
-      channel[event] = new Set();
-    }
-
-    channel[event].add(callback);
+  subscribe(event, actor) {
+    this.#actors.get(event).add(actor);
   }
 
   /**
-   * Delete listener from the event in the channel
-   * @param {String} channelName - name of the channel
-   * @param {String} event - name of the event
-   * @param {Function} callback - callback on the event in the channel
+   * @param {String} event - name of the event.
+   * @param {Function} actor - actor on the event.
    */
-  unsubscribe(channelName, event, callback) {
-    const channel = this.#channels[channelName];
-    if (!channel) {
-      throw new Error(`channel with [${channel}] does not exist`);
-    }
-    channel[event]?.delete(callback);
+  unsubscribe(event, actor) {
+    this.#actors.get(event).delete(actor);
   }
 
   /**
-   * Trigger the event in the channel
-   * @param {String} channelName - name of the channel
-   * @param {String} event - name of the event
-   * @param {Object?} args - optional args for the callback
+   * @param {String} event - name of the event.
+   * @param {Object?} args - optional args for the actor.
    */
-  emit(channelName, event, args = null) {
-    const channel = this.#channels[channelName];
-    if (!channel) {
-      throw new Error(`channel with [${channelName}] does not exist`);
-    }
-
-    const callbacks = channel[event];
-    if (!callbacks) {
-      throw new Error(`no [${event}] in [${channel}]`);
-    }
-
-    callbacks.forEach((callback) => {
-      callback(args);
+   emit(event, args = null) {
+    this.#actors.get(event).forEach((actor) => {
+        actor(args);
     });
   }
 }
 
-const instance = new EventBus();
-export { instance as EventBus };
+const callbacksBus = new EventBus();
+export { callbacksBus as CallbackBus };
+
+const fallbacksBus = new EventBus();
+export { fallbacksBus as FallbackBus };
