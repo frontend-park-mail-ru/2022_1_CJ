@@ -268,15 +268,15 @@ select {
 
 /* borders */
 
-.bd {
+.border {
   border: 1px solid hsl(var(--clr-border));
 }
 
-.bdr-4 {
+.border-4 {
   border-radius: 8px;
 }
 
-.bdr-8 {
+.border-8 {
   border-radius: 8px;
 }
 
