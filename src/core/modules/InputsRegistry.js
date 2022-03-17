@@ -79,8 +79,8 @@ export class InputsRegistry {
     this.#inputs.forEach(({input}) => {
       input.dispatchEvent(new Event('input', { bubbles: true }));
     });
-    for (const {input, type} in this.#inputs.values()) {
-      if (type === InputTypes.Optional && !input.classList.contains('ok')) {
+    for (const {input, type} of this.#inputs.values()) {
+      if (type !== InputTypes.Optional && !input.classList.contains('ok')) {
         return false;
       }
     }
