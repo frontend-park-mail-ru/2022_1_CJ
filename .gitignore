@@ -1,3 +1,4 @@
 node_modules
 precompiled
 .DS_Store
+dist
