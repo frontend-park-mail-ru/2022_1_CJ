@@ -309,7 +309,7 @@ select {
   height: 0;
   overflow: visible;
   overflow-wrap: anywhere;
-  font-size: var(--fs-200);
+  font-size: var(--fs-300);
 }
 
 .helper-error {

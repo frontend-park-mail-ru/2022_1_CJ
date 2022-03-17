@@ -1,7 +1,7 @@
 import { URL } from '../../core/constants/constants.js';
 import { Component } from '../../core/models/Component.js';
 import { CallbackBus, FallbackBus, Events } from '../../core/modules/EventBus.js';
-import { InputsRegistry } from '../../core/modules/InputsRegistry.js';
+import { InputNames, InputsRegistry, InputTypes } from '../../core/modules/InputsRegistry.js';
 import { Router } from '../../core/modules/Router.js';
 import { AuthController } from '../../core/network/controllers/auth.js';
 import { LoginUserDTO } from '../../core/network/dto/auth.js';
@@ -23,7 +23,7 @@ export class LoginFormComponent extends Component {
 
   afterRender() {
     this.#inputsRegistry.registerInput(InputNames.Email, InputTypes.Email);
-    this.#inputsRegistry.registerInput(InputNames.Password, InputTypes.Password);
+    this.#inputsRegistry.registerInput(InputNames.Password, InputTypes.Required);
     document.getElementById('login-form').addEventListener('submit', this.onSubmitCallback);
     super.afterRender();
   }
@@ -56,7 +56,7 @@ export class LoginFormComponent extends Component {
     // TODO:
   }
 
-  onSuccess() {
+  onSuccess(args) {
     this.afterDestruction();
     Router.navigateTo(URL.Feed);
   }

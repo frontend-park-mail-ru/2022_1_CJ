@@ -46,8 +46,8 @@ export class SignupFormComponent extends Component {
       return;
     }
 
-    CallbackBus.subscribe(Events.AuthLogin, this.onSuccessCallback);
-    FallbackBus.subscribe(Events.AuthLogin, this.onFailureCallback);
+    CallbackBus.subscribe(Events.AuthSignup, this.onSuccessCallback);
+    FallbackBus.subscribe(Events.AuthSignup, this.onFailureCallback);
     AuthController.SignupUser(new SignupUserDTO(
       this.#inputsRegistry.value(InputNames.Email),
       this.#inputsRegistry.value(InputNames.FirstName),
@@ -56,12 +56,12 @@ export class SignupFormComponent extends Component {
     ));
   }
 
-  onFailure() {
+  onFailure(args) {
     console.log(`signup failed: ${args}`);
     // TODO:
   }
 
-  onSuccess() {
+  onSuccess(args) {
     this.afterDestruction();
     Router.navigateTo(URL.Login);
   }
