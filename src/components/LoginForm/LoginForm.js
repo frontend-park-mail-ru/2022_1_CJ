@@ -22,12 +22,10 @@ export class LoginFormComponent extends Component {
   }
 
   afterRender() {
-    super.afterRender();
-
     this.#inputsRegistry.registerInput(InputNames.Email, InputTypes.Email);
     this.#inputsRegistry.registerInput(InputNames.Password, InputTypes.Password);
-
     document.getElementById('login-form').addEventListener('submit', this.onSubmitCallback);
+    super.afterRender();
   }
 
   afterDestruction() {
