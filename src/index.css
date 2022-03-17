@@ -112,7 +112,7 @@ select {
 
 /* -------------------------------- Utility Classes -------------------------------- */
 
-/* general */
+/* ---------------- General ---------------- */
 
 .flex {
   display: flex;
@@ -147,7 +147,7 @@ select {
   max-width: 80rem;
 }
 
-/* colors */
+/* ---------------- Colors ---------------- */
 
 .bg-negative {
   background-color: hsl(var(--clr-negative));
@@ -193,7 +193,7 @@ select {
   text-shadow: 0px 1px 1px;
 }
 
-/* typography */
+/* ---------------- Typography ---------------- */
 
 .ff-serif {
   font-family: var(--ff-serif);
@@ -266,7 +266,7 @@ select {
   font-weight: 700;
 }
 
-/* borders */
+/* ---------------- Borders ---------------- */
 
 .border {
   border: 1px solid hsl(var(--clr-border));
@@ -280,7 +280,7 @@ select {
   border-radius: 8px;
 }
 
-/* inputs */
+/* ---------------- Inputs ---------------- */
 
 .input-field {
   width: 100%;
@@ -303,7 +303,7 @@ select {
   outline: 1px solid hsl(var(--clr-positive));
 }
 
-/* helpers */
+/* ---------------- Helpers ---------------- */
 
 .helper {
   height: 0;
@@ -320,7 +320,7 @@ select {
   color: hsl(var(--clr-text) / 0.75);
 }
 
-/* forms */
+/* ---------------- Forms ---------------- */
 
 .form {
   background-color: hsl(var(--clr-white));
@@ -333,7 +333,7 @@ select {
   padding-top: 3rem;
 }
 
-/* links */
+/* ---------------- Links ----------------*/
 
 .link {
   text-decoration: none;
@@ -344,7 +344,7 @@ select {
   text-decoration: underline;
 }
 
-/* buttons */
+/* ---------------- Buttons ---------------- */
 
 .btn {
   border: none;
