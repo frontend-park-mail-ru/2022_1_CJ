@@ -1,7 +1,7 @@
 const regexps = {
   password: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/,
   email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-}
+};
 
 /**
  * @param {String} message
@@ -15,7 +15,7 @@ const createErrorHelper = (message) => {
 };
 
 /**
- * @param {HTMLInputElement} input 
+ * @param {HTMLInputElement} input
  */
 const approve = (input) => {
   input.classList.remove('error');
@@ -26,7 +26,7 @@ const approve = (input) => {
 };
 
 /**
- * @param {HTMLInputElement} input 
+ * @param {HTMLInputElement} input
  * @param {String} message
  */
 const deny = (input, message) => {
@@ -35,33 +35,33 @@ const deny = (input, message) => {
   if (!input.nextElementSibling) {
     input.insertAdjacentElement('afterend', createErrorHelper(message));
   }
-}
+};
 
 /**
  * @param {HTMLInputElement} input
  */
- export const ValidateRequired = (input) => {
+export const ValidateRequired = (input) => {
   input.oninput = (_) => {
     if (input.value.trim().length === 0) {
       deny(input, 'cannot be blank');
     } else {
       approve(input);
     }
-  }
-}
+  };
+};
 
 /**
  * @param {HTMLInputElement} input
  */
- export const ValidateEmail = (input) => {
+export const ValidateEmail = (input) => {
   input.oninput = (_) => {
     if (regexps.email.test(input.value)) {
       approve(input);
     } else {
       deny(input, 'invalid email address');
     }
-  }
-}
+  };
+};
 
 /**
  * @param {HTMLInputElement} input
@@ -73,12 +73,12 @@ export const ValidatePassword = (input) => {
     } else {
       deny(input, 'invalid password');
     }
-  }
-}
+  };
+};
 
 /**
- * @param {HTMLInputElement} password 
- * @param {HTMLInputElement} passwordConfirmation 
+ * @param {HTMLInputElement} password
+ * @param {HTMLInputElement} passwordConfirmation
  */
 export const ValidatePasswordConfirmation = (password, passwordConfirmation) => {
   passwordConfirmation.oninput = (_) => {
@@ -87,8 +87,8 @@ export const ValidatePasswordConfirmation = (password, passwordConfirmation) => 
     } else {
       approve(passwordConfirmation);
     }
-  }
-}
+  };
+};
 
 /**
  * @param {HTMLInputElement} input
@@ -96,4 +96,4 @@ export const ValidatePasswordConfirmation = (password, passwordConfirmation) => 
 export const Validate = (input) => {
   input.dispatchEvent(new Event('input', { bubbles: true }));
   return input.classList.contains('ok');
-}
+};

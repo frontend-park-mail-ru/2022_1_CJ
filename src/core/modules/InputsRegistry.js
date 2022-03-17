@@ -1,4 +1,6 @@
-import { ValidateEmail, ValidatePassword, ValidatePasswordConfirmation, ValidateRequired } from "./InputValidator.js";
+import {
+  ValidateEmail, ValidatePassword, ValidatePasswordConfirmation, ValidateRequired,
+} from './InputValidator.js';
 
 export const InputNames = {
   FirstName: 'firstname',
@@ -6,7 +8,7 @@ export const InputNames = {
   Email: 'email',
   Password: 'password',
   PasswordConfirmation: 'password-confirmation',
-}
+};
 
 export const InputTypes = {
   Optional: 'optional',
@@ -14,7 +16,7 @@ export const InputTypes = {
   Email: 'email',
   Password: 'password',
   PasswordConfirmation: 'password-confirmation',
-}
+};
 
 /**
  * InputsRegistry is a wrapper for storing and validating HTML Input Elements.
@@ -29,12 +31,12 @@ export class InputsRegistry {
 
   /**
    * @param {String} name
-   * @param {HTMLInputElement} input 
-   * @param {String} type 
+   * @param {HTMLInputElement} input
+   * @param {String} type
    */
   registerInput(name, type) {
     const input = document.getElementById(name);
-    this.#inputs.set(name, {input, type});
+    this.#inputs.set(name, { input, type });
     switch (type) {
       case InputTypes.Optional:
         break;
@@ -49,14 +51,17 @@ export class InputsRegistry {
         break;
       case InputTypes.PasswordConfirmation:
         if (!this.#inputs.has(InputTypes.Password)) {
-          throw new Error('password-confirmation is set before password input')
+          throw new Error('password-confirmation is set before password input');
         }
         ValidatePasswordConfirmation(this.get(InputTypes.Password), input);
+        break;
+      default:
+        throw new Error('unexpected input type');
     }
   }
 
   /**
-   * @param {String} name 
+   * @param {String} name
    * @returns {HTMLInputElement}
    */
   get(name) {
@@ -64,7 +69,7 @@ export class InputsRegistry {
   }
 
   /**
-   * @param {String} name 
+   * @param {String} name
    * @returns {String}
    */
   value(name) {
@@ -76,15 +81,14 @@ export class InputsRegistry {
    */
   checkAll() {
     // Mimick input so to trigger event listeners.
-    this.#inputs.forEach(({input}) => {
+    this.#inputs.forEach(({ input }) => {
       input.dispatchEvent(new Event('input', { bubbles: true }));
     });
-    for (const {input, type} of this.#inputs.values()) {
+    for (const { input, type } of this.#inputs.values()) {
       if (type !== InputTypes.Optional && !input.classList.contains('ok')) {
         return false;
       }
     }
     return true;
   }
-
 }
