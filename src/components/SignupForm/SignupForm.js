@@ -3,8 +3,8 @@ import { Component } from '../../core/models/Component.js';
 import { CallbackBus, FallbackBus, Events } from '../../core/modules/EventBus.js';
 import { InputNames, InputsRegistry, InputTypes } from '../../core/modules/InputsRegistry.js';
 import { Router } from '../../core/modules/Router.js';
-import { AuthController } from '../../core/network/controllers/auth.js';
 import { SignupUserDTO } from '../../core/network/dto/auth.js';
+import { AuthService } from '../../core/network/services/auth.js';
 
 export class SignupFormComponent extends Component {
   #inputsRegistry;
@@ -48,7 +48,7 @@ export class SignupFormComponent extends Component {
 
     CallbackBus.subscribe(Events.AuthSignup, this.onSuccessCallback);
     FallbackBus.subscribe(Events.AuthSignup, this.onFailureCallback);
-    AuthController.SignupUser(new SignupUserDTO(
+    AuthService.SignupUser(new SignupUserDTO(
       this.#inputsRegistry.value(InputNames.Email),
       this.#inputsRegistry.value(InputNames.FirstName),
       this.#inputsRegistry.value(InputNames.LastName),
