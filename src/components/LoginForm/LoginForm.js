@@ -1,13 +1,13 @@
 import { URL } from '../../core/constants/constants.js';
 import { Component } from '../../core/models/Component.js';
 import { CallbackBus, FallbackBus, Events } from '../../core/modules/EventBus.js';
-import { ValidateInput, ValidateOnInput } from '../../core/modules/InputValidator.js';
+import { InputsRegistry } from '../../core/modules/InputsRegistry.js';
 import { Router } from '../../core/modules/Router.js';
 import { AuthController } from '../../core/network/controllers/auth.js';
 import { LoginUserDTO } from '../../core/network/dto/auth.js';
 
 export class LoginFormComponent extends Component {
-  #inputs;
+  #inputsRegistry;
 
   /**
    * @constructor
@@ -15,28 +15,24 @@ export class LoginFormComponent extends Component {
    */
   constructor(template) {
     super(template);
-    this.#inputs = [];
+    this.#inputsRegistry = new InputsRegistry();
     this.onSubmitCallback = this.onSubmit.bind(this);
     this.onSuccessCallback = this.onSuccess.bind(this);
     this.onFailureCallback = this.onFailure.bind(this);
   }
 
-  addEventListeners() {
-    super.addEventListeners();
+  afterRender() {
+    super.afterRender();
 
-    this.#inputs.push(document.getElementById('email'));
-    this.#inputs.push(document.getElementById('password'));
-
-    this.#inputs.forEach((input) => {
-      ValidateOnInput(input);
-    });
+    this.#inputsRegistry.registerInput(InputNames.Email, InputTypes.Email);
+    this.#inputsRegistry.registerInput(InputNames.Password, InputTypes.Password);
 
     document.getElementById('login-form').addEventListener('submit', this.onSubmitCallback);
   }
 
-  removeEventListeners() {
-    super.removeEventListeners();
+  afterDestruction() {
     document.getElementById('login-form')?.removeEventListener('submit', this.onSubmitCallback);
+    super.afterDestruction();
   }
 
   /**
@@ -45,13 +41,16 @@ export class LoginFormComponent extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    if (!this.#inputsRegistry.checkAll()) {
+      return;
+    }
 
     CallbackBus.subscribe(Events.AuthLogin, this.onSuccessCallback);
     FallbackBus.subscribe(Events.AuthLogin, this.onFailureCallback);
-
-    AuthController.LoginUser(new LoginUserDTO(email, password));
+    AuthController.LoginUser(new LoginUserDTO(
+      this.#inputsRegistry.value(InputNames.Email),
+      this.#inputsRegistry.value(InputNames.Password),
+    ));
   }
 
   onFailure(args) {
@@ -60,7 +59,7 @@ export class LoginFormComponent extends Component {
   }
 
   onSuccess() {
-    this.removeEventListeners();
+    this.afterDestruction();
     Router.navigateTo(URL.Feed);
   }
 }

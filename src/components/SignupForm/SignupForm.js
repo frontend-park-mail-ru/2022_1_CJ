@@ -1,13 +1,13 @@
 import { URL } from '../../core/constants/constants.js';
 import { Component } from '../../core/models/Component.js';
 import { CallbackBus, FallbackBus, Events } from '../../core/modules/EventBus.js';
-import { ValidateInput, ValidateOnInput } from '../../core/modules/InputValidator.js';
+import { InputNames, InputsRegistry, InputTypes } from '../../core/modules/InputsRegistry.js';
 import { Router } from '../../core/modules/Router.js';
 import { AuthController } from '../../core/network/controllers/auth.js';
 import { SignupUserDTO } from '../../core/network/dto/auth.js';
 
 export class SignupFormComponent extends Component {
-  #inputs;
+  #inputsRegistry;
 
   /**
    * @constructor
@@ -15,32 +15,27 @@ export class SignupFormComponent extends Component {
    */
   constructor(template) {
     super(template);
-    this.#inputs = [];
+    this.#inputsRegistry = new InputsRegistry();
     this.onSubmitCallback = this.onSubmit.bind(this);
     this.onSuccessCallback = this.onSuccess.bind(this);
     this.onFailureCallback = this.onFailure.bind(this);
   }
 
-  addEventListeners() {
-    super.addEventListeners();
-
-    // TODO: refactor
-    this.#inputs.push(document.getElementById('firstname'));
-    this.#inputs.push(document.getElementById('lastname'));
-    this.#inputs.push(document.getElementById('email'));
-    this.#inputs.push(document.getElementById('password'));
-    this.#inputs.push(document.getElementById('password-confirmation'));
-
-    this.#inputs.forEach((input) => {
-      ValidateOnInput(input);
-    });
+  afterRender() {
+    this.#inputsRegistry.registerInput(InputNames.FirstName, InputTypes.Required);
+    this.#inputsRegistry.registerInput(InputNames.LastName, InputTypes.Required);
+    this.#inputsRegistry.registerInput(InputNames.Email, InputTypes.Email);
+    this.#inputsRegistry.registerInput(InputNames.Password, InputTypes.Password);
+    this.#inputsRegistry.registerInput(InputNames.PasswordConfirmation, InputTypes.PasswordConfirmation);
 
     document.getElementById('signup-form').addEventListener('submit', this.onSubmitCallback);
+
+    super.afterRender();
   }
 
-  removeEventListeners() {
-    super.removeEventListeners();
+  afterDestruction() {
     document.getElementById('signup-form')?.removeEventListener('submit', this.onSubmitCallback);
+    super.afterDestruction();
   }
 
   /**
@@ -49,15 +44,18 @@ export class SignupFormComponent extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const email = document.getElementById('email').value;
-    const firstname = document.getElementById('firstname').value;
-    const lastname = document.getElementById('lastname').value;
-    const password = document.getElementById('password').value;
+    if (!this.#inputsRegistry.checkAll()) {
+      return;
+    }
 
     CallbackBus.subscribe(Events.AuthLogin, this.onSuccessCallback);
     FallbackBus.subscribe(Events.AuthLogin, this.onFailureCallback);
-
-    AuthController.SignupUser(new SignupUserDTO(email, firstname, lastname, password));
+    AuthController.SignupUser(new SignupUserDTO(
+      this.#inputsRegistry.value(InputNames.Email),
+      this.#inputsRegistry.value(InputNames.FirstName),
+      this.#inputsRegistry.value(InputNames.LastName),
+      this.#inputsRegistry.value(InputNames.Password),
+    ));
   }
 
   onFailure() {
@@ -66,7 +64,7 @@ export class SignupFormComponent extends Component {
   }
 
   onSuccess() {
-    this.removeEventListeners();
+    this.afterDestruction();
     Router.navigateTo(URL.Login);
   }
 }

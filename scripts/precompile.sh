@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-handlebars_opts="--min --commonjs"
+handlebars_opts="--min"
 paths=("src/views" "src/components")
 outdir="src/precompiled"
 

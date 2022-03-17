@@ -33,7 +33,7 @@ export class View extends Component {
     await Promise.allSettled(this.#adapters.map((adapter) => adapter(this)));
     if (this.checkStateBeforeRender()) {
       parent.innerHTML = super.render();
-      this.addEventListeners();
+      this.afterRender();
     } else {
       this.onInvalidState();
     }

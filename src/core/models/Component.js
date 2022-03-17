@@ -49,7 +49,6 @@ export class Component {
     this.#subComponents[name] = component;
   }
 
-  // TODO: add afterRender method
   /**
    * Produce HTML. Context is supposed to be set before rendering.
    * @param {Object?} context - context to be passed to sub components, for parent node supposed to be not pased.
@@ -61,22 +60,22 @@ export class Component {
   }
 
   /**
-   * Recursively add event listeners.
+   * Recursively calls after render functions.
    * If redefined, super method is supposed to be called.
    */
-  addEventListeners() {
+  afterRender() {
     Object.values(this.#subComponents).forEach((component) => {
-      component.addEventListeners();
+      component.afterRender();
     });
   }
 
   /**
-   * Recursively remove event listeners.
+   * Recursively calls destructors.
    * If redefined, super method is supposed to be called.
    */
-  removeEventListeners() {
+  afterDestruction() {
     Object.values(this.#subComponents).forEach((component) => {
-      component.removeEventListeners();
+      component.afterDestruction();
     });
   }
 
