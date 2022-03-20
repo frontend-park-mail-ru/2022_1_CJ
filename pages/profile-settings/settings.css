@@ -319,7 +319,7 @@ hr {
     padding: 0.5rem;
     min-width: 29rem;
     max-width: 29rem;
-    font-size: var(--font-size-h3);
+
     background-color: var(--main-color-background);
     border-radius: var(--border-radius-primary) 0 0 var(--border-radius-primary) ;
     /* box-shadow: var(--box-shadow-nav); */
@@ -330,9 +330,6 @@ hr {
     grid-gap: 0.5rem;
 }
 .additional-info > .info-field {
-    min-height: 2.5rem;
-    width: 100%;
-
     display: grid;
     grid-template-columns: 7rem 1fr;
     justify-content: center;
