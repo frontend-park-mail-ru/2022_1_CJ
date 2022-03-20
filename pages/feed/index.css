@@ -58,7 +58,6 @@ hr {
 .img, img {
     height: 2.5rem;
     aspect-ratio: 1 / 1;
-
 }
 
 .block {
@@ -89,11 +88,11 @@ hr {
     padding: 0 1rem;
 }
 
-.element, .profile, .avatar, .settings, .link, .img {
+.element, .profile, .avatar, .settings, .link, .img, .button {
     cursor: pointer;
 }
 
-.element:hover, .profile:hover {
+.element:hover, .profile:hover, .button:hover {
     background-color: var(--hover-color-main);
 }
 /* root */
@@ -108,7 +107,12 @@ hr {
     grid-template-areas: "nav" "container";
     grid-gap: 1rem;
 
+    cursor: default;
+
     background: var(--main-color-background);
+}
+.root > nav {
+    height: clamp(200px, 300px, 400px);
 }
 /* navbar */
 .nav  * {
@@ -372,4 +376,38 @@ hr {
 
 .content > img {
     object-fit: cover;
+}
+
+.reactions {
+    display: grid;
+    grid-template-columns: repeat(3, auto) 1fr auto;
+    grid-template-areas: "like comment repost . watch";
+    grid-gap: 0.5rem;
+}
+.reactions > * {
+    padding: 0.5rem;
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-gap: 0.5rem;
+    align-items: center;
+    text-align: center;
+}z
+.reactions > * {
+    height: 3rem;
+    font-size: var(--font-size-h2);
+}
+.reactions img {
+    height: 2rem;
+}
+.like {
+    grid-area: like;
+}
+.comment {
+    grid-area: comment;
+}
+.repost {
+    grid-area: repost;
+}
+.watch {
+    grid-area: watch;
 }

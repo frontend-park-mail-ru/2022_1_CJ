@@ -58,7 +58,7 @@ hr {
 .img, img {
     height: 2.5rem;
     aspect-ratio: 1 / 1;
-    object-fit: cover;
+
 } 
 
 .block {
@@ -69,6 +69,7 @@ hr {
 
 .avatar {
     height: 5rem;
+    object-fit: cover;
     border-radius: var(--border-radius-circle);
 }
 
@@ -225,6 +226,7 @@ hr {
     position: absolute;
 
     border-radius: 0 0 var(--border-radius-primary) var(--border-radius-primary);
+    background-color: var(--main-color-primary);
     box-shadow: var(--box-shadow-nav);
 }
 
@@ -515,4 +517,8 @@ hr {
     max-height: 37rem;
     width: 100%;
     aspect-ratio: unset;
+}
+
+.content > img {
+    object-fit: cover;
 }
