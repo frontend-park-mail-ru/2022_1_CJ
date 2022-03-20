@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  app:
+    build:
+      context: .
+      target: nginx
+    image: cj-frontend:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./src:/var/www/web

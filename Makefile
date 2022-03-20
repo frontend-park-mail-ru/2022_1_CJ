@@ -1,19 +1,25 @@
+# path to docker compose file
+DCOMPOSE:=docker-compose.yaml
+
+# improve build time
+DOCKER_BUILD_KIT:=COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1
+
 docker: pack precompile down build up
 
-precompile:
-	bash scripts/precompile.sh
+down:
+	docker-compose -f ${DCOMPOSE} down
+
+build:
+	${DOCKER_BUILD_KIT} docker-compose build
+
+up:
+	docker-compose -f ${DCOMPOSE} up -d
 
 pack:
 	bash scripts/pack.sh
 
-down:
-	bash scripts/stop.sh
-
-build:
-	bash scripts/build.sh
-
-up:
-	bash scripts/run.sh
+precompile:
+	bash scripts/precompile.sh
 
 local: pack precompile local-up
 
