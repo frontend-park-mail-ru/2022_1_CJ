@@ -1,0 +1,349 @@
+/* for every element */
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+
+    font-family: system-ui;
+    font-variant-caps: normal;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    font-style: normal;
+
+    font-weight: 300;
+}
+
+:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+/* variables */
+:root {
+    --border-radius-primary: 0.5rem;
+    --border-radius-circle: 50%;
+
+    --main-color-background: #EDEEF0;
+    --main-color-primary: #FFFFFF;
+
+    --hover-color-main: rgba(92, 163, 235, 0.1);
+
+    --items-color-secondary: rgba(0, 0, 0, 0.5);
+
+    --text-color-primary: rgba(0, 0, 0, 0.35);
+    --text-color-secondary: #5CA3EB;
+    --text-color-priority: #3066BE;
+
+    --box-shadow-nav: 0px 2px 5px 0px rgba(180, 197, 228, 1);
+    --box-shadow-items: 0px 1px 5px rgba(0, 0, 0, 0.25);
+
+    --font-size-h1: 1.5rem;
+    --font-size-h2: 1.25rem;
+    --font-size-h3: 1rem;
+}
+
+hr {
+    border: 0; 
+    height: 0.0625rem; 
+    box-sizing: content-box; 
+    display: block;
+    background-color: var(--hover-color-main);
+}
+
+.img, img {
+    height: 2.5rem;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+} 
+
+.block {
+    background-color: var(--main-color-primary);
+    border-radius: var(--border-radius-primary);
+    box-shadow: var(--box-shadow-items);
+}
+
+.avatar {
+    height: 5rem;
+    border-radius: var(--border-radius-circle);
+}
+
+.link {
+    color: var(--text-color-priority);
+}
+.link:hover {
+    text-decoration: underline;
+}
+
+.element {
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+.element > p {
+    padding: 0 1rem;
+}
+
+.element, .profile, .avatar, .settings, .link, .img, .button {
+    cursor: pointer;
+}
+
+.element:hover, .profile:hover, .button:hover {
+    background-color: var(--hover-color-main);
+}
+/* root */
+.root {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+
+    display: grid;
+    overflow-y: hidden;
+    grid-template-rows: 5rem 1fr;
+    grid-template-areas: "nav" "container";
+    grid-gap: 1rem;
+
+    cursor: default;
+
+    background: var(--main-color-background);
+}
+/* navbar */
+.nav  * {
+    font-size: var(--font-size-h1);
+    color: var(--text-color-primary);
+}
+
+.nav img {
+    height: 2rem;
+}
+
+.nav {
+    height: 100%;
+
+    display: grid;
+    grid-template-columns:  minmax(13rem, 1fr) minmax(39rem, 1fr) minmax(16rem, 1fr);
+    grid-gap: 1rem;
+
+    background: var(--main-color-primary);
+    box-shadow: var(--box-shadow-nav);
+}
+/* navbar left */
+.nav > .left {
+    height: 100%;
+}
+
+#logo {
+    min-height: 100%;
+    max-height: 100%;
+    float: right;
+}
+/* navbar middle */
+.nav > .middle {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+.middle > .search {
+    padding: 0.5rem 1.5rem;
+    width: 50%;
+
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    grid-gap: 0rem;
+
+    background: var(--main-color-background);
+    box-shadow: var(--box-shadow-nav);
+    border-radius: 0.75rem;
+}
+
+.search > * {
+    background: var(--main-color-background);
+}
+
+.search > img {
+    height: 2.5rem;
+}
+
+.search > input {
+    height: auto;
+    width: 100%;
+
+    text-align: center;
+}
+
+.middle > .img {
+    min-height: 100%;
+    max-height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.middle > .img:hover {
+    background-color: var(--hover-color-main);
+}
+/* navbar right */
+.nav > .right {
+    color: var(--text-color-primary);
+}
+
+.profile {
+    padding: 0.5rem;
+    height: auto;
+    width: 15rem;
+    float: left;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.profile > .avatar {
+    height: 4rem;
+}
+
+.profile > .icon {
+    margin: 1rem 0.5rem;
+    height: auto;
+}
+
+.menu {
+    display: none;
+
+    top: 5rem;
+    padding: 0 0 0.5rem 0;
+    width: 16rem;
+    height: min-content;
+    position: absolute;
+
+    border-radius: 0 0 var(--border-radius-primary) var(--border-radius-primary);
+    box-shadow: var(--box-shadow-nav);
+}
+
+.menu > .element {
+    padding: 0.5rem 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.menu p {
+    font-size: var(--font-size-h2);
+}
+
+.menu > .element:nth-child(2) > p {
+    color: var(--text-color-secondary)
+}
+
+/* container */
+.container {
+    top: 6rem;
+    height:100%;
+
+    display: grid;
+    overflow-y: scroll;
+    grid-template-columns:  1fr auto 1fr;
+    grid-gap: 1rem;
+}
+
+.container > .middle {
+    height: fit-content;
+    padding: 1rem;
+    display: grid;
+    grid-gap: 1rem;
+}
+.container .middle  > * {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.container .middle  * {
+    font-size: var(--font-size-h2);
+}
+.container .middle  > hr {
+    height: 0.125rem;
+}
+.container .middle  > p {
+    height: 2rem;
+    display: flex;
+}
+
+.avatar-info {
+    display: grid;
+    grid-template-rows: 2rem 10rem 2rem;
+    justify-content: center;
+    grid-gap: 0.5rem;
+}
+.avatar-info > img {
+    height: 10rem;
+    border-radius: var(--border-radius-primary);
+}
+.avatar-info > p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-gap: 0.5rem;
+}
+.main-info > .info-field {
+    text-align: center;
+}
+
+.info-field > input {
+    height: 2.5rem;
+    width: 14rem;
+    text-align: center;
+    font-size: var(--font-size-h3);
+
+    border-radius: var(--border-radius-primary);
+    background-color: var(--main-color-background);
+}
+
+.info-field > textarea {
+    padding: 0.5rem;
+    min-width: 29rem;
+    max-width: 29rem;
+    font-size: var(--font-size-h3);
+    background-color: var(--main-color-background);
+    border-radius: var(--border-radius-primary) 0 0 var(--border-radius-primary) ;
+    /* box-shadow: var(--box-shadow-nav); */
+}
+
+.additional-info {
+    display: grid;
+    grid-gap: 0.5rem;
+}
+.additional-info > .info-field {
+    min-height: 2.5rem;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+.save-info > p {
+    height: 2rem;
+    width: 8rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
