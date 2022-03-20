@@ -2,7 +2,7 @@ import { Router } from './core/modules/Router.js';
 import { URL } from './core/constants/constants.js';
 import { ViewsRegistry } from './core/constants/views_registry.js';
 import { UserAdapter, HeaderAdapter } from './core/adapters/common.js';
-import { LogoutAction } from './core/actions/logout.js';
+import { LogoutAction } from './core/actions/actions.js';
 
 const root = document.getElementById('root');
 

@@ -1,4 +1,5 @@
 export const URL = {
+  Base: '/',
   Signup: '/signup',
   Login: '/login',
   Feed: '/feed',

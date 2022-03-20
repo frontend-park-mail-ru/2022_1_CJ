@@ -27,13 +27,8 @@ export class SignupFormComponent extends Component {
     this.#inputsRegistry.registerInput(InputNames.Email, InputTypes.Email);
     this.#inputsRegistry.registerInput(InputNames.Password, InputTypes.Password);
     this.#inputsRegistry.registerInput(InputNames.PasswordConfirmation, InputTypes.PasswordConfirmation);
-    document.getElementById('signup-form').addEventListener('submit', this.onSubmitCallback);
+    document.getElementById('form-signup').addEventListener('submit', this.onSubmitCallback);
     super.afterRender();
-  }
-
-  afterDestruction() {
-    document.getElementById('signup-form')?.removeEventListener('submit', this.onSubmitCallback);
-    super.afterDestruction();
   }
 
   /**

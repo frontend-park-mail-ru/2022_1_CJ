@@ -329,10 +329,6 @@ select {
   place-self: center;
 }
 
-.form-actions {
-  padding-top: 3rem;
-}
-
 /* ---------------- Links ----------------*/
 
 .link {
@@ -392,4 +388,9 @@ select {
 
 .btn-transparent:hover {
   background-color: hsl(var(--clr-transparent-d));
+}
+
+/* ---------------- Alerts ---------------- */
+
+.alerts {
 }

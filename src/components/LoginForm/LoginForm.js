@@ -24,13 +24,8 @@ export class LoginFormComponent extends Component {
   afterRender() {
     this.#inputsRegistry.registerInput(InputNames.Email, InputTypes.Email);
     this.#inputsRegistry.registerInput(InputNames.Password, InputTypes.Required);
-    document.getElementById('login-form').addEventListener('submit', this.onSubmitCallback);
+    document.getElementById('form-login').addEventListener('submit', this.onSubmitCallback);
     super.afterRender();
-  }
-
-  afterDestruction() {
-    document.getElementById('login-form')?.removeEventListener('submit', this.onSubmitCallback);
-    super.afterDestruction();
   }
 
   /**
