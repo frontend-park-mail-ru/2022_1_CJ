@@ -1,3 +1,3 @@
 import { Component } from '../../core/models/Component.js';
 
-export class HeaderComponent extends Component {}
+export class NotFoundFormComponent extends Component {}
