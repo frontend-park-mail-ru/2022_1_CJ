@@ -38,6 +38,7 @@
     --text-color-primary: rgba(0, 0, 0, 0.35);
     --text-color-secondary: #5CA3EB;
     --text-color-priority: #3066BE;
+    --text-color-priority-05: rgba(48, 102, 190, 0.5);
 
     --box-shadow-nav: 0px 2px 5px 0px rgba(180, 197, 228, 1);
     --box-shadow-items: 0px 1px 5px rgba(0, 0, 0, 0.25);
@@ -45,6 +46,8 @@
     --font-size-h1: 1.5rem;
     --font-size-h2: 1.25rem;
     --font-size-h3: 1rem;
+    --font-size-h4: 0.75rem;
+    --font-size-h5: 0.5rem;
 }
 
 hr {
@@ -55,11 +58,21 @@ hr {
     background-color: var(--hover-color-main);
 }
 
-.img, img {
-    height: 2.5rem;
+.icon, img {
+    height: 2rem;
     aspect-ratio: 1 / 1;
-
+    object-fit: cover;
 } 
+
+.h1 {
+    font-size: var(--font-size-h1);
+}
+.h2 {
+    font-size: var(--font-size-h2);
+}
+.h3 {
+    font-size: var(--font-size-h3);
+}
 
 .block {
     background-color: var(--main-color-primary);
@@ -68,8 +81,7 @@ hr {
 }
 
 .avatar {
-    height: 5rem;
-    object-fit: cover;
+    height: 4rem;
     border-radius: var(--border-radius-circle);
 }
 
@@ -104,7 +116,7 @@ hr {
 
     display: grid;
     overflow-y: hidden;
-    grid-template-rows: 5rem 1fr;
+    grid-template-rows: 4rem 1fr;
     grid-template-areas: "nav" "container";
     grid-gap: 1rem;
 
@@ -114,19 +126,15 @@ hr {
 }
 /* navbar */
 .nav  * {
-    font-size: var(--font-size-h1);
+    font-size: var(--font-size-h3);
     color: var(--text-color-primary);
-}
-
-.nav img {
-    height: 2rem;
 }
 
 .nav {
     height: 100%;
 
     display: grid;
-    grid-template-columns:  minmax(13rem, 1fr) minmax(39rem, 1fr) minmax(16rem, 1fr);
+    grid-template-columns:  minmax(13rem, 1fr) 41.25rem minmax(16rem, 1fr);
     grid-gap: 1rem;
 
     background: var(--main-color-primary);
@@ -151,8 +159,8 @@ hr {
 }
 
 .middle > .search {
-    padding: 0.5rem 1.5rem;
-    width: 50%;
+    padding: 0.25rem 1rem;
+    width: 15rem;
 
     display: grid;
     grid-template-columns: 3rem 1fr;
@@ -164,11 +172,12 @@ hr {
 }
 
 .search > * {
+    color: var(--text-color-priority);
     background: var(--main-color-background);
 }
 
 .search > img {
-    height: 2.5rem;
+    height: 2rem;
 }
 
 .search > input {
@@ -198,7 +207,7 @@ hr {
 .profile {
     padding: 0.5rem;
     height: auto;
-    width: 15rem;
+    width: 12rem;
     float: left;
 
     display: flex;
@@ -208,25 +217,22 @@ hr {
 }
 
 .profile > .avatar {
-    height: 4rem;
+    height: 3rem;
 }
 
 .profile > .icon {
-    margin: 1rem 0.5rem;
+    margin: 0.5rem;
     height: auto;
 }
 
 .menu {
-    display: none;
-
-    top: 5rem;
+    top: 4rem;
     padding: 0 0 0.5rem 0;
-    width: 16rem;
+    width: 13rem;
     height: min-content;
     position: absolute;
 
     border-radius: 0 0 var(--border-radius-primary) var(--border-radius-primary);
-    background-color: var(--main-color-primary);
     box-shadow: var(--box-shadow-nav);
 }
 
@@ -237,10 +243,6 @@ hr {
     justify-content: center;
     align-items: center;
     text-align: center;
-}
-
-.menu p {
-    font-size: var(--font-size-h2);
 }
 
 .menu > .element:nth-child(2) > p {
@@ -254,8 +256,11 @@ hr {
 
     display: grid;
     overflow-y: scroll;
-    grid-template-columns:  minmax(13rem, 1fr) minmax(55rem, 1fr) 1fr;
+    grid-template-columns:  minmax(13rem, 1fr) 41.25rem 1fr;
     grid-gap: 1rem;
+}
+.container {
+    font-size: var(--font-size-h3);
 }
 
 .container > .left {
@@ -281,31 +286,29 @@ hr {
     grid-template-columns: auto 1fr;
     grid-template-rows: auto auto auto;
     grid-template-areas: "info info" "menu feed" ". feed";
-    grid-gap: 1rem;
+    grid-gap: 0.75rem;
 }
 
 .profile-info {
-    padding: 1rem;
+    padding: 0.75rem;
 
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-gap: 1rem;
+    grid-gap: 0.75rem;
 
     grid-area: info;
 }
 
 .profile-info > .avatar {
-    height: 15rem;
+    height: 11.25rem;
     width: max-content;
 
     border-radius: var(--border-radius-primary);
 }
 
 .main-info {
-    font-size: var(--font-size-h2);
-
     display: grid;
-    grid-template-rows: 2rem 1.5rem 7.5rem 4rem;
+    grid-template-rows: 1.5rem 1.125rem auto 3rem;
 }
 
 .user-header {
@@ -320,14 +323,14 @@ hr {
 }
 
 .user-status > *{
-    font-size: var(--font-size-h3);
+    font-size: var(--font-size-h4);
 
     color: var(--text-color-primary);
 }
 
 .user-info {
     display: grid;
-    grid-template-rows: 1fr 1fr 3.5rem;
+    grid-template-rows: 1fr 1fr 2.625rem;
 }
 
 .user-birth {
@@ -341,7 +344,7 @@ hr {
 }
 
 .user-main-info > hr {
-    height: 0.075rem;
+    height: 0.0625rem;
     background-color: var(--text-color-priority);
 }
 
@@ -369,19 +372,19 @@ hr {
 }
 
 .profile-content {
-    width: 17rem;
+    width: 12.75rem;
     top: 0;
     position: sticky;
 
     display: grid;
     grid-template-rows: auto auto auto;
-    grid-gap: 1rem;
+    grid-gap: 0.75rem;
 
     grid-area: menu;
 }
 
 .profile-content > div > p {
-    font-size: var(--font-size-h1);
+    font-size: var(--font-size-h2);
 }
 
 .post-add {
@@ -390,9 +393,6 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.post-add > img {
-    height: 3rem;
 }
 .post-add > p {
     padding: 0.5rem;
@@ -413,12 +413,17 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: var(--font-size-h4);
 }
 .friends-menu > p, .groups-menu > p {
     grid-area: title;
 }
+.friend-element > .avatar, .group-element > .avatar {
+    height: 3rem;
+}
 .friend-element, .group-element {
-    display: grid;
+    display: block;
+    text-align: center;
 }
 
 .profile-feed {
@@ -429,13 +434,13 @@ hr {
 }
 
 .post {
-    padding: 1rem;
+    padding: 0.75rem;
     height: min-content;
     width: auto;
 
     display: grid;
-    grid-template-rows: 5rem 5rem auto auto;
-    grid-gap: 1em;
+    grid-template-rows: 4rem 5rem auto auto;
+    grid-gap: 0.75em;
 }
 
 .header {
@@ -448,8 +453,6 @@ hr {
 .header > .author {
     display: flex;
     align-items: center;
-
-    font-size: var(--font-size-h2);
 
     grid-area: author;
 }

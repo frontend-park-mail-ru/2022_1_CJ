@@ -38,6 +38,7 @@
     --text-color-primary: rgba(0, 0, 0, 0.35);
     --text-color-secondary: #5CA3EB;
     --text-color-priority: #3066BE;
+    --text-color-priority-05: rgba(48, 102, 190, 0.5);
 
     --box-shadow-nav: 0px 2px 5px 0px rgba(180, 197, 228, 1);
     --box-shadow-items: 0px 1px 5px rgba(0, 0, 0, 0.25);
@@ -45,6 +46,8 @@
     --font-size-h1: 1.5rem;
     --font-size-h2: 1.25rem;
     --font-size-h3: 1rem;
+    --font-size-h4: 0.75rem;
+    --font-size-h5: 0.5rem;
 }
 
 hr {
@@ -55,9 +58,20 @@ hr {
     background-color: var(--hover-color-main);
 }
 
-.img, img {
-    height: 2.5rem;
+.icon, img {
+    height: 2rem;
     aspect-ratio: 1 / 1;
+    object-fit: cover;
+} 
+
+.h1 {
+    font-size: var(--font-size-h1);
+}
+.h2 {
+    font-size: var(--font-size-h2);
+}
+.h3 {
+    font-size: var(--font-size-h3);
 }
 
 .block {
@@ -67,8 +81,7 @@ hr {
 }
 
 .avatar {
-    height: 5rem;
-    object-fit: cover;
+    height: 4rem;
     border-radius: var(--border-radius-circle);
 }
 
@@ -103,7 +116,7 @@ hr {
 
     display: grid;
     overflow-y: hidden;
-    grid-template-rows: 5rem 1fr;
+    grid-template-rows: 4rem 1fr;
     grid-template-areas: "nav" "container";
     grid-gap: 1rem;
 
@@ -111,24 +124,17 @@ hr {
 
     background: var(--main-color-background);
 }
-.root > nav {
-    height: clamp(200px, 300px, 400px);
-}
 /* navbar */
 .nav  * {
-    font-size: var(--font-size-h1);
+    font-size: var(--font-size-h3);
     color: var(--text-color-primary);
-}
-
-.nav img {
-    height: 2rem;
 }
 
 .nav {
     height: 100%;
 
     display: grid;
-    grid-template-columns:  minmax(13rem, 1fr) minmax(39rem, 1fr) minmax(16rem, 1fr);
+    grid-template-columns:  minmax(13rem, 1fr) 35rem minmax(16rem, 1fr);
     grid-gap: 1rem;
 
     background: var(--main-color-primary);
@@ -137,11 +143,6 @@ hr {
 /* navbar left */
 .nav > .left {
     height: 100%;
-
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center; */
 }
 
 #logo {
@@ -155,13 +156,11 @@ hr {
     justify-content: space-evenly;
     align-items: center;
     text-align: center;
-
-    /* background-color: var(--hover-color-main); */
 }
 
 .middle > .search {
-    padding: 0.5rem 1.5rem;
-    width: 50%;
+    padding: 0.25rem 1rem;
+    width: 15rem;
 
     display: grid;
     grid-template-columns: 3rem 1fr;
@@ -173,11 +172,12 @@ hr {
 }
 
 .search > * {
+    color: var(--text-color-priority);
     background: var(--main-color-background);
 }
 
 .search > img {
-    height: 2.5rem;
+    height: 2rem;
 }
 
 .search > input {
@@ -207,7 +207,7 @@ hr {
 .profile {
     padding: 0.5rem;
     height: auto;
-    width: 15rem;
+    width: 12rem;
     float: left;
 
     display: flex;
@@ -217,23 +217,22 @@ hr {
 }
 
 .profile > .avatar {
-    height: 4rem;
+    height: 3rem;
 }
 
 .profile > .icon {
-    margin: 1rem 0.5rem;
+    margin: 0.5rem;
     height: auto;
 }
 
 .menu {
-    top: 5rem;
+    top: 4rem;
     padding: 0 0 0.5rem 0;
-    width: 16rem;
+    width: 13rem;
     height: min-content;
     position: absolute;
 
     border-radius: 0 0 var(--border-radius-primary) var(--border-radius-primary);
-    background-color: var(--main-color-primary);
     box-shadow: var(--box-shadow-nav);
 }
 
@@ -244,10 +243,6 @@ hr {
     justify-content: center;
     align-items: center;
     text-align: center;
-}
-
-.menu p {
-    font-size: var(--font-size-h2);
 }
 
 .menu > .element:nth-child(2) > p {
@@ -261,8 +256,11 @@ hr {
 
     display: grid;
     overflow-y: scroll;
-    grid-template-columns:  minmax(13rem, 1fr) minmax(39rem, 1fr) minmax(16rem, 1fr);
+    grid-template-columns:  minmax(13rem, 1fr) minmax(35rem, 1fr) minmax(16rem, 1fr);
     grid-gap: 1rem;
+}
+.container {
+    font-size: var(--font-size-h3);
 }
 
 .container > .left {
@@ -303,8 +301,6 @@ hr {
 .header > .author {
     display: flex;
     align-items: center;
-
-    font-size: var(--font-size-h2);
 
     grid-area: author;
 }
@@ -362,11 +358,6 @@ hr {
     -webkit-box-orient: vertical;
 }
 
-.title .more {
-    display: flex;
-    justify-content: center;
-}
-
 .content > * {
     height: auto;
     max-height: 37rem;
@@ -385,7 +376,7 @@ hr {
     grid-gap: 0.5rem;
 }
 .reactions > * {
-    padding: 0.5rem;
+    padding: 0.35rem 0.5rem;
     display: grid;
     grid-template-columns: min-content 1fr;
     grid-gap: 0.5rem;
@@ -396,8 +387,8 @@ hr {
     height: 3rem;
     font-size: var(--font-size-h2);
 }
-.reactions img {
-    height: 2rem;
+.reactions .icon {
+    height: 1.5rem;
 }
 .like {
     grid-area: like;
