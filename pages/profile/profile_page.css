@@ -254,7 +254,7 @@ hr {
 
     display: grid;
     overflow-y: scroll;
-    grid-template-columns:  minmax(13rem, 1fr) 41.25rem 1fr;
+    grid-template-columns:  minmax(13rem, 1fr) 41.25rem minmax(16rem, 1fr);
     grid-gap: 1rem;
 }
 .container {
@@ -403,7 +403,7 @@ hr {
 
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 2rem 1fr 1fr 1fr;
+    grid-template-rows: 2rem;
     grid-template-areas: "title title";
     grid-gap: 0.5rem;
 }
