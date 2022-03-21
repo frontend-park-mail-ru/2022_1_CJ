@@ -137,6 +137,12 @@ hr {
     grid-template-columns:  minmax(13rem, 1fr) 41.25rem minmax(16rem, 1fr);
     grid-gap: 1rem;
 
+    /* background: rgba( 109, 159, 236, 0.15 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 3px );
+    -webkit-backdrop-filter: blur( 3px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );     */
+
     background: var(--main-color-primary);
     box-shadow: var(--box-shadow-nav);
 }
@@ -209,7 +215,7 @@ hr {
     float: left;
 
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     text-align: center;
 }
@@ -224,14 +230,29 @@ hr {
 }
 
 .menu {
-    top: 4rem;
+    display: none;
+    /* top: 4rem; */
     padding: 0 0 0.5rem 0;
     width: 13rem;
     height: min-content;
     position: absolute;
 
+    background: rgba( 109, 159, 236, 0.15 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 3px );
+    -webkit-backdrop-filter: blur( 3px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );    
+
     border-radius: 0 0 var(--border-radius-primary) var(--border-radius-primary);
-    box-shadow: var(--box-shadow-nav);
+}
+
+.menu > .element:first-child {
+    padding: 0.5rem 1rem;
+
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    text-align: center;
 }
 
 .menu > .element {
@@ -522,4 +543,38 @@ hr {
 
 .content > img {
     object-fit: cover;
+}
+
+.reactions {
+    display: grid;
+    grid-template-columns: repeat(3, auto) 1fr auto;
+    grid-template-areas: "like comment repost . watch";
+    grid-gap: 0.5rem;
+}
+.reactions > * {
+    padding: 0.35rem 0.5rem;
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-gap: 0.5rem;
+    align-items: center;
+    text-align: center;
+}z
+.reactions > * {
+    height: 3rem;
+    font-size: var(--font-size-h2);
+}
+.reactions .icon {
+    height: 1.5rem;
+}
+.like {
+    grid-area: like;
+}
+.comment {
+    grid-area: comment;
+}
+.repost {
+    grid-area: repost;
+}
+.watch {
+    grid-area: watch;
 }
