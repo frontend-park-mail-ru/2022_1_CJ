@@ -1,7 +1,4 @@
-export const Events = {
-  AuthSignup: 'auth:signup',
-  AuthLogin: 'auth:login',
-};
+import { Events } from "./Events.js";
 
 class EventBus {
   /** @member {Map<String, Function>} */

@@ -31,8 +31,8 @@
   --fs-200: 0.5rem;
 
   /* font-families */
-  --ff-serif: "Poppins", serif;
-  --ff-sans: "Poppins", sans-serif;
+  --ff-serif: 'Poppins', serif;
+  --ff-sans: 'Poppins', sans-serif;
 }
 
 /* -------------------------------- Basic Settings -------------------------------- */
@@ -47,8 +47,8 @@
   box-sizing: border-box;
 }
 
-ul[role="list"],
-ol[role="list"] {
+ul[role='list'],
+ol[role='list'] {
   list-style: none;
 }
 
@@ -388,9 +388,4 @@ select {
 
 .btn-transparent:hover {
   background-color: hsl(var(--clr-transparent-d));
-}
-
-/* ---------------- Alerts ---------------- */
-
-.alerts {
 }

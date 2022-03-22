@@ -14,10 +14,8 @@ export const UserAPI = {
     const body = JSON.stringify(dto);
     const response = await fetchAPI(userMethods.getData, 'POST', body);
     if (!response.ok) {
-      return [null, new CodedError(response.statusText, response.status)];
+      throw new CodedError(response.statusText, response.status);
     }
-
-    const json = await response.json();
-    return [json, null];
+    return response.json();
   },
 };

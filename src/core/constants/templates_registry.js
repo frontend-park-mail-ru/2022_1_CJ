@@ -1,9 +1,9 @@
-import '../../precompiled/Header.js';
-import '../../precompiled/Signup.js';
-import '../../precompiled/SignupForm.js';
-import '../../precompiled/Login.js';
-import '../../precompiled/LoginForm.js';
-import '../../precompiled/NotFound.js';
+import '../../../../precompiled/Header.js';
+import '../../../../precompiled/Signup.js';
+import '../../../../precompiled/SignupForm.js';
+import '../../../../precompiled/Login.js';
+import '../../../../precompiled/LoginForm.js';
+import '../../../../precompiled/NotFound.js';
 
 export const TemplatesRegistry = {
   Header: Handlebars.templates.Header,

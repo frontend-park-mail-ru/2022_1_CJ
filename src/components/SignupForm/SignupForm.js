@@ -1,7 +1,8 @@
 import { URL } from '../../core/constants/constants.js';
 import { Component } from '../../core/models/Component.js';
-import { CallbackBus, FallbackBus, Events } from '../../core/modules/EventBus.js';
-import { InputNames, InputsRegistry, InputTypes } from '../../core/modules/InputsRegistry.js';
+import { CallbackBus, FallbackBus } from '../../core/modules/EventBus/EventBus.js';
+import { Events } from '../../core/modules/EventBus/Events.js';
+import { InputNames, InputsRegistry, InputTypes } from '../../core/modules/InputValidator/InputsRegistry.js';
 import { Router } from '../../core/modules/Router.js';
 import { SignupUserDTO } from '../../core/network/dto/auth.js';
 import { AuthService } from '../../core/network/services/auth.js';

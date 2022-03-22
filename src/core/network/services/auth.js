@@ -1,5 +1,6 @@
 import { AuthAPI } from '../api/auth.js';
-import { CallbackBus, FallbackBus, Events } from '../../modules/EventBus.js';
+import { CallbackBus, FallbackBus } from '../../modules/EventBus/EventBus.js';
+import { Events } from '../../modules/EventBus/Events.js';
 
 export const AuthService = {
   /**
