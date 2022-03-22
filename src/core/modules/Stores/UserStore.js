@@ -1,4 +1,3 @@
-import { HttpStatus } from "../../constants/constants.js";
 import { applyMiddlewares, createStore } from "../../models/Store.js";
 import { UserAPI } from "../../network/api/user.js";
 import { loggerMiddleware, thunkMiddleware } from "../Middlewares.js";
