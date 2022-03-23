@@ -46,7 +46,8 @@ export class InputsRegistry {
         ValidateEmail(input);
         break;
       case InputTypes.Password:
-        ValidatePassword(input);
+        ValidateRequired(input);
+        // ValidatePassword(input); FIXME: required is used only for dev mode
         break;
       case InputTypes.PasswordConfirmation:
         if (!this.#inputs.has(InputTypes.Password)) {
