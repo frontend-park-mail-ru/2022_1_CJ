@@ -31,25 +31,7 @@ export class View extends Component {
     // Note: Promise.allSettled is used so that some adapters may fail,
     // and the failure is supposed to be detected in check state function.
     await Promise.allSettled(this.#adapters.map((adapter) => adapter(this)));
-    if (this.checkStateBeforeRender()) {
-      parent.innerHTML = super.render();
-      this.afterRender();
-    } else {
-      this.onInvalidState();
-    }
-  }
-
-  /**
-   * Tells whether the state (i.g. context) is valid in the context of the view.
-   * If redefined, onInvalidState is supposed to be redefined too.
-   * @returns {Boolean}
-   */
-  checkStateBeforeRender() {
-    return true;
-  }
-
-  /** Takes control of the flow if state turned out to be invalid. */
-  onInvalidState() {
-    throw new Error('must be redefined');
+    parent.innerHTML = super.render();
+    this.afterRender();
   }
 }

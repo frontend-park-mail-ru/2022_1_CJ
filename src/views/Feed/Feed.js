@@ -13,12 +13,4 @@ export class FeedView extends View {
     super(TemplatesRegistry.Feed, ...adapters);
     this.setTitle('Feed');
   }
-
-  checkStateBeforeRender() {
-    return this.getContextByKey(ContextKey.IsAuthorized) !== true;
-  }
-
-  onInvalidState() {
-    Router.navigateTo(URL.Feed);
-  }
 }

@@ -14,12 +14,4 @@ export class LoginView extends View {
     this.setTitle('Login');
     this.addComponent('LoginForm', new ComponentsRegistry.LoginFormComponent(TemplatesRegistry.LoginForm));
   }
-
-  checkStateBeforeRender() {
-    return this.getContextByKey(ContextKey.IsAuthorized) !== true;
-  }
-
-  onInvalidState() {
-    Router.navigateTo(URL.Feed);
-  }
 }

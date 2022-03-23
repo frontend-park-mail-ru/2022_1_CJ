@@ -14,12 +14,4 @@ export class SignupView extends View {
     this.setTitle('Signup');
     this.addComponent('SignupForm', new ComponentsRegistry.SignupFormComponent(TemplatesRegistry.SignupForm));
   }
-
-  checkStateBeforeRender() {
-    return this.getContextByKey(ContextKey.IsAuthorized) !== true;
-  }
-
-  onInvalidState() {
-    Router.navigateTo(URL.Feed);
-  }
 }
