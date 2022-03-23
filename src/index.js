@@ -1,19 +1,20 @@
 import { Router } from './core/modules/Router/Router.js';
 import { URL } from './core/constants/constants.js';
-import { ViewsRegistry } from './core/constants/views_registry.js';
-import { headerAdapter, userAdapter } from './core/adapters/common.js';
-import { LogoutAction } from './core/actions/actions.js';
+import { signupController } from './core/modules/Controllers/Signup.js';
+import { loginController } from './core/modules/Controllers/Login.js';
+import { notFoundController } from './core/modules/Controllers/NotFound.js';
+import { logoutController } from './core/modules/Controllers/Logout.js';
 
 const root = document.getElementById('root');
 
 document.addEventListener('DOMContentLoaded', () => {
   Router.setRoot(root);
 
-  Router.setViewRoute(URL.Signup, new ViewsRegistry.SignupView(headerAdapter, userAdapter));
-  Router.setViewRoute(URL.Login, new ViewsRegistry.LoginView(headerAdapter, userAdapter));
-  Router.setNotFoundView(new ViewsRegistry.NotFoundView(headerAdapter, userAdapter));
+  Router.route(URL.Signup, signupController);
+  Router.route(URL.Login, loginController);
+  Router.route(URL.Logout, logoutController);
 
-  Router.setActonRoute(URL.Logout, LogoutAction);
+  Router.setNotFoundController(notFoundController);
 
   Router.run();
 });

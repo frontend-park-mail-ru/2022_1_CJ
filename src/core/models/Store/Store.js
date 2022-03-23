@@ -15,6 +15,7 @@ export const createStore = (reducer, initialState, enhancer = null) => {
 
   store.getState = () => store.state;
 
+  // Returns the unsubscribe callback.
   store.subscribe = (listener) => {
     store.listeners.push(listener);
     return () => {
@@ -52,7 +53,7 @@ export const applyMiddlewares =
   (reducer, initialState) => {
     const store = createStore(reducer, initialState);
     store.dispatch = Object.values(middlewares).reduce(
-      (dispatch, factory) => (dispatch = factory(store)(dispatch)),
+      (dispatch, middleware) => (dispatch = middleware(store)(dispatch)),
       store.dispatch
     );
     return store;

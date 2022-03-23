@@ -1,15 +1,15 @@
-export const loggerMiddleware = (store) => (dispatch) => (action) => {
-  console.group('store logger middleware');
+export const loggerMiddleware = (store) => (next) => (action) => {
+  console.groupCollapsed('store logger middleware');
   console.log('action', action);
-  dispatch(action);
+  next(action);
   console.table(store.getState());
   console.groupEnd();
 };
 
-export const thunkMiddleware = (store) => (dispatch) => async (action) => {
+export const thunkMiddleware = (store) => (next) => async (action) => {
   if (action instanceof Function) {
-    await action(dispatch, store.getState());
+    await action(next, store.getState());
   } else {
-    return dispatch(action);
+    return next(action);
   }
 };

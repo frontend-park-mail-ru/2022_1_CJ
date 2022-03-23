@@ -27,6 +27,17 @@ export class Component {
   }
 
   /**
+   * Set context and pass it to children components.
+   * @param {Object} context - context for rendering the template.
+   */
+  appendContext(context) {
+    this.#context = {
+      ...this.#context,
+      ...context
+    };
+  }
+
+  /**
    * @param {String} key
    * @param {Object} value
    */

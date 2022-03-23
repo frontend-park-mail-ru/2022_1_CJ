@@ -84,7 +84,8 @@ export class InputsRegistry {
       input.dispatchEvent(new Event('input', { bubbles: true }));
     });
     for (const { input, type } of this.#inputs.values()) {
-      if (type !== InputTypes.Optional && !input.classList.contains('ok')) {
+      // TODO: hardcoded 'valid' is a bad sign
+      if (type !== InputTypes.Optional && !input.classList.contains('valid')) {
         return false;
       }
     }
