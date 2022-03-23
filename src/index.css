@@ -295,11 +295,11 @@ select {
   outline: 1px solid hsl(var(--clr-primary));
 }
 
-.input-field.error {
+.input-field.invalid {
   outline: 1px solid hsl(var(--clr-negative));
 }
 
-.input-field.ok {
+.input-field.valid {
   outline: 1px solid hsl(var(--clr-positive));
 }
 

@@ -2,7 +2,7 @@ import { URL } from '../../core/constants/constants.js';
 import { Component } from '../../core/models/Component/Component.js';
 import { CallbackBus, FallbackBus } from '../../core/modules/EventBus/EventBus.js';
 import { Events } from '../../core/modules/EventBus/Events.js';
-import { InputNames, InputsRegistry, InputTypes } from '../../core/modules/InputValidator/InputsRegistry.js';
+import { InputIDs, InputsRegistry, InputTypes } from '../../core/modules/InputValidator/InputsRegistry.js';
 import { Router } from '../../core/modules/Router/Router.js';
 import { SignupUserDTO } from '../../core/network/dto/auth.js';
 import { AuthService } from '../../core/network/services/auth.js';
@@ -23,11 +23,11 @@ export class SignupFormComponent extends Component {
   }
 
   afterRender() {
-    this.#inputsRegistry.registerInput(InputNames.FirstName, InputTypes.Required);
-    this.#inputsRegistry.registerInput(InputNames.LastName, InputTypes.Required);
-    this.#inputsRegistry.registerInput(InputNames.Email, InputTypes.Email);
-    this.#inputsRegistry.registerInput(InputNames.Password, InputTypes.Password);
-    this.#inputsRegistry.registerInput(InputNames.PasswordConfirmation, InputTypes.PasswordConfirmation);
+    this.#inputsRegistry.registerInput(InputIDs.FirstName, InputTypes.Required);
+    this.#inputsRegistry.registerInput(InputIDs.LastName, InputTypes.Required);
+    this.#inputsRegistry.registerInput(InputIDs.Email, InputTypes.Email);
+    this.#inputsRegistry.registerInput(InputIDs.Password, InputTypes.Password);
+    this.#inputsRegistry.registerInput(InputIDs.PasswordConfirmation, InputTypes.PasswordConfirmation);
     document.getElementById('form-signup').addEventListener('submit', this.onSubmitCallback);
     super.afterRender();
   }
@@ -46,10 +46,10 @@ export class SignupFormComponent extends Component {
     FallbackBus.subscribe(Events.AuthSignup, this.onFailureCallback);
     AuthService.SignupUser(
       new SignupUserDTO(
-        this.#inputsRegistry.value(InputNames.Email),
-        this.#inputsRegistry.value(InputNames.FirstName),
-        this.#inputsRegistry.value(InputNames.LastName),
-        this.#inputsRegistry.value(InputNames.Password)
+        this.#inputsRegistry.value(InputIDs.Email),
+        this.#inputsRegistry.value(InputIDs.FirstName),
+        this.#inputsRegistry.value(InputIDs.LastName),
+        this.#inputsRegistry.value(InputIDs.Password)
       )
     );
   }

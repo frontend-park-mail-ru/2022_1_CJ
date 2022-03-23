@@ -1,6 +1,6 @@
 import { ValidateEmail, ValidatePassword, ValidatePasswordConfirmation, ValidateRequired } from './InputValidator.js';
 
-export const InputNames = {
+export const InputIDs = {
   FirstName: 'firstname',
   LastName: 'lastname',
   Email: 'email',
@@ -18,6 +18,7 @@ export const InputTypes = {
 
 /**
  * InputsRegistry is a wrapper for storing and validating HTML Input Elements.
+ * Contract: inputs are wrapped with a span tag to which error messages are appended.
  */
 export class InputsRegistry {
   /** @member {Map<String, Object>} inputs */
@@ -28,13 +29,13 @@ export class InputsRegistry {
   }
 
   /**
-   * @param {String} name
-   * @param {HTMLInputElement} input
+   * @param {String} id
    * @param {String} type
    */
-  registerInput(name, type) {
-    const input = document.getElementById(name);
-    this.#inputs.set(name, { input, type });
+  registerInput(id, type) {
+    const input = document.getElementById(id);
+    this.#inputs.set(id, { input, type });
+    // TODO: maybe get rid of switch
     switch (type) {
       case InputTypes.Optional:
         break;
@@ -59,26 +60,26 @@ export class InputsRegistry {
   }
 
   /**
-   * @param {String} name
+   * @param {String} id
    * @returns {HTMLInputElement}
    */
-  get(name) {
-    return this.#inputs.get(name).input;
+  get(id) {
+    return this.#inputs.get(id).input;
   }
 
   /**
-   * @param {String} name
+   * @param {String} id
    * @returns {String}
    */
-  value(name) {
-    return this.#inputs.get(name).input.value;
+  value(id) {
+    return this.#inputs.get(id).input.value;
   }
 
   /**
    * @returns {Boolean}
    */
   checkAll() {
-    // Mimick input so to trigger event listeners.
+    // Mimick input to trigger event listeners.
     this.#inputs.forEach(({ input }) => {
       input.dispatchEvent(new Event('input', { bubbles: true }));
     });

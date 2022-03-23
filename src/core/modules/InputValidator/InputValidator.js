@@ -1,7 +1,21 @@
+// TODO: make a generic validation function
+
 const regexps = {
-  password: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/,
-  email:
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  email: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+  // password: 8 to 15 characters, mixed cases, at least one digit and special character
+  password: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/
+};
+
+const inputStates = {
+  valid: 'valid',
+  invalid: 'invalid'
+};
+
+const errorMessages = {
+  required: 'cannot be blank',
+  email: 'invalid email address',
+  password: 'invalid password',
+  passwordConfirmation: 'passwords mismatch'
 };
 
 /**
@@ -19,8 +33,9 @@ const createErrorHelper = (message) => {
  * @param {HTMLInputElement} input
  */
 const approve = (input) => {
-  input.classList.remove('error');
-  input.classList.add('ok');
+  input.classList.remove(inputStates.invalid);
+  input.classList.add(inputStates.valid);
+  // Next sibling element is supposed to be an error message in the input's span.
   if (input.nextElementSibling) {
     input.nextElementSibling.remove();
   }
@@ -31,8 +46,9 @@ const approve = (input) => {
  * @param {String} message
  */
 const deny = (input, message) => {
-  input.classList.remove('ok');
-  input.classList.add('error');
+  input.classList.remove(inputStates.valid);
+  input.classList.add(inputStates.invalid);
+  // Next sibling element is supposed to be an error message in the input's span.
   if (!input.nextElementSibling) {
     input.insertAdjacentElement('afterend', createErrorHelper(message));
   }
@@ -42,39 +58,39 @@ const deny = (input, message) => {
  * @param {HTMLInputElement} input
  */
 export const ValidateRequired = (input) => {
-  input.oninput = (_) => {
+  input.addEventListener('input', () => {
     if (input.value.trim().length === 0) {
-      deny(input, 'cannot be blank');
+      deny(input, errorMessages.required);
     } else {
       approve(input);
     }
-  };
+  });
 };
 
 /**
  * @param {HTMLInputElement} input
  */
 export const ValidateEmail = (input) => {
-  input.oninput = (_) => {
+  input.addEventListener('input', () => {
     if (regexps.email.test(input.value)) {
       approve(input);
     } else {
-      deny(input, 'invalid email address');
+      deny(input, errorMessages.email);
     }
-  };
+  });
 };
 
 /**
  * @param {HTMLInputElement} input
  */
 export const ValidatePassword = (input) => {
-  input.oninput = (_) => {
+  input.addEventListener('input', () => {
     if (regexps.password.test(input.value)) {
       approve(input);
     } else {
-      deny(input, 'invalid password');
+      deny(input, errorMessages.password);
     }
-  };
+  });
 };
 
 /**
@@ -82,13 +98,15 @@ export const ValidatePassword = (input) => {
  * @param {HTMLInputElement} passwordConfirmation
  */
 export const ValidatePasswordConfirmation = (password, passwordConfirmation) => {
-  passwordConfirmation.oninput = (_) => {
-    if (passwordConfirmation.value !== password.value) {
-      deny(passwordConfirmation, 'passwords mismatch');
+  passwordConfirmation.addEventListener('input', () => {
+    if (passwordConfirmation.value.trim().length === 0) {
+      deny(passwordConfirmation, errorMessages.required);
+    } else if (passwordConfirmation.value !== password.value) {
+      deny(passwordConfirmation, errorMessages.passwordConfirmation);
     } else {
       approve(passwordConfirmation);
     }
-  };
+  });
 };
 
 /**
@@ -96,5 +114,5 @@ export const ValidatePasswordConfirmation = (password, passwordConfirmation) => 
  */
 export const Validate = (input) => {
   input.dispatchEvent(new Event('input', { bubbles: true }));
-  return input.classList.contains('ok');
+  return input.classList.contains(inputStates.valid);
 };
