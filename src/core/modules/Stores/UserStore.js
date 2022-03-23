@@ -37,7 +37,7 @@ const userActionsHandlers = {
 };
 
 export const userAsyncActions = {
-  getUserData: async (dispatch, state) => {
+  getUserData: async (dispatch) => {
     await UserAPI.GetUserData(null).then(
       (json) => dispatch(createAction(userActions.getUserDataSuccess, { user: json.user })),
       (err) => dispatch(createAction(userActions.getUserDataFailure, { err }))
