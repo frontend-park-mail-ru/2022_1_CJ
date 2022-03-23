@@ -41,10 +41,9 @@ export class LoginFormComponent extends Component {
 
     CallbackBus.subscribe(Events.AuthLogin, this.onSuccessCallback);
     FallbackBus.subscribe(Events.AuthLogin, this.onFailureCallback);
-    AuthService.LoginUser(new LoginUserDTO(
-      this.#inputsRegistry.value(InputNames.Email),
-      this.#inputsRegistry.value(InputNames.Password),
-    ));
+    AuthService.LoginUser(
+      new LoginUserDTO(this.#inputsRegistry.value(InputNames.Email), this.#inputsRegistry.value(InputNames.Password))
+    );
   }
 
   onFailure(args) {

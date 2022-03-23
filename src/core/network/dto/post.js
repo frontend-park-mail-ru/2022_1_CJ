@@ -1,10 +1,10 @@
 export class PostAuthorDTO {
   /**
-     * @param {String} image
-     * @param {String} firstname
-     * @param {String} lastname
-     * @param {String} url
-     */
+   * @param {String} image
+   * @param {String} firstname
+   * @param {String} lastname
+   * @param {String} url
+   */
   constructor(image, firstname, lastname, url) {
     this.image = image;
     this.name = { first: firstname, last: lastname };
@@ -14,9 +14,9 @@ export class PostAuthorDTO {
 
 export class PostBodyDTO {
   /**
-     * @param {String} text
-     * @param {Array.<string>} imageUrls
-     */
+   * @param {String} text
+   * @param {Array.<string>} imageUrls
+   */
   constructor(text, imageUrls) {
     this.text = text;
     this.images = imageUrls;
@@ -25,9 +25,9 @@ export class PostBodyDTO {
 
 export class PostReactionsDTO {
   /**
-     * @param {Array.<Object>} text
-     * @param {Array.<Object>} imageUrls
-     */
+   * @param {Array.<Object>} text
+   * @param {Array.<Object>} imageUrls
+   */
   constructor(text, imageUrls) {
     this.text = text;
     this.images = imageUrls;
@@ -36,13 +36,13 @@ export class PostReactionsDTO {
 
 export class PostDTO {
   /**
-     * @param {int} user_id
-     * @param {Object} body
-     * @param {Object} likes
-     * @param {Object} comments
-     * @param {Object} dislikes
-     * @param {int} watched
-     */
+   * @param {int} user_id
+   * @param {Object} body
+   * @param {Object} likes
+   * @param {Object} comments
+   * @param {Object} dislikes
+   * @param {int} watched
+   */
   constructor(user_id, body, likes, comments, dislikes, watched) {
     this.author = user_id;
     this.body = body;

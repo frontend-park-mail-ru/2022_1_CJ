@@ -4,7 +4,7 @@ import { fetchAPI } from './common.js';
 const authMethods = {
   signup: '/api/auth/signup',
   login: '/api/auth/login',
-  logout: '/api/auth/logout',
+  logout: '/api/auth/logout'
 };
 
 export const AuthAPI = {
@@ -43,5 +43,5 @@ export const AuthAPI = {
       return new CodedError(response.statusText, response.status);
     }
     return null;
-  },
+  }
 };

@@ -5,5 +5,5 @@ import { LoginFormComponent } from '../../components/LoginForm/LoginForm.js';
 export const ComponentsRegistry = {
   HeaderComponent,
   SignupFormComponent,
-  LoginFormComponent,
+  LoginFormComponent
 };

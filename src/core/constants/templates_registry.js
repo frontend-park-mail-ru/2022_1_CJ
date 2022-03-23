@@ -11,5 +11,5 @@ export const TemplatesRegistry = {
   NotFound: Handlebars.templates.NotFound,
   Signup: Handlebars.templates.Signup,
   SignupForm: Handlebars.templates.SignupForm,
-  LoginForm: Handlebars.templates.LoginForm,
+  LoginForm: Handlebars.templates.LoginForm
 };

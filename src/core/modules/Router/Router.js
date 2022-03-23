@@ -4,9 +4,8 @@ const ParameterRegExp = /:(\w+)/g;
 const SolidStringPattern = '(.+)';
 const EscapedURLDelimiter = '\\/';
 
-const pathToRegex = (path) => new RegExp(`^${path
-  .replaceAll('/', EscapedURLDelimiter)
-  .replace(ParameterRegExp, SolidStringPattern)}$`);
+const pathToRegex = (path) =>
+  new RegExp(`^${path.replaceAll('/', EscapedURLDelimiter).replace(ParameterRegExp, SolidStringPattern)}$`);
 
 const getParams = (match) => {
   const values = match.result.slice(1);

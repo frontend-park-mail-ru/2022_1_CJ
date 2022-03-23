@@ -1,11 +1,10 @@
-import { applyMiddlewares, createStore } from "../../models/Store/Store.js";
-import { UserAPI } from "../../network/api/user.js";
-import { loggerMiddleware, thunkMiddleware } from "../../models/Store/Middlewares.js";
+import { applyMiddlewares, createAction, createStore } from '../../models/Store/Store.js';
+import { UserAPI } from '../../network/api/user.js';
+import { loggerMiddleware, thunkMiddleware } from '../../models/Store/Middlewares.js';
 
 const getInitialState = () => {
   return {
-    user: null,
-    isAuthorized: null,
+    user: {}
   };
 };
 
@@ -18,34 +17,33 @@ const reducer = (state = getInitialState(), action) => {
 
 export const userStore = createStore(reducer, getInitialState(), applyMiddlewares(loggerMiddleware, thunkMiddleware));
 
-
 export const userActions = {
   getUserData: 'getUserData',
   getUserDataSuccess: 'getUserDataSuccess',
-  getUserDataFailure: 'getUserDataFailure',
-}
+  getUserDataFailure: 'getUserDataFailure'
+};
 
 const userActionsHandlers = {
   getUserDataSuccess: (state, payload) => {
     state.user = payload.user;
-    state.isAuthorized = true;
+    state.user.isAuthorized = true;
     return state;
   },
   getUserDataFailure: (state, payload) => {
-    state.isAuthorized = false;
-    console.log(payload.err);
+    state.user.isAuthorized = false;
+    console.log(payload.err); // TODO: handle error
     return state;
   }
-}
+};
 
 export const userAsyncActions = {
   getUserData: async (dispatch, state) => {
-    if (state['user']) {
+    if (state.user?.isAuthorized) {
       return;
     }
     await UserAPI.GetUserData(null).then(
-      (user) => dispatch({ type: userActions.getUserDataSuccess, payload: user }),
-      (err) => dispatch({ type: userActions.getUserDataFailure, payload: { err } })
+      (json) => dispatch(createAction(userActions.getUserDataSuccess, { user: json.user })),
+      (err) => dispatch(createAction(userActions.getUserDataFailure, { err }))
     );
-  },
-}
+  }
+};

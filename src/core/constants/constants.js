@@ -3,7 +3,7 @@ export const URL = {
   Signup: '/signup',
   Login: '/login',
   Feed: '/feed',
-  Logout: '/logout',
+  Logout: '/logout'
 };
 
 export const HttpStatus = {
@@ -12,10 +12,10 @@ export const HttpStatus = {
   Unauthorized: 401,
   Forbidden: 403,
   Conflict: 409,
-  InternalServerError: 500,
+  InternalServerError: 500
 };
 
 export const ContextKey = {
   User: 'user',
-  IsAuthorized: 'isAuthorized',
+  IsAuthorized: 'isAuthorized'
 };

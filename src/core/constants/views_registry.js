@@ -5,6 +5,6 @@ import { SignupView } from '../../views/Signup/SignupView.js';
 export const ViewsRegistry = {
   SignupView,
   LoginView,
-  NotFoundView,
+  NotFoundView
   // FeedView,
 };

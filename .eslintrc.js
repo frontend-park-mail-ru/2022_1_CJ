@@ -1,14 +1,12 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    es2021: true
   },
-  extends: [
-    'airbnb-base',
-  ],
+  extends: ['airbnb-base'],
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module',
+    sourceType: 'module'
   },
   rules: {
     'import/extensions': 'off',
@@ -18,9 +16,9 @@ module.exports = {
     'no-undef': 'warn',
     'max-classes-per-file': 'off',
     'no-param-reassign': 'off',
-    'camelcase': 'off',
+    camelcase: 'off',
     'max-len': ['warn', 120],
-    'no-unused-vars': ['warn'],
+    'no-unused-vars': ['warn']
   },
   ignorePatterns: ['**/precompiled/*', 'handlebars.runtime.min.js']
 };

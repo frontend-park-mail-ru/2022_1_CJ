@@ -84,12 +84,13 @@ export class Component {
    * @return {Component[]}
    */
   #renderComponents(context) {
-    const renderedComponents = Object
-      .entries(this.#subComponents)
-      .reduce((obj, [name, component]) => ({
+    const renderedComponents = Object.entries(this.#subComponents).reduce(
+      (obj, [name, component]) => ({
         ...obj,
-        [name]: component.render(context),
-      }), {});
+        [name]: component.render(context)
+      }),
+      {}
+    );
     return { ...renderedComponents };
   }
 }

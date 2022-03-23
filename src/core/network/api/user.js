@@ -2,7 +2,7 @@ import { CodedError } from '../../constants/errors.js';
 import { fetchAPI } from './common.js';
 
 const userMethods = {
-  getData: '/api/user/get',
+  getData: '/api/user/get'
 };
 
 export const UserAPI = {
@@ -17,5 +17,5 @@ export const UserAPI = {
       throw new CodedError(response.statusText, response.status);
     }
     return response.json();
-  },
+  }
 };

@@ -27,5 +27,5 @@ export const AuthService = {
       .catch((err) => {
         FallbackBus.emit(Events.AuthLogin, err);
       });
-  },
+  }
 };

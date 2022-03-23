@@ -11,7 +11,7 @@ export function fetchAPI(apiMethod, method, body) {
     credentials: 'same-origin',
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+      'Content-Type': 'application/json'
+    }
   });
 }

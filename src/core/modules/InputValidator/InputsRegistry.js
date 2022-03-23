@@ -1,13 +1,11 @@
-import {
-  ValidateEmail, ValidatePassword, ValidatePasswordConfirmation, ValidateRequired,
-} from './InputValidator.js';
+import { ValidateEmail, ValidatePassword, ValidatePasswordConfirmation, ValidateRequired } from './InputValidator.js';
 
 export const InputNames = {
   FirstName: 'firstname',
   LastName: 'lastname',
   Email: 'email',
   Password: 'password',
-  PasswordConfirmation: 'password-confirmation',
+  PasswordConfirmation: 'password-confirmation'
 };
 
 export const InputTypes = {
@@ -15,7 +13,7 @@ export const InputTypes = {
   Required: 'required',
   Email: 'email',
   Password: 'password',
-  PasswordConfirmation: 'password-confirmation',
+  PasswordConfirmation: 'password-confirmation'
 };
 
 /**

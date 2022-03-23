@@ -44,12 +44,14 @@ export class SignupFormComponent extends Component {
 
     CallbackBus.subscribe(Events.AuthSignup, this.onSuccessCallback);
     FallbackBus.subscribe(Events.AuthSignup, this.onFailureCallback);
-    AuthService.SignupUser(new SignupUserDTO(
-      this.#inputsRegistry.value(InputNames.Email),
-      this.#inputsRegistry.value(InputNames.FirstName),
-      this.#inputsRegistry.value(InputNames.LastName),
-      this.#inputsRegistry.value(InputNames.Password),
-    ));
+    AuthService.SignupUser(
+      new SignupUserDTO(
+        this.#inputsRegistry.value(InputNames.Email),
+        this.#inputsRegistry.value(InputNames.FirstName),
+        this.#inputsRegistry.value(InputNames.LastName),
+        this.#inputsRegistry.value(InputNames.Password)
+      )
+    );
   }
 
   onFailure(args) {
