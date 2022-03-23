@@ -1,4 +1,4 @@
-import { View } from '../../core/models/View.js';
+import { View } from '../../core/models/View/View.js';
 import { TemplatesRegistry } from '../../core/constants/templates_registry.js';
 
 export class NotFoundView extends View {

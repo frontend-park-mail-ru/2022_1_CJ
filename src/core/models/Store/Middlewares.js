@@ -6,9 +6,10 @@ export const loggerMiddleware = (store) => (dispatch) => (action) => {
   console.groupEnd();
 }
 
-export const thunkMiddleware = (store) => (dispatch) => (action) => {
+export const thunkMiddleware = (store) => (dispatch) => async (action) => {
   if (action instanceof Function) {
-    return action(dispatch, store.getState());
+    await action(dispatch, store.getState());
+  } else {
+    return dispatch(action);
   }
-  return dispatch(action);
 }

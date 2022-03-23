@@ -1,4 +1,4 @@
-import { Router } from './core/modules/Router.js';
+import { Router } from './core/modules/Router/Router.js';
 import { URL } from './core/constants/constants.js';
 import { ViewsRegistry } from './core/constants/views_registry.js';
 import { headerAdapter, userAdapter } from './core/adapters/common.js';

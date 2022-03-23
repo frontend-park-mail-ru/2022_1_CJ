@@ -1,4 +1,4 @@
-import { View } from '../models/View.js';
+import { View } from '../../models/View/View.js';
 
 const ParameterRegExp = /:(\w+)/g;
 const SolidStringPattern = '(.+)';

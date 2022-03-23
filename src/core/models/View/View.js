@@ -1,4 +1,4 @@
-import { Component } from './Component.js';
+import { Component } from '../Component/Component.js';
 
 export class View extends Component {
   /** @member {Function[]} adapters - functions to be called before rendering to obtain a context. */
