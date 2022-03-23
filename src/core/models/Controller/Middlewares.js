@@ -1,4 +1,4 @@
-import { userStore, userAsyncActions } from '../../modules/Stores/UserStore.js';
+import { userStore, userAsyncActions } from '../../../stores/UserStore.js';
 
 export const userMiddleware =
   (next) =>

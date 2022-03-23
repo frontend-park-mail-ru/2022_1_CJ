@@ -1,6 +1,6 @@
-import { applyMiddlewares, createAction, createStore } from '../../models/Store/Store.js';
-import { UserAPI } from '../../network/api/user.js';
-import { loggerMiddleware, thunkMiddleware } from '../../models/Store/Middlewares.js';
+import { applyMiddlewares, createAction, createStore } from '../core/models/Store/Store.js';
+import { UserAPI } from '../core/network/api/user.js';
+import { loggerMiddleware, thunkMiddleware } from '../core/models/Store/Middlewares.js';
 
 const getInitialState = () => {
   return {
