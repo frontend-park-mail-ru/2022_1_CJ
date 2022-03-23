@@ -5,6 +5,7 @@ import { loginController } from './core/modules/Controllers/Login.js';
 import { notFoundController } from './core/modules/Controllers/NotFound.js';
 import { logoutController } from './core/modules/Controllers/Logout.js';
 import { baseController } from './core/modules/Controllers/Base.js';
+import { feedController } from './core/modules/Controllers/Feed.js';
 
 const root = document.getElementById('root');
 
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   Router.route(URL.Signup, signupController);
   Router.route(URL.Login, loginController);
   Router.route(URL.Logout, logoutController);
+  Router.route(URL.Feed, feedController);
 
   Router.setNotFoundController(notFoundController);
 

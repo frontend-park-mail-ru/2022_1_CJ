@@ -4,6 +4,7 @@ import '../../../../precompiled/SignupForm.js';
 import '../../../../precompiled/Login.js';
 import '../../../../precompiled/LoginForm.js';
 import '../../../../precompiled/NotFound.js';
+import '../../../../precompiled/Feed.js';
 
 export const TemplatesRegistry = {
   Header: Handlebars.templates.Header,
@@ -11,5 +12,6 @@ export const TemplatesRegistry = {
   NotFound: Handlebars.templates.NotFound,
   Signup: Handlebars.templates.Signup,
   SignupForm: Handlebars.templates.SignupForm,
-  LoginForm: Handlebars.templates.LoginForm
+  LoginForm: Handlebars.templates.LoginForm,
+  Feed: Handlebars.templates.Feed
 };
