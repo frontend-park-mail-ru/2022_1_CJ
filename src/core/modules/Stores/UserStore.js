@@ -38,9 +38,6 @@ const userActionsHandlers = {
 
 export const userAsyncActions = {
   getUserData: async (dispatch, state) => {
-    if (state.user?.isAuthorized) {
-      return;
-    }
     await UserAPI.GetUserData(null).then(
       (json) => dispatch(createAction(userActions.getUserDataSuccess, { user: json.user })),
       (err) => dispatch(createAction(userActions.getUserDataFailure, { err }))

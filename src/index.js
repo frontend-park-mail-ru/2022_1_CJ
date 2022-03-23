@@ -4,12 +4,14 @@ import { signupController } from './core/modules/Controllers/Signup.js';
 import { loginController } from './core/modules/Controllers/Login.js';
 import { notFoundController } from './core/modules/Controllers/NotFound.js';
 import { logoutController } from './core/modules/Controllers/Logout.js';
+import { baseController } from './core/modules/Controllers/Base.js';
 
 const root = document.getElementById('root');
 
 document.addEventListener('DOMContentLoaded', () => {
   Router.setRoot(root);
 
+  Router.route(URL.Base, baseController);
   Router.route(URL.Signup, signupController);
   Router.route(URL.Login, loginController);
   Router.route(URL.Logout, logoutController);

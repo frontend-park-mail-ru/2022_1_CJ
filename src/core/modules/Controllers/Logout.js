@@ -3,7 +3,7 @@ import { createController } from '../../models/Controller/Controller.js';
 import { AuthAPI } from '../../network/api/auth.js';
 import { Router } from '../Router/Router.js';
 
-const reducer = async (context) => {
+const reducer = async () => {
   await AuthAPI.LogoutUser();
   Router.navigateTo(URL.Login);
 };

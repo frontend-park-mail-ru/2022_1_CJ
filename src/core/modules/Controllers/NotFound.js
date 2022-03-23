@@ -1,7 +1,7 @@
 import { headerAdapter } from '../../adapters/common.js';
 import { ViewsRegistry } from '../../constants/views_registry.js';
 import { applyMiddlewares, createController } from '../../models/Controller/Controller.js';
-import { authMiddleware } from '../../models/Controller/Middlewares.js';
+import { userMiddleware } from '../../models/Controller/Middlewares.js';
 
 const reducer = (context) => {
   const view = new ViewsRegistry.NotFoundView(headerAdapter);
@@ -9,4 +9,4 @@ const reducer = (context) => {
   view.render(document.getElementById('root'));
 };
 
-export const notFoundController = createController(reducer, applyMiddlewares(authMiddleware));
+export const notFoundController = createController(reducer, applyMiddlewares(userMiddleware));
