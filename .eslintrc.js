@@ -3,22 +3,15 @@ module.exports = {
     browser: true,
     es2021: true
   },
-  extends: ['airbnb-base'],
+  extends: ['eslint:recommended'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
   rules: {
-    'import/extensions': 'off',
-    'class-methods-use-this': 'off',
-    'no-console': 'off',
-    'import/prefer-default-export': 'off',
     'no-undef': 'warn',
-    'max-classes-per-file': 'off',
-    'no-param-reassign': 'off',
-    camelcase: 'off',
-    'max-len': ['warn', 120],
-    'no-unused-vars': ['warn']
+    'no-unused-vars': ['warn'],
+    'no-useless-escape': ['warn']
   },
   ignorePatterns: ['**/precompiled/*', 'handlebars.runtime.min.js']
 };
