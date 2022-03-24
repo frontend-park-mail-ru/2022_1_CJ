@@ -11,17 +11,13 @@ class EventBus {
   /**
    * @param {String} event - name of the event.
    * @param {Function} actor - actor on the event.
+   * @returns {Function} unsubscribe - function to subscribe from the event.
    */
   subscribe(event, actor) {
     this.#actors.get(event).add(actor);
-  }
-
-  /**
-   * @param {String} event - name of the event.
-   * @param {Function} actor - actor on the event.
-   */
-  unsubscribe(event, actor) {
-    this.#actors.get(event).delete(actor);
+    return () => {
+      this.#actors.get(event).delete(actor);
+    };
   }
 
   /**

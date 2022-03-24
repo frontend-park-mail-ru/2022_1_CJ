@@ -5,8 +5,8 @@ import { userMiddleware } from '../core/models/Controller/Middlewares.js';
 
 const reducer = (context) => {
   const view = new ViewsRegistry.NotFoundView(headerAdapter);
-  view.setContext(context);
-  view.render(document.getElementById('root'));
+  view.context.set(context);
+  view.render(context.root);
 };
 
 export const notFoundController = createController(reducer, applyMiddlewares(userMiddleware));

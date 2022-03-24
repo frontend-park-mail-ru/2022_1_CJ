@@ -12,8 +12,8 @@ const reducer = (context) => {
   }
 
   const view = new ViewsRegistry.LoginView(headerAdapter);
-  view.setContext(context);
-  view.render(document.getElementById('root'));
+  view.context.set(context);
+  view.render(context.root);
 };
 
 export const loginController = createController(reducer, applyMiddlewares(userMiddleware));

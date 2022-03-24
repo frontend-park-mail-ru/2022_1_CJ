@@ -12,8 +12,8 @@ const reducer = (context) => {
   }
 
   const view = new ViewsRegistry.FeedView(headerAdapter);
-  view.setContext(context);
-  view.render(document.getElementById('root'));
+  view.context.set(context);
+  view.render(context.root);
 };
 
 export const feedController = createController(reducer, applyMiddlewares(userMiddleware));

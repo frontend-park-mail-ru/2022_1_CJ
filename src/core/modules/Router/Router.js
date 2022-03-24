@@ -90,9 +90,9 @@ class Router {
   async #route() {
     const match = this.#routes.find((route) => window.location.pathname.match(pathToRegex(route.path)) !== null);
     if (match) {
-      match.controller.handle();
+      match.controller.handle({ root: this.#root });
     } else {
-      this.#notFoundController.handle();
+      this.#notFoundController.handle({ root: this.#root });
     }
   }
 }
