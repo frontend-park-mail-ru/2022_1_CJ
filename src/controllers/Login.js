@@ -1,7 +1,7 @@
 import { headerAdapter } from '../core/adapters/common.js';
 import { URL } from '../core/constants/constants.js';
 import { applyMiddlewares, createController } from '../core/models/Controller/Controller.js';
-import { userMiddleware } from '../core/models/Controller/Middlewares.js';
+import { userMiddleware } from './middlewares/middlewares.js';
 import { ViewsRegistry } from '../core/constants/views_registry.js';
 import { Router } from '../core/modules/Router/Router.js';
 
