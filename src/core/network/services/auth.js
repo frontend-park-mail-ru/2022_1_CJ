@@ -7,25 +7,19 @@ export const AuthService = {
    * @param {SignupUserDTO} dto
    */
   async SignupUser(dto) {
-    AuthAPI.SignupUser(dto)
-      .then((json) => {
-        CallbackBus.emit(Events.AuthSignup, json);
-      })
-      .catch((err) => {
-        FallbackBus.emit(Events.AuthSignup, err);
-      });
+    AuthAPI.SignupUser(dto).then(
+      (json) => CallbackBus.emit(Events.AuthSignup, json),
+      (err) => FallbackBus.emit(Events.AuthSignup, err)
+    );
   },
 
   /**
    * @param {LoginUserDTO} dto
    */
   async LoginUser(dto) {
-    AuthAPI.LoginUser(dto)
-      .then((json) => {
-        CallbackBus.emit(Events.AuthLogin, json);
-      })
-      .catch((err) => {
-        FallbackBus.emit(Events.AuthLogin, err);
-      });
+    AuthAPI.LoginUser(dto).then(
+      (json) => CallbackBus.emit(Events.AuthLogin, json),
+      (err) => FallbackBus.emit(Events.AuthLogin, err)
+    );
   }
 };
