@@ -1,5 +1,5 @@
 import { View } from '../../core/models/View/View.js';
-import { ComponentsRegistry } from '../../core/constants/components.js';
+import { ComponentsRegistry } from '../../components/registry.js';
 
 export class SignupView extends View {
   /**
