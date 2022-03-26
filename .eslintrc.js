@@ -14,5 +14,5 @@ module.exports = {
     'no-unused-vars': ['warn'],
     'no-useless-escape': ['warn']
   },
-  ignorePatterns: ['**/precompiled/*', 'handlebars.runtime.min.js']
+  ignorePatterns: ['dist', 'precompiled', 'handlebars.runtime.min.js']
 };
