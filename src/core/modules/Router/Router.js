@@ -18,9 +18,6 @@ class Router {
   /** @member {Object[]} routes */
   #routes;
 
-  /** @member {Function} onNavigate */
-  #onNavigate;
-
   /** @member {View} notFoundController */
   #notFoundController;
 
@@ -70,9 +67,6 @@ class Router {
    * @param {String} path - path to navigate to
    */
   navigateTo(path) {
-    if (this.#onNavigate instanceof Function) {
-      this.#onNavigate();
-    }
     window.history.pushState(null, null, path);
     this.#route();
   }
@@ -94,7 +88,7 @@ class Router {
   #route() {
     const match = this.#routes.find((route) => window.location.pathname.match(pathToRegex(route.path)) !== null);
     if (match) {
-      this.#onNavigate = match.controller.handle({ root: this.#root });
+      match.controller.handle({ root: this.#root });
     } else {
       this.#notFoundController.handle({ root: this.#root });
     }

@@ -1,4 +1,6 @@
-import { ValidateEmail, ValidatePassword, ValidatePasswordConfirmation, ValidateRequired } from './InputValidator.js';
+// TODO: think of serialization of html forms
+
+import { ValidateEmail, ValidatePasswordConfirmation, ValidateRequired } from './InputValidator.js';
 
 export const InputIDs = {
   FirstName: 'firstname',

@@ -7,7 +7,7 @@ import { userStore, userThunks } from '../stores/UserStore.js';
 const reducer = (context) => {
   const view = ViewsRegistry.Feed;
   userStore.dispatch(userThunks.getUserData);
-  const unsubscribe = userStore.subscribe(({ payload }) => {
+  userStore.once(({ payload }) => {
     if (!payload.user) {
       Router.navigateTo(URL.Login);
       return;
@@ -16,7 +16,6 @@ const reducer = (context) => {
     view.context.assign(payload);
     view.show(context.root);
   });
-  return unsubscribe;
 };
 
 export const feedController = createController(reducer);

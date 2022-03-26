@@ -5,14 +5,13 @@ import { userStore, userThunks } from '../stores/UserStore.js';
 
 const reducer = () => {
   userStore.dispatch(userThunks.getUserData);
-  const unsubscribe = userStore.subscribe(({ payload }) => {
+  userStore.once(({ payload }) => {
     if (payload.user) {
       Router.navigateTo(URL.Feed);
     } else {
       Router.navigateTo(URL.Login);
     }
   });
-  return unsubscribe;
 };
 
 export const baseController = createController(reducer);

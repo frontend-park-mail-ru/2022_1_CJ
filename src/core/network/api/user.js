@@ -19,7 +19,7 @@ export const UserAPI = {
     return response.json();
   },
 
-  async GetUserFeedPosts() {
+  async GetFeedPosts() {
     return { posts: ['mock', 'mock'] };
   }
 };

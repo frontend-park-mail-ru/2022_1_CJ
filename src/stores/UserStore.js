@@ -27,7 +27,10 @@ export const userActions = {
   loginFailure: 'loginFailure',
 
   getUserDataSuccess: 'getUserDataSuccess',
-  getUserDataFailure: 'getUserDataFailure'
+  getUserDataFailure: 'getUserDataFailure',
+
+  getFeedPostsSuccess: 'getFeedPostsSuccess',
+  getFeedPostsFailure: 'getFeedPostsFailure'
 };
 
 const userActionsHandlers = {
@@ -65,6 +68,9 @@ export const userThunks = {
   },
 
   getFeedPosts: (next) => {
-    UserAPI.GetUserFeedPosts().then((json) => next(createAction));
+    UserAPI.GetFeedPosts().then(
+      (json) => next(createAction(userActions.getFeedPostsSuccess, { posts: json.posts })),
+      (err) => next(createAction(userActions.getFeedPostsFailure, { err }))
+    );
   }
 };
