@@ -10,6 +10,6 @@ export class SignupView extends View {
   constructor(...adapters) {
     super(TemplatesRegistry.Signup, ...adapters);
     this.setTitle('Signup');
-    this.addComponent('SignupForm', new ComponentsRegistry.SignupFormComponent(TemplatesRegistry.SignupForm));
+    this.addComponent('SignupForm', ComponentsRegistry.SignupForm);
   }
 }

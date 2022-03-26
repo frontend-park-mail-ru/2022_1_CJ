@@ -10,6 +10,6 @@ export class LoginView extends View {
   constructor(...adapters) {
     super(TemplatesRegistry.Login, ...adapters);
     this.setTitle('Login');
-    this.addComponent('LoginForm', new ComponentsRegistry.LoginFormComponent(TemplatesRegistry.LoginForm));
+    this.addComponent('LoginForm', ComponentsRegistry.LoginForm);
   }
 }
