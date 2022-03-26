@@ -6,6 +6,10 @@ export class Context {
     this.#context = {};
   }
 
+  get() {
+    return this.#context;
+  }
+
   /**
    * Set context and pass it to children components.
    * @param {Object} context - context for rendering the template.

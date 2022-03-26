@@ -1,19 +1,23 @@
 import { headerAdapter } from '../core/adapters/common.js';
 import { URL } from '../core/constants/constants.js';
+import { createController } from '../core/models/Controller/Controller.js';
 import { ViewsRegistry } from '../core/constants/views_registry.js';
-import { applyMiddlewares, createController } from '../core/models/Controller/Controller.js';
-import { userMiddleware } from './middlewares/middlewares.js';
 import { Router } from '../core/modules/Router/Router.js';
+import { userThunks, userStore } from '../stores/UserStore.js';
 
 const reducer = (context) => {
-  if (context.user.isAuthorized === true) {
-    Router.navigateTo(URL.Feed);
-    return;
-  }
-
   const view = new ViewsRegistry.SignupView(headerAdapter);
-  view.context.set(context);
-  view.render(context.root);
+  userStore.dispatch(userThunks.getUserData);
+  const unsubscribe = userStore.subscribe((state) => {
+    if (state.user) {
+      Router.navigateTo(URL.Feed);
+      return;
+    }
+
+    view.context.set(state);
+    view.render(context.root);
+  });
+  return unsubscribe;
 };
 
-export const signupController = createController(reducer, applyMiddlewares(userMiddleware));
+export const signupController = createController(reducer);

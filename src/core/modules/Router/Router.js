@@ -20,6 +20,9 @@ class Router {
   /** @member {Object[]} routes */
   #routes;
 
+  /** @member {Function} onNavigate */
+  #onNavigate;
+
   /** @member {View} notFoundController */
   #notFoundController;
 
@@ -68,7 +71,10 @@ class Router {
    * Push State with the path and route to it
    * @param {String} path - path to navigate to
    */
-  async navigateTo(path) {
+  navigateTo(path) {
+    if (this.#onNavigate instanceof Function) {
+      this.#onNavigate();
+    }
     window.history.pushState(null, null, path);
     this.#route();
   }
@@ -76,21 +82,21 @@ class Router {
   /**
    * @param {Event} event
    */
-  async #handleClick(event) {
+  #handleClick(event) {
     if (event.target.matches('[data-link]')) {
       event.preventDefault();
       this.navigateTo(event.target.href);
     }
   }
 
-  async #handlePopState() {
+  #handlePopState() {
     this.#route();
   }
 
-  async #route() {
+  #route() {
     const match = this.#routes.find((route) => window.location.pathname.match(pathToRegex(route.path)) !== null);
     if (match) {
-      match.controller.handle({ root: this.#root });
+      this.#onNavigate = match.controller.handle({ root: this.#root });
     } else {
       this.#notFoundController.handle({ root: this.#root });
     }

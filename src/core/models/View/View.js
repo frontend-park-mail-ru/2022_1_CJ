@@ -26,12 +26,13 @@ export class View extends Component {
    * Call adapters, super render method and add event listeners.
    * @param {HTMLElement} parent - parent HTML Element for output.
    */
-  async render(parent) {
+  render(parent) {
     // Call all the adapters and efficiently wait for them to finish.
     // Note: Promise.allSettled is used so that some adapters may fail,
     // and the failure is supposed to be detected in check state function.
-    await Promise.allSettled(this.#adapters.map((adapter) => adapter(this)));
-    parent.innerHTML = super.render();
-    this.afterRender();
+    Promise.allSettled(this.#adapters.map((adapter) => adapter(this))).then(() => {
+      parent.innerHTML = super.render();
+      this.afterRender();
+    });
   }
 }

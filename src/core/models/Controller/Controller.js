@@ -6,7 +6,7 @@ export const createController = (reducer, enhancer = null) => {
   const controller = {};
 
   controller.handle = (context) => {
-    reducer(context);
+    return reducer(context);
   };
 
   return controller;

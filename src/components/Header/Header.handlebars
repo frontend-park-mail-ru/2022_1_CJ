@@ -2,7 +2,7 @@
   <a class='ff-sans fs-700 fw-700 letter-spacing-1 text-shadow text-primary text-no-decoration' href='/' data-link>
     CJ
   </a>
-  {{#if user.isAuthorized}}
+  {{#if user}}
     <a class='link' href='/logout' data-link>Logout</a>
   {{else}}
     <a class='link' href='/login' data-link>Sign in</a>

@@ -33,7 +33,7 @@ export class Component {
    * @param {Object?} context - context to be passed to sub components, for parent node supposed to be not pased.
    * @return {String} - produced HTML.
    */
-  render(context = this.context) {
+  render(context = this.context.get()) {
     const contextWithComponents = { ...this.#renderComponents(context), ...context };
     return this.#template(contextWithComponents);
   }

@@ -1,12 +1,15 @@
 import { headerAdapter } from '../core/adapters/common.js';
 import { ViewsRegistry } from '../core/constants/views_registry.js';
-import { applyMiddlewares, createController } from '../core/models/Controller/Controller.js';
-import { userMiddleware } from './middlewares/middlewares.js';
+import { createController } from '../core/models/Controller/Controller.js';
 
 const reducer = (context) => {
   const view = new ViewsRegistry.NotFoundView(headerAdapter);
-  view.context.set(context);
-  view.render(context.root);
+  userStore.dispatch(userThunks.getUserData);
+  const unsubscribe = userStore.subscribe((state) => {
+    view.context.set(state);
+    view.render(context.root);
+  });
+  return unsubscribe;
 };
 
-export const notFoundController = createController(reducer, applyMiddlewares(userMiddleware));
+export const notFoundController = createController(reducer);

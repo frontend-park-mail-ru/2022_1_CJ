@@ -5,7 +5,7 @@ import { createAction } from '../core/models/Action/Action.js';
 
 const getInitialState = () => {
   return {
-    user: {}
+    user: null
   };
 };
 
@@ -27,19 +27,18 @@ export const userActions = {
 const userActionsHandlers = {
   getUserDataSuccess: (state, payload) => {
     state.user = payload.user;
-    state.user.isAuthorized = true;
     return state;
   },
   getUserDataFailure: (state, payload) => {
-    state.user.isAuthorized = false;
+    state.user = null;
     console.log(payload.err); // TODO: handle error
     return state;
   }
 };
 
-export const userAsyncActions = {
-  getUserData: async (dispatch) => {
-    await UserAPI.GetUserData(null).then(
+export const userThunks = {
+  getUserData: (dispatch) => {
+    UserAPI.GetUserData(null).then(
       (json) => dispatch(createAction(userActions.getUserDataSuccess, { user: json.user })),
       (err) => dispatch(createAction(userActions.getUserDataFailure, { err }))
     );

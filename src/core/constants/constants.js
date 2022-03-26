@@ -16,6 +16,5 @@ export const HttpStatus = {
 };
 
 export const ContextKey = {
-  User: 'user',
-  IsAuthorized: 'isAuthorized'
+  User: 'user'
 };
