@@ -6,8 +6,8 @@ import { userStore, userThunks } from '../stores/UserStore.js';
 const reducer = (context) => {
   const view = new ViewsRegistry.NotFoundView(headerAdapter);
   userStore.dispatch(userThunks.getUserData);
-  const unsubscribe = userStore.subscribe((state) => {
-    view.context.set(state);
+  const unsubscribe = userStore.subscribe(({ payload }) => {
+    view.context.assign(payload);
     view.render(context.root);
   });
   return unsubscribe;

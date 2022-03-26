@@ -9,7 +9,7 @@ const authMethods = {
 
 export const AuthAPI = {
   /**
-   * @param {SignupUserDTO} dto
+   * @param {Object} dto
    * @returns {Promise<JSON>}
    */
   async SignupUser(dto) {
@@ -22,7 +22,7 @@ export const AuthAPI = {
   },
 
   /**
-   * @param {LoginUserDTO} dto
+   * @param {Object} dto
    * @returns {Promise<JSON>}
    */
   async LoginUser(dto) {

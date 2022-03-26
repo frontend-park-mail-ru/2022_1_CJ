@@ -2,6 +2,7 @@ import { applyMiddlewares, createStore } from '../core/models/Store/Store.js';
 import { UserAPI } from '../core/network/api/user.js';
 import { loggerMiddleware, thunkMiddleware } from './middlewares/middlewares.js';
 import { createAction } from '../core/models/Action/Action.js';
+import { AuthAPI } from '../core/network/api/auth.js';
 
 const getInitialState = () => {
   return {
@@ -19,7 +20,12 @@ const reducer = (state = getInitialState(), action) => {
 export const userStore = createStore(reducer, getInitialState(), applyMiddlewares(loggerMiddleware, thunkMiddleware));
 
 export const userActions = {
-  getUserData: 'getUserData',
+  signupSuccess: 'signupSuccess',
+  signupFailure: 'signupFailure',
+
+  loginSuccess: 'loginSuccess',
+  loginFailure: 'loginFailure',
+
   getUserDataSuccess: 'getUserDataSuccess',
   getUserDataFailure: 'getUserDataFailure'
 };
@@ -37,10 +43,28 @@ const userActionsHandlers = {
 };
 
 export const userThunks = {
-  getUserData: (dispatch) => {
-    UserAPI.GetUserData(null).then(
-      (json) => dispatch(createAction(userActions.getUserDataSuccess, { user: json.user })),
-      (err) => dispatch(createAction(userActions.getUserDataFailure, { err }))
+  signup: (dto) => (next) => {
+    AuthAPI.SignupUser(dto).then(
+      () => next(createAction(userActions.signupSuccess)),
+      (err) => next(createAction(userActions.signupFailure), { err })
     );
+  },
+
+  login: (dto) => (next) => {
+    AuthAPI.LoginUser(dto).then(
+      () => next(createAction(userActions.loginSuccess)),
+      (err) => next(createAction(userActions.loginFailure), { err })
+    );
+  },
+
+  getUserData: (next) => {
+    UserAPI.GetUserData(null).then(
+      (json) => next(createAction(userActions.getUserDataSuccess, { user: json.user })),
+      (err) => next(createAction(userActions.getUserDataFailure, { err }))
+    );
+  },
+
+  getFeedPosts: (next) => {
+    UserAPI.GetUserFeedPosts().then((json) => next(createAction));
   }
 };

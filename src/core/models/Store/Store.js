@@ -15,7 +15,7 @@ export const createStore = (reducer, initialState, enhancer = null) => {
 
   store.getState = () => store.state;
 
-  // Returns the unsubscribe callback.
+  // Returns callback to unsubscribe.
   store.subscribe = (listener) => {
     store.listeners.push(listener);
     return () => {
@@ -23,9 +23,17 @@ export const createStore = (reducer, initialState, enhancer = null) => {
     };
   };
 
+  store.once = (listener) => {
+    const wrapper = (action) => {
+      listener(action);
+      store.listeners.splice(store.listeners.indexOf(wrapper), 1);
+    };
+    store.listeners.push(wrapper);
+  };
+
   store.dispatch = (action) => {
     store.state = reducer(store.state, action);
-    store.listeners.forEach((listener) => listener(store.state));
+    store.listeners.forEach((listener) => listener(action));
   };
 
   return store;

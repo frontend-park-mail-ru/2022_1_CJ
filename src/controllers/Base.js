@@ -5,8 +5,8 @@ import { userStore, userThunks } from '../stores/UserStore.js';
 
 const reducer = () => {
   userStore.dispatch(userThunks.getUserData);
-  const unsubscribe = userStore.subscribe((state) => {
-    if (state.user) {
+  const unsubscribe = userStore.subscribe(({ payload }) => {
+    if (payload.user) {
       Router.navigateTo(URL.Feed);
     } else {
       Router.navigateTo(URL.Login);

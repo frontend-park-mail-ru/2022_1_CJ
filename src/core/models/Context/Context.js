@@ -22,11 +22,8 @@ export class Context {
    * Set context and pass it to children components.
    * @param {Object} context - context for rendering the template.
    */
-  append(context) {
-    this.#context = {
-      ...this.#context,
-      ...context
-    };
+  assign(context) {
+    this.#context = Object.assign(this.#context, context);
   }
 
   /**

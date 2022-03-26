@@ -17,5 +17,9 @@ export const UserAPI = {
       throw new CodedError(response.statusText, response.status);
     }
     return response.json();
+  },
+
+  async GetUserFeedPosts() {
+    return { posts: ['mock', 'mock'] };
   }
 };

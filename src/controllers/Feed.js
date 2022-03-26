@@ -8,13 +8,13 @@ import { userStore, userThunks } from '../stores/UserStore.js';
 const reducer = (context) => {
   const view = new ViewsRegistry.FeedView(headerAdapter);
   userStore.dispatch(userThunks.getUserData);
-  const unsubscribe = userStore.subscribe((state) => {
-    if (!state.user) {
+  const unsubscribe = userStore.subscribe(({ payload }) => {
+    if (!payload.user) {
       Router.navigateTo(URL.Login);
       return;
     }
 
-    view.context.set(state);
+    view.context.assign(payload);
     view.render(context.root);
   });
   return unsubscribe;

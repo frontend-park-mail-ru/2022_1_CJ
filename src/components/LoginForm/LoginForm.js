@@ -1,11 +1,9 @@
 import { URL } from '../../core/constants/constants.js';
 import { Component } from '../../core/models/Component/Component.js';
-import { CallbackBus, FallbackBus } from '../../core/modules/EventBus/EventBus.js';
-import { Events } from '../../core/modules/EventBus/Events.js';
 import { InputIDs, InputsRegistry, InputTypes } from '../../core/modules/InputValidator/InputsRegistry.js';
 import { Router } from '../../core/modules/Router/Router.js';
 import { LoginUserDTO } from '../../core/network/dto/auth.js';
-import { AuthService } from '../../core/network/services/auth.js';
+import { userActions, userStore, userThunks } from '../../stores/UserStore.js';
 
 export class LoginFormComponent extends Component {
   #inputsRegistry;
@@ -17,15 +15,12 @@ export class LoginFormComponent extends Component {
   constructor(template) {
     super(template);
     this.#inputsRegistry = new InputsRegistry();
-    this.onSubmitCallback = this.onSubmit.bind(this);
-    this.onSuccessCallback = this.onSuccess.bind(this);
-    this.onFailureCallback = this.onFailure.bind(this);
   }
 
   afterRender() {
     this.#inputsRegistry.registerInput(InputIDs.Email, InputTypes.Email);
     this.#inputsRegistry.registerInput(InputIDs.Password, InputTypes.Required);
-    document.getElementById('form-login').addEventListener('submit', this.onSubmitCallback);
+    document.getElementById('form-login').addEventListener('submit', this.onSubmit.bind(this));
     super.afterRender();
   }
 
@@ -39,20 +34,21 @@ export class LoginFormComponent extends Component {
       return;
     }
 
-    CallbackBus.subscribe(Events.AuthLogin, this.onSuccessCallback);
-    FallbackBus.subscribe(Events.AuthLogin, this.onFailureCallback);
-    AuthService.LoginUser(
-      new LoginUserDTO(this.#inputsRegistry.value(InputIDs.Email), this.#inputsRegistry.value(InputIDs.Password))
+    userStore.dispatch(
+      userThunks.login(
+        new LoginUserDTO(this.#inputsRegistry.value(InputIDs.Email), this.#inputsRegistry.value(InputIDs.Password))
+      )
     );
-  }
 
-  onFailure(args) {
-    console.log(`login failed: ${args}`);
-    // TODO:
-  }
-
-  onSuccess(args) {
-    this.afterDestruction();
-    Router.navigateTo(URL.Feed);
+    userStore.once(({ type, payload }) => {
+      switch (type) {
+        case userActions.loginSuccess:
+          Router.navigateTo(URL.Feed);
+          break;
+        case userActions.loginFailure:
+          console.log(payload.err);
+          break;
+      }
+    });
   }
 }
