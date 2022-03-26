@@ -1,5 +1,4 @@
-import { headerAdapter } from '../core/adapters/common.js';
-import { ViewsRegistry } from '../core/constants/views.js';
+import { ViewsRegistry } from '../views/registry.js';
 import { createController } from '../core/models/Controller/Controller.js';
 import { userStore, userThunks } from '../stores/UserStore.js';
 
