@@ -18,3 +18,5 @@ export const HttpStatus = {
 export const ContextKey = {
   User: 'user'
 };
+
+export const noop = () => {};

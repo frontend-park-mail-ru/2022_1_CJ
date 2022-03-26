@@ -1,8 +1,8 @@
-{{{Header}}}
+{{#component 'Header' .}}{{/component}}
 
 <div class='container'>
   {{#each posts}}
     {{this}}
-    {{{Post}}}
+    {{#component 'Post' .}}{{/component}}
   {{/each}}
 </div>

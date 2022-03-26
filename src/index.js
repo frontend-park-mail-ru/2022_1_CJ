@@ -1,3 +1,5 @@
+import './core/helpers/helpers.js';
+
 import { Router } from './core/modules/Router/Router.js';
 import { URL } from './core/constants/constants.js';
 import { signupController } from './controllers/Signup.js';

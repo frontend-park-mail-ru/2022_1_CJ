@@ -29,3 +29,7 @@ local-up:
 local-down:
 	unlink /etc/nginx/sites-enabled/default.conf
 	systemctl restart nginx.service
+
+cleanup:
+	rm -rf src/dist
+	rm -rf precompiled

@@ -14,7 +14,7 @@ const reducer = (context) => {
     }
 
     view.context.assign(payload);
-    view.render(context.root);
+    view.show(context.root);
   });
   return unsubscribe;
 };

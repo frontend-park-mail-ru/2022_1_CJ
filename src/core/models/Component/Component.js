@@ -1,75 +1,17 @@
+import { noop } from '../../constants/constants.js';
 import { Context } from '../Context/Context.js';
 
-export class Component {
-  /** @member {Function} template - is a function that returns HTML provided some context Object. */
-  #template;
+export const createComponent = (template, reducer = {}) => {
+  const component = {};
+  component.context = new Context();
 
-  /** @member {Context} context - is an object containing information for rendering a template. */
-  context;
+  component.render = (context = component.context.get()) => {
+    return template(context);
+  };
 
-  /** @member {Object} subComponents  - children components of the component. */
-  #subComponents;
+  component.onShow = () => {
+    (reducer.onShow || noop)();
+  };
 
-  /**
-   * @constructor
-   * @param {Function} template - function for generating the HTML.
-   */
-  constructor(template) {
-    this.context = new Context();
-    this.#template = template;
-    this.#subComponents = {};
-  }
-
-  /**
-   * @param {String} name - name of the component.
-   * @param {Component} component - the component.
-   */
-  addComponent(name, component) {
-    this.#subComponents[name] = component;
-  }
-
-  /**
-   * Produce HTML. Context is supposed to be set before rendering.
-   * @param {Object?} context - context to be passed to sub components, for parent node supposed to be not pased.
-   * @return {String} - produced HTML.
-   */
-  render(context = this.context.get()) {
-    const contextWithComponents = { ...this.#renderComponents(context), ...context };
-    return this.#template(contextWithComponents);
-  }
-
-  /**
-   * Recursively calls after render functions.
-   * If redefined, super method is supposed to be called.
-   */
-  afterRender() {
-    Object.values(this.#subComponents).forEach((component) => {
-      component.afterRender();
-    });
-  }
-
-  /**
-   * Recursively calls destructors.
-   * If redefined, super method is supposed to be called.
-   */
-  afterDestruction() {
-    Object.values(this.#subComponents).forEach((component) => {
-      component.afterDestruction();
-    });
-  }
-
-  /**
-   * @param {Object} context
-   * @return {Component[]}
-   */
-  #renderComponents(context) {
-    const renderedComponents = Object.entries(this.#subComponents).reduce(
-      (obj, [name, component]) => ({
-        ...obj,
-        [name]: component.render(context)
-      }),
-      {}
-    );
-    return { ...renderedComponents };
-  }
-}
+  return component;
+};

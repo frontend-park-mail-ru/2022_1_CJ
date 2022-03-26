@@ -7,7 +7,7 @@ const reducer = (context) => {
   userStore.dispatch(userThunks.getUserData);
   const unsubscribe = userStore.subscribe(({ payload }) => {
     view.context.assign(payload);
-    view.render(context.root);
+    view.show(context.root);
   });
   return unsubscribe;
 };

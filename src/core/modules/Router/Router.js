@@ -1,5 +1,3 @@
-import { View } from '../../models/View/View.js';
-
 const ParameterRegExp = /:(\w+)/g;
 const SolidStringPattern = '(.+)';
 const EscapedURLDelimiter = '\\/';
@@ -54,9 +52,9 @@ class Router {
    * Start routing and listening History changes
    */
   run() {
-    if (this.#routes.length === 0) {
-      throw new Error('no routes are set up');
-    }
+    // if (this.#routes.length === 0) {
+    //   throw new Error('no routes are set up');
+    // }
 
     if (!this.#notFoundController) {
       throw new Error('not found view is not set up');

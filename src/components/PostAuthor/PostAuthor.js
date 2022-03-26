@@ -1,3 +1,3 @@
-import { Component } from '../../core/models/Component/Component.js';
+import { createComponent } from '../../core/models/Component/Component.js';
 
-export class PostAuthorComponent extends Component {}
+export const postAuthorComponent = (template) => createComponent(template);
