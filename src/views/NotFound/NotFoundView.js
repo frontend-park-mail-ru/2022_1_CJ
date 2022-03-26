@@ -1,5 +1,4 @@
 import { View } from '../../core/models/View/View.js';
-import { TemplatesRegistry } from '../../core/constants/templates_registry.js';
 
 export class NotFoundView extends View {
   /**
@@ -7,8 +6,8 @@ export class NotFoundView extends View {
    * @param {Function} template - function for generating the HTML.
    * @param  {...Function} adapters
    */
-  constructor(...adapters) {
-    super(TemplatesRegistry.NotFound, ...adapters);
+  constructor(template, ...adapters) {
+    super(template, ...adapters);
     this.setTitle('Not Found');
   }
 }

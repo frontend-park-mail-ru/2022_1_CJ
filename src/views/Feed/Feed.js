@@ -1,14 +1,14 @@
 import { View } from '../../core/models/View/View.js';
-import { TemplatesRegistry } from '../../core/constants/templates_registry.js';
-import { ComponentsRegistry } from '../../core/constants/components_registry.js';
+import { ComponentsRegistry } from '../../core/constants/components.js';
 
 export class FeedView extends View {
   /**
    * @constructor
+   * @param {Function} template - function for generating the HTML.
    * @param  {...Function} adapters
    */
-  constructor(...adapters) {
-    super(TemplatesRegistry.Feed, ...adapters);
+  constructor(template, ...adapters) {
+    super(template, ...adapters);
     this.setTitle('Feed');
     this.addComponent('Post', ComponentsRegistry.Post);
   }

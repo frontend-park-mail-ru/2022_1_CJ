@@ -1,4 +1,4 @@
-import { ComponentsRegistry } from '../constants/components_registry.js';
+import { ComponentsRegistry } from '../constants/components.js';
 import { View } from '../models/View/View.js';
 
 /**

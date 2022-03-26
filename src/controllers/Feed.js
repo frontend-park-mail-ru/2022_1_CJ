@@ -1,12 +1,12 @@
 import { headerAdapter } from '../core/adapters/common.js';
 import { URL } from '../core/constants/constants.js';
-import { ViewsRegistry } from '../core/constants/views_registry.js';
+import { ViewsRegistry } from '../core/constants/views.js';
 import { createController } from '../core/models/Controller/Controller.js';
 import { Router } from '../core/modules/Router/Router.js';
 import { userStore, userThunks } from '../stores/UserStore.js';
 
 const reducer = (context) => {
-  const view = new ViewsRegistry.FeedView(headerAdapter);
+  const view = ViewsRegistry.Feed;
   userStore.dispatch(userThunks.getUserData);
   const unsubscribe = userStore.subscribe(({ payload }) => {
     if (!payload.user) {

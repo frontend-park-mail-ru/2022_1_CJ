@@ -4,7 +4,7 @@ DCOMPOSE:=docker-compose.yaml
 # improve build time
 DOCKER_BUILD_KIT:=COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1
 
-docker: pack precompile down build up
+docker: down build up
 
 down:
 	docker-compose -f ${DCOMPOSE} down
@@ -21,7 +21,7 @@ pack:
 precompile:
 	bash scripts/precompile.sh
 
-local: pack precompile local-up
+local: precompile pack local-up
 
 local-up:
 	bash scripts/local.sh
