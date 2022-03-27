@@ -1,8 +1,23 @@
 {{#component 'Header' .}}{{/component}}
 
-<div class='container'>
+<div class="container grid">
+    <div class="left">
+        {{{Menu}}}
+    </div>
+    <div class="middle grid">
+        {{#each posts}}
+            {{#component 'Post' .}}{{/component}}
+        {{/each}}
+        {{{Post}}}
+        {{{Post}}}
+        {{{Post}}}
+    </div>
+    <div class="right"></div>
+</div>
+
+{{!-- <div class='container'>
   {{#each posts}}
     {{this}}
     {{#component 'Post' .}}{{/component}}
   {{/each}}
-</div>
+</div> --}}

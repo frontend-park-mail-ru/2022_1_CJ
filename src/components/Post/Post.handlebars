@@ -1,6 +1,47 @@
-{{#component 'PostAuthor' .}}{{/component}}
-<div class='flow'>
-  <div>some message</div>
-  <div>some picture</div>
-  <div>buttons</div>
+<div class="post grid block" id="{{post.id}}">
+    <div class="header">
+        <div class="author">
+            <img class="icon" src="../sources/images/E802C8F6-13EE-4316-917E-1CAD52CE1899_4_5005_c.jpeg" alt="">
+            <div class="info">
+                <p class="link">John Doe</p>
+                <p>yeaterday at 20:43</p>
+            </div>
+        </div>
+        <div class="settings">
+            <img src="../sources/icons/arrow_down.svg" alt="" class="btn">
+        </div>
+        <div class="settings-info block">
+            <div class="element btn-like">
+                <p>Complain</p>
+            </div>
+            <div class="element btn-like">
+                <p>Hide post</p>
+            </div>
+        </div>
+    </div>
+    <div class="title">
+        <p>Notice that this div element has a left margin of 25%. This is because the side navigation is set to 25% width. If you remove the margin, the sidenav will overlay/sit on top of this div.Also notice that we have set overflow:auto to sidenav. This will add a scrollbar when the sidenav is too long (for example if it has over 50 links inside of it).</p>
+        <p class="link">more text...</p>
+    </div>
+    <div class="content">
+        <img src="../sources/images/Post Picture.png" alt="">
+    </div>
+    <div class="reactions">
+        <div class="like block btn-like">
+            <img src="../sources/icons/like.svg" alt="" class="icon">
+            <p>1.25k</p>
+        </div>
+        <div class="comment block btn-like">
+            <img src="../sources/icons/comment.svg" alt="" class="icon">
+            <p>comment</p>
+        </div>
+        <div class="reaction block btn-like">
+            <img src="../sources/icons/repost.svg" alt="" class="icon">
+            <p>repost</p>
+        </div>
+        <div class="watch">
+            <img src="../sources/icons/watch.svg" alt="" class="icon">
+            <p>1.25k</p>
+        </div>
+    </div>
 </div>

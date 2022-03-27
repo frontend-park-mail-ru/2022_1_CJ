@@ -3,13 +3,15 @@ import '../dist/components.js';
 import { headerComponent } from './Header/Header.js';
 import { loginFormComponent } from './LoginForm/LoginForm.js';
 import { postComponent } from './Post/Post.js';
-import { postAuthorComponent } from './PostAuthor/PostAuthor.js';
+import { postGroupComponent } from './PostGroup/PostGroup.js';
 import { signupFormComponent } from './SignupForm/SignupForm.js';
+import { menuComponent } from './Menu/Menu.js';
 
 export const ComponentsRegistry = {
   Header: headerComponent(Handlebars.templates.Header),
   SignupForm: signupFormComponent(Handlebars.templates.SignupForm),
   LoginForm: loginFormComponent(Handlebars.templates.LoginForm),
+  Menu: menuComponent(Handlebars.templates.Menu),
   Post: postComponent(Handlebars.templates.Post),
-  PostAuthor: postAuthorComponent(Handlebars.templates.PostAuthor)
+  PostGroup: postGroupComponent(Handlebars.templates.PostGroup)
 };

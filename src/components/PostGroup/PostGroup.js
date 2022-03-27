@@ -1,3 +1,4 @@
 import { createComponent } from '../../core/models/Component/Component.js';
 
-export const postAuthorComponent = (template) => createComponent(template);
+export const postGroupComponent = (template) => createComponent(template);
+
