@@ -5,7 +5,14 @@ services:
       context: .
       target: nginx
     image: cj-frontend:latest
+    networks:
+      - backend
     ports:
       - 80:80
     volumes:
       - ./src:/var/www/web
+
+networks:
+  backend:
+    name: cj-backend
+    external: true
