@@ -4,6 +4,9 @@ export const URL = {
   Login: '/login',
   Feed: '/feed',
   Logout: '/logout',
+  Profile: '/profile',
+  // not for production
+  Test: '/test',
 };
 
 export const HttpStatus = {

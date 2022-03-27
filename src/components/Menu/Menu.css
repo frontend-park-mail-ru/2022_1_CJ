@@ -1,0 +1,18 @@
+/* Menu starts */
+.main-menu {
+    height: min-content;
+    width: auto;
+    position: absolute;
+
+    font-size: var(--font-size-h2);
+}
+
+.element {
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+.element > p {
+    padding: 0 1rem;
+}
+/* Menu ends */

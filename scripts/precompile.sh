@@ -5,6 +5,10 @@ curdir="src"
 paths=("views" "components")
 outdir="$curdir/precompiled"
 
+# precompile doesn't rebuild old files if we got new ones
+# so we clear all directory
+rm -rf "$outdir"
+
 for path in ${paths[@]}; do
   mkdir -p "$outdir/$path"
 done

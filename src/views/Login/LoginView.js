@@ -13,6 +13,8 @@ export class LoginView extends View {
     super(TemplatesRegistry.Login, ...adapters);
     this.setTitle('Login');
     this.addComponent('LoginForm', new ComponentsRegistry.LoginFormComponent(TemplatesRegistry.LoginForm));
+    this.addComponent('Post', new ComponentsRegistry.PostComponent(TemplatesRegistry.Post));
+    this.addComponent('Menu', new ComponentsRegistry.MenuComponent(TemplatesRegistry.Menu))
   }
 
   checkStateBeforeRender() {

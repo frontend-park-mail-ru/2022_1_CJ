@@ -1,4 +1,6 @@
 #not-found {
+    width: auto;
+
     display: flex;
     align-items: center;
     text-align: center;

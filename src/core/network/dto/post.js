@@ -25,8 +25,11 @@ export class PostBodyDTO {
 
 export class PostReactionsDTO {
   /**
-     * @param {Array.<Object>} text
-     * @param {Array.<Object>} imageUrls
+     * @param {String} image
+     * @param {String} firstname
+     * @param {String} lastname
+     * @param {String} url
+     * @param {String} text
      */
   constructor(text, imageUrls) {
     this.text = text;
@@ -39,9 +42,9 @@ export class PostDTO {
      * @param {int} user_id
      * @param {Object} body
      * @param {Object} likes
-     * @param {Object} comments
-     * @param {Object} dislikes
-     * @param {int} watched
+     * @param {Object} comments first 10, then will upload more if user will ask us for
+     * @param {Object} dislikes we don't have them
+     * @param {int} watched     maybe later
      */
   constructor(user_id, body, likes, comments, dislikes, watched) {
     this.author = user_id;

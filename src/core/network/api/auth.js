@@ -5,6 +5,7 @@ const authMethods = {
   signup: '/api/auth/signup',
   login: '/api/auth/login',
   logout: '/api/auth/logout',
+  // test: '',
 };
 
 export const AuthAPI = {
