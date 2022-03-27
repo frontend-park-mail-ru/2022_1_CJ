@@ -2,15 +2,15 @@
 
 <div class="container grid">
     <div class="left">
-        {{{Menu}}}
+        {{#component 'Menu' .}}{{/component}}
     </div>
     <div class="middle grid">
         {{#each posts}}
             {{#component 'Post' .}}{{/component}}
         {{/each}}
-        {{{Post}}}
-        {{{Post}}}
-        {{{Post}}}
+        {{#component 'Post' .}}{{/component}}
+        {{#component 'Post' .}}{{/component}}
+        {{#component 'Post' .}}{{/component}}
     </div>
     <div class="right"></div>
 </div>
