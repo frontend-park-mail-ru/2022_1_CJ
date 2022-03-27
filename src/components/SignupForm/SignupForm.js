@@ -3,7 +3,7 @@ import { createComponent } from '../../core/models/Component/Component.js';
 import { InputIDs, InputsRegistry, InputTypes } from '../../core/modules/InputValidator/InputsRegistry.js';
 import { Router } from '../../core/modules/Router/Router.js';
 import { SignupUserDTO } from '../../core/network/dto/auth.js';
-import { userActions, userStore, userThunks } from '../../stores/UserStore.js';
+import { userActions, store, userThunks } from '../../store/Store.js';
 
 const inputsRegistry = new InputsRegistry();
 
@@ -14,7 +14,7 @@ const onSubmit = (event) => {
     return;
   }
 
-  userStore.dispatch(
+  store.dispatch(
     userThunks.signup(
       new SignupUserDTO(
         inputsRegistry.value(InputIDs.Email),
@@ -25,16 +25,8 @@ const onSubmit = (event) => {
     )
   );
 
-  userStore.once(({ type, payload }) => {
-    switch (type) {
-      case userActions.signupSuccess:
-        Router.navigateTo(URL.Feed);
-        break;
-      case userActions.signupFailure:
-        console.log(payload.err); // TODO:
-        break;
-    }
-  });
+  store.onOnce(userActions.signupSuccess, () => Router.navigateTo(URL.Feed));
+  store.onOnce(userActions.signupFailure, ({ payload }) => console.log(payload.err));
 };
 
 const reducer = {

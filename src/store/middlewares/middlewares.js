@@ -8,7 +8,7 @@ export const loggerMiddleware = (store) => (next) => (action) => {
 
 export const thunkMiddleware = (store) => (next) => (action) => {
   if (action instanceof Function) {
-    action(next, store.getState());
+    return action(next, store.getState());
   } else {
     return next(action);
   }

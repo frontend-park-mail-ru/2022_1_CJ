@@ -18,5 +18,9 @@ export const createComponent = (template, reducer = {}) => {
     (reducer.onShow || noop)();
   };
 
+  component.onAction = (action) => {
+    (reducer.onAction || noop)(action);
+  };
+
   return component;
 };

@@ -1,6 +1,8 @@
-{{#component 'PostAuthor' .}}{{/component}}
-<div class='flow'>
-  <div>some message</div>
-  <div>some picture</div>
-  <div>buttons</div>
+{{! TODO: }}
+<div id='{{post.id}}' class='post'>
+  <div class='flow'>
+    <div class='post-message'> {{post.message}} </div>
+    <div>some picture</div>
+    <div>buttons</div>
+  </div>
 </div>
