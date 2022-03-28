@@ -34,6 +34,7 @@
   --fs-600: 1.5rem;
   --fs-500: 1.25rem;
   --fs-400: 1rem;
+  --fs-350: 0.875rem;
   --fs-300: 0.75rem;
   --fs-200: 0.5rem;  /* too small */
 
@@ -43,6 +44,7 @@
 
   /* border-radiuses */
   --br-main__rem: 0.5rem;
+  --br-secondary__rem: 0.25rem;
   --br-main__px: 8px;
   --br-circle: 50%;
 
@@ -177,11 +179,11 @@ select {
   margin-top: var(--flow-space, 1rem);
 }
 
-.container {
+/* .container {
   padding-inline: 2em;
   margin-inline: auto;
   max-width: 80rem;
-}
+} */
 
 /* ---------------- Colors ---------------- */
 
