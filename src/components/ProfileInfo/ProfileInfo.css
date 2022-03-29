@@ -1,0 +1,81 @@
+.profile-info {
+    padding: 0.75rem;
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 0.75rem;
+
+    grid-area: info;
+}
+
+.profile-info > .avatar {
+    height: 11.25rem;
+    width: max-content;
+
+    border-radius: var(--border-radius-primary);
+}
+
+.main-info {
+    display: grid;
+    grid-template-rows: 1.5rem 1.125rem auto 3rem;
+}
+
+.user-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+.user-online {
+    color: var(--text-color-secondary);
+
+    justify-content: flex-end;
+}
+
+.user-status > *{
+    font-size: var(--font-size-h4);
+
+    color: var(--text-color-primary);
+}
+
+.user-info {
+    display: grid;
+    grid-template-rows: 1fr 1fr 2.625rem;
+}
+
+.user-birth {
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+.user-main-info {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.user-main-info > hr {
+    height: 0.0625rem;
+    background-color: var(--text-color-priority);
+}
+
+.user-main-info > p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.user-menu > .element {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.user-menu > .element:first-child {
+    border-radius: 0 0 0 var(--border-radius-primary);
+}
+.user-menu > .element:last-child {
+    border-radius: 0 0 var(--border-radius-primary) 0;
+}

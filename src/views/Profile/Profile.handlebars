@@ -1,0 +1,22 @@
+{{#component 'Header' .}}{{/component}}
+
+<div class="container grid">
+    <div class="left">
+        {{#component 'Menu' .}}{{/component}}
+    </div>
+    <div class="middle grid">
+        <div class="profile-container">
+            {{#component 'ProfileInfo' .}}{{/component}}
+            {{#component 'ProfileMenu' .}}{{/component}}
+            <div class="profile-feed">
+                {{#each posts}}
+                    {{#component 'Post' .}}{{/component}}
+                {{/each}}
+                {{#component 'Post' .}}{{/component}}
+                {{#component 'Post' .}}{{/component}}
+                {{#component 'Post' .}}{{/component}}
+            </div>
+        </div>
+    </div>
+    <div class="right"></div>
+</div>
