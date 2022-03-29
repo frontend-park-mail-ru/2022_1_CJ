@@ -2,15 +2,15 @@ import { URL } from '../core/constants/constants.js';
 import { ViewsRegistry } from '../views/registry.js';
 import { createController } from '../core/models/Controller/Controller.js';
 import { Router } from '../core/modules/Router/Router.js';
-import { store, userActions, userThunks } from '../store/store.js';
+import { store, actions, thunks } from '../store/store.js';
 import { createReaction } from '../core/models/Action/Action.js';
 
 const reducer = ({ root }) => {
   const view = ViewsRegistry.Feed;
-  store.dispatch(userThunks.getUserData);
+  store.dispatch(thunks.user.getUserData);
   store.oneOf(
-    createReaction(userActions.getUserDataSuccess, () => view.show(root)),
-    createReaction(userActions.getUserDataFailure, () => Router.navigateTo(URL.Login))
+    createReaction(actions.user.getUserData.success, () => view.show(root)),
+    createReaction(actions.user.getUserData.failure, () => Router.navigateTo(URL.Login))
   );
 };
 

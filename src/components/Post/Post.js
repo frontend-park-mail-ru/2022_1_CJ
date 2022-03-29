@@ -1,6 +1,5 @@
 import { createComponent } from '../../core/models/Component/Component.js';
-import { UserAPI } from '../../core/network/api/user.js';
-import { store, userThunks } from '../../store/store.js';
+import { store, thunks } from '../../store/store.js';
 import { ComponentsRegistry } from '../registry.js';
 
 const reducer = {
@@ -8,7 +7,7 @@ const reducer = {
   onShow: ({ post }) => {
     // context: post{author id, likes, ...}
     post = document.getElementById(post.id);
-    store.dispatch(userThunks.getFeedPosts);
+    store.dispatch(thunks.user.getFeedPosts);
   },
   onAction: ({ type, payload }) => {
     if (type === 'likePostSuccess' && payload.post.id === post.id) {

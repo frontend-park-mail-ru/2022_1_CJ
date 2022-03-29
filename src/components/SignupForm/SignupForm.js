@@ -4,7 +4,7 @@ import { createComponent } from '../../core/models/Component/Component.js';
 import { InputIDs, InputsRegistry, InputTypes } from '../../core/modules/InputValidator/InputsRegistry.js';
 import { Router } from '../../core/modules/Router/Router.js';
 import { SignupUserDTO } from '../../core/network/dto/auth.js';
-import { userActions, store, userThunks } from '../../store/store.js';
+import { actions, store, thunks } from '../../store/store.js';
 
 const inputsRegistry = new InputsRegistry();
 
@@ -16,7 +16,7 @@ const onSubmit = (event) => {
   }
 
   store.dispatch(
-    userThunks.signup(
+    thunks.user.signup(
       new SignupUserDTO(
         inputsRegistry.value(InputIDs.Email),
         inputsRegistry.value(InputIDs.FirstName),
@@ -27,8 +27,8 @@ const onSubmit = (event) => {
   );
 
   store.oneOf(
-    createReaction(userActions.signup.success, () => Router.navigateTo(URL.Feed)),
-    createReaction(userActions.signup.failure, ({ payload }) => console.log(payload.err))
+    createReaction(actions.user.signup.success, () => Router.navigateTo(URL.Feed)),
+    createReaction(actions.user.signup.failure, ({ payload }) => console.log(payload.err))
   );
 };
 

@@ -4,7 +4,7 @@ import { createComponent } from '../../core/models/Component/Component.js';
 import { InputIDs, InputsRegistry, InputTypes } from '../../core/modules/InputValidator/InputsRegistry.js';
 import { Router } from '../../core/modules/Router/Router.js';
 import { LoginUserDTO } from '../../core/network/dto/auth.js';
-import { userActions, store, userThunks } from '../../store/store.js';
+import { actions, store, thunks } from '../../store/store.js';
 
 const inputsRegistry = new InputsRegistry();
 
@@ -16,12 +16,12 @@ const onSubmit = (event) => {
   }
 
   store.dispatch(
-    userThunks.login(new LoginUserDTO(inputsRegistry.value(InputIDs.Email), inputsRegistry.value(InputIDs.Password)))
+    thunks.user.login(new LoginUserDTO(inputsRegistry.value(InputIDs.Email), inputsRegistry.value(InputIDs.Password)))
   );
 
   store.oneOf(
-    createReaction(userActions.login.success, () => Router.navigateTo(URL.Feed)),
-    createReaction(userActions.login.failure, ({ payload }) => console.log(payload.err))
+    createReaction(actions.user.login.success, () => Router.navigateTo(URL.Feed)),
+    createReaction(actions.user.login.failure, ({ payload }) => console.log(payload.err))
   );
 };
 
