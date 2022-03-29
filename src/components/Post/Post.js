@@ -1,6 +1,20 @@
 import { createComponent } from '../../core/models/Component/Component.js';
 
 /**
+ * 
+ * @param {Object} obj 
+ */
+const showHideLogic = (obj) => {
+  if (!obj.style.visibility || obj.style.visibility === 'visible') {
+    obj.style.visibility = 'hidden';
+  } 
+  else {
+    obj.style.visibility = 'visible';
+  }
+}
+
+
+/**
  *
  * @param {Event} e
  */
@@ -48,7 +62,7 @@ const changeLike = (e) => {
     likesCount += 1;
   }
   let likesStr = convertor(likesCount);
-  console.log(likesStr);
+  // console.log(likesStr);
   likesField.innerHTML = likesStr; // likesField get new number
   // TODO: send new likes count to backend
 };
@@ -74,7 +88,7 @@ const getComments = (e) => {
   }
 
   const comments = e.currentTarget.parentElement.nextElementSibling;
-  console.log(comments.style.display);
+  // console.log(comments.style.display);
   if (!comments.style.display || comments.style.display === 'none') {
     showElement(comments);
     // comments.style.display = 'none';
@@ -93,9 +107,7 @@ const getComments = (e) => {
  */
 const openReposts = (e) => {
   const reply = e.currentTarget.parentElement.previousElementSibling;
-  console.log(reply);
-  console.log(reply.parentElement);
-  console.log(reply.parentElement.parentElement);
+
   if (!reply.style.display || reply.style.display === 'none') {
     // showElement(comments);
     reply.style.display = 'grid';
@@ -110,6 +122,42 @@ const openReposts = (e) => {
   console.log(e.currentTarget);
 };
 
+/**
+ * 
+ * @param {Event} e 
+ */
+const showSettings = (e) => {
+  const settingsInfo = e.currentTarget.nextElementSibling;
+  console.log(settingsInfo);
+  showHideLogic(settingsInfo);
+}
+
+/**
+ * 
+ * @param {Event} e 
+ */
+ const showText = (e) => {
+  const moreText = e.currentTarget;
+  let titleText = moreText.previousElementSibling;
+  // console.log(titleText);
+  // console.log(titleText.style);
+  if (titleText.style.height != 'min-content') {
+    titleText.style.height = 'min-content';
+    moreText.innerHTML = 'hide text';
+  } else {
+    titleText.style.height = '4.5rem';
+    moreText.innerHTML = 'more text...';
+  }
+}
+
+/**
+ * 
+ * @param {Event} e 
+ */
+const showAuthorPage = (e) => {
+
+}
+
 const reducer = {
   onShow: () => {
     // const post = document.getElementById(post.id)
@@ -118,10 +166,21 @@ const reducer = {
     const reactions = currPost.querySelectorAll('.reactions .btn-like');
     // console.log(reactions);
     const [like, comment, repost] = reactions;
-    console.log(like, comment, repost);
+    // console.log(like, comment, repost);
     like.addEventListener('click', changeLike);
     comment.addEventListener('click', getComments);
     repost.addEventListener('click', openReposts);
+
+    // const settings = document.querySelector('.settings');
+    // settings.addEventListener('mouseover', showSettings);
+    // const settingsInfo = document.querySelector('.settings-info');
+    // settingsInfo.addEventListener('mouseleave', showHideLogic);
+
+    const moreText = document.querySelector('.title .link');
+    moreText.addEventListener('click', showText);
+
+    const author = document.querySelector('.author .info .link');
+    author.addEventListener('click', showAuthorPage);
   }
 };
 
