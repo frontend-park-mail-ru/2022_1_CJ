@@ -6,7 +6,7 @@ import { store, actions, thunks } from '../store/store.js';
 
 const reducer = () => {
   store.dispatch(thunks.user.getUserData);
-  store.oneOf(
+  store.once(
     createReaction(actions.user.getUserData.success, () => Router.navigateTo(URL.Feed)),
     createReaction(actions.user.getUserData.failure, () => Router.navigateTo(URL.Login))
   );

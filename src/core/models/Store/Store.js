@@ -31,10 +31,10 @@ export const createStore = (reducer, initialState, enhancer = null) => {
         listener(action);
       }
     };
-    store.listeners(wrapper);
+    store.listeners.push(wrapper);
   };
 
-  store.oneOf = (...reactions) => {
+  store.once = (...reactions) => {
     const wrapper = (action) => {
       for (const { type, listener } of reactions.values()) {
         if (action.type === type) {
@@ -47,16 +47,6 @@ export const createStore = (reducer, initialState, enhancer = null) => {
     store.listeners.push(wrapper);
   };
 
-  store.once = ({ type, listener }) => {
-    const wrapper = (action) => {
-      if (action.type === type) {
-        listener(action);
-        store.listeners.splice(store.listeners.indexOf(wrapper), 1);
-      }
-    };
-    store.listeners.push(wrapper);
-  };
-
   store.dispatch = (action) => {
     store.state = reducer(store.state, action);
     store.listeners.forEach((listener) => listener(action));
@@ -64,16 +54,6 @@ export const createStore = (reducer, initialState, enhancer = null) => {
 
   return store;
 };
-
-export const combineReducers =
-  (reducers) =>
-  (state = {}, action) => {
-    const nextState = {};
-    Object.values(reducers).forEach((reducer) => {
-      nextState = reducer(state, action);
-    });
-    return nextState;
-  };
 
 /**
  * Returns so-called enhancer which creates store with given middlewares.

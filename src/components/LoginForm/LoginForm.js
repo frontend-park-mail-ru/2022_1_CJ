@@ -19,7 +19,7 @@ const onSubmit = (event) => {
     thunks.user.login(new LoginUserDTO(inputsRegistry.value(InputIDs.Email), inputsRegistry.value(InputIDs.Password)))
   );
 
-  store.oneOf(
+  store.once(
     createReaction(actions.user.login.success, () => Router.navigateTo(URL.Feed)),
     createReaction(actions.user.login.failure, ({ payload }) => console.log(payload.err))
   );

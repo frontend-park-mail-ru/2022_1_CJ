@@ -33,6 +33,7 @@ export const userReducers = {
     state.user = payload.user;
     return state;
   },
+
   getUserDataFailure: (state, payload) => {
     state.user = null;
     console.log(payload.err); // TODO: handle error
@@ -41,12 +42,11 @@ export const userReducers = {
 };
 
 export const userThunks = {
-  signup: (dto) => (next) => {
+  signup: (dto) => (next) =>
     AuthAPI.SignupUser(dto).then(
       () => next(createAction(userActions.signup.success)),
       (err) => next(createAction(userActions.signup.failure), { err })
-    );
-  },
+    ),
 
   login: (dto) => (next) =>
     AuthAPI.LoginUser(dto).then(

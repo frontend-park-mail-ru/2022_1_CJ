@@ -8,7 +8,7 @@ import { createReaction } from '../core/models/Action/Action.js';
 const reducer = ({ root }) => {
   const view = ViewsRegistry.Feed;
   store.dispatch(thunks.user.getUserData);
-  store.oneOf(
+  store.once(
     createReaction(actions.user.getUserData.success, () => view.show(root)),
     createReaction(actions.user.getUserData.failure, () => Router.navigateTo(URL.Login))
   );

@@ -26,7 +26,7 @@ const onSubmit = (event) => {
     )
   );
 
-  store.oneOf(
+  store.once(
     createReaction(actions.user.signup.success, () => Router.navigateTo(URL.Feed)),
     createReaction(actions.user.signup.failure, ({ payload }) => console.log(payload.err))
   );
