@@ -1,6 +1,6 @@
 import { createComponent } from '../../core/models/Component/Component.js';
 import { UserAPI } from '../../core/network/api/user.js';
-import { store, userThunks } from '../../store/Store.js';
+import { store, userThunks } from '../../store/store.js';
 import { ComponentsRegistry } from '../registry.js';
 
 const reducer = {

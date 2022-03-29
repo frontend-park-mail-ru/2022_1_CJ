@@ -1,4 +1,4 @@
-import { store } from '../../../store/Store.js';
+import { store } from '../../../store/store.js';
 import { createComponent } from '../Component/Component.js';
 
 export const createView = (template, reducer = {}) => {

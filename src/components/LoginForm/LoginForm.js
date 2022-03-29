@@ -4,7 +4,7 @@ import { createComponent } from '../../core/models/Component/Component.js';
 import { InputIDs, InputsRegistry, InputTypes } from '../../core/modules/InputValidator/InputsRegistry.js';
 import { Router } from '../../core/modules/Router/Router.js';
 import { LoginUserDTO } from '../../core/network/dto/auth.js';
-import { userActions, store, userThunks } from '../../store/Store.js';
+import { userActions, store, userThunks } from '../../store/store.js';
 
 const inputsRegistry = new InputsRegistry();
 
