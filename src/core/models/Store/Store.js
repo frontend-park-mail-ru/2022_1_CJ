@@ -18,15 +18,31 @@ export const createStore = (reducer, initialState, enhancer = null) => {
   // Returns callback to unsubscribe.
   store.subscribe = (listener) => {
     store.listeners.push(listener);
-    return () => {
-      store.listeners.splice(store.listeners.indexOf(listener), 1);
-    };
+    return () => store.listeners.splice(store.listeners.indexOf(listener), 1);
   };
 
-  store.once = (listener) => {
+  store.unsubscribe = (listener) => {
+    store.listeners.splice(store.listeners.indexOf(listener), 1);
+  };
+
+  store.on = (actionType, listener) => {
     const wrapper = (action) => {
-      listener(action);
-      store.listeners.splice(store.listeners.indexOf(wrapper), 1);
+      if (action.type === actionType) {
+        listener(action);
+      }
+    };
+    store.listeners.push(wrapper);
+  };
+
+  store.once = (...reactions) => {
+    const wrapper = (action) => {
+      for (const { type, listener } of reactions.values()) {
+        if (action.type === type) {
+          listener(action);
+          store.listeners.splice(store.listeners.indexOf(wrapper), 1);
+          break;
+        }
+      }
     };
     store.listeners.push(wrapper);
   };
@@ -38,16 +54,6 @@ export const createStore = (reducer, initialState, enhancer = null) => {
 
   return store;
 };
-
-export const combineReducers =
-  (reducers) =>
-  (state = {}, action) => {
-    const nextState = {};
-    Object.entries(reducers).forEach(([key, value]) => {
-      nextState[key] = value(state[key], action);
-    });
-    return nextState;
-  };
 
 /**
  * Returns so-called enhancer which creates store with given middlewares.
@@ -61,7 +67,7 @@ export const applyMiddlewares =
   (reducer, initialState) => {
     const store = createStore(reducer, initialState);
     store.dispatch = Object.values(middlewares).reduce(
-      (dispatch, middleware) => (dispatch = middleware(store)(dispatch)),
+      (dispatch, middleware) => middleware(store)(dispatch),
       store.dispatch
     );
     return store;

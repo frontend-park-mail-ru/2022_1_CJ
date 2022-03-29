@@ -7,13 +7,13 @@ DOCKER_BUILD_KIT:=COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1
 docker: precompile pack down build up
 
 down:
-	docker-compose -f ${DCOMPOSE} down
+	docker-compose -f ${DCOMPOSE} down --remove-orphans
 
 build:
 	${DOCKER_BUILD_KIT} docker-compose build
 
 up:
-	docker-compose -f ${DCOMPOSE} up -d
+	docker-compose -f ${DCOMPOSE} up -d --remove-orphans
 
 pack:
 	bash scripts/pack.sh

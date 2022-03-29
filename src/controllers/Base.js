@@ -1,17 +1,15 @@
 import { URL } from '../core/constants/constants.js';
+import { createReaction } from '../core/models/Action/Action.js';
 import { createController } from '../core/models/Controller/Controller.js';
 import { Router } from '../core/modules/Router/Router.js';
-import { userStore, userThunks } from '../stores/UserStore.js';
+import { store, actions, thunks } from '../store/store.js';
 
 const reducer = () => {
-  userStore.dispatch(userThunks.getUserData);
-  userStore.once(({ payload }) => {
-    if (payload.user) {
-      Router.navigateTo(URL.Feed);
-    } else {
-      Router.navigateTo(URL.Login);
-    }
-  });
+  store.dispatch(thunks.user.getUserData);
+  store.once(
+    createReaction(actions.user.getUserData.success, () => Router.navigateTo(URL.Feed)),
+    createReaction(actions.user.getUserData.failure, () => Router.navigateTo(URL.Login))
+  );
 };
 
 export const baseController = createController(reducer);
