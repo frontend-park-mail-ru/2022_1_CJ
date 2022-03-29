@@ -3,6 +3,7 @@ export const loggerMiddleware = (store) => (next) => (action) => {
   console.log('action', action);
   next(action);
   console.table(store.getState());
+  console.log(`Amount of listeners = [${store.listeners.length}]`);
   console.groupEnd();
 };
 

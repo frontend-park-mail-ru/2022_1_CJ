@@ -1,5 +1,4 @@
 import { noop } from '../../constants/constants.js';
-import { Context } from '../Context/Context.js';
 
 /**
  * Reducer is an object containing methods for making components dynamic.
@@ -8,14 +7,13 @@ import { Context } from '../Context/Context.js';
  */
 export const createComponent = (template, reducer = {}) => {
   const component = {};
-  component.context = new Context();
 
-  component.render = (context = component.context.get()) => {
+  component.render = (context = {}) => {
     return template(context);
   };
 
-  component.onShow = () => {
-    (reducer.onShow || noop)();
+  component.onShow = (context = {}) => {
+    (reducer.onShow || noop)(context);
   };
 
   component.onAction = (action) => {

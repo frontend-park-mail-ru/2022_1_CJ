@@ -1,4 +1,5 @@
 import { URL } from '../../core/constants/constants.js';
+import { createReaction } from '../../core/models/Action/Action.js';
 import { createComponent } from '../../core/models/Component/Component.js';
 import { InputIDs, InputsRegistry, InputTypes } from '../../core/modules/InputValidator/InputsRegistry.js';
 import { Router } from '../../core/modules/Router/Router.js';
@@ -18,8 +19,10 @@ const onSubmit = (event) => {
     userThunks.login(new LoginUserDTO(inputsRegistry.value(InputIDs.Email), inputsRegistry.value(InputIDs.Password)))
   );
 
-  store.onOnce(userActions.loginSuccess, () => Router.navigateTo(URL.Feed));
-  store.onOnce(userActions.loginFailure, ({ payload }) => console.log(payload.err));
+  store.oneOf(
+    createReaction(userActions.login.success, () => Router.navigateTo(URL.Feed)),
+    createReaction(userActions.login.failure, ({ payload }) => console.log(payload.err))
+  );
 };
 
 const reducer = {

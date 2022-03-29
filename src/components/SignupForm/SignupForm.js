@@ -1,4 +1,5 @@
 import { URL } from '../../core/constants/constants.js';
+import { createReaction } from '../../core/models/Action/Action.js';
 import { createComponent } from '../../core/models/Component/Component.js';
 import { InputIDs, InputsRegistry, InputTypes } from '../../core/modules/InputValidator/InputsRegistry.js';
 import { Router } from '../../core/modules/Router/Router.js';
@@ -25,8 +26,10 @@ const onSubmit = (event) => {
     )
   );
 
-  store.onOnce(userActions.signupSuccess, () => Router.navigateTo(URL.Feed));
-  store.onOnce(userActions.signupFailure, ({ payload }) => console.log(payload.err));
+  store.oneOf(
+    createReaction(userActions.signup.success, () => Router.navigateTo(URL.Feed)),
+    createReaction(userActions.signup.failure, ({ payload }) => console.log(payload.err))
+  );
 };
 
 const reducer = {

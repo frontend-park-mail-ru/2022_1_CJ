@@ -6,6 +6,6 @@ Handlebars.registerHelper('component', (name, context) => {
   setTimeout(() => {
     component.onShow(context);
   });
-  store.subscribe(component.onAction);
+  store.subscribe(component.onAction); // TODO: think of how to unsubscribe this
   return component.render(context);
 });

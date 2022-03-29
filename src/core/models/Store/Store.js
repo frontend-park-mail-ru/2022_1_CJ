@@ -34,9 +34,22 @@ export const createStore = (reducer, initialState, enhancer = null) => {
     store.listeners(wrapper);
   };
 
-  store.onOnce = (actionType, listener) => {
+  store.oneOf = (...reactions) => {
     const wrapper = (action) => {
-      if (action.type === actionType) {
+      for (const { type, listener } of reactions.values()) {
+        if (action.type === type) {
+          listener(action);
+          store.listeners.splice(store.listeners.indexOf(wrapper), 1);
+          break;
+        }
+      }
+    };
+    store.listeners.push(wrapper);
+  };
+
+  store.once = ({ type, listener }) => {
+    const wrapper = (action) => {
+      if (action.type === type) {
         listener(action);
         store.listeners.splice(store.listeners.indexOf(wrapper), 1);
       }
