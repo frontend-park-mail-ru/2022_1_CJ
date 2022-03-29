@@ -7,37 +7,41 @@ export const userInitialState = {
 };
 
 export const userActions = {
-  login: {
-    success: 'loginSuccess',
-    failure: 'loginFailure'
-  },
-
   signup: {
     success: 'signupSuccess',
     failure: 'signupFailure'
   },
 
+  login: {
+    success: 'loginSuccess',
+    failure: 'loginFailure'
+  },
+
+  logout: {
+    success: (state) => {
+      state.user = null;
+      return state;
+    },
+
+    failure: 'logoutFailure'
+  },
+
   getUserData: {
-    success: 'getUserDataSuccess',
-    failure: 'getUserDataFailure'
+    success: (state, payload) => {
+      state.user = payload.user;
+      return state;
+    },
+
+    failure: (state, payload) => {
+      state.user = null;
+      console.log(payload.err); // TODO: handle error
+      return state;
+    }
   },
 
   getFeedPosts: {
     success: 'getFeedPostsSuccess',
     failure: 'getFeedPostsFailure'
-  }
-};
-
-export const userReducers = {
-  getUserDataSuccess: (state, payload) => {
-    state.user = payload.user;
-    return state;
-  },
-
-  getUserDataFailure: (state, payload) => {
-    state.user = null;
-    console.log(payload.err); // TODO: handle error
-    return state;
   }
 };
 
@@ -52,6 +56,12 @@ export const userThunks = {
     AuthAPI.LoginUser(dto).then(
       () => next(createAction(userActions.login.success)),
       (err) => next(createAction(userActions.login.failure), { err })
+    ),
+
+  logout: (next) =>
+    AuthAPI.LogoutUser().then(
+      () => next(createAction(userActions.logout.success)),
+      (err) => next(createAction(userActions.logout.failure), { err })
     ),
 
   getUserData: (next) =>

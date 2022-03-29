@@ -1,4 +1,4 @@
-import './core/helpers/helpers.js';
+import './core/helpers/handlebars.js';
 
 import { Router } from './core/modules/Router/Router.js';
 import { URL } from './core/constants/constants.js';

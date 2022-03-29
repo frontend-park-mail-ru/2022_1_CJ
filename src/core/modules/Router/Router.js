@@ -1,3 +1,5 @@
+import { Janitor } from '../Janitor/Janitor.js';
+
 const ParameterRegExp = /:(\w+)/g;
 const SolidStringPattern = '(.+)';
 const EscapedURLDelimiter = '\\/';
@@ -68,6 +70,7 @@ class Router {
    */
   navigateTo(path) {
     window.history.pushState(null, null, path);
+    Janitor.cleanup();
     this.#route();
   }
 
