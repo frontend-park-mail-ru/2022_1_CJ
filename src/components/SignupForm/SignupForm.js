@@ -1,9 +1,10 @@
 import { URL } from '../../core/constants/constants.js';
+import { createReaction } from '../../core/models/Action/Action.js';
 import { createComponent } from '../../core/models/Component/Component.js';
 import { InputIDs, InputsRegistry, InputTypes } from '../../core/modules/InputValidator/InputsRegistry.js';
 import { Router } from '../../core/modules/Router/Router.js';
 import { SignupUserDTO } from '../../core/network/dto/auth.js';
-import { userActions, userStore, userThunks } from '../../stores/UserStore.js';
+import { actions, store, thunks } from '../../store/store.js';
 
 const inputsRegistry = new InputsRegistry();
 
@@ -14,8 +15,8 @@ const onSubmit = (event) => {
     return;
   }
 
-  userStore.dispatch(
-    userThunks.signup(
+  store.dispatch(
+    thunks.user.signup(
       new SignupUserDTO(
         inputsRegistry.value(InputIDs.Email),
         inputsRegistry.value(InputIDs.FirstName),
@@ -25,16 +26,10 @@ const onSubmit = (event) => {
     )
   );
 
-  userStore.once(({ type, payload }) => {
-    switch (type) {
-      case userActions.signupSuccess:
-        Router.navigateTo(URL.Feed);
-        break;
-      case userActions.signupFailure:
-        console.log(payload.err); // TODO:
-        break;
-    }
-  });
+  store.once(
+    createReaction(actions.user.signup.success, () => Router.navigateTo(URL.Feed)),
+    createReaction(actions.user.signup.failure, ({ payload }) => console.log(payload.err))
+  );
 };
 
 const reducer = {

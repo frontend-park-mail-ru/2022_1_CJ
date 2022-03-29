@@ -1,9 +1,11 @@
 import { ComponentsRegistry } from '../../components/registry.js';
+import { store } from '../../store/store.js';
 
 Handlebars.registerHelper('component', (name, context) => {
   const component = ComponentsRegistry[name];
   setTimeout(() => {
-    component.onShow();
+    component.onShow(context);
   });
+  store.subscribe(component.onAction); // TODO: think of how to unsubscribe this
   return component.render(context);
 });
