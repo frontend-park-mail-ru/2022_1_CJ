@@ -1,0 +1,60 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": ["eslint:recommended", "plugin:import/recommended", "plugin:prettier/recommended"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["prettier"],
+  "rules": {
+    "no-undef": "warn",
+    "no-unused-vars": "warn",
+    "no-useless-escape": "warn",
+    "prettier/prettier": "warn",
+
+    // Best Practices //
+    "default-case": "warn",
+    "guard-for-in": "warn",
+    "no-alert": "error",
+    "no-caller": "error",
+    "no-div-regex": "warn",
+    "no-eval": "error",
+    "no-extend-native": "error",
+    "no-extra-bind": "error",
+    "no-floating-decimal": "error",
+    "no-implied-eval": "error",
+    "no-iterator": "error",
+    "no-labels": "error",
+    "no-lone-blocks": "error",
+    "no-loop-func": "error",
+    "no-multi-str": "warn",
+    "no-global-assign": "error",
+    "no-new": "error",
+    "no-new-func": "error",
+    "no-new-wrappers": "error",
+    "no-octal-escape": "error",
+    "no-process-env": "error",
+    "no-proto": "error",
+    "no-return-assign": "error",
+    "no-script-url": "error",
+    "no-self-compare": "error",
+    "no-sequences": "error",
+    "no-throw-literal": "error",
+    "no-unused-expressions": "error",
+    "no-warning-comments": "warn",
+    "no-with": "error",
+    "radix": "error",
+
+    // Variables //
+    "no-label-var": "error",
+    "no-undef-init": "error",
+    "no-use-before-define": ["error", "nofunc"],
+
+    // ECMAScript 6 //
+    "no-var": "error"
+  },
+  "ignorePatterns": ["dist", "precompiled", "handlebars.runtime.min.js"]
+}

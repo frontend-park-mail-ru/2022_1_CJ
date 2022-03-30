@@ -2,8 +2,8 @@ import { applyMiddlewares, createStore } from '../core/models/Store/Store.js';
 import { loggerMiddleware, thunkMiddleware } from './middlewares/middlewares.js';
 import { userActions, userInitialState, userThunks } from './models/user.js';
 
-const storeInitialState = () => {
-  userInitialState;
+const storeInitialState = {
+  userInitialState
 };
 
 export const actions = {
