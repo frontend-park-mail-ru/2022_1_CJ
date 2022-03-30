@@ -44,9 +44,9 @@
   --ff-sans: "Poppins", sans-serif;
 
   /* border-radiuses */
-  --br-main__rem: 0.5rem;
+  --br-primary__rem: 0.5rem;
+  --br-primary__px: 8px;
   --br-secondary__rem: 0.25rem;
-  --br-main__px: 8px;
   --br-circle: 50%;
 
   /* box-shadows */
@@ -295,7 +295,7 @@ select {
 }
 
 .border-4 {
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .border-8 {
@@ -353,7 +353,7 @@ select {
 
 .block {
   background-color: var(--clr-white);
-  border-radius: var(--br-main__rem);
+  border-radius: var(--br-primary__rem);
   box-shadow: var(--bs-secondary);
 }
 

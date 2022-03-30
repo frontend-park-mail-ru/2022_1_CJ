@@ -47,11 +47,14 @@
 .friends-menu > p, .groups-menu > p {
     grid-area: title;
 }
+
+.friend-element, .group-element {
+    padding-top: 0.5rem;
+    display: block;
+    text-align: center;
+    border-radius: var(--br-secondary__rem);
+}
 .friend-element > .icon, .group-element > .icon {
     margin: auto;
     height: 3rem;
-}
-.friend-element, .group-element {
-    display: block;
-    text-align: center;
 }

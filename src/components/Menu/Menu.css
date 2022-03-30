@@ -6,7 +6,7 @@
     font-size: var(--font-size-h2);
 }
 
-.main-menu > a {
+.txt-decor-none {
     text-decoration: none;
 }
 

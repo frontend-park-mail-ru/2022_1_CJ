@@ -36,5 +36,5 @@
     grid-gap: 0.25rem;
     justify-content: left;
     align-items: center;
-    border-radius: var(--br-main__rem);
+    border-radius: var(--br-primary__rem);
 }

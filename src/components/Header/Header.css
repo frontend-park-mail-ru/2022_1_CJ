@@ -103,7 +103,7 @@
   position: absolute;
 
   background-color: var(--clr-white);
-  border-radius: 0 0 var(--br-main__rem) var(--br-main__rem);
+  border-radius: 0 0 var(--br-primary__rem) var(--br-primary__rem);
   box-shadow: var(--bs-primary);
 }
 
