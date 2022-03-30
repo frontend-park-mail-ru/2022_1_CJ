@@ -8,6 +8,7 @@ import { notFoundController } from './controllers/NotFound.js';
 import { logoutController } from './controllers/Logout.js';
 import { baseController } from './controllers/Base.js';
 import { feedController } from './controllers/Feed.js';
+import { profileController } from './controllers/Profile.js';
 
 const root = document.getElementById('root');
 
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   Router.route(URL.Login, loginController);
   Router.route(URL.Logout, logoutController);
   Router.route(URL.Feed, feedController);
+  Router.route(URL.Profile, profileController);
 
   Router.setNotFoundController(notFoundController);
 

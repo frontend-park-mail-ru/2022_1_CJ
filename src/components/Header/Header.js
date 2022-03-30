@@ -25,20 +25,33 @@ const showSettings = (e) => {
 
     if (!profileMenu.style.display || profileMenu.style.display === 'none') {
         showElement(profileMenu);
-        // profileMenu.style.display = 'none';
-    } else {
+    } 
+    else {
         hideElement(profileMenu);
-        // profileMenu.style.display = 'block';
     }
     // TODO: close on click to any outside area
-    console.log(e.currentTarget);
 }
 
 const reducer = {
     onShow: () => {
-        console.log('HYYYYYYYYYY');
         const profile = document.querySelector('.profile');
         profile.addEventListener('click', showSettings);
+
+        let profileSettings = profile.nextElementSibling;
+
+        document.addEventListener('click', (e) => {
+            const withinBoundaries = e.composedPath().includes(profileSettings);
+            const profileBoundaries = e.composedPath().includes(profile);
+            if ( !withinBoundaries && !profileBoundaries  ) {
+                profileSettings.style.display = 'none'; // скрываем элемент т к клик был за его пределами
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if( e.keyCode == 27 ){ // код клавиши Escape, но можно использовать e.key
+                profileSettings.style.display = 'none';
+            }
+        });
     }
 };
 

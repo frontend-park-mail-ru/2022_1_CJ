@@ -33,6 +33,7 @@
   --fs-700: 1.75rem;
   --fs-600: 1.5rem;
   --fs-500: 1.25rem;
+  --fs-450: 1.125rem;
   --fs-400: 1rem;
   --fs-350: 0.875rem;
   --fs-300: 0.75rem;
@@ -83,6 +84,7 @@ html:focus-within {
   line-height: 1.5;
   text-rendering: optimizeSpeed;
   cursor: default;
+  user-select: none;
 
   font-family: var(--ff-sans);
   font-size: var(--fs-400);
@@ -105,12 +107,12 @@ a:not([class]) {
   text-decoration-skip-ink: auto;
 }
 
-hr {
+hr {    
   border: 0; 
   height: 0.0625rem; 
   box-sizing: content-box; 
   display: block;
-  background-color: var(--hover-color-main);
+  background-color: var(--clr-text-35);
 }
 
 img,
@@ -145,13 +147,16 @@ select {
 /* -------------------------------- Utility Classes -------------------------------- */
 
 /* ---------------- General ---------------- */
-
 .icon {
   height: 2rem;
   aspect-ratio: 1 / 1;
   border-radius: var(--br-circle);
 } 
 
+.selectable {
+  user-select: text;
+}
+/* main classes */
 .flex {
   display: flex;
   gap: var(--gap, 1rem);
@@ -425,3 +430,25 @@ select {
 
 /* .alerts {
 } */
+
+/* -------------- Container --------------- */
+
+.container {
+  top: 5rem;
+  height:100%;
+
+  overflow-y: scroll;
+}
+.container > * {
+  padding: 1rem 0.5rem;
+  font-size: var(--fs-400);
+}
+
+.container > .left {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container > .middle {
+  height: min-content;
+}

@@ -4,7 +4,7 @@ import { createComponent } from '../../core/models/Component/Component.js';
  * 
  * @param {Object} obj 
  */
-const showHideLogic = (obj) => {
+const changeVisibility = (obj) => {
   if (!obj.style.visibility || obj.style.visibility === 'visible') {
     obj.style.visibility = 'hidden';
   } 
@@ -12,7 +12,6 @@ const showHideLogic = (obj) => {
     obj.style.visibility = 'visible';
   }
 }
-
 
 /**
  *
@@ -48,10 +47,10 @@ const changeLike = (e) => {
     }
   }
 
-  const likeImg = e.currentTarget.firstElementChild; // get like Object
+  const likeImg = e.currentTarget.firstElementChild;   // get like Object
   const likesField = e.currentTarget.lastElementChild; // get likes field Object
   let likesCount = +likesField.innerHTML;
-  const image = likeImg.src.split('/').pop(); // get like.jpg
+  const image = likeImg.src.split('/').pop();    // get like.jpg
   let [imageName, extension] = image.split('.'); // get imageName = like, extension = jpg
 
   if (imageName.endsWith('_pressed')) {
@@ -62,7 +61,6 @@ const changeLike = (e) => {
     likesCount += 1;
   }
   let likesStr = convertor(likesCount);
-  // console.log(likesStr);
   likesField.innerHTML = likesStr; // likesField get new number
   // TODO: send new likes count to backend
 };
@@ -88,17 +86,15 @@ const getComments = (e) => {
   }
 
   const comments = e.currentTarget.parentElement.nextElementSibling;
-  // console.log(comments.style.display);
+
   if (!comments.style.display || comments.style.display === 'none') {
     showElement(comments);
-    // comments.style.display = 'none';
-  } else {
+  } 
+  else {
     hideElement(comments);
-    // comments.style.display = 'block';
   }
   // TODO: asking back for first 25 comments
   // create such elements and add them to comments section
-  console.log(e.currentTarget);
 };
 
 /**
@@ -109,28 +105,16 @@ const openReposts = (e) => {
   const reply = e.currentTarget.parentElement.previousElementSibling;
 
   if (!reply.style.display || reply.style.display === 'none') {
-    // showElement(comments);
     reply.style.display = 'grid';
-  } else {
-    // hideElement(comments);
+  } 
+  else {
     reply.style.display = 'none';
   }
   // TODO: asking back for all user friends and group ids
   // add first 15 to reply section
   // we also need to make search probably, but
   // this will mean that we will ask back for all ids at once
-  console.log(e.currentTarget);
 };
-
-/**
- * 
- * @param {Event} e 
- */
-const showSettings = (e) => {
-  const settingsInfo = e.currentTarget.nextElementSibling;
-  console.log(settingsInfo);
-  showHideLogic(settingsInfo);
-}
 
 /**
  * 
@@ -139,15 +123,20 @@ const showSettings = (e) => {
  const showText = (e) => {
   const moreText = e.currentTarget;
   let titleText = moreText.previousElementSibling;
-  // console.log(titleText);
-  // console.log(titleText.style);
+
   if (titleText.style.height != 'min-content') {
     titleText.style.height = 'min-content';
     moreText.innerHTML = 'hide text';
-  } else {
-    titleText.style.height = '4.5rem';
-    moreText.innerHTML = 'more text...';
+    return;
+  } 
+  // else
+  if (document.querySelector('.profile-feed')) {
+    titleText.style.height = '4rem';
   }
+  else {
+    titleText.style.height = '4.5rem';
+  }
+  moreText.innerHTML = 'more text...';
 }
 
 /**
@@ -162,24 +151,17 @@ const reducer = {
   onShow: () => {
     // const post = document.getElementById(post.id)
     const currPost = document.querySelectorAll('.post')[0];
-    // console.log(currPost);
     const reactions = currPost.querySelectorAll('.reactions .btn-like');
-    // console.log(reactions);
     const [like, comment, repost] = reactions;
-    // console.log(like, comment, repost);
+
     like.addEventListener('click', changeLike);
     comment.addEventListener('click', getComments);
-    repost.addEventListener('click', openReposts);
+    // repost.addEventListener('click', openReposts);
 
-    // const settings = document.querySelector('.settings');
-    // settings.addEventListener('mouseover', showSettings);
-    // const settingsInfo = document.querySelector('.settings-info');
-    // settingsInfo.addEventListener('mouseleave', showHideLogic);
-
-    const moreText = document.querySelector('.title .link');
+    const moreText = currPost.querySelector('.title .link');
     moreText.addEventListener('click', showText);
 
-    const author = document.querySelector('.author .info .link');
+    const author = currPost.querySelector('.author .info .link');
     author.addEventListener('click', showAuthorPage);
   }
 };

@@ -1,6 +1,6 @@
 .profile-content {
     width: 12.75rem;
-    top: 0;
+    top: 0.75rem;
     position: sticky;
 
     display: grid;
@@ -11,24 +11,26 @@
 }
 
 .profile-content > div > p {
-    font-size: var(--font-size-h2);
+    font-size: var(--fs-450);
 }
 
 .post-add {
-    padding: 0.5rem;
+    padding: 0.25rem;
 
     display: flex;
     justify-content: center;
     align-items: center;
 }
+.post-add > img {
+    height: 2.25rem;
+}
 .post-add > p {
-    padding: 0.5rem;
-    
-    color: var(--text-color-priority);
+    padding: 0.5rem; 
+    color: var(--clr-primary);
 }
 
 .friends-menu, .groups-menu {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem;
 
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -40,12 +42,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: var(--font-size-h4);
+    font-size: var(--fs-350);
 }
 .friends-menu > p, .groups-menu > p {
     grid-area: title;
 }
-.friend-element > .avatar, .group-element > .avatar {
+.friend-element > .icon, .group-element > .icon {
+    margin: auto;
     height: 3rem;
 }
 .friend-element, .group-element {
