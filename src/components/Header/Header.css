@@ -85,9 +85,3 @@
   border-radius: 0 0 var(--br-primary__rem) var(--br-primary__rem);
   box-shadow: var(--bs-primary);
 }
-
-.header__search-bar {
-  width: 20ch;
-  cursor: text;
-  padding: 0.25rem 0.5rem;
-}

@@ -178,14 +178,6 @@ select {
   text-align: center;
 }
 
-.flex-r {
-  flex-direction: row;
-}
-
-.flex-c {
-  flex-direction: column;
-}
-
 .items-center {
   align-items: center;
 }
@@ -527,6 +519,7 @@ input {
 /* ---------------- Icons ---------------- */
 
 .icon {
-  aspect-ratio: 1;
-  width: 1rem;
+  height: 2rem;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--br-circle);
 }
