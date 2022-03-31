@@ -1,41 +1,41 @@
-<header class="primary-header bg-white grid">
-    <div class="left">
-        <img id="logo" src="sources/svg/Logo CJ.svg" alt="">
+<header class='primary-header bg-white grid'>
+  <div class='left'>
+    <img id='logo' src='sources/svg/Logo CJ.svg' alt='' />
+  </div>
+  {{#if user}}
+    <div class='middle'>
+      <div class='search'>
+        <img src='../sources/icons/search.svg' alt='' />
+        <input type='search' class='search' placeholder='search' />
+      </div>
+      <div class='btn-like'>
+        <img src='../sources/icons/notifications.svg' alt='' class='icon' />
+      </div>
     </div>
-    {{#if user}}
-        <div class="middle">
-            <div class="search">
-                <img src="../sources/icons/search.svg" alt="">
-                <input type="search" class="search" placeholder="search">
-            </div>
-            <div class="btn-like">
-                <img src="../sources/icons/notifications.svg" alt="" class="icon">
-            </div>
-        </div>
-        <div class="right">
-            <div class="profile btn-like">
-                {{!-- <img class="avatar" src={{user.avatar}} alt=""> --}}
-                <img class="icon avatar" src="../../sources/images/E802C8F6-13EE-4316-917E-1CAD52CE1899_4_5005_c.jpeg" alt="">
-                <img class="icon" src="../sources/icons/arrow_right.svg" alt="">
-                {{!-- <p>{{user.name}}</p> --}}
-                <p>John Doe</p>
-            </div>
-            <div class="menu">
-                {{!-- <div class="profile">
+    <div class='right'>
+      <div class='profile btn-like'>
+        {{!-- <img class="avatar" src={{user.avatar}} alt=""> --}}
+        <img class='icon avatar' src='../../sources/images/E802C8F6-13EE-4316-917E-1CAD52CE1899_4_5005_c.jpeg' alt='' />
+        <img class='icon' src='../sources/icons/arrow_right.svg' alt='' />
+        {{!-- <p>{{user.name}}</p> --}}
+        <p>John Doe</p>
+      </div>
+      <div class='menu'>
+        {{! <div class="profile">
                     <img class="avatar" src="../sources/images/E802C8F6-13EE-4316-917E-1CAD52CE1899_4_5005_c.jpeg" alt="">
                     <img class="icon" src="../sources/icons/arrow_down_primary.svg" alt="">
                     <p>John Doe</p>
-                </div> --}}
-                <!-- <hr> -->
-                <div class="element btn-like">
-                    <img src="../sources/icons/settings.svg" alt="">
-                    <p>Settings</p>  
-                </div>
-                <div class="element btn-like">
-                    <img src="../sources/icons/exit_grey.svg" alt="">
-                    <p>Sign out</p>
-                </div>
-            </div>
+                </div> }}
+        <!-- <hr> -->
+        <div class='element btn-like'>
+          <img src='../sources/icons/settings.svg' alt='' />
+          <p>Settings</p>
         </div>
-    {{/if}}
+        <div class='element btn-like'>
+          <img src='../sources/icons/exit_grey.svg' alt='' />
+          <p>Sign out</p>
+        </div>
+      </div>
+    </div>
+  {{/if}}
 </header>

@@ -11,5 +11,5 @@ export const ViewsRegistry = {
   Login: loginView(Handlebars.templates.Login),
   Feed: feedView(Handlebars.templates.Feed),
   NotFound: notFoundView(Handlebars.templates.NotFound),
-  Profile: profileView(Handlebars.templates.Profile),
+  Profile: profileView(Handlebars.templates.Profile)
 };

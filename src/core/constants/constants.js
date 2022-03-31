@@ -4,7 +4,7 @@ export const URL = {
   Login: '/login',
   Feed: '/feed',
   Logout: '/logout',
-  Profile: '/profile',
+  Profile: '/profile'
 };
 
 export const HttpStatus = {

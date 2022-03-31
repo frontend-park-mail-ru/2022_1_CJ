@@ -1,20 +1,20 @@
 .main-menu {
-    height: min-content;
-    width: auto;
-    position: absolute;
+  height: min-content;
+  width: auto;
+  position: absolute;
 
-    font-size: var(--font-size-h2);
+  font-size: var(--font-size-h2);
 }
 
 .txt-decor-none {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .element {
-    width: auto;
-    display: flex;
-    align-items: center;
+  width: auto;
+  display: flex;
+  align-items: center;
 }
 .element > p {
-    padding: 0 1rem;
+  padding: 0 1rem;
 }

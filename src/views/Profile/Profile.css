@@ -1,42 +1,41 @@
 /* container */
 #profile {
-    grid-template-columns:  minmax(13rem, 1fr) 41.25rem minmax(16rem, 1fr);
+  grid-template-columns: minmax(13rem, 1fr) 41.25rem minmax(16rem, 1fr);
 }
 
 .profile-container {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto auto;
-    grid-template-areas: "info info" "menu feed" ". feed";
-    grid-gap: 0.75rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas: 'info info' 'menu feed' '. feed';
+  grid-gap: 0.75rem;
 }
 
 .profile-feed {
-    display: grid;
-    grid-gap: 1rem;
-    
-    grid-area: feed;
-}
+  display: grid;
+  grid-gap: 1rem;
 
+  grid-area: feed;
+}
 
 .profile-feed .post {
-    grid-template-rows: 3.25rem auto;
-    font-size: var(--fs-350);
-    grid-gap: 0.5rem;
+  grid-template-rows: 3.25rem auto;
+  font-size: var(--fs-350);
+  grid-gap: 0.5rem;
 }
 .profile-feed .author .icon {
-    height: 3.25rem;
+  height: 3.25rem;
 }
 .profile-feed .author .info {
-    padding: 0.25rem 0.75rem;
-    grid-gap: unset;
+  padding: 0.25rem 0.75rem;
+  grid-gap: unset;
 }
 .profile-feed .post .title {
-    font-size: var(--fs-350);
+  font-size: var(--fs-350);
 }
 .profile-feed .title > p:first-child {
-    height: 4rem;
+  height: 4rem;
 }
 .profile-feed .reactions .icon {
-    height: 1.25rem;
+  height: 1.25rem;
 }

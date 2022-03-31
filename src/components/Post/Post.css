@@ -1,65 +1,67 @@
 /*   Post   */
 .post {
-    padding: 1rem;
-    height: min-content;
-    width: auto;
+  padding: 1rem;
+  height: min-content;
+  width: auto;
 
-    grid-template-rows: 5rem auto auto auto;
-    position: relative;
+  grid-template-rows: 5rem auto auto auto;
+  position: relative;
 }
 
 .header {
-    display: grid;
-    grid-template-columns: auto auto min-content;
-    grid-template-rows: auto auto;
-    grid-template-areas: "author . settings" ". . settings";
+  display: grid;
+  grid-template-columns: auto auto min-content;
+  grid-template-rows: auto auto;
+  grid-template-areas: 'author . settings' '. . settings';
 }
 
 .header > .author {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    grid-area: author;
+  grid-area: author;
 }
 .author > .icon {
-    height: 4rem;
+  height: 4rem;
 }
 .author > .info {
-    padding: 0.75rem 1rem;
+  padding: 0.75rem 1rem;
 
-    display: grid;
-    grid-template-rows: repeat(2, 1fr);
-    grid-gap: 0.5rem;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 0.5rem;
 }
 
 .info > p:first-child {
-    color: var(--clr-secondary);
+  color: var(--clr-secondary);
 }
 
 .info > p:last-child {
-    color: var(--clr-text-35);
+  color: var(--clr-text-35);
 }
 
 .settings-container {
-    height: min-content;
-    grid-area: settings;
-    position: relative;
-    display: inline-block;
+  height: min-content;
+  grid-area: settings;
+  position: relative;
+  display: inline-block;
 }
 
-.settings-container:hover .settings-info {display: block;}
+.settings-container:hover .settings-info {
+  display: block;
+}
 
 .settings-container > .settings {
-    display: flex;
-    justify-content: right;
+  display: flex;
+  justify-content: right;
 
-    /* grid-area: settings; */
+  /* grid-area: settings; */
 
-    /* border-radius: var(--border-radius-primary); */
+  /* border-radius: var(--border-radius-primary); */
 }
 .settings > .btn {
-    width: auto;
-    padding: 0;
+  width: auto;
+  padding: 0;
 }
 
 /* .settings:hover + .settings-info {
@@ -68,83 +70,83 @@
 } */
 
 .settings-info {
-    display: none;
-    padding: 0.5rem 0;
-    position: relative;
-    justify-self: end;
+  display: none;
+  padding: 0.5rem 0;
+  position: relative;
+  justify-self: end;
 
-    /* grid-area: settings-info; */
+  /* grid-area: settings-info; */
 
-    box-shadow: var(--bs-secondary);
+  box-shadow: var(--bs-secondary);
 }
 
 .settings-info > .element {
-    padding: 0.5rem 1rem;
-    justify-content: center;
+  padding: 0.5rem 1rem;
+  justify-content: center;
 }
 
 .title {
-    height: min-content;
-    font-size: var(--fs-400);
+  height: min-content;
+  font-size: var(--fs-400);
 }
 
 .title > p:first-child {
-    width: 100%;
-    height: 4.5rem;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
+  width: 100%;
+  height: 4.5rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
 }
 
 .content > * {
-    height: auto;
-    max-height: 37rem;
-    width: 100%;
-    aspect-ratio: unset;
+  height: auto;
+  max-height: 37rem;
+  width: 100%;
+  aspect-ratio: unset;
 }
 
 .reactions {
-    display: grid;
-    grid-template-columns: repeat(3, auto) 1fr auto;
-    grid-template-areas: "like comment repost . watch";
-    grid-gap: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, auto) 1fr auto;
+  grid-template-areas: 'like comment repost . watch';
+  grid-gap: 0.5rem;
 }
 .reactions > * {
-    padding: 0.35rem 0.5rem;
-    display: grid;
-    grid-template-columns: min-content 1fr;
-    grid-gap: 0.5rem;
-    align-items: center;
-    text-align: center;
+  padding: 0.35rem 0.5rem;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-gap: 0.5rem;
+  align-items: center;
+  text-align: center;
 }
 .reactions .icon {
-    height: 1.5rem;
+  height: 1.5rem;
 }
 .like {
-    grid-area: like;
+  grid-area: like;
 }
 .comment {
-    grid-area: comment;
+  grid-area: comment;
 }
 .repost {
-    grid-area: repost;
+  grid-area: repost;
 }
 .watch {
-    grid-area: watch;
+  grid-area: watch;
 }
 
 .comments-section {
-    display: none;
-    /* animation: 3s ease-in 1s 2 reverse both paused slidein; */
+  display: none;
+  /* animation: 3s ease-in 1s 2 reverse both paused slidein; */
 }
 .comments-section > p {
-    margin: 0.35rem;
-    text-align: center;
+  margin: 0.35rem;
+  text-align: center;
 }
 
 .comments-section .icon {
-    height: 2.5rem;
-    align-items: unset;
+  height: 2.5rem;
+  align-items: unset;
 }
 
 /* .comments-list {
@@ -153,34 +155,34 @@
 } */
 
 .single-comment .icon {
-    margin-top: 0.5rem;
+  margin-top: 0.5rem;
 }
 .single-comment.grid {
-    grid-template-columns: auto auto;
-    grid-gap: unset;
+  grid-template-columns: auto auto;
+  grid-gap: unset;
 }
 .single-comment * {
-    font-size: var(--fs-300);
+  font-size: var(--fs-300);
 }
 .single-comment > .info {
-    padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0.5rem;
 
-    display: block;
-    grid-gap: 0.125rem;
+  display: block;
+  grid-gap: 0.125rem;
 }
 
 .user-comment {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    grid-gap: 0.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  grid-gap: 0.5rem;
 }
 .user-comment input {
-    padding: 0.25rem 0.5rem;
-    font-size: var(--fs-350);
-    height: min-content;
+  padding: 0.25rem 0.5rem;
+  font-size: var(--fs-350);
+  height: min-content;
 }
 .user-comment .icon:last-child {
-    height: 1.75rem;
-    border-radius: var(--br-secondary__rem);
+  height: 1.75rem;
+  border-radius: var(--br-secondary__rem);
 }

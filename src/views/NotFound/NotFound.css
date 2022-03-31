@@ -1,12 +1,12 @@
 #not-found {
-    width: auto;
+  width: auto;
 
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
 }
 
 #not-found > p {
-    font-size: 10rem;
+  font-size: 10rem;
 }
