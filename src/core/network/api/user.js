@@ -1,3 +1,4 @@
+import { getMockImages, getMockPostMessage } from '../../../test/mocks.js';
 import { CodedError } from '../../constants/errors.js';
 import { fetchAPI } from './common.js';
 
@@ -21,6 +22,11 @@ export const UserAPI = {
   },
 
   async GetFeedPosts() {
-    return { posts: ['mock', 'mock'] };
+    return {
+      posts: [
+        { author_id: 'id', message: getMockPostMessage(), images: getMockImages() },
+        { author_id: 'id', message: getMockPostMessage(), images: getMockImages() }
+      ]
+    };
   }
 };
