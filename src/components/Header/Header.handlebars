@@ -1,8 +1,15 @@
-<header class='primary-header bg-white flex'>
+<header class='header bg-white flex'>
   <a class='ff-sans fs-700 fw-700 letter-spacing-1 text-shadow text-primary text-no-decoration' href='/' data-link>
     CJ
   </a>
   {{#if user}}
+    <div class='flex'>
+      <img class='icon' src='{{icon "notifications"}}' alt='notifications icon' />
+      <div class='header__search-bar flex border-no-style border-4 bg-background'>
+        <img class='icon' src='{{icon "search"}}' alt='search icon' />
+        <input class='border-no-style bg-transparent' type='text' placeholder='Search' />
+      </div>
+    </div>
     <a class='link' href='/logout' data-link>Logout</a>
   {{else}}
     <a class='link' href='/login' data-link>Sign in</a>

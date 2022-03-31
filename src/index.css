@@ -33,6 +33,12 @@
   /* font-families */
   --ff-serif: 'Poppins', serif;
   --ff-sans: 'Poppins', sans-serif;
+
+  /* border */
+  --border-radius: 8px;
+
+  /* input */
+  --input-padding: 0.5rem;
 }
 
 /* -------------------------------- Basic Settings -------------------------------- */
@@ -119,6 +125,22 @@ select {
   gap: var(--gap, 1rem);
 }
 
+.flex-r {
+  flex-direction: row;
+}
+
+.flex-c {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-stretch {
+  align-items: stretch;
+}
+
 .grid {
   display: grid;
   gap: var(--gap, 1rem);
@@ -130,7 +152,6 @@ select {
 
 .grid-c {
   grid-auto-flow: column;
-  align-items: center;
 }
 
 .d-block {
@@ -139,6 +160,10 @@ select {
 
 .flow > *:where(:not(:first-child)) {
   margin-top: var(--flow-space, 1rem);
+}
+
+.fit-content {
+  height: fit-content;
 }
 
 .container {
@@ -165,8 +190,16 @@ select {
   background-color: hsl(var(--clr-secondary));
 }
 
+.bg-background {
+  background-color: hsl(var(--clr-bg));
+}
+
 .bg-white {
   background-color: hsl(var(--clr-white));
+}
+
+.bg-transparent {
+  background-color: transparent;
 }
 
 .text-negative {
@@ -277,20 +310,29 @@ select {
 }
 
 .border-4 {
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .border-8 {
   border-radius: 8px;
 }
 
+.border-no-style {
+  outline: none;
+  border-style: none;
+}
+
 /* ---------------- Inputs ---------------- */
+
+input {
+  overflow: auto;
+}
 
 .input-field {
   width: 100%;
   border-style: none;
-  border-radius: 8px;
-  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  padding: var(--input-padding);
   color: hsl(var(--clr-text) / 0.75);
   outline: 1px solid hsl(var(--clr-border));
 }
@@ -351,7 +393,7 @@ select {
   outline: none;
   width: fit-content;
   padding: 0.5rem 2rem;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   cursor: pointer;
 }
 
@@ -392,4 +434,11 @@ select {
 
 .btn-transparent:hover {
   background-color: hsl(var(--clr-transparent-d));
+}
+
+/* ---------------- Icons ---------------- */
+
+.icon {
+  aspect-ratio: 1;
+  width: 1rem;
 }
