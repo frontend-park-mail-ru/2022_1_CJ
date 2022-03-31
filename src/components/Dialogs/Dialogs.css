@@ -1,5 +1,5 @@
 .dialogs > *:where(:not(:first-child)) {
-  border-top: 1px solid hsl(var(--clr-border));
+  border-top: 1px solid var(--clr-border);
 }
 
 .dialog {
