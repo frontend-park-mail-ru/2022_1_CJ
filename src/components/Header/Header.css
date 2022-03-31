@@ -1,14 +1,12 @@
-.primary-header  * {
+/* .primary-header  * {
   font-size: var(--fs-400);
   color: var(--clr-text-35);
-}
+} */
 
 .primary-header {
   height: 4rem;
   z-index: 1200;
-
   grid-template-columns:  minmax(13rem, 1fr) 41.25rem minmax(16rem, 1fr);
-
   box-shadow: var(--bs-primary);
 }
 /* navbar left */
@@ -23,10 +21,7 @@
 }
 /* navbar middle */
 .primary-header > .middle {
-  display: flex;
   justify-content: space-evenly;
-  align-items: center;
-  text-align: center;
 }
 
 .middle > .search {
@@ -41,59 +36,43 @@
   border-radius: 0.75rem;
 }
 
-.search > * {
-  color: var(--clr-primary);
+.search-part {
   background: var(--clr-bg);
 }
 
-.search > img {
-  height: 2rem;
-}
-
-.search > input {
+.search-input {
   height: auto;
   width: 100%;
   border: none;
   outline: none;
-
-  text-align: center;
+  color: var(--clr-primary);
 }
 
 .middle > .btn-like {
   min-height: 100%;
   max-height: 100%;
   aspect-ratio: 1 / 1;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
-
 /* navbar right */
-
 .profile {
   padding: 0.5rem;
   height: auto;
   width: 12rem;
   float: left;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
 }
 
-.profile > .avatar {
+.profile-avatar {
   height: 3rem;
 }
-.profile > .icon:nth-child(2) {
+.profile-btn {
   margin: 0.5rem;
 }
-.profile p {
-  width: max-content;
+.profile-name {
+  width: max-content; 
+  /* if name is very long we have to change this */
 }
 
-.menu {
+.profile-menu {
   display: none;
   /* change display to block */
   top: 4rem;
@@ -105,17 +84,4 @@
   background-color: var(--clr-white);
   border-radius: 0 0 var(--br-primary__rem) var(--br-primary__rem);
   box-shadow: var(--bs-primary);
-}
-
-.menu > .element {
-  padding: 0.5rem 1rem;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.menu > .element:nth-child(2) > p {
-  color: var(--text-color-secondary)
 }

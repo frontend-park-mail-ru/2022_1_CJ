@@ -1,5 +1,5 @@
 /* container */
-#profile {
+.profile-page {
     grid-template-columns:  minmax(13rem, 1fr) 41.25rem minmax(16rem, 1fr);
 }
 

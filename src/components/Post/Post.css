@@ -3,7 +3,6 @@
     padding: 1rem;
     height: min-content;
     width: auto;
-
     grid-template-rows: 5rem auto auto auto;
     position: relative;
 }
@@ -18,7 +17,6 @@
 .header > .author {
     display: flex;
     align-items: center;
-
     grid-area: author;
 }
 .author > .icon {
@@ -26,17 +24,16 @@
 }
 .author > .info {
     padding: 0.75rem 1rem;
-
     display: grid;
     grid-template-rows: repeat(2, 1fr);
     grid-gap: 0.5rem;
 }
 
-.info > p:first-child {
+.author-name {
     color: var(--clr-secondary);
 }
 
-.info > p:last-child {
+.post-date {
     color: var(--clr-text-35);
 }
 
@@ -79,7 +76,6 @@
 }
 
 .settings-info > .element {
-    padding: 0.5rem 1rem;
     justify-content: center;
 }
 
@@ -88,7 +84,7 @@
     font-size: var(--fs-400);
 }
 
-.title > p:first-child {
+.title-text {
     width: 100%;
     height: 4.5rem;
     overflow: hidden;
@@ -96,7 +92,7 @@
     -webkit-line-clamp: 3;
 }
 
-.content > * {
+.content-part {
     height: auto;
     max-height: 37rem;
     width: 100%;
@@ -109,7 +105,7 @@
     grid-template-areas: "like comment repost . watch";
     grid-gap: 0.5rem;
 }
-.reactions > * {
+.reactions-part {
     padding: 0.35rem 0.5rem;
     display: grid;
     grid-template-columns: min-content 1fr;
@@ -137,7 +133,7 @@
     display: none;
     /* animation: 3s ease-in 1s 2 reverse both paused slidein; */
 }
-.comments-section > p {
+.comments-section-title {
     margin: 0.35rem;
     text-align: center;
 }
@@ -159,14 +155,15 @@
     grid-template-columns: auto auto;
     grid-gap: unset;
 }
-.single-comment * {
-    font-size: var(--fs-300);
-}
 .single-comment > .info {
     padding: 0.25rem 0.5rem;
 
     display: block;
     grid-gap: 0.125rem;
+}
+
+.single-comment > .info > .link {
+    color: var(--clr-seconadry);
 }
 
 .user-comment {

@@ -22,7 +22,7 @@
     font-size: var(--fs-350);
 }
 
-.main-info > * {
+.main-info-part {
     align-items: center;
 }
 
@@ -33,11 +33,10 @@
 
 .user-online {
     color: var(--clr-secondary);
-
     justify-content: flex-end;
 }
 
-.user-status > p {
+.user-status > .selectable {
     font-size: var(--fs-300);
     color: var(--clr-text-35);
 }
@@ -62,7 +61,7 @@
     background-color: var(--clr-primary);
 }
 
-.user-main-info > p {
+.user-main-info > .link {
     margin: auto;
 }
 

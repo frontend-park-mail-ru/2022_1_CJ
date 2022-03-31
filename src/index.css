@@ -156,10 +156,26 @@ select {
 .selectable {
   user-select: text;
 }
+
+.txt-decor-none {
+  text-decoration: none;
+}
+.element {
+  padding: 0.5rem 1rem;
+}
+.element-text {
+  padding: 0 1rem;
+}
 /* main classes */
 .flex {
   display: flex;
   gap: var(--gap, 1rem);
+}
+.flex-c {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .grid {
@@ -210,6 +226,8 @@ select {
 .text-primary { color: var(--clr-primary); }
 
 .text-secondary { color: var(--clr-secondry); }
+
+.text-light { color: var(--clr-text-35); }
 
 .text-white { color: var(--clr-white); }
 
@@ -430,7 +448,11 @@ select {
 
 /* .alerts {
 } */
-
+/* -------------- Unavalable -------------- */
+.unavailable {
+  background: var(--clr-text-35);
+  cursor: default;
+}
 /* -------------- Container --------------- */
 
 .container {
