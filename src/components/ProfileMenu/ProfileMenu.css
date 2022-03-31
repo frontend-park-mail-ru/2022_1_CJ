@@ -11,46 +11,46 @@
 }
 
 .profile-content-part-title {
-    font-size: var(--fs-450);
+  font-size: var(--fs-450);
 }
 
 .post-add {
-    padding: 0.25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  padding: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .post-add > .icon {
-    height: 2.25rem;
+  height: 2.25rem;
 }
 .post-add > .profile-content-part-title {
-    padding: 0.5rem; 
-    color: var(--clr-primary);
+  padding: 0.5rem;
+  color: var(--clr-primary);
 }
 
 .social-menu {
-    padding: 0.5rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 2rem;
-    grid-template-areas: "title title";
-    grid-gap: 0.5rem;
+  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2rem;
+  grid-template-areas: 'title title';
+  grid-gap: 0.5rem;
 }
 
 .social-menu > .profile-content-part-title {
-    grid-area: title;
+  grid-area: title;
 }
 
 .social-menu-element {
-    padding-top: 0.5rem;
-    display: block;
-    text-align: center;
-    border-radius: var(--br-secondary__rem);
+  padding-top: 0.5rem;
+  display: block;
+  text-align: center;
+  border-radius: var(--br-secondary__rem);
 }
 .social-menu-element > .selectable {
-    font-size: var(--fs-350);
+  font-size: var(--fs-350);
 }
 .social-menu-element > .icon {
-    margin: auto;
-    height: 3rem;
+  margin: auto;
+  height: 3rem;
 }

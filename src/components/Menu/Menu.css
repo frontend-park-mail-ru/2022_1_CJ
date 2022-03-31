@@ -1,15 +1,16 @@
 .main-menu {
-    height: min-content;
-    width: auto;
-    position: absolute;
+  height: min-content;
+  width: auto;
+  position: absolute;
 }
 
 .main-menu-element {
-    width: auto;
-    display: flex;
-    align-items: center;
+  width: auto;
+  display: flex;
+  align-items: center;
 }
 
-.main-menu-element > .icon, .main-menu-element > .element-text {
-    pointer-events: none;
+.main-menu-element > .icon,
+.main-menu-element > .element-text {
+  pointer-events: none;
 }

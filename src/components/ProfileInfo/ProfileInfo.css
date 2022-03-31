@@ -23,7 +23,7 @@
 }
 
 .main-info-part {
-    align-items: center;
+  align-items: center;
 }
 
 .user-header {
@@ -32,13 +32,13 @@
 }
 
 .user-online {
-    color: var(--clr-secondary);
-    justify-content: flex-end;
+  color: var(--clr-secondary);
+  justify-content: flex-end;
 }
 
 .user-status > .selectable {
-    font-size: var(--fs-300);
-    color: var(--clr-text-35);
+  font-size: var(--fs-300);
+  color: var(--clr-text-35);
 }
 
 .user-info {
@@ -62,7 +62,7 @@
 }
 
 .user-main-info > .link {
-    margin: auto;
+  margin: auto;
 }
 
 .user-menu {
