@@ -1,5 +1,13 @@
-{{#component 'Header' .}}{{/component}}
+<header class="primary-header bg-white grid feed-page">
+    {{#component 'Header' .}}{{/component}}
+</header>
 
-<div class='container'>
-  {{#component 'Dialogs' .}}{{/component}}
+<div class="container grid feed-page">
+    <div class="left">
+        {{#component 'Menu' .}}{{/component}}
+    </div>
+    <div class="middle grid">
+        {{#component 'Dialogs' .}}{{/component}}
+    </div>
+    <div class="right"></div>
 </div>

@@ -489,9 +489,14 @@ input {
 
 /* .alerts {
 } */
-/* -------------- Unavalable -------------- */
-.unavailable {
-  background: var(--clr-text-35);
+/* -------------- Unavailable -------------- */
+.__disabled {
+  background: none;
+  cursor: default;
+  opacity: 0.5;
+}
+.__disabled:hover {
+  background: none;
   cursor: default;
 }
 /* -------------- Container --------------- */

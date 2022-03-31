@@ -14,5 +14,5 @@ export const ViewsRegistry = {
   Feed: feedView(Handlebars.templates.Feed),
   NotFound: notFoundView(Handlebars.templates.NotFound),
   Profile: profileView(Handlebars.templates.Profile),
-  Messenger: messengerView(Handlebars.templates.Messenger)
+  Messenger: messengerView(Handlebars.templates.Messenger),
 };

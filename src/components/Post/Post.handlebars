@@ -3,7 +3,9 @@
     <div class='author'>
       <img class='icon' src='static/images/E802C8F6-13EE-4316-917E-1CAD52CE1899_4_5005_c.jpeg' alt='' />
       <div class='info'>
+        <p class='link selectable author-name'>{{Post.authorName}}</p>
         <p class='link selectable author-name'>John Doe</p>
+        <p class='selectable text-light'>{{Post.timeCreated}}</p>
         <p class='selectable text-light'>yeaterday at 20:43</p>
       </div>
     </div>
@@ -12,10 +14,10 @@
         <img src='static/icons/arrow_down.svg' alt='' class='btn' />
       </div>
       <div class='settings-info block'>
-        <div class='element btn-like'>
+        <div class='element btn-like __disabled'>
           <p class='element-text'>Complain</p>
         </div>
-        <div class='element btn-like'>
+        <div class='element btn-like __disabled'>
           <p class='element-text'>Hide post</p>
         </div>
       </div>
@@ -35,12 +37,13 @@
     <div class='like block reactions-part btn-like'>
       <img src='static/icons/like.svg' alt='' class='icon' />
       <p>497</p>
+      <p>497</p>
     </div>
     <div class='comment block reactions-part btn-like'>
       <img src='static/icons/comment.svg' alt='' class='icon' />
       <p>comment</p>
     </div>
-    <div class='reaction block reactions-part btn-like'>
+    <div class='reaction block reactions-part btn-like __disabled'>
       <img src='static/icons/repost.svg' alt='' class='icon' />
       <p>repost</p>
     </div>
