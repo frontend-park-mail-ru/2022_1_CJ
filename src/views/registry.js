@@ -1,7 +1,9 @@
+/* eslint-disable no-undef */
 import '../dist/views.js';
 
 import { feedView } from './Feed/FeedView.js';
 import { loginView } from './Login/LoginView.js';
+import { messengerView } from './Messenger/Messenger.js';
 import { notFoundView } from './NotFound/NotFoundView.js';
 import { signupView } from './Signup/SignupView.js';
 import { profileView } from './Profile/ProfileView.js';
@@ -11,5 +13,6 @@ export const ViewsRegistry = {
   Login: loginView(Handlebars.templates.Login),
   Feed: feedView(Handlebars.templates.Feed),
   NotFound: notFoundView(Handlebars.templates.NotFound),
-  Profile: profileView(Handlebars.templates.Profile)
+  Profile: profileView(Handlebars.templates.Profile),
+  Messenger: messengerView(Handlebars.templates.Messenger)
 };

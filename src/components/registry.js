@@ -1,5 +1,7 @@
+/* eslint-disable no-undef */
 import '../dist/components.js';
 
+import { dialogsComponent } from './Dialogs/Dialogs.js';
 import { headerComponent } from './Header/Header.js';
 import { loginFormComponent } from './LoginForm/LoginForm.js';
 import { postComponent } from './Post/Post.js';
@@ -19,5 +21,6 @@ export const ComponentsRegistry = {
   PostGroup: postGroupComponent(Handlebars.templates.PostGroup),
   ProfileInfo: profileInfoComponent(Handlebars.templates.ProfileInfo),
   ProfileMenu: profileMenuComponent(Handlebars.templates.ProfileMenu),
-  ModalReplies: modalRepliesComponent(Handlebars.templates.ModalReplies)
+  ModalReplies: modalRepliesComponent(Handlebars.templates.ModalReplies),
+  Dialogs: dialogsComponent(Handlebars.templates.Dialogs)
 };

@@ -1,34 +1,38 @@
-<div class="left">
-    <img id="logo" src="sources/svg/Logo CJ.svg" alt="">
+<div class='left'>
+  <img id='logo' src='sources/svg/Logo CJ.svg' alt='' />
 </div>
 {{#if user}}
-    <div class="middle flex-c">
-        <div class="search">
-            <img class="icon search-part" src="../sources/icons/search.svg" alt="">
-            <input class="search-part search-input" type="search" placeholder="search">
-        </div>
-        <div class="flex-c btn-like">
-            <img class="icon" src="../sources/icons/notifications.svg" alt="">
-        </div>
+  <div class='middle flex-c'>
+    <div class='search'>
+      <img class='icon search-part' src='../sources/icons/search.svg' alt='' />
+      <input class='search-part search-input' type='search' placeholder='search' />
     </div>
-    <div class="right">
-        <div class="profile flex-c btn-like">
-            {{!-- <img class="avatar" src={{user.avatar}} alt=""> --}}
-            <img class="icon profile-avatar" src="../../sources/images/E802C8F6-13EE-4316-917E-1CAD52CE1899_4_5005_c.jpeg" alt="">
-            <img class="icon profile-btn" src="../sources/icons/arrow_right.svg" alt="">
-            {{!-- <p>{{user.name}}</p> --}}
-            <p class="profile-name text-light">John Doe</p>
-        </div>
-        <div class="profile-menu">
-            <!-- <hr> -->
-            <a class="element flex-c btn-like">
-                <img src="../sources/icons/settings.svg" alt="">
-                <p class="text-light element-text">Settings</p>  
-            </a>
-            <a class="element flex-c btn-like txt-decor-none" href='/logout' data-link>
-                <img src="../sources/icons/exit_grey.svg" alt="">
-                <p class="text-light element-text">Sign out</p>
-            </a>
-        </div>
+    <div class='flex-c btn-like'>
+      <img class='icon' src='../sources/icons/notifications.svg' alt='' />
     </div>
+  </div>
+  <div class='right'>
+    <div class='profile flex-c btn-like'>
+      {{!-- <img class="avatar" src={{user.avatar}} alt=""> --}}
+      <img
+        class='icon profile-avatar'
+        src='../../sources/images/E802C8F6-13EE-4316-917E-1CAD52CE1899_4_5005_c.jpeg'
+        alt=''
+      />
+      <img class='icon profile-btn' src='../sources/icons/arrow_right.svg' alt='' />
+      {{!-- <p>{{user.name}}</p> --}}
+      <p class='profile-name text-light'>John Doe</p>
+    </div>
+    <div class='profile-menu'>
+      <!-- <hr> -->
+      <a class='element flex-c btn-like'>
+        <img src='../sources/icons/settings.svg' alt='' />
+        <p class='text-light element-text'>Settings</p>
+      </a>
+      <a class='element flex-c btn-like txt-decor-none' href='/logout' data-link>
+        <img src='../sources/icons/exit_grey.svg' alt='' />
+        <p class='text-light element-text'>Sign out</p>
+      </a>
+    </div>
+  </div>
 {{/if}}

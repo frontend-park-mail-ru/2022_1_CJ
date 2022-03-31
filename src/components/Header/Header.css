@@ -6,7 +6,7 @@
 .primary-header {
   height: 4rem;
   z-index: 1200;
-  grid-template-columns:  minmax(13rem, 1fr) 35rem minmax(16rem, 1fr);
+  grid-template-columns: minmax(13rem, 1fr) 35rem minmax(16rem, 1fr);
   box-shadow: var(--bs-primary);
 }
 /* navbar left */
@@ -68,7 +68,7 @@
   margin: 0.5rem;
 }
 .profile-name {
-  width: max-content; 
+  width: max-content;
   /* if name is very long we have to change this */
 }
 
@@ -84,4 +84,10 @@
   background-color: var(--clr-white);
   border-radius: 0 0 var(--br-primary__rem) var(--br-primary__rem);
   box-shadow: var(--bs-primary);
+}
+
+.header__search-bar {
+  width: 20ch;
+  cursor: text;
+  padding: 0.25rem 0.5rem;
 }

@@ -178,6 +178,22 @@ select {
   text-align: center;
 }
 
+.flex-r {
+  flex-direction: row;
+}
+
+.flex-c {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-stretch {
+  align-items: stretch;
+}
+
 .grid {
   display: grid;
   gap: var(--gap, 1rem);
@@ -189,7 +205,6 @@ select {
 
 .grid-c {
   grid-auto-flow: column;
-  align-items: center;
 }
 
 .d-block {
@@ -199,12 +214,6 @@ select {
 .flow > *:where(:not(:first-child)) {
   margin-top: var(--flow-space, 1rem);
 }
-
-/* .container {
-  padding-inline: 2em;
-  margin-inline: auto;
-  max-width: 80rem;
-} */
 
 /* ---------------- Colors ---------------- */
 
@@ -224,11 +233,18 @@ select {
   background-color: var(--clr-secondary);
 }
 
+.bg-background {
+  background-color: hsl(var(--clr-bg));
+}
+
 .bg-white {
   background-color: var(--clr-white);
 }
 
-/* text */
+.bg-transparent {
+  background-color: transparent;
+}
+
 .text-negative {
   color: var(--clr-negative);
 }
@@ -245,9 +261,13 @@ select {
   color: var(--clr-secondry);
 }
 
-.text-light { color: var(--clr-text-35); }
+.text-light {
+  color: var(--clr-text-35);
+}
 
-.text-white { color: var(--clr-white); }
+.text-white {
+  color: var(--clr-white);
+}
 
 .text-shadow {
   text-shadow: 0px 1px 1px;
@@ -340,7 +360,16 @@ select {
   border-radius: 8px;
 }
 
+.border-no-style {
+  outline: none;
+  border-style: none;
+}
+
 /* ---------------- Inputs ---------------- */
+
+input {
+  overflow: auto;
+}
 
 .input-field {
   width: 100%;
@@ -414,7 +443,7 @@ select {
   outline: none;
   width: fit-content;
   padding: 0.5rem 2rem;
-  border-radius: 8px;
+  border-radius: var(--br-primary__px);
   cursor: pointer;
 }
 
@@ -493,4 +522,11 @@ select {
 
 .container > .middle {
   height: min-content;
+}
+
+/* ---------------- Icons ---------------- */
+
+.icon {
+  aspect-ratio: 1;
+  width: 1rem;
 }
