@@ -15,10 +15,11 @@ export const AuthAPI = {
   async SignupUser(dto) {
     const body = JSON.stringify(dto);
     const response = await fetchAPI(authMethods.signup, 'POST', body);
+    const json = await response.json();
     if (!response.ok) {
-      throw new CodedError(response.statusText, response.status);
+      throw new CodedError(json.message, json.code);
     }
-    return response.json();
+    return json;
   },
 
   /**
@@ -28,10 +29,11 @@ export const AuthAPI = {
   async LoginUser(dto) {
     const body = JSON.stringify(dto);
     const response = await fetchAPI(authMethods.login, 'POST', body);
+    const json = await response.json();
     if (!response.ok) {
-      throw new CodedError(response.statusText, response.status);
+      throw new CodedError(json.message, json.code);
     }
-    return response.json();
+    return json;
   },
 
   /**
@@ -39,8 +41,9 @@ export const AuthAPI = {
    */
   async LogoutUser() {
     const response = await fetchAPI(authMethods.logout, 'DELETE', null);
+    const json = await response.json();
     if (!response.ok) {
-      return new CodedError(response.statusText, response.status);
+      throw new CodedError(json.message, json.code);
     }
     return null;
   }

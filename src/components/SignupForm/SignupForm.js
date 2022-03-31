@@ -1,4 +1,5 @@
 import { URL } from '../../core/constants/constants.js';
+import { handleError } from '../../core/helpers/errors.js';
 import { createReaction } from '../../core/models/Action/Action.js';
 import { createComponent } from '../../core/models/Component/Component.js';
 import { InputIDs, InputsRegistry, InputTypes } from '../../core/modules/InputValidator/InputsRegistry.js';
@@ -28,7 +29,7 @@ const onSubmit = (event) => {
 
   store.once(
     createReaction(actions.user.signup.success, () => Router.navigateTo(URL.Feed)),
-    createReaction(actions.user.signup.failure, ({ payload }) => console.log(payload.err))
+    createReaction(actions.user.signup.failure, ({ payload }) => handleError(payload.err))
   );
 };
 

@@ -1,4 +1,5 @@
 import { URL } from '../core/constants/constants.js';
+import { handleError } from '../core/helpers/errors.js';
 import { createReaction } from '../core/models/Action/Action.js';
 import { createController } from '../core/models/Controller/Controller.js';
 import { Router } from '../core/modules/Router/Router.js';
@@ -8,7 +9,7 @@ const reducer = () => {
   store.dispatch(thunks.user.logout);
   store.once(
     createReaction(actions.user.logout.success, () => Router.navigateTo(URL.Login)),
-    createReaction(actions.user.logout.failure, ({ err }) => console.log(err))
+    createReaction(actions.user.logout.failure, ({ err }) => handleError(err))
   );
 };
 

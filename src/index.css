@@ -66,8 +66,8 @@
   box-sizing: border-box;
 }
 
-ul[role='list'],
-ol[role='list'] {
+ul,
+ol {
   list-style: none;
 }
 
