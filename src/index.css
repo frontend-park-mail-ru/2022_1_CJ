@@ -234,7 +234,7 @@ select {
 }
 
 .bg-background {
-  background-color: hsl(var(--clr-bg));
+  background-color: var(--clr-bg);
 }
 
 .bg-white {
