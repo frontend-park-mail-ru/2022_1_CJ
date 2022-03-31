@@ -1,17 +1,16 @@
 import { createComponent } from '../../core/models/Component/Component.js';
 
 /**
- * 
- * @param {Object} obj 
+ *
+ * @param {Object} obj
  */
 const changeVisibility = (obj) => {
   if (!obj.style.visibility || obj.style.visibility === 'visible') {
     obj.style.visibility = 'hidden';
-  } 
-  else {
+  } else {
     obj.style.visibility = 'visible';
   }
-}
+};
 
 /**
  *
@@ -47,10 +46,10 @@ const changeLike = (e) => {
     }
   }
 
-  const likeImg = e.currentTarget.firstElementChild;   // get like Object
+  const likeImg = e.currentTarget.firstElementChild; // get like Object
   const likesField = e.currentTarget.lastElementChild; // get likes field Object
   let likesCount = +likesField.innerHTML;
-  const image = likeImg.src.split('/').pop();    // get like.jpg
+  const image = likeImg.src.split('/').pop(); // get like.jpg
   let [imageName, extension] = image.split('.'); // get imageName = like, extension = jpg
 
   if (imageName.endsWith('_pressed')) {
@@ -89,8 +88,7 @@ const getComments = (e) => {
 
   if (!comments.style.display || comments.style.display === 'none') {
     showElement(comments);
-  } 
-  else {
+  } else {
     hideElement(comments);
   }
   // TODO: asking back for first 25 comments
@@ -106,8 +104,7 @@ const openReposts = (e) => {
 
   if (!reply.style.display || reply.style.display === 'none') {
     reply.style.display = 'grid';
-  } 
-  else {
+  } else {
     reply.style.display = 'none';
   }
   // TODO: asking back for all user friends and group ids
@@ -117,10 +114,10 @@ const openReposts = (e) => {
 };
 
 /**
- * 
- * @param {Event} e 
+ *
+ * @param {Event} e
  */
- const showText = (e) => {
+const showText = (e) => {
   const moreText = e.currentTarget;
   let titleText = moreText.previousElementSibling;
 
@@ -128,24 +125,21 @@ const openReposts = (e) => {
     titleText.style.height = 'min-content';
     moreText.innerHTML = 'hide text';
     return;
-  } 
+  }
   // else
   if (document.querySelector('.profile-feed')) {
     titleText.style.height = '4rem';
-  }
-  else {
+  } else {
     titleText.style.height = '4.5rem';
   }
   moreText.innerHTML = 'more text...';
-}
+};
 
 /**
- * 
- * @param {Event} e 
+ *
+ * @param {Event} e
  */
-const showAuthorPage = (e) => {
-
-}
+const showAuthorPage = (e) => {};
 
 const reducer = {
   onShow: () => {

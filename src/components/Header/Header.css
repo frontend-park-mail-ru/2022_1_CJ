@@ -6,7 +6,7 @@
 .primary-header {
   height: 4rem;
   z-index: 1200;
-  grid-template-columns:  minmax(13rem, 1fr) 41.25rem minmax(16rem, 1fr);
+  grid-template-columns:  minmax(13rem, 1fr) 35rem minmax(16rem, 1fr);
   box-shadow: var(--bs-primary);
 }
 /* navbar left */

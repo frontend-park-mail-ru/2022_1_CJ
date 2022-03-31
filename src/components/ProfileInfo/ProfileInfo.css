@@ -1,25 +1,25 @@
 .profile-info {
-    padding: 0.75rem;
+  padding: 0.75rem;
 
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-gap: 0.75rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 0.75rem;
 
-    grid-area: info;
+  grid-area: info;
 }
 .profile-info > .icon {
-    height: 11.25rem;
-    width: max-content;
+  height: 11.25rem;
+  width: max-content;
 
-    border-radius: var(--br-primary__rem);
+  border-radius: var(--br-primary__rem);
 }
 
 .main-info {
-    display: grid;
-    grid-template-rows: 1.5rem 1.125rem auto 3rem;
+  display: grid;
+  grid-template-rows: 1.5rem 1.125rem auto 3rem;
 }
 .main-info p {
-    font-size: var(--fs-350);
+  font-size: var(--fs-350);
 }
 
 .main-info-part {
@@ -27,8 +27,8 @@
 }
 
 .user-header {
-    display: grid;
-    grid-template-columns: 1fr auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
 }
 
 .user-online {
@@ -42,23 +42,23 @@
 }
 
 .user-info {
-    display: grid;
-    grid-template-rows: 1fr 1fr 2.625rem;
+  display: grid;
+  grid-template-rows: 1fr 1fr 2.625rem;
 }
 
 .user-birth {
-    display: grid;
-    grid-template-columns: 1fr auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
 }
 
 .user-main-info {
-    height: 100%;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 .user-main-info > hr {
-    background-color: var(--clr-primary);
+  background-color: var(--clr-primary);
 }
 
 .user-main-info > .link {
@@ -66,19 +66,19 @@
 }
 
 .user-menu {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .user-menu > .element {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    text-align: center;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 .user-menu > .element:first-child {
-    border-radius: 0 0 0 var(--br-primary__rem);
+  border-radius: 0 0 0 var(--br-primary__rem);
 }
 .user-menu > .element:last-child {
-    border-radius: 0 0 var(--br-primary__rem) 0;
+  border-radius: 0 0 var(--br-primary__rem) 0;
 }

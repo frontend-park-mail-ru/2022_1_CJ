@@ -19,5 +19,5 @@ export const ComponentsRegistry = {
   PostGroup: postGroupComponent(Handlebars.templates.PostGroup),
   ProfileInfo: profileInfoComponent(Handlebars.templates.ProfileInfo),
   ProfileMenu: profileMenuComponent(Handlebars.templates.ProfileMenu),
-  ModalReplies: modalRepliesComponent(Handlebars.templates.ModalReplies),
+  ModalReplies: modalRepliesComponent(Handlebars.templates.ModalReplies)
 };
