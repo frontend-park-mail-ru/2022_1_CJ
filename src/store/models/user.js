@@ -1,6 +1,7 @@
 import { UserAPI } from '../../core/network/api/user.js';
 import { createAction } from '../../core/models/Action/Action.js';
 import { AuthAPI } from '../../core/network/api/auth.js';
+import { handleError } from '../../core/helpers/errors.js';
 
 export const userInitialState = {
   user: null
@@ -34,7 +35,7 @@ export const userActions = {
 
     failure: (state, payload) => {
       state.user = null;
-      console.log(payload.err); // TODO: handle error
+      handleError(payload.err);
       return state;
     }
   },
@@ -49,19 +50,19 @@ export const userThunks = {
   signup: (dto) => (next) =>
     AuthAPI.SignupUser(dto).then(
       () => next(createAction(userActions.signup.success)),
-      (err) => next(createAction(userActions.signup.failure), { err })
+      (err) => next(createAction(userActions.signup.failure, { err }))
     ),
 
   login: (dto) => (next) =>
     AuthAPI.LoginUser(dto).then(
       () => next(createAction(userActions.login.success)),
-      (err) => next(createAction(userActions.login.failure), { err })
+      (err) => next(createAction(userActions.login.failure, { err }))
     ),
 
   logout: (next) =>
     AuthAPI.LogoutUser().then(
       () => next(createAction(userActions.logout.success)),
-      (err) => next(createAction(userActions.logout.failure), { err })
+      (err) => next(createAction(userActions.logout.failure, { err }))
     ),
 
   getUserData: (next) =>
