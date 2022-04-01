@@ -12,8 +12,7 @@ export const UserAPI = {
    * @returns {Promise<[JSON, CodedError]>}
    */
   async GetUserData(dto) {
-    const body = JSON.stringify(dto);
-    const response = await fetchAPI(userMethods.getData, 'POST', body);
+    const response = await fetchAPI(userMethods.getData, 'GET', { query: dto });
     const json = await response.json();
     if (!response.ok) {
       throw new CodedError(json.message, json.code);
@@ -24,8 +23,8 @@ export const UserAPI = {
   async GetFeedPosts() {
     return {
       posts: [
-        { author_id: 'id', message: getMockPostMessage(), images: getMockImages() },
-        { author_id: 'id', message: getMockPostMessage(), images: getMockImages() }
+        { authorID: 'post-id1', message: getMockPostMessage(), images: getMockImages() },
+        { authorID: 'post-id1', message: getMockPostMessage(), images: getMockImages() }
       ]
     };
   }

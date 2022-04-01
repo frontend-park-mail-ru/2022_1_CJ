@@ -7,14 +7,7 @@
         {{#component 'Menu' .}}{{/component}}
     </div>
     <div class="middle grid">
-        {{#each posts}}
-            {{#component 'Post' .}}{{/component}}
-        {{/each}}
-        {{#component 'Post' .}}{{/component}}
-        {{#component 'Post' .}}{{/component}}
-        {{#component 'Post' .}}{{/component}}
+        {{#component 'PostGroup' .}}{{/component}}
     </div>
     <div class="right"></div>
 </div>
-
-{{!-- {{#component 'ModalReplies' .}}{{/component}} --}}

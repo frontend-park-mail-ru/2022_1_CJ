@@ -142,7 +142,7 @@ const showText = (e) => {
 const showAuthorPage = (e) => {};
 
 const reducer = {
-  onShow: () => {
+  onShow: (post) => {
     // const post = document.getElementById(post.id)
     const currPost = document.querySelectorAll('.post')[0];
     const reactions = currPost.querySelectorAll('.reactions .btn-like');

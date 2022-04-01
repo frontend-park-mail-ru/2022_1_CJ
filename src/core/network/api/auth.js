@@ -1,4 +1,5 @@
 import { CodedError } from '../../constants/errors.js';
+import { httpMethod } from '../../constants/network.js';
 import { fetchAPI } from './common.js';
 
 const authMethods = {
@@ -14,7 +15,7 @@ export const AuthAPI = {
    */
   async SignupUser(dto) {
     const body = JSON.stringify(dto);
-    const response = await fetchAPI(authMethods.signup, 'POST', body);
+    const response = await fetchAPI(authMethods.signup, httpMethod.POST, { body });
     const json = await response.json();
     if (!response.ok) {
       throw new CodedError(json.message, json.code);
@@ -28,7 +29,7 @@ export const AuthAPI = {
    */
   async LoginUser(dto) {
     const body = JSON.stringify(dto);
-    const response = await fetchAPI(authMethods.login, 'POST', body);
+    const response = await fetchAPI(authMethods.login, httpMethod.POST, { body });
     const json = await response.json();
     if (!response.ok) {
       throw new CodedError(json.message, json.code);
@@ -40,7 +41,7 @@ export const AuthAPI = {
    * @returns {Promise<CodedError>}
    */
   async LogoutUser() {
-    const response = await fetchAPI(authMethods.logout, 'DELETE', null);
+    const response = await fetchAPI(authMethods.logout, httpMethod.DELETE, null);
     const json = await response.json();
     if (!response.ok) {
       throw new CodedError(json.message, json.code);
