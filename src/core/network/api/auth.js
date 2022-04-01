@@ -41,7 +41,7 @@ export const AuthAPI = {
    * @returns {Promise<CodedError>}
    */
   async LogoutUser() {
-    const response = await fetchAPI(authMethods.logout, httpMethod.DELETE, null);
+    const response = await fetchAPI(authMethods.logout, httpMethod.DELETE);
     const json = await response.json();
     if (!response.ok) {
       throw new CodedError(json.message, json.code);

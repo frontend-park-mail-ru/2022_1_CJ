@@ -8,7 +8,7 @@ const defaultOptions = {
   }
 };
 
-export const fetchAPI = (url, method, options) => {
+export const fetchAPI = (url, method, options = {}) => {
   if (method === httpMethod.GET || method === httpMethod.DELETE) {
     const searchParams = new URLSearchParams(options.query || {});
     return fetch(`${url}?${searchParams.toString()}`, { method, ...defaultOptions });
