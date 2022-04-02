@@ -17,5 +17,5 @@ export const controllersRegistry = {
   profileSettings: profileSettingsController,
   messenger: messengerController,
   notFound: notFoundController,
-  logout: logoutController,
+  logout: logoutController
 };

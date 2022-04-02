@@ -1,7 +1,3 @@
-import { createComponent } from '../../core/models/Component/Component.js';
+import { createView } from '../../core/models/View/View.js';
 
-const reducer = {
-  onShow: () => {}
-};
-
-export const profileSettingsView = (template) => createComponent(template, reducer);
+export const profileSettingsView = (template) => createView(template);
