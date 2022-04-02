@@ -3,7 +3,7 @@ import { loggerMiddleware, thunkMiddleware } from './middlewares/middlewares.js'
 import { userActions, userInitialState, userThunks } from './models/user.js';
 
 const storeInitialState = {
-  userInitialState
+  ...userInitialState
 };
 
 export const actions = {
