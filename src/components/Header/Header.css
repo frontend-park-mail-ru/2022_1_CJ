@@ -1,15 +1,9 @@
-/* .primary-header  * {
-  font-size: var(--fs-400);
-  color: var(--clr-text-35);
-} */
-
 .primary-header {
   height: 4rem;
   z-index: 1200;
-  grid-template-columns: minmax(13rem, 1fr) 35rem minmax(16rem, 1fr);
   box-shadow: var(--bs-primary);
 }
-/* navbar left */
+
 .primary-header > .left {
   height: 4rem;
 }
@@ -19,7 +13,7 @@
   max-height: 100%;
   float: right;
 }
-/* navbar middle */
+
 .primary-header > .middle {
   justify-content: space-evenly;
 }
@@ -55,7 +49,7 @@
 .middle > .btn-like > .icon {
   height: 1.6rem;
 }
-/* navbar right */
+
 .profile {
   padding: 0.5rem;
   height: auto;
