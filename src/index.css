@@ -505,13 +505,11 @@ input {
 /* -------------- Unavailable -------------- */
 .__disabled {
   pointer-events: none;
-  background: none;
   cursor: default;
   opacity: 0.5;
 }
 
 .__disabled:hover {
-  background: none;
   cursor: default;
 }
 

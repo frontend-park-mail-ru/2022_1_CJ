@@ -103,6 +103,8 @@
 }
 /* end of textarea class */
 .save-info {
+    display: flex;
+    justify-content: space-evenly;
     padding: 1rem;
 }
 .save-info > .block {
@@ -115,5 +117,7 @@
     height: 2rem;
     display: flex;
     align-items: center;
+}
+#save-settings-btn {
     color: var(--clr-text-35);
 }
