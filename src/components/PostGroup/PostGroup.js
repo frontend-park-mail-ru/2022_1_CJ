@@ -1,3 +1,4 @@
+import { renderComponent } from '../../core/helpers/component.js';
 import { handleError } from '../../core/helpers/errors.js';
 import { createReaction } from '../../core/models/Action/Action.js';
 import { createComponent } from '../../core/models/Component/Component.js';
@@ -13,7 +14,7 @@ const loadPosts = (element) => {
       const { posts } = payload;
       const component = ComponentsRegistry.Post;
       Object.values(posts).forEach((post) => {
-        element.insertAdjacentHTML('beforeend', component.render({ post }));
+        element.insertAdjacentHTML('beforeend', renderComponent(component, { post }));
       });
     }),
     createReaction(actions.user.getFeedPosts.failure, ({ payload }) => handleError(payload.err))

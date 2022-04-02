@@ -30,15 +30,15 @@
   {{#if post.message}}
     <div class='title'>
       <p class='selectable title-text'>{{post.message}}</p>
-      {{!-- need to be checked somehow --}}
+      {{! need to be checked somehow }}
 
-      {{#if post.message.big}} 
+      {{#if post.message}}
         <p class='link'>more text...</p>
       {{/if}}
     </div>
   {{/if}}
   <div class='content'>
-    {{!-- still need logic to draw more than 1 images --}}
+    {{! still need logic to draw more than 1 images }}
 
     {{!-- {{#each post.images |image|}}
       <img class='content-part' src='{{image}}' alt='' />
@@ -65,7 +65,7 @@
       <p>1.25k</p>
     </div>
   </div>
-  {{!-- maybe we will need another commentGroup and comment components --}}
+  {{! maybe we will need another commentGroup and comment components }}
   <div class='comments-section'>
     <hr />
     <p class='comments-section-title'>comments section</p>
