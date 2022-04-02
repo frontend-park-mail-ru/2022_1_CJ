@@ -145,6 +145,10 @@ select {
   }
 }
 
+a[data-link] * {
+  pointer-events: none;
+}
+
 /* -------------------------------- Utility Classes -------------------------------- */
 
 /* ---------------- General ---------------- */
@@ -507,14 +511,10 @@ input {
 }
 
 .__disabled:hover {
-  pointer-events: none;
   background: none;
   cursor: default;
 }
 
-.__disabled * {
-  pointer-events: none;
-}
 /* -------------- Container --------------- */
 
 .container {
