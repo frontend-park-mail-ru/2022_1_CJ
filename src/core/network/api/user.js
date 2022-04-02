@@ -23,8 +23,38 @@ export const UserAPI = {
   async GetFeedPosts() {
     return {
       posts: [
-        { post_id: 'id256', author_id: 'id26', author_name: {first: 'Nar', last: 'Ick'}, message: getMockPostMessage(), images: getMockImages() },
-        { post_id: 'id123', author_id: 'id13', author_name: {first: 'Man', last: 'Stack'}, message: getMockPostMessage(), images: getMockImages() }
+        { 
+          id: 'id1',  
+          author: {
+            id: 'id3',
+            image: 'static/images/p1.jpeg',
+            name: {
+              first: 'Bob',
+              last: 'Dylan',
+            }, 
+          },
+          postedTime: 'yeaterday at 20:43',
+          message: getMockPostMessage(), 
+          images: getMockImages(),
+          likesCount: '455',
+          watchedCount: '800',
+        },
+        { 
+          id: 'id2',  
+          author: {
+            id: 'id4',
+            image: 'static/images/p2.png',
+            name: {
+              first: 'Harley',
+              last: 'Pocket',
+            }, 
+          },
+          postedTime: '11.03.2014 at 11:56',
+          message: getMockPostMessage(), 
+          images: getMockImages(),
+          likesCount: '12',
+          watchedCount: '40',
+        },
       ]
     };
   }

@@ -143,10 +143,16 @@ const showAuthorPage = (e) => {};
 
 const reducer = {
   onShow: (post) => {
+    console.log("POST IS HERE");
     // const post = document.getElementById(post.id)
-    const currPost = document.querySelectorAll('.post')[0];
+    const currPost = document.getElementById(post.id);
+
+    console.log(currPost);
+    
     const reactions = currPost.querySelectorAll('.reactions .btn-like');
     const [like, comment, repost] = reactions;
+
+    console.log(like, comment);
 
     like.addEventListener('click', changeLike);
     comment.addEventListener('click', getComments);
