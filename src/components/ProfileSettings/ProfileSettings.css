@@ -1,123 +1,122 @@
-
 .avatar-info {
-    text-align: center;
-    padding: 0.5rem;
-    display: grid;
-    grid-template-rows: 2rem 10rem 2rem;
-    grid-gap: 0.5rem;
+  text-align: center;
+  padding: 0.5rem;
+  display: grid;
+  grid-template-rows: 2rem 10rem 2rem;
+  grid-gap: 0.5rem;
 }
 .user-image {
-    height: 10rem;
-    border-radius: var(--br-primary__rem);
+  height: 10rem;
+  border-radius: var(--br-primary__rem);
 }
 .avatar-info > .link {
-    margin: auto;
+  margin: auto;
 }
 
 .settings-main-info {
-    padding: 2rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    grid-template-areas: "main-info-title main-info-title";
-    grid-gap: 0.75rem;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas: 'main-info-title main-info-title';
+  grid-gap: 0.75rem;
 }
 .settings-main-info-title {
-    margin: auto;
-    grid-area: main-info-title;
+  margin: auto;
+  grid-area: main-info-title;
 }
 .settings-main-info > .info-field {
-    display: grid;
-    grid-gap: 0.25rem;
-    justify-content: center;
-    text-align: center;
+  display: grid;
+  grid-gap: 0.25rem;
+  justify-content: center;
+  text-align: center;
 }
 
 .info-field > input {
-    padding: 0 0.5rem;
-    height: 2.5rem;
-    width: 12.5rem;
-    text-align: center;
-    border-radius: var(--br-primary__rem);
-    border: 0.0625rem solid var(--clr-primary);
+  padding: 0 0.5rem;
+  height: 2.5rem;
+  width: 12.5rem;
+  text-align: center;
+  border-radius: var(--br-primary__rem);
+  border: 0.0625rem solid var(--clr-primary);
 }
 /* .info-field > input::placeholder {
     text-align: center;
 } */
 .info-field > input::placeholder {
-    color: var(--clr-primary-50);
+  color: var(--clr-primary-50);
 }
 
 .info-field > .textarea {
-    padding: 0.5rem;
-    border-radius: var(--br-primary__rem) var(--br-primary__rem)  0 var(--br-primary__rem);
-    border: 0.0625rem solid var(--clr-text-35);
+  padding: 0.5rem;
+  border-radius: var(--br-primary__rem) var(--br-primary__rem) 0 var(--br-primary__rem);
+  border: 0.0625rem solid var(--clr-text-35);
 }
 
 .settings-additional-info {
-    padding: 2rem;
-    display: grid;
-    grid-gap: 0.5rem;
+  padding: 2rem;
+  display: grid;
+  grid-gap: 0.5rem;
 }
 .settings-additional-info-title {
-    margin: auto;
+  margin: auto;
 }
 .settings-additional-info > .info-field {
-    display: grid;
-    grid-template-columns: 10rem 19.5rem;
-    grid-gap: 0.5rem;
-    justify-content: center;
-    align-items: center;
+  display: grid;
+  grid-template-columns: 10rem 19.5rem;
+  grid-gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
 }
 .settings-info-field-title {
-    text-align: left;
+  text-align: left;
 }
 /* text area class */
 .textarea {
-    display: block;
+  display: block;
 
-    border: 0.0625rem solid var(--clr-text-35);
-    padding: 0.75rem;
-    border-radius: var(--br-primary__rem) var(--br-primary__rem)  0 var(--br-primary__rem);
+  border: 0.0625rem solid var(--clr-text-35);
+  padding: 0.75rem;
+  border-radius: var(--br-primary__rem) var(--br-primary__rem) 0 var(--br-primary__rem);
 }
-  
+
 .textarea[contenteditable]:empty:focus::before,
 .textarea[contenteditable]:empty::before {
-    color: var(--clr-text-35);
+  color: var(--clr-text-35);
 }
 .settings-additional-info > .info-field:nth-child(2) > .textarea[contenteditable]:empty:focus::before,
 .settings-additional-info > .info-field:nth-child(2) > .textarea[contenteditable]:empty::before {
-    content: 'Write some information about your musical preferences';
+  content: 'Write some information about your musical preferences';
 }
 .settings-additional-info > .info-field:nth-child(3) > .textarea[contenteditable]:empty:focus::before,
 .settings-additional-info > .info-field:nth-child(3) > .textarea[contenteditable]:empty::before {
-    content: 'Write some information about your film preferences';
+  content: 'Write some information about your film preferences';
 }
 .settings-additional-info > .info-field:nth-child(4) > .textarea[contenteditable]:empty:focus::before,
 .settings-additional-info > .info-field:nth-child(4) > .textarea[contenteditable]:empty::before {
-    content: 'Tell us something about your hobbies';
+  content: 'Tell us something about your hobbies';
 }
 .settings-additional-info > .info-field:nth-child(5) > .textarea[contenteditable]:empty:focus::before,
 .settings-additional-info > .info-field:nth-child(5) > .textarea[contenteditable]:empty::before {
-    content: 'Share your thoughts with others about anything you want';
+  content: 'Share your thoughts with others about anything you want';
 }
 /* end of textarea class */
 .save-info {
-    display: flex;
-    justify-content: space-evenly;
-    padding: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1rem;
 }
 .save-info > .block {
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
 }
 .save-info-text {
-    padding: 0 0.5rem;
-    height: 2rem;
-    display: flex;
-    align-items: center;
+  padding: 0 0.5rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
 }
 #save-settings-btn {
-    color: var(--clr-text-35);
+  color: var(--clr-text-35);
 }

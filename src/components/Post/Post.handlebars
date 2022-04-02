@@ -34,12 +34,12 @@
   {{/if}}
   {{#if post.images}}
     <div class='content'>
-      {{!-- still need logic to draw more than 1 images --}}
+      {{! still need logic to draw more than 1 images }}
 
       {{#each post.images as |image|}}
         <img class='content-part' src='{{image}}' alt='' />
       {{/each}}
-      {{!-- <img class='content-part' src='static/images/p2.png' alt='' /> --}}
+      {{! <img class='content-part' src='static/images/p2.png' alt='' /> }}
     </div>
   {{/if}}
   <div class='reactions'>
@@ -65,7 +65,7 @@
     <div class='watch reactions-part'>
       <img src='static/icons/watch.svg' alt='' class='icon' />
       <p>{{post.watchedCount}}</p>
-      {{!-- <p>1.25k</p> --}}
+      {{! <p>1.25k</p> }}
     </div>
   </div>
   {{! maybe we will need another commentGroup and comment components }}

@@ -6,27 +6,32 @@
   <div class='social-menu block'>
     {{#if user.friends}}
       <p class='profile-content-part-title fs-450 flex-c'>friend list</p>
-      {{#each user.friends as | friend |}}
+      {{#each user.friends as |friend|}}
         <div class='social-menu-element flex-c btn-like'>
           <img class='icon' src='{{friend.image}}' alt='' class='icon' />
           <p class='selectable'>{{friend.name.first}} {{friend.name.last}}</p>
         </div>
       {{/each}}
     {{else}}
-      <p class='profile-content-part-title fs-350 __disabled'>You haven't added any friends yet <br>Go to <a class="link" href="/friends" data-link>friends</a> section?</p>
+      <p class='profile-content-part-title fs-350 __disabled'>You haven't added any friends yet
+        <br />Go to
+        <a class='link' href='/friends' data-link>friends</a>
+        section?</p>
     {{/if}}
   </div>
   <div class='social-menu block'>
     {{#if user.groups}}
       <p class='profile-content-part-title fs-450 flex-c'>group list</p>
-      {{#each user.groups as | group |}}
+      {{#each user.groups as |group|}}
         <div class='social-menu-element flex-c btn-like'>
           <img class='icon' src='{{group.image}}' alt='' class='icon' />
           <p class='selectable'>{{group.name}}</p>
         </div>
       {{/each}}
     {{else}}
-      <p class="profile-content-part-title fs-350 __disabled">You are not a member of any community<br>Go to the <a class="link" href="/communities" data-link>communities</a> section?</p>
+      <p class='profile-content-part-title fs-350 __disabled'>You are not a member of any community<br />Go to the
+        <a class='link' href='/communities' data-link>communities</a>
+        section?</p>
     {{/if}}
   </div>
 </div>
