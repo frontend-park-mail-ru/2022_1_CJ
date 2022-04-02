@@ -34,7 +34,7 @@ const reducer = {
         setTimeout(() => {
           loadPosts(postGroup);
           loading = false;
-        }, 1000);
+        }, 25); //redused await time (or we can increase it with increasing of posts count)
       }
     });
   }
@@ -43,7 +43,7 @@ const reducer = {
 function isInViewport(el) {
   const rect = el.getBoundingClientRect();
   return (
-    rect.top >= 0 &&
+    // rect.top >= 0 &&
     rect.left >= 0 &&
     rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
     rect.right <= (window.innerWidth || document.documentElement.clientWidth)

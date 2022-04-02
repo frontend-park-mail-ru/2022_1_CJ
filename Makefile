@@ -20,6 +20,7 @@ pack:
 
 precompile:
 	bash scripts/precompile.sh
+	bash scripts/fill_datas.sh
 
 local: precompile pack local-up
 

@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 
-srcdir="src/"
-srcimg="images/"
-dirname="static/"
+srcdir="src"
+srcimg="images"
+dirname="static"
 imgcount=$(ls "$srcdir/$dirname/$srcimg" | wc -l)
 arrname="imagesArr"
+outdir="allDatas.js"
 # echo $imgcount
 
-echo "const $arrname = [" > "$srcdir/test/all datas.js"
+echo "export const $arrname = [" > "$srcdir/test/$outdir"
 for imgpath in $(ls $srcdir/$dirname/$srcimg); do
     # echo $imgpath
-    echo "   \"$imgpath\"," >> "$srcdir/test/all datas.js"
+    echo "   \"$dirname/$srcimg/$imgpath\"," >> "$srcdir/test/$outdir"
 done
-echo "];" >> "$srcdir/test/all datas.js"
+echo "];" >> "$srcdir/test/$outdir"

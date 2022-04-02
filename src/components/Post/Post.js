@@ -13,6 +13,18 @@ const changeVisibility = (obj) => {
 };
 
 /**
+ * 
+ * @param {Event} e 
+ */
+const checkTextOverflow = (e) => {
+  if (e.offsetHeight < e.scrollHeight) {
+    let moreTextLink = e.nextElementSibling;
+    console.log(moreTextLink);
+    moreTextLink.style.display = 'block';
+  }
+}
+
+/**
  *
  * @param {Event} e
  */
@@ -121,16 +133,16 @@ const showText = (e) => {
   const moreText = e.currentTarget;
   let titleText = moreText.previousElementSibling;
 
-  if (titleText.style.height != 'min-content') {
-    titleText.style.height = 'min-content';
+  if (titleText.style.maxHeight != 'min-content') {
+    titleText.style.maxHeight = 'min-content';
     moreText.innerHTML = 'hide text';
     return;
   }
   // else
   if (document.querySelector('.profile-feed')) {
-    titleText.style.height = '4rem';
+    titleText.style.maxHeight = '4rem';
   } else {
-    titleText.style.height = '4.5rem';
+    titleText.style.maxHeight = '4.5rem';
   }
   moreText.innerHTML = 'more text...';
 };
@@ -142,22 +154,18 @@ const showText = (e) => {
 const showAuthorPage = (e) => {};
 
 const reducer = {
-  onShow: (post) => {
-    console.log("POST IS HERE");
-    // const post = document.getElementById(post.id)
+  onShow: ({ post }) => {
     const currPost = document.getElementById(post.id);
 
-    console.log(currPost);
-    
     const reactions = currPost.querySelectorAll('.reactions .btn-like');
     const [like, comment, repost] = reactions;
-
-    console.log(like, comment);
 
     like.addEventListener('click', changeLike);
     comment.addEventListener('click', getComments);
     // repost.addEventListener('click', openReposts);
 
+    const postText = currPost.querySelector('.title-text');
+    checkTextOverflow(postText);
     const moreText = currPost.querySelector('.title .link');
     moreText.addEventListener('click', showText);
 

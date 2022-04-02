@@ -1,7 +1,11 @@
-const imagesArr = [
-   "default.jpeg",
-   "p1.jpeg",
-   "p2.png",
-   "unsplash_SqYmTDQYMjo.png",
-   "unsplash_XttWKETqCCQ.png",
+export const imagesArr = [
+   "static/images/default.jpeg",
+   "static/images/p1.jpeg",
+   "static/images/p2.png",
+   "static/images/p3.webp",
+   "static/images/p4.webp",
+   "static/images/p5.webp",
+   "static/images/p6.webp",
+   "static/images/p7.jpeg",
+   "static/images/p8.jpeg",
 ];
