@@ -22,6 +22,9 @@ done
 echo "Enter new directory name:"
 read newdirname
 
+# get type and set paths
+type=${path::-1}
+type=${type^}
 newpath="$srcdir/$path/$newdirname"
 oldpath="$srcdir/$path/$olddirname"
 mkdir "$newpath"
@@ -31,10 +34,8 @@ cat "$oldpath/$olddirname.css" > "$newpath/$newdirname.css"
 cat "$oldpath/$olddirname.handlebars" > "$newpath/$newdirname.handlebars"
 cat "$oldpath/$olddirname.js" > "$newpath/$newdirname.js"
 
-echo "${olddirname,}Component"
-echo "${newdirname,}Component"
-echo "$newpath/$newdirname.js"
-sed -i'' -e "s/${olddirname,}Component/${newdirname,}Component/" $newpath/$newdirname.js
+# change all names in js file
+sed -i'' -e "s/${olddirname,}$type/${newdirname,}$type/" $newpath/$newdirname.js
 rm -rf "$newpath/$newdirname.js-e"
 
 # delete old directory

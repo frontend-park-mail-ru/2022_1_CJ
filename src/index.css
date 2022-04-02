@@ -291,7 +291,7 @@ select {
 .uppercase {
   text-transform: uppercase;
 }
-
+/* not usable for now ===========> */
 .fs-800 {
   font-size: var(--fs-800);
 }
@@ -307,9 +307,17 @@ select {
 .fs-500 {
   font-size: var(--fs-500);
 }
+/* <=========== not usable for now */
+.fs-450 {
+  font-size: var(--fs-450);
+}
 
 .fs-400 {
   font-size: var(--fs-400);
+}
+
+.fs-350 {
+  font-size: var(--fs-350);
 }
 
 .fs-300 {
@@ -492,13 +500,20 @@ input {
 } */
 /* -------------- Unavailable -------------- */
 .__disabled {
+  pointer-events: none;
   background: none;
   cursor: default;
   opacity: 0.5;
 }
+
 .__disabled:hover {
+  pointer-events: none;
   background: none;
   cursor: default;
+}
+
+.__disabled * {
+  pointer-events: none;
 }
 /* -------------- Container --------------- */
 

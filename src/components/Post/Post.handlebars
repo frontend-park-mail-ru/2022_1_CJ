@@ -1,11 +1,15 @@
 <div class='post grid block' id='{{post.id}}'>
   <div class='header'>
     <div class='author'>
-      <img class='icon' src='static/images/p1.jpeg' alt='' />
+      {{#if post.author.image}}
+        <img class='icon' src='{{post.author.image}}' alt='' />
+      {{else}}
+        <img class='icon' src='static/images/default.jpeg' alt='' />
+      {{/if}}
       <div class='info'>
-        {{!-- <p class='link selectable author-name'>{{Post.authorName}}</p> --}}
+        {{!-- <p class='link selectable author-name'>{{post.author.name.first}} {{post.author.name.last}}</p> --}}
         <p class='link selectable author-name'>John Doe</p>
-        {{!-- <p class='selectable text-light'>{{Post.timeCreated}}</p> --}}
+        {{!-- <p class='selectable text-light'>{{post.timeCreated}}</p> --}}
         <p class='selectable text-light'>yeaterday at 20:43</p>
       </div>
     </div>
@@ -23,17 +27,28 @@
       </div>
     </div>
   </div>
-  <div class='title'>
-    <p class='selectable title-text'>{{post.message}}</p>
-    <p class='link'>more text...</p>
-  </div>
+  {{#if post.message}}
+    <div class='title'>
+      <p class='selectable title-text'>{{post.message}}</p>
+      {{!-- need to be checked somehow --}}
+
+      {{#if post.message.big}} 
+        <p class='link'>more text...</p>
+      {{/if}}
+    </div>
+  {{/if}}
   <div class='content'>
+    {{!-- still need logic to draw more than 1 images --}}
+
+    {{!-- {{#each post.images |image|}}
+      <img class='content-part' src='{{image}}' alt='' />
+    {{/each}} --}}
     <img class='content-part' src='static/images/p2.png' alt='' />
   </div>
   <div class='reactions'>
     <div class='like block reactions-part btn-like'>
       <img src='static/icons/like.svg' alt='' class='icon' />
-      {{!-- <p>{{Post.likesCount}}</p> --}}
+      {{!-- <p>{{post.likesCount}}</p> --}}
       <p>497</p>
     </div>
     <div class='comment block reactions-part btn-like'>
@@ -46,9 +61,11 @@
     </div>
     <div class='watch reactions-part'>
       <img src='static/icons/watch.svg' alt='' class='icon' />
+      {{!-- <p>{{post.watchedCount}}</p> --}}
       <p>1.25k</p>
     </div>
   </div>
+  {{!-- maybe we will need another commentGroup and comment components --}}
   <div class='comments-section'>
     <hr />
     <p class='comments-section-title'>comments section</p>

@@ -14,8 +14,11 @@
     </div>
     <div class='right'>
       <div class='profile flex-c btn-like'>
-        {{!-- <img class='icon profile-avatar' src='{{user.avatar}}' alt='' /> --}}
-        <img class='icon profile-avatar' src='static/images/p1.jpeg' alt='' />
+        {{#if user.image}}
+          <img class='icon profile-avatar' src='{{user.image}}' alt='' />
+        {{else}}
+          <img class='icon profile-avatar' src='static/images/default.jpeg' alt='' />
+        {{/if}}
         <img class='icon profile-btn' src='static/icons/arrow_right.svg' alt='' />
         <p class='profile-name text-light'>{{user.name.first}} {{user.name.last}}</p>
       </div>

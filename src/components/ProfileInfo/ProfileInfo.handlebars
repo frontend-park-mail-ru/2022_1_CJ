@@ -1,6 +1,9 @@
 <div class='profile-info block'>
-  {{!-- <img class='icon' src='{{user.avatar}}' alt='' /> --}}
-  <img class='icon' src='static/images/p1.jpeg' alt='' />
+  {{#if user.image}}
+    <img class='icon' src='{{user.image}}' alt='' />
+  {{else}}
+    <img class='icon' src='static/images/default.jpeg' alt='' />
+  {{/if}}
   <div class='main-info'>
     <div class='user-header main-info-part'>
       <p class='user-name selectable'>{{user.name.first}} {{user.name.last}}</p>
@@ -16,9 +19,10 @@
       <div class='user-birth'>
         {{!-- <p class='selectable'>Birth: {{user.birth-date}}</p> --}}
         <p class='selectable'>Birth: 12.12.1998</p>
+        {{!-- <p class='selectable'>{{user.age}} years</p> --}}
         <p class='selectable'>24 years</p>
       </div>
-      <div class='user-main-info __disabled'>
+      <div class='user-main-info'>
         <hr />
         <a class='link' href='/settings' data-link>main information</a>
         <hr />

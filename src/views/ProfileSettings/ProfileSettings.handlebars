@@ -1,7 +1,9 @@
 {{#component 'Header' .}}{{/component}}
 
 <div class="container grid feed-page">
-    <div class="left"></div>
+    <div class="left">
+        {{#component 'Menu' .}}{{/component}}
+    </div>
     <div class="middle">
         {{#component 'ProfileSettings' .}}{{/component}}
     </div>
