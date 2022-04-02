@@ -10,6 +10,7 @@ import { signupFormComponent } from './SignupForm/SignupForm.js';
 import { menuComponent } from './Menu/Menu.js';
 import { profileInfoComponent } from './ProfileInfo/ProfileInfo.js';
 import { profileMenuComponent } from './ProfileMenu/ProfileMenu.js';
+import { profileSettingsComponent } from './ProfileSettings/ProfileSettings.js';
 import { modalRepliesComponent } from './ModalReplies/ModalReplies.js';
 
 export const ComponentsRegistry = {
@@ -21,6 +22,7 @@ export const ComponentsRegistry = {
   PostGroup: postGroupComponent(Handlebars.templates.PostGroup),
   ProfileInfo: profileInfoComponent(Handlebars.templates.ProfileInfo),
   ProfileMenu: profileMenuComponent(Handlebars.templates.ProfileMenu),
+  ProfileSettings: profileSettingsComponent(Handlebars.templates.ProfileSettings),
   ModalReplies: modalRepliesComponent(Handlebars.templates.ModalReplies),
   Dialogs: dialogsComponent(Handlebars.templates.Dialogs)
 };

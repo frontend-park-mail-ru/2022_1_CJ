@@ -1,19 +1,21 @@
 import { baseController } from './Base.js';
-import { feedController } from './Feed.js';
+import { signupController } from './Signup.js';
 import { loginController } from './Login.js';
-import { logoutController } from './Logout.js';
+import { feedController } from './Feed.js';
+import { profileController } from './Profile.js';
+import { profileSettingsController } from './ProfileSettings.js';
 import { messengerController } from './Messenger.js';
 import { notFoundController } from './NotFound.js';
-import { profileController } from './Profile.js';
-import { signupController } from './Signup.js';
+import { logoutController } from './Logout.js';
 
 export const controllersRegistry = {
   base: baseController,
-  feed: feedController,
+  signup: signupController,
   login: loginController,
-  logout: logoutController,
+  feed: feedController,
+  profile: profileController,
+  profileSettings: profileSettingsController,
   messenger: messengerController,
   notFound: notFoundController,
-  signup: signupController,
-  profile: profileController
+  logout: logoutController,
 };

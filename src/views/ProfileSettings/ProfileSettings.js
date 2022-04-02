@@ -4,4 +4,4 @@ const reducer = {
   onShow: () => {}
 };
 
-export const badBoyComponent = (template) => createComponent(template, reducer);
+export const profileSettingsView = (template) => createComponent(template, reducer);

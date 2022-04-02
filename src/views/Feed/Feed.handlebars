@@ -3,6 +3,14 @@
 </header>
 
 <div class="container grid feed-page">
+    <div class="left"></div>
+    <div class="middle grid">
+        {{#component 'ProfileSettings' .}}{{/component}}
+    </div>
+    <div class="right"></div>
+</div>
+
+{{!-- <div class="container grid feed-page">
     <div class="left">
         {{#component 'Menu' .}}{{/component}}
     </div>
@@ -15,6 +23,6 @@
         {{#component 'Post' .}}{{/component}}
     </div>
     <div class="right"></div>
-</div>
+</div> --}}
 
 {{!-- {{#component 'ModalReplies' .}}{{/component}} --}}

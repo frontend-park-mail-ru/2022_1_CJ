@@ -5,6 +5,7 @@ export const URL = {
   Feed: '/feed',
   Logout: '/logout',
   Profile: '/profile',
+  ProfileSettings: '/settings',
   Messenger: '/messenger'
 };
 

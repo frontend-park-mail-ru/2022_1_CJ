@@ -7,6 +7,7 @@ import { messengerView } from './Messenger/Messenger.js';
 import { notFoundView } from './NotFound/NotFoundView.js';
 import { signupView } from './Signup/SignupView.js';
 import { profileView } from './Profile/ProfileView.js';
+import { profileSettingsView } from './ProfileSettings/ProfileSettings.js';
 
 export const ViewsRegistry = {
   Signup: signupView(Handlebars.templates.Signup),
@@ -14,5 +15,6 @@ export const ViewsRegistry = {
   Feed: feedView(Handlebars.templates.Feed),
   NotFound: notFoundView(Handlebars.templates.NotFound),
   Profile: profileView(Handlebars.templates.Profile),
-  Messenger: messengerView(Handlebars.templates.Messenger)
+  ProfileSettings: profileSettingsView(Handlebars.templates.ProfileSettings),
+  Messenger: messengerView(Handlebars.templates.Messenger),
 };

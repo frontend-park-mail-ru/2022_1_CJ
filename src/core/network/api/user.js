@@ -24,8 +24,8 @@ export const UserAPI = {
   async GetFeedPosts() {
     return {
       posts: [
-        { author_id: 'id', message: getMockPostMessage(), images: getMockImages() },
-        { author_id: 'id', message: getMockPostMessage(), images: getMockImages() }
+        { post_id: 'id256', author_id: 'id26', author_name: {first: 'Nar', last: 'Ick'}, message: getMockPostMessage(), images: getMockImages() },
+        { post_id: 'id123', author_id: 'id13', author_name: {first: 'Man', last: 'Stack'}, message: getMockPostMessage(), images: getMockImages() }
       ]
     };
   }
