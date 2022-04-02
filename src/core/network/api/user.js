@@ -23,13 +23,8 @@ export const UserAPI = {
   async GetFeedPosts() {
     return {
       posts: [
-<<<<<<< HEAD
         { post_id: 'id256', author_id: 'id26', author_name: {first: 'Nar', last: 'Ick'}, message: getMockPostMessage(), images: getMockImages() },
         { post_id: 'id123', author_id: 'id13', author_name: {first: 'Man', last: 'Stack'}, message: getMockPostMessage(), images: getMockImages() }
-=======
-        { authorID: 'post-id1', message: getMockPostMessage(), images: getMockImages() },
-        { authorID: 'post-id1', message: getMockPostMessage(), images: getMockImages() }
->>>>>>> 859466f2c112652f180b9e07276d995a781539f9
       ]
     };
   }
