@@ -14,28 +14,27 @@
 .profile-feed {
   display: grid;
   grid-gap: 1rem;
-
   grid-area: feed;
 }
 
-.profile-feed .post {
+.profile-feed > .post {
   grid-template-rows: 3.25rem auto;
   font-size: var(--fs-350);
   grid-gap: 0.5rem;
 }
-.profile-feed .author .icon {
+.profile-feed > .author > .icon {
   height: 3.25rem;
 }
-.profile-feed .author .info {
+.profile-feed > .author > .info {
   padding: 0.25rem 0.75rem;
   grid-gap: unset;
 }
 .profile-feed .post .title {
   font-size: var(--fs-350);
 }
-.profile-feed .title > p:first-child {
-  height: 4rem;
+.profile-feed .title > .title-text {
+  max-height: 4rem;
 }
-.profile-feed .reactions .icon {
+.profile-feed > .reactions > .icon {
   height: 1.25rem;
 }
