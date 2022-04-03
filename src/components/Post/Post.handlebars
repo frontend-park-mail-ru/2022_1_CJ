@@ -28,33 +28,30 @@
   {{#if post.message}}
     <div class='title'>
       <p class='selectable title-text'>{{post.message}}</p>
-      {{! need to be checked somehow }}
       <p class='link'>more text...</p>
     </div>
   {{/if}}
   {{#if post.images}}
     <div class='content'>
       {{! still need logic to draw more than 1 images }}
-
       {{#each post.images as |image|}}
         <img class='content-part' src='{{image}}' alt='' />
       {{/each}}
-      {{! <img class='content-part' src='static/images/p2.png' alt='' /> }}
     </div>
   {{/if}}
   <div class='reactions'>
-    {{#if post.likesCount}}
+    {{!-- {{#if post.likesCount}} --}}
       <div class='like block reactions-part btn-like'>
         <img src='static/icons/like.svg' alt='' class='icon' />
         <p>{{post.likesCount}}</p>
       </div>
-    {{else}}
+    {{!-- {{else}}
       <div class='like block reactions-part btn-like __disabled'>
         <img src='static/icons/like.svg' alt='' class='icon' />
         <p>Nan</p>
       </div>
-    {{/if}}
-    <div class='comment block reactions-part btn-like'>
+    {{/if}} --}}
+    <div class='comment block reactions-part btn-like __disabled'>
       <img src='static/icons/comment.svg' alt='' class='icon' />
       <p>comment</p>
     </div>
