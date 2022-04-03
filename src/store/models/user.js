@@ -40,9 +40,9 @@ export const userActions = {
     }
   },
 
-  getFeedPosts: {
-    success: 'getFeedPostsSuccess',
-    failure: 'getFeedPostsFailure'
+  getPosts: {
+    success: 'getPostsSuccess',
+    failure: 'getPostsFailure'
   }
 };
 
@@ -73,7 +73,12 @@ export const userThunks = {
 
   getFeedPosts: (next) =>
     UserAPI.GetFeedPosts().then(
-      (json) => next(createAction(userActions.getFeedPosts.success, { posts: json.posts })),
-      (err) => next(createAction(userActions.getFeedPosts.failure, { err }))
-    )
+      (json) => next(createAction(userActions.getPosts.success, { posts: json.posts })),
+      (err) => next(createAction(userActions.getPosts.failure, { err }))
+    ),
+  getProfilePosts: (next) =>
+    UserAPI.GetProfilePosts().then(
+      (json) => next(createAction(userActions.getPosts.success, { posts: json.posts })),
+      (err) => next(createAction(userActions.getPosts.failure, { err }))
+    ),
 };

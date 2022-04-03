@@ -19,7 +19,6 @@ const changeVisibility = (obj) => {
 const checkTextOverflow = (e) => {
   if (e.offsetHeight < e.scrollHeight) {
     let moreTextLink = e.nextElementSibling;
-    console.log(moreTextLink);
     moreTextLink.style.display = 'block';
   }
 };

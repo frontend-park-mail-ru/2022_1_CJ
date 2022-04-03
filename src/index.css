@@ -212,10 +212,11 @@ a[data-link] * {
   margin-top: var(--flow-space, 1rem);
 }
 
-.grid-layout {
+/* .grid-layout {
   display: grid;
   grid-template-columns: minmax(13rem, 1fr) 35rem minmax(16rem, 1fr);
-}
+
+} */
 
 /* ---------------- Colors ---------------- */
 
@@ -523,8 +524,9 @@ input {
 .container {
   top: 5rem;
   height: 100%;
-
+  grid-template-columns: minmax(13rem, 1fr) 41.25rem minmax(16rem, 1fr);
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 .container > * {
   padding: 1rem 0.5rem;

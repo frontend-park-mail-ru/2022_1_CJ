@@ -3,7 +3,7 @@
   padding: 1rem;
   height: min-content;
   width: auto;
-  grid-template-rows: 5rem auto auto;
+  grid-template-rows: 4rem auto;
   position: relative;
 }
 
@@ -23,7 +23,7 @@
   height: 4rem;
 }
 .author > .info {
-  padding: 0.75rem 1rem;
+  padding: 0.25rem 1rem;
   display: grid;
   grid-template-rows: repeat(2, 1fr);
   grid-gap: 0.5rem;
@@ -112,7 +112,7 @@
   padding: 0.35rem 0.5rem;
   display: grid;
   grid-template-columns: min-content 1fr;
-  grid-gap: 0.5rem;
+  grid-gap: 0.25rem;
   align-items: center;
   text-align: center;
 }
@@ -151,21 +151,8 @@
     overflow-y: scroll;
 } */
 
-.single-comment .icon {
-  margin-top: 0.5rem;
-}
-.single-comment.grid {
-  grid-template-columns: auto auto;
-  grid-gap: unset;
-}
-.single-comment > .info {
-  padding: 0.25rem 0.5rem;
-
-  display: block;
-  grid-gap: 0.125rem;
-}
-
 .user-comment {
+  margin: 0.35rem 0 0 0;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;

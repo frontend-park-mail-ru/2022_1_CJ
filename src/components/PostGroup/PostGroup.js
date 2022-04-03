@@ -8,16 +8,23 @@ import { ComponentsRegistry } from '../registry.js';
 let postGroup;
 
 const loadPosts = (element) => {
-  store.dispatch(thunks.user.getFeedPosts);
+  // first-time check (need to check url somehow or sth else)
+  // FIXME: need to check URL or sth else 
+  if (document.querySelector('.feed-page')) {
+    store.dispatch(thunks.user.getFeedPosts);
+  } else {
+    store.dispatch(thunks.user.getProfilePosts);
+  }
+  //
   store.once(
-    createReaction(actions.user.getFeedPosts.success, ({ payload }) => {
+    createReaction(actions.user.getPosts.success, ({ payload }) => {
       const { posts } = payload;
       const component = ComponentsRegistry.Post;
       Object.values(posts).forEach((post) => {
         element.insertAdjacentHTML('beforeend', renderComponent(component, { post }));
       });
     }),
-    createReaction(actions.user.getFeedPosts.failure, ({ payload }) => handleError(payload.err))
+    createReaction(actions.user.getPosts.failure, ({ payload }) => handleError(payload.err))
   );
 };
 
@@ -40,10 +47,13 @@ const reducer = {
   }
 };
 
+
+// FIXME: scroll doesn't work as excpected
+// 
 function isInViewport(el) {
   const rect = el.getBoundingClientRect();
   return (
-    // rect.top >= 0 &&
+    rect.top >= 0 &&
     rect.left >= 0 &&
     rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
