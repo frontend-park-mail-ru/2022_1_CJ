@@ -40,9 +40,15 @@
   border-radius: var(--br-primary__rem);
   border: 0.0625rem solid var(--clr-primary);
 }
-/* .info-field > input::placeholder {
-    text-align: center;
-} */
+.info-field:nth-child(3) > input::placeholder {
+  font-size: var(--fs-350);
+}
+.info-field:nth-child(4) > input::placeholder {
+  font-size: var(--fs-300);
+}
+.info-field:nth-child(5) > input::placeholder {
+  font-size: var(--fs-350);
+}
 .info-field > input::placeholder {
   color: var(--clr-primary-50);
 }
