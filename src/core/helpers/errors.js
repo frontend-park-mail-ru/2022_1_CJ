@@ -1,5 +1,13 @@
+import { CodedError } from '../constants/errors.js';
 import { alertLevels, showAlert } from './alerts.js';
 
-export const handleError = ({ message } = {}) => {
-  showAlert(message, alertLevels.error);
+/**
+ * 
+ * @param {Error} err 
+ */
+export const handleError = (err) => {
+  if (! err instanceof CodedError) {
+    return;
+  }
+  showAlert(err.message, alertLevels.error);
 };

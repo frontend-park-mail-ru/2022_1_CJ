@@ -11,6 +11,7 @@ let timeoutClearAlertsID;
 
 const clearAlerts = () => {
   alerts.style.opacity = 0;
+  alerts.style.transition = '1s';
   setTimeout(() => {
     while (alerts.firstChild) {
       alerts.removeChild(alerts.firstChild);
@@ -32,11 +33,16 @@ const showAlerts = () => {
   showPromise().then(
     (timeoutClearAlertsID = setTimeout(() => {
       clearAlerts();
-    }, 3000))
+    }, 2000))
   );
 };
 
 export const showAlert = (msg, level) => {
+  if (alerts.firstChild) {
+    showAlerts();
+    return;
+  }
+  // else
   let alert = document.createElement('li');
   alert.className = level;
   alert.innerText = msg;

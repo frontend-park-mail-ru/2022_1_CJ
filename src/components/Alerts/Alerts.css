@@ -7,7 +7,7 @@ ul.alerts {
   color: var(--root-text-color);
   border-radius: var(--content-border-radius);
 
-  bottom: 0.5rem;
+  bottom: 3rem;
   opacity: 0;
   transition: opacity 1s ease-in-out;
 
@@ -25,11 +25,11 @@ ul.alerts li {
 }
 
 ul.alerts li.error {
-  background-color: var(--clr-negative);
+  background-color: var(--clr-negative-75);
 }
 
 ul.alerts li.warning {
-  background-color: var(--clr-negative-75);
+  background-color: var(--clr-warning);
 }
 
 ul.alerts li.info {

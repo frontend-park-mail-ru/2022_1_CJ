@@ -1,0 +1,53 @@
+.image-scroll {
+    height: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+
+    position: absolute;
+    align-items: center;
+    background: radial-gradient(black, transparent);
+}
+
+.main-scroll-window {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 1rem;
+}
+.scroll-btn {
+    width: 2rem;
+}
+.scroll-btn:first-child {
+    transform: translate(100%, 0%);
+}
+.scroll-btn:last-child {
+    transform: translate(-100%, 0%);
+}
+
+.scroll-btn > .icon {
+    visibility: hidden;
+}
+.scroll-btn:hover > .icon {
+    visibility: visible;
+}
+
+.scroll-content {
+    width: 40rem;
+    display: flex;
+    height: auto;
+    overflow-y: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
+    letter-spacing: -.25em;
+    
+    /* Scroll Snap Properties */    
+    scroll-snap-type: x mandatory;
+    scroll-snap-points-x: repeat(100%);
+    }
+.scroll-content > img {
+    scroll-snap-align: center;
+    height: 27rem;
+}
