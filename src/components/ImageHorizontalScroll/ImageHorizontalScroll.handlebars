@@ -1,21 +1,43 @@
-<div class="image-scroll">
-    <div class="main-scroll-window">
-        <div class="scroll-btn flex-c btn-like">
-            <img class="icon" src="static/icons/arrow_left.svg" alt="">
+<div id="image-scroll-container" class="flex-c">
+    <div class="image-scroll-window">
+        <div class="image-scroll-window-part flex-c">
+            {{!-- <div class="scroll-btn flex-c btn-like">
+                <img class="icon" src="static/icons/arrow_left.svg" alt="">
+            </div> --}}
+            <div class="scroll-content">
+                {{#each post.images as |image|}}
+                    <div class="images-wrapper flex-c">
+                        <img src="{{image}}" alt="">
+                    </div>
+                {{/each}}
+                <div class="images-wrapper flex-c">
+                    <img src="static/images/p3.webp" alt="">
+                </div>
+                <div class="images-wrapper flex-c">
+                    <img src="static/images/p4.webp" alt="">
+                </div>
+                <div class="images-wrapper flex-c">
+                    <img src="static/images/p5.webp" alt="">
+                </div>
+                <div class="images-wrapper flex-c">
+                    <img src="static/images/p4.webp" alt="">
+                </div>
+                <div class="images-wrapper flex-c">
+                    <img src="static/images/p3.webp" alt="">
+                </div>
+                <div class="images-wrapper flex-c">
+                    <img src="static/images/p5.webp" alt="">
+                </div>
+                <div class="images-wrapper flex-c">
+                    <img src="static/images/p4.webp" alt="">
+                </div>
+            </div>
+            {{!-- <div class="scroll-btn flex-c btn-like">
+                <img class="icon" src="static/icons/arrow_right.svg" alt="">
+            </div> --}}
         </div>
-        <div class="scroll-content">
-            <img src="static/images/p3.webp" alt="">
-            <img src="static/images/p4.webp" alt="">
-            <img src="static/images/p5.webp" alt="">
-            <img src="static/images/p6.webp" alt="">
-            <img src="static/images/p7.jpeg" alt="">
-            <img src="static/images/p8.jpeg" alt="">
+        <div class="image-scroll-window-info">
+            <p>1 of 5 images of current post</p>
         </div>
-        <div class="scroll-btn flex-c btn-like">
-            <img class="icon" src="static/icons/arrow_right.svg" alt="">
-        </div>
-    </div>
-    <div class="comment-section">
-
     </div>
 </div>

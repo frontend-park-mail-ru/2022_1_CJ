@@ -1,30 +1,36 @@
-.image-scroll {
+#image-scroll-container {
+    visibility: hidden;
     height: 100%;
+    width: 72.25rem;
     min-width: 100%;
-    max-width: 100%;
-    display: flex;
-    justify-content: center;
-
     position: absolute;
-    align-items: center;
-    background: radial-gradient(black, transparent);
+    background: rgba(0, 0, 0, 0.85);
 }
 
-.main-scroll-window {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    position: relative;
+.image-scroll-window {
+    width: min-content;
     padding: 1rem;
+    display: grid;
+    grid-gap: 0.5rem;
+
+    background: var(--clr-modal-dark);
+    border-radius: var(--br-primary__rem);
+}
+.image-scroll-window-part {
+    height: min-content;
+    position: relative;
+    background: var(--clr-modal-dark);
 }
 .scroll-btn {
-    width: 2rem;
+    position: absolute;
+    height: 100%;
+    width: 4rem;
 }
 .scroll-btn:first-child {
-    transform: translate(100%, 0%);
+    left: 0;
 }
 .scroll-btn:last-child {
-    transform: translate(-100%, 0%);
+    right: 0;
 }
 
 .scroll-btn > .icon {
@@ -35,7 +41,7 @@
 }
 
 .scroll-content {
-    width: 40rem;
+    width: 54rem;
     display: flex;
     height: auto;
     overflow-y: hidden;
@@ -47,7 +53,17 @@
     scroll-snap-type: x mandatory;
     scroll-snap-points-x: repeat(100%);
     }
-.scroll-content > img {
+.scroll-content > .images-wrapper {
+    min-width: -webkit-fill-available;
     scroll-snap-align: center;
-    height: 27rem;
+    height: 36rem;
+    background: var(--clr-modal-dark);
+}
+
+.images-wrapper > img {
+
+}
+
+.image-scroll-window-info {
+    color: rgba(256, 256, 256, 0.35);
 }

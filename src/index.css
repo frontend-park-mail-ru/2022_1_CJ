@@ -34,6 +34,8 @@
 
   --clr-hover: rgba(92, 163, 235, 0.1);
 
+  --clr-modal-dark: rgb(30, 30, 30);
+
   /* font-sizes */
   --fs-800: 2rem; /* too big */
   --fs-700: 1.75rem;

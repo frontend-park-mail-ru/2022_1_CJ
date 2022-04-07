@@ -1,33 +1,39 @@
-.reply-section {
-  padding: 0.5rem 0;
-  width: 20rem;
-  left: 7rem;
-  top: 14.25rem;
-
-  display: none;
-  grid-gap: 0.5rem;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+.reply-container {
+  visibility: hidden;
+  height: 100%;
+  width: 72.25rem;
+  min-width: 100%;
   position: absolute;
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.reply-section {
+  padding: 1rem 2rem;
+  width: min-content;
+  display: grid;
+  grid-gap: 0.5rem;
+}
+.reply-section-title {
+  font-size: var(--fs-450);
 }
 .reply-section > .main {
   position: fixed;
 }
 .reply-section input {
-  width: 15rem;
+  width: 20rem;
 }
-.reply-section img {
+.reply-section .icon {
   height: 2.5rem;
   margin: auto;
 }
-.reply-section p {
-  font-size: var(--fs-400);
-}
 
 .repliers {
-  height: 9rem;
+  height: min-content;
+  max-height: 18rem;
   overflow-y: scroll;
+}
+.repliers p {
+  font-size: var(--fs-400);
 }
 .repliers > div {
   padding: 0.25rem;

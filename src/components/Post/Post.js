@@ -1,27 +1,5 @@
 import { createComponent } from '../../core/models/Component/Component.js';
-
-/**
- *
- * @param {Object} obj
- */
-const changeVisibility = (obj) => {
-  if (!obj.style.visibility || obj.style.visibility === 'visible') {
-    obj.style.visibility = 'hidden';
-  } else {
-    obj.style.visibility = 'visible';
-  }
-};
-
-/**
- *
- * @param {Event} e
- */
-const checkTextOverflow = (e) => {
-  if (e.offsetHeight < e.scrollHeight) {
-    let moreTextLink = e.nextElementSibling;
-    moreTextLink.style.display = 'block';
-  }
-};
+import { checkTextOverflow, changeDisplay, setStyleVisibility, unsetStyleVisibility } from '../../test/baseFunction.js';
 
 /**
  *
@@ -70,41 +48,26 @@ const changeLike = (e) => {
     likeImg.src = likeImg.src.replace(`\.${extension}`, `_pressed\.${extension}`);
     likesCount += 1;
   }
-  let likesStr = convertor(likesCount);
+
+
+
+  let likesStr = String(likesCount);
+  // let likesStr = convertor(likesCount);
   likesField.innerHTML = likesStr; // likesField get new number
   // TODO: send new likes count to backend
 };
+
 /**
  *
  * @param {Event} e
  */
 const getComments = (e) => {
-  /**
-   *
-   * @param {Object} obj
-   */
-  function hideElement(obj) {
-    obj.style.display = 'none';
-  }
-
-  /**
-   *
-   * @param {Object} obj
-   */
-  function showElement(obj) {
-    obj.style.display = 'block';
-  }
-
   const comments = e.currentTarget.parentElement.nextElementSibling;
-
-  if (!comments.style.display || comments.style.display === 'none') {
-    showElement(comments);
-  } else {
-    hideElement(comments);
-  }
+  changeDisplay(comments, 'block');
   // TODO: asking back for first 25 comments
   // create such elements and add them to comments section
 };
+
 
 /**
  *
@@ -112,12 +75,7 @@ const getComments = (e) => {
  */
 const openReposts = (e) => {
   const reply = e.currentTarget.parentElement.previousElementSibling;
-
-  if (!reply.style.display || reply.style.display === 'none') {
-    reply.style.display = 'grid';
-  } else {
-    reply.style.display = 'none';
-  }
+  changeDisplay(reply, 'grid');
   // TODO: asking back for all user friends and group ids
   // add first 15 to reply section
   // we also need to make search probably, but
@@ -150,15 +108,40 @@ const showText = (e) => {
  *
  * @param {Event} e
  */
-const showAuthorPage = (e) => {};
+const showAllPostImages = (e) => {
+  let imagesWindow = document.getElementById('image-scroll-container');
+  setStyleVisibility(imagesWindow);
+};
+
+/**
+ *
+ * @param {Event} e
+ */
+ const showModalReplies = (e) => {
+  let replies = document.querySelector('.reply-container');
+  setStyleVisibility(replies);
+};
+
+/**
+ *
+ * @param {Event} e
+ */
+ const showAuthorPage = (e) => {
+};
 
 const reducer = {
   onShow: ({ post }) => {
     const currPost = document.getElementById(post.id);
 
+    const postFirstImage = currPost.querySelector('.content .content-part');
+    if (postFirstImage) { // have any image
+      postFirstImage.addEventListener('click', showAllPostImages);
+    }
+
     const reactions = currPost.querySelectorAll('.reactions .btn-like');
     const [like, comment, repost] = reactions;
 
+    repost.addEventListener('click', showModalReplies);
     like.addEventListener('click', changeLike);
     comment.addEventListener('click', getComments);
     // repost.addEventListener('click', openReposts);
