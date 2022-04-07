@@ -118,7 +118,7 @@ const showAllPostImages = (e) => {
  * @param {Event} e
  */
  const showModalReplies = (e) => {
-  let replies = document.querySelector('.reply-container');
+  let replies = document.getElementById('reply-container');
   setStyleVisibility(replies);
 };
 

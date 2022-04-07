@@ -5,27 +5,28 @@ import { unsetStyleVisibility } from '../../test/baseFunction.js';
 const reducer = {
   onShow: () => {
     let imagesContainer = document.getElementById('image-scroll-container');
-    console.log(imagesContainer);
-    console.log(imagesContainer.style.visibility);
+
     if (!imagesContainer.style.visibility || imagesContainer.style.visibility == 'visible') {
-      console.log(imagesContainer.style.visibility);
       let imagesWindow = document.querySelector('.image-scroll-window');
 
       document.addEventListener('click', (e) => {
-      const withinBoundaries = e.composedPath().includes(imagesWindow);
-      const currBoundaries = e.composedPath().includes();
-      console.log(e.currentTarget);
-      console.log(imagesWindow);
-      console.log(withinBoundaries);
-      if (!withinBoundaries) {
-        unsetStyleVisibility(imagesContainer);
-      }
+        const withinBoundaries = e.composedPath().includes(imagesWindow);
+        let dopBoundaries;
+        const correctTarget = e.target.className == "content-part";
+
+        if (correctTarget) {
+          dopBoundaries = e.composedPath().includes(e.target);
+          return;
+        }
+        if (!withinBoundaries && !dopBoundaries) {
+          unsetStyleVisibility(imagesContainer);
+        }
       });
 
       document.addEventListener('keydown', function (e) {
-      if (e.key == "Escape") {
-        unsetStyleVisibility(imagesContainer);
-      }
+        if (e.key == "Escape") {
+          unsetStyleVisibility(imagesContainer);
+        }
       });
     }
   }
