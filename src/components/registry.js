@@ -15,6 +15,7 @@ import { profileSettingsComponent } from './ProfileSettings/ProfileSettings.js';
 import { modalRepliesComponent } from './ModalReplies/ModalReplies.js';
 import { dialogsComponent } from './Dialogs/Dialogs.js';
 import { chatComponent } from './Chat/Chat.js'
+import { friendsComponent } from './Friends/Friends.js'
 
 export const ComponentsRegistry = {
   Header: headerComponent(Handlebars.templates.Header),
@@ -31,4 +32,5 @@ export const ComponentsRegistry = {
   ModalReplies: modalRepliesComponent(Handlebars.templates.ModalReplies),
   Dialogs: dialogsComponent(Handlebars.templates.Dialogs),
   Chat: chatComponent(Handlebars.templates.Chat),
+  Friends: friendsComponent(Handlebars.templates.Friends),
 };
