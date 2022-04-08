@@ -1,5 +1,5 @@
 #image-scroll-container {
-    visibility: hidden;
+    display: none;
     height: 100%;
     width: 72.25rem;
     min-width: 100%;

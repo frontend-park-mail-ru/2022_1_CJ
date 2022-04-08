@@ -6,8 +6,8 @@
     <div class='repliers'>
       {{#each repliers as |replier|}}
         <div class='btn-like'>
-          <img src='static/images/p3.webp' alt='' class='icon' />
-          <p>Samsara Remmy</p>
+          <img src='{{replier.image}}' alt='' class='icon' />
+          <p>{{replier.name}}</p>
         </div>
       {{/each}}
       <div class='btn-like'>

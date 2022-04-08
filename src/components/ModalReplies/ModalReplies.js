@@ -1,5 +1,5 @@
 import { createComponent } from '../../core/models/Component/Component.js';
-import { unsetStyleVisibility } from '../../test/baseFunction.js';
+import { setStyleDisplayNone, unsetStyleVisibility } from '../../test/baseFunction.js';
 
 const reducer = {
     onShow: () => {
@@ -12,19 +12,19 @@ const reducer = {
                 const withinBoundaries = e.composedPath().includes(modalRepliesWindow);
                 let dopBoundaries;
                 const correctTarget = e.target.classList.contains('repost') || e.target.parentElement.classList.contains('repost');
-                
+
                 if (correctTarget) {
                   dopBoundaries = e.composedPath().includes(e.target);
                   return;
                 }
                 if (!withinBoundaries && !dopBoundaries) {
-                  unsetStyleVisibility(modalRepliesContainer);
+                  setStyleDisplayNone(modalRepliesContainer);
                 }
             });
         
             document.addEventListener('keydown', function (e) {
                 if (e.key == "Escape") {
-                    unsetStyleVisibility(modalRepliesContainer);
+                    setStyleDisplayNone(modalRepliesContainer);
                 }
             });
         }

@@ -1,3 +1,9 @@
 .feed-page .middle {
-    padding: 1rem 5rem;
+    /* position: relative; */
+    /* height: auto; */
+    padding: 1rem 0;
+}
+.feed-page .post {
+    margin-left: 3.5rem;
+    margin-right: 3.5rem;
 }

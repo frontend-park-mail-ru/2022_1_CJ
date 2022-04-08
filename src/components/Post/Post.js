@@ -1,5 +1,5 @@
 import { createComponent } from '../../core/models/Component/Component.js';
-import { checkTextOverflow, changeDisplay, setStyleVisibility, unsetStyleVisibility } from '../../test/baseFunction.js';
+import { checkTextOverflow, changeDisplay, setStyleVisibility, unsetStyleVisibility, setStyleDisplayBlock, setStyleDisplayGrid } from '../../test/baseFunction.js';
 
 /**
  *
@@ -110,7 +110,7 @@ const showText = (e) => {
  */
 const showAllPostImages = (e) => {
   let imagesWindow = document.getElementById('image-scroll-container');
-  setStyleVisibility(imagesWindow);
+  setStyleDisplayGrid(imagesWindow);
 };
 
 /**
@@ -119,7 +119,7 @@ const showAllPostImages = (e) => {
  */
  const showModalReplies = (e) => {
   let replies = document.getElementById('reply-container');
-  setStyleVisibility(replies);
+  setStyleDisplayGrid(replies);
 };
 
 /**

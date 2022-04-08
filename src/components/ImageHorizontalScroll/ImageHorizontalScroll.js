@@ -1,5 +1,5 @@
 import { createComponent } from '../../core/models/Component/Component.js';
-import { unsetStyleVisibility } from '../../test/baseFunction.js';
+import { setStyleDisplayNone, unsetStyleVisibility } from '../../test/baseFunction.js';
 
 
 const reducer = {
@@ -19,13 +19,13 @@ const reducer = {
           return;
         }
         if (!withinBoundaries && !dopBoundaries) {
-          unsetStyleVisibility(imagesContainer);
+          setStyleDisplayNone(imagesContainer);
         }
       });
 
       document.addEventListener('keydown', function (e) {
         if (e.key == "Escape") {
-          unsetStyleVisibility(imagesContainer);
+          setStyleDisplayNone(imagesContainer);
         }
       });
     }
