@@ -1,19 +1,15 @@
 <div class='post grid block' id='{{post.id}}'>
   <div class='header'>
-    <div class='author'>
-      {{#if post.author.image}}
-        <img class='icon' src='{{post.author.image}}' alt='' />
-      {{else}}
-        <img class='icon' src='static/images/default.jpeg' alt='' />
-      {{/if}}
-      <div class='info'>
-        <p class='link selectable author-name'>{{post.author.name.first}} {{post.author.name.last}}</p>
-        <p class='selectable text-light'>{{post.publishedTime}}</p>
-      </div>
+    <div class="user-image flex-c">
+        <img class="icon" src="{{post.author.image}}" alt="">
+    </div>
+    <div class="user-info">
+        <p class="link selectable author-name">{{post.author.name.first}} {{post.author.name.last}}</p>
+        <p class="selectable text-light">{{post.publishedTime}}</p>
     </div>
     <div class='settings-container'>
       <div class='settings'>
-        <img src='static/icons/arrow_down.svg' alt='' class='btn' />
+        <img src='static/icons/arrow_down.svg' alt='' class='icon btn' />
       </div>
       <div class='settings-info block'>
         <div class='element btn-like __disabled'>

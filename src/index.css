@@ -54,7 +54,6 @@
 
   /* border-radiuses */
   --br-primary__rem: 0.5rem;
-  --br-primary__px: 8px;
   --br-secondary__rem: 0.25rem;
   --br-circle: 50%;
 
@@ -178,6 +177,7 @@ a[data-link] * {
 }
 .element-text {
   padding: 0 1rem;
+  width: max-content;
 }
 /* main classes */
 .flex {

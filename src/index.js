@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
   Router.route(URL.Logout, controllersRegistry.logout);
   Router.route(URL.Feed, controllersRegistry.feed);
   Router.route(URL.Messenger, controllersRegistry.messenger);
+  Router.route(URL.Friends, controllersRegistry.friends);
+  Router.route(URL.Search, controllersRegistry.search);
   Router.route(URL.Profile, controllersRegistry.profile);
   Router.route(URL.ProfileSettings, controllersRegistry.profileSettings);
 

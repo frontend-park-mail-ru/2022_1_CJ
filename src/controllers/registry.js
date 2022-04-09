@@ -5,6 +5,8 @@ import { feedController } from './Feed.js';
 import { profileController } from './Profile.js';
 import { profileSettingsController } from './ProfileSettings.js';
 import { messengerController } from './Messenger.js';
+import { friendsController } from './Friends.js';
+import { searchController } from './Search.js';
 import { notFoundController } from './NotFound.js';
 import { logoutController } from './Logout.js';
 
@@ -16,6 +18,8 @@ export const controllersRegistry = {
   profile: profileController,
   profileSettings: profileSettingsController,
   messenger: messengerController,
+  friends: friendsController,
+  search: searchController,
   notFound: notFoundController,
-  logout: logoutController
+  logout: logoutController,
 };

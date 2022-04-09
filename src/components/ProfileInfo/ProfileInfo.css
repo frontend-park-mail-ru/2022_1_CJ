@@ -41,7 +41,7 @@
   color: var(--clr-text-35);
 }
 
-.user-info {
+.profile-user-info {
   display: grid;
   grid-template-rows: 1fr 1fr 2.625rem;
 }
@@ -74,7 +74,7 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  text-align: center;
+  align-items: center;
 }
 .user-menu > .element:first-child {
   border-radius: 0 0 0 var(--br-primary__rem);

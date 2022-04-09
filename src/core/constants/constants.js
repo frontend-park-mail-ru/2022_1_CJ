@@ -6,7 +6,9 @@ export const URL = {
   Logout: '/logout',
   Profile: '/profile',
   ProfileSettings: '/settings',
-  Messenger: '/messenger'
+  Messenger: '/messenger',
+  Friends: '/friends',
+  Search: '/search',
 };
 
 export const ContextKey = {

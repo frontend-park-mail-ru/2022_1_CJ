@@ -14,8 +14,9 @@ import { profileMenuComponent } from './ProfileMenu/ProfileMenu.js';
 import { profileSettingsComponent } from './ProfileSettings/ProfileSettings.js';
 import { modalRepliesComponent } from './ModalReplies/ModalReplies.js';
 import { dialogsComponent } from './Dialogs/Dialogs.js';
-import { chatComponent } from './Chat/Chat.js'
-import { friendsComponent } from './Friends/Friends.js'
+import { chatComponent } from './Chat/Chat.js';
+import { friendsComponent } from './Friends/Friends.js';
+import { friendsMenuComponent } from './FriendsMenu/FriendsMenu.js';
 
 export const ComponentsRegistry = {
   Header: headerComponent(Handlebars.templates.Header),
@@ -33,4 +34,5 @@ export const ComponentsRegistry = {
   Dialogs: dialogsComponent(Handlebars.templates.Dialogs),
   Chat: chatComponent(Handlebars.templates.Chat),
   Friends: friendsComponent(Handlebars.templates.Friends),
+  FriendsMenu: friendsMenuComponent(Handlebars.templates.FriendsMenu),
 };

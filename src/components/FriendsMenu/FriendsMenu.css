@@ -1,0 +1,7 @@
+.friends-main-menu .main-menu-element {
+    justify-content: end;
+}
+
+#add-user-button.btn-primary {
+    box-shadow: none;
+}

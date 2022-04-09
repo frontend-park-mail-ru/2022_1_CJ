@@ -20,12 +20,11 @@
   font-size: var(--fs-350);
   grid-gap: 0.5rem;
 }
-.profile-feed .author .icon {
+.profile-feed .user-image .icon {
   height: 3.25rem;
 }
-.profile-feed .author .info {
-  padding: 0.25rem 0.75rem;
-  grid-gap: unset;
+.profile-feed .settings .icon {
+  height: 1.75rem;
 }
 .profile-feed .post .title {
   font-size: var(--fs-350);
