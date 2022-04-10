@@ -135,16 +135,15 @@ const showAuthorPage = (e) => {};
 
 const reducer = {
   onShow: ({ post }) => {
-    console.table(post);
-    const currPost = document.getElementById(post.id);
+    const element = document.getElementById(post.id);
 
-    const postFirstImage = currPost.querySelector('.content .content-part');
+    const postFirstImage = element.querySelector('.content .content-part');
     if (postFirstImage) {
       // have any image
       postFirstImage.addEventListener('click', showAllPostImages);
     }
 
-    const reactions = currPost.querySelectorAll('.reactions .btn-like');
+    const reactions = element.querySelectorAll('.reactions .btn-like');
     const [like, comment, repost] = reactions;
 
     repost.addEventListener('click', showModalReplies);
@@ -152,12 +151,12 @@ const reducer = {
     comment.addEventListener('click', getComments);
     // repost.addEventListener('click', openReposts);
 
-    const postText = currPost.querySelector('.title-text');
+    const postText = element.querySelector('.title-text');
     checkTextOverflow(postText);
-    const moreText = currPost.querySelector('.title .link');
+    const moreText = element.querySelector('.title .link');
     moreText.addEventListener('click', showText);
 
-    const author = currPost.querySelector('.author .info .link');
+    const author = document.getElementById(post.author.id);
     author.addEventListener('click', showAuthorPage);
   }
 };

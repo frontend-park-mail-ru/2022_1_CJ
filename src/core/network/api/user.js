@@ -1,11 +1,11 @@
-import { getMockPosts } from '../../../test/mocks.js';
 import { CodedError } from '../../constants/errors.js';
 import { httpMethod } from '../../constants/network.js';
 import { fetchAPI } from './common.js';
 
 const userMethods = {
   getData: '/api/user/get',
-  getFeedPosts: '/api/user/feed'
+  getFeedPosts: '/api/user/feed',
+  getUserPosts: '/api/user/posts'
 };
 
 export const UserAPI = {
@@ -31,9 +31,12 @@ export const UserAPI = {
     return json;
   },
 
-  async GetProfilePosts() {
-    return {
-      posts: getMockPosts()
-    };
+  async getUserPosts() {
+    const response = await fetchAPI(userMethods.getUserPosts, httpMethod.GET);
+    const json = await response.json();
+    if (!response.ok) {
+      throw new CodedError(json.message, json.code);
+    }
+    return json;
   }
 };

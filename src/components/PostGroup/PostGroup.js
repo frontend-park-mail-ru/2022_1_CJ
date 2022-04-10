@@ -22,7 +22,17 @@ const loadFeedPosts = (element) => {
 };
 
 const loadProfilePosts = (element) => {
-  store.dispatch(thunks.user.getProfilePosts);
+  store.dispatch(thunks.user.getUserPosts);
+  store.once(
+    createReaction(actions.user.getUserPosts.success, ({ payload }) => {
+      const { posts } = payload;
+      const component = ComponentsRegistry.Post;
+      Object.values(posts).forEach(async (post) => {
+        element.insertAdjacentHTML('beforeend', renderComponent(component, { post }));
+      });
+    }),
+    createReaction(actions.user.getUserPosts.failure, ({ payload }) => handleError(payload.err))
+  );
 };
 
 const loadPosts = (element) => {

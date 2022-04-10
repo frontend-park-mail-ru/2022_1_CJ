@@ -3,9 +3,9 @@
     <div class="user-image flex-c">
         <img class="icon" src="{{post.author.image}}" alt="">
     </div>
-    <div class="user-info">
+    <div id={{post.author.id}} class="user-info">
         <p class="link selectable author-name">{{post.author.name.first}} {{post.author.name.last}}</p>
-        <p class="selectable text-light">{{post.publishedTime}}</p>
+        <p class="selectable text-light">{{post.created_at}}</p>
     </div>
     <div class='settings-container'>
       <div class='settings'>
