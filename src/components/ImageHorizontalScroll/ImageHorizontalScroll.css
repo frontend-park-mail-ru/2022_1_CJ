@@ -1,69 +1,68 @@
 #image-scroll-container {
-    display: none;
-    height: 100%;
-    width: 72.25rem;
-    min-width: 100%;
-    position: absolute;
-    background: rgba(0, 0, 0, 0.85);
+  display: none;
+  height: 100%;
+  width: 72.25rem;
+  min-width: 100%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.85);
 }
 
 .image-scroll-window {
-    width: min-content;
-    padding: 1rem;
-    display: grid;
-    grid-gap: 0.5rem;
+  width: min-content;
+  padding: 1rem;
+  display: grid;
+  grid-gap: 0.5rem;
 
-    background: var(--clr-modal-dark);
-    border-radius: var(--br-primary__rem);
+  background: var(--clr-modal-dark);
+  border-radius: var(--br-primary__rem);
 }
 .image-scroll-window-part {
-    height: min-content;
-    position: relative;
-    background: var(--clr-modal-dark);
+  height: min-content;
+  position: relative;
+  background: var(--clr-modal-dark);
 }
 .scroll-btn {
-    position: absolute;
-    height: 100%;
-    width: 4rem;
+  position: absolute;
+  height: 100%;
+  width: 4rem;
 }
 .scroll-btn:first-child {
-    left: 0;
+  left: 0;
 }
 .scroll-btn:last-child {
-    right: 0;
+  right: 0;
 }
 
 .scroll-btn > .icon {
-    visibility: hidden;
+  visibility: hidden;
 }
 .scroll-btn:hover > .icon {
-    visibility: visible;
+  visibility: visible;
 }
 
 .scroll-content {
-    width: 54rem;
-    display: flex;
-    height: auto;
-    overflow-y: hidden;
-    overflow-x: auto;
-    white-space: nowrap;
-    letter-spacing: -.25em;
-    
-    /* Scroll Snap Properties */    
-    scroll-snap-type: x mandatory;
-    scroll-snap-points-x: repeat(100%);
-    }
+  width: 54rem;
+  display: flex;
+  height: auto;
+  overflow-y: hidden;
+  overflow-x: auto;
+  white-space: nowrap;
+  letter-spacing: -0.25em;
+
+  /* Scroll Snap Properties */
+  scroll-snap-type: x mandatory;
+  scroll-snap-points-x: repeat(100%);
+}
 .scroll-content > .images-wrapper {
-    min-width: -webkit-fill-available;
-    scroll-snap-align: center;
-    height: 36rem;
-    background: var(--clr-modal-dark);
+  min-width: -webkit-fill-available;
+  scroll-snap-align: center;
+  height: 36rem;
+  background: var(--clr-modal-dark);
 }
 
 .images-wrapper > img {
-
 }
 
 .image-scroll-window-info {
-    color: rgba(256, 256, 256, 0.35);
+  color: rgba(256, 256, 256, 0.35);
 }

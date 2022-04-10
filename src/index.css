@@ -20,11 +20,11 @@
   --clr-positive: rgb(48, 166, 103);
   --clr-negative: rgb(215, 40, 84);
   --clr-negative-75: rgba(215, 40, 84, 0.75);
-  --clr-negative-50: rgba(215, 40, 84, 0.50);
+  --clr-negative-50: rgba(215, 40, 84, 0.5);
 
   --clr-warning: rgb(240, 186, 25);
   --clr-warning-75: rgba(240, 186, 25, 0.75);
-  --clr-warning-75: rgba(240, 186, 25, 0.50);
+  --clr-warning-75: rgba(240, 186, 25, 0.5);
 
   --clr-white: rgb(255, 255, 255);
   --clr-white-d: var(--clr-bg);

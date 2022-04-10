@@ -2,12 +2,12 @@
     margin-top: 0.5rem;
 }
 .single-comment.grid {
-    grid-template-columns: auto auto;
-    grid-gap: unset;
+  grid-template-columns: auto auto;
+  grid-gap: unset;
 }
 .single-comment > .info {
-    padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0.5rem;
 
-    display: block;
-    grid-gap: 0.125rem;
+  display: block;
+  grid-gap: 0.125rem;
 }

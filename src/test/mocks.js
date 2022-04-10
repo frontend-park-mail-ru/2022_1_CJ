@@ -15,38 +15,19 @@ const textArr = [
   'Behind the window was a reflection that only instilled fear.'
 ];
 
-const userFirstNameArr = [
-  'Morgan',
-  'Stan',
-  'Ella',
-  'Booch',
-  'Melissa',
-  'Antony',
-  'Samsara',
-  'Bob',
-  'Tonya',
-];
+const userFirstNameArr = ['Morgan', 'Stan', 'Ella', 'Booch', 'Melissa', 'Antony', 'Samsara', 'Bob', 'Tonya'];
 
-const userLastNameArr = [
-  'Vescer',
-  'Dylan',
-  'Moris',
-  'Dicaprio',
-  'Pines',
-  'Spacy',
-  'Astley',
-  'Torn',
-];
+const userLastNameArr = ['Vescer', 'Dylan', 'Moris', 'Dicaprio', 'Pines', 'Spacy', 'Astley', 'Torn'];
 
 const postPublishedDate = {
   date: [
     { dateType: 1, dateStr: 'yesterday' },
     { dateType: 2, dateStr: ' day' },
-    { dateType: 3, dateStr:  ' week' },
-    { dateType: 4, dateStr:  ' month' },
-    { dateType: 5, dateStr:  ' year' },
-    { dateType: 6, dateStr:  '' }, // xx.xx.xxxx
-  ],
+    { dateType: 3, dateStr: ' week' },
+    { dateType: 4, dateStr: ' month' },
+    { dateType: 5, dateStr: ' year' },
+    { dateType: 6, dateStr: '' } // xx.xx.xxxx
+  ]
   // time: [
   //   { 1: 'x:xx'},
   //   { 2: 'xx:xx'},
@@ -86,7 +67,7 @@ export const getMockPostAuthorLastName = () => {
 
 export const getMockPostDate = () => {
   let fullDate = '';
-  let {dateType, dateStr} = postPublishedDate.date[randomInteger(undefined, postPublishedDate.date.length)];
+  let { dateType, dateStr } = postPublishedDate.date[randomInteger(undefined, postPublishedDate.date.length)];
   const options = {
     timezone: 'UTC'
   };
@@ -112,7 +93,7 @@ export const getMockPostDate = () => {
       let randMonth = randomInteger(undefined, 11);
       let randDay = randomInteger(undefined, 30);
       let randDate = 24 * 60 * 60 * 1000 * (365 * randYear + 30 * randMonth + randDay);
-      datePart = new Date(randDate).toLocaleDateString("ru", options);
+      datePart = new Date(randDate).toLocaleDateString('ru', options);
       break;
   }
 
@@ -131,11 +112,11 @@ export const getMockPostDate = () => {
   }
   let randHour = randomInteger(undefined, 23);
   let randMin = randomInteger(undefined, 59);
-  let randSec = randomInteger(undefined, 59); 
+  let randSec = randomInteger(undefined, 59);
   let randTime = ((randHour * 60 + randMin) * 60 + randSec) * 1000;
-  fullDate += ' at ' + new Date(randTime).toLocaleTimeString("ru", options).slice(0, -3);
+  fullDate += ' at ' + new Date(randTime).toLocaleTimeString('ru', options).slice(0, -3);
   return fullDate;
-}
+};
 
 export const getMockPostMessage = () => {
   return textArr[randomInteger(undefined, textArr.length)];
@@ -162,7 +143,7 @@ export const getMockPosts = () => {
         image: getMockPostAuthorImage(),
         name: {
           first: getMockPostAuthorFirstName(),
-          last: getMockPostAuthorLastName(),
+          last: getMockPostAuthorLastName()
         }
       },
       created_at: getMockPostDate(),
