@@ -15,6 +15,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: var(--br-primary__rem);
 }
 .post-add > .icon {
   height: 2.25rem;
