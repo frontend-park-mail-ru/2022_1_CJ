@@ -1,4 +1,4 @@
-export class SignupUserDTO {
+export class signupUserDTO {
   /**
    * @param {String} email
    * @param {String} firstname
@@ -12,7 +12,7 @@ export class SignupUserDTO {
   }
 }
 
-export class LoginUserDTO {
+export class loginUserDTO {
   /**
    * @param {String} email
    * @param {String} password

@@ -1,5 +1,5 @@
 import { createComponent } from '../../core/models/Component/Component.js';
-import { UserAPI } from '../../core/network/api/user.js';
+import { userAPI } from '../../core/network/api/user.js';
 import { searchUsersDTO } from '../../core/network/dto/user.js';
 
 const reprintUsers = (users) => {
@@ -18,7 +18,7 @@ const reprintUsers = (users) => {
 const searchUsers = (e) => {
   const selector = e.target.value.trim();
   if (selector) {
-    UserAPI.searchUsers(searchUsersDTO(selector)).then((json) => reprintUsers(json.users));
+    userAPI.searchUsers(searchUsersDTO(selector)).then((json) => reprintUsers(json.users));
   }
 };
 

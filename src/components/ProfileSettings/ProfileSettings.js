@@ -1,13 +1,13 @@
 import { URL } from '../../core/constants/constants.js';
 import { createComponent } from '../../core/models/Component/Component.js';
 import { Router } from '../../core/modules/Router/Router.js';
-import { UserAPI } from '../../core/network/api/user.js';
+import { userAPI } from '../../core/network/api/user.js';
 
 const updatePhoto = (e) => {
   let photo = e.target.files[0];
   let formData = new FormData();
   formData.append('photo', photo);
-  UserAPI.updatePhoto(formData).then(() => Router.navigateTo(URL.ProfileSettings));
+  userAPI.updatePhoto(formData).then(() => Router.navigateTo(URL.ProfileSettings));
 };
 
 const reducer = {

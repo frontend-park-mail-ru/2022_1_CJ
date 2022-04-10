@@ -1,4 +1,4 @@
-export class GetUserDataDTO {
+export class getUserDataDTO {
   /**
    * @param {String} userID
    */

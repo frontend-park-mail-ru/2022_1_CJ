@@ -10,12 +10,12 @@ const userMethods = {
   searchUsers: '/api/user/search'
 };
 
-export const UserAPI = {
+export const userAPI = {
   /**
    * @param {Object} dto
    * @returns {Promise<[JSON, CodedError]>}
    */
-  async GetUserData(dto) {
+  async getUserData(dto) {
     const response = await fetchAPI(userMethods.getData, httpMethod.GET, { query: dto });
     const json = await response.json();
     if (!response.ok) {
