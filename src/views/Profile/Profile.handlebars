@@ -9,6 +9,16 @@
             {{#component 'ProfileInfo' .}}{{/component}}
             {{#component 'ProfileMenu' .}}{{/component}}
             <div class="profile-feed">
+                <div class="profile-create-post block fs-350">
+                    <span class='textarea' role='textbox' contenteditable></span>
+                    <hr>
+                    <div class="profile-create-post-more flex-c">
+                        <img class="icon btn-like" src="../../static/icons/share.svg" alt="">
+                        <div class="block btn-primary">
+                            <p>upload</p>
+                        </div>
+                    </div>
+                </div>
                 {{#component 'PostGroup' .}}{{/component}}
             </div>
         </div>

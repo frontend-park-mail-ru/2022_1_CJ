@@ -7,7 +7,6 @@
 }
 .user-settings .avatar-info .icon {
   height: 10rem;
-  border-radius: var(--br-primary__rem);
 }
 .avatar-info > .link {
   margin: auto;
@@ -78,13 +77,6 @@
   text-align: left;
 }
 /* text area class */
-.textarea {
-  display: block;
-
-  border: 0.0625rem solid var(--clr-text-35);
-  padding: 0.75rem;
-  border-radius: var(--br-primary__rem) var(--br-primary__rem) 0 var(--br-primary__rem);
-}
 
 .textarea[contenteditable]:empty:focus::before,
 .textarea[contenteditable]:empty::before {

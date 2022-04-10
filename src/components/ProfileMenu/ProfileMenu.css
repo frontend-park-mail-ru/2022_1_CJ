@@ -47,7 +47,7 @@
 .social-menu-element > .selectable {
   font-size: var(--fs-350);
 }
-.social-menu-element > .icon {
+.social-menu-element > .icon-a {
   margin: auto;
   height: 3rem;
 }

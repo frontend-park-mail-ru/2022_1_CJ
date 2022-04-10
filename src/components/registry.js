@@ -17,6 +17,7 @@ import { dialogsComponent } from './Dialogs/Dialogs.js';
 import { chatComponent } from './Chat/Chat.js';
 import { friendsComponent } from './Friends/Friends.js';
 import { friendsMenuComponent } from './FriendsMenu/FriendsMenu.js';
+import { searchPeopleComponent } from './SearchPeople/SearchPeople.js';
 
 export const ComponentsRegistry = {
   Header: headerComponent(Handlebars.templates.Header),
@@ -35,4 +36,5 @@ export const ComponentsRegistry = {
   Chat: chatComponent(Handlebars.templates.Chat),
   Friends: friendsComponent(Handlebars.templates.Friends),
   FriendsMenu: friendsMenuComponent(Handlebars.templates.FriendsMenu),
+  SearchPeople: searchPeopleComponent(Handlebars.templates.SearchPeople),
 };

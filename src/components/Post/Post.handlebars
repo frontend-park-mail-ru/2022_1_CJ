@@ -1,7 +1,7 @@
 <div class='post grid block' id='{{post.id}}'>
   <div class='header'>
     <div class="user-image flex-c">
-        <img class="icon" src="{{post.author.image}}" alt="">
+        <img class="icon-a" src="{{post.author.image}}" alt="">
     </div>
     <div id={{post.author.id}} class="user-info">
         <p class="link selectable author-name">{{post.author.name.first}} {{post.author.name.last}}</p>
@@ -12,10 +12,10 @@
         <img src='static/icons/arrow_down.svg' alt='' class='icon btn' />
       </div>
       <div class='settings-info block'>
-        <div class='element btn-like __disabled'>
+        <div class='element flex-c btn-like __disabled'>
           <p class='element-text'>Complain</p>
         </div>
-        <div class='element btn-like __disabled'>
+        <div class='element flex-c btn-like __disabled'>
           <p class='element-text'>Hide post</p>
         </div>
       </div>
@@ -39,7 +39,7 @@
     {{!-- {{#if post.likesCount}} --}}
       <div class='like block reactions-part btn-like'>
         <img src='static/icons/like.svg' alt='' class='icon' />
-        <p>{{post.likesCount}}</p>
+        <p>{{post.likes_count}}</p>
       </div>
     {{!-- {{else}}
       <div class='like block reactions-part btn-like __disabled'>
@@ -57,7 +57,7 @@
     </div>
     <div class='watch reactions-part'>
       <img src='static/icons/watch.svg' alt='' class='icon' />
-      <p>{{post.watchedCount}}</p>
+      <p>{{post.watched_count}}</p>
       {{! <p>1.25k</p> }}
     </div>
   </div>
@@ -70,7 +70,7 @@
       {{#component 'Comment' .}}{{/component}}
     {{/each}}
     <div class='user-comment'>
-      <img src='static/images/default.jpeg' alt='' class='icon' />
+      <img src='static/images/default.jpeg' alt='' class='icon-a' />
       <input type='search' class='input-field' placeholder='Type here a comment' />
       <img src='../static/icons/arrow_right.svg' alt='' class='icon btn-like' />
     </div>

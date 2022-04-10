@@ -1,3 +1,9 @@
 import { createView } from '../../core/models/View/View.js';
 
-export const profileView = (template) => createView(template);
+const reducer = {
+    onShow: () => {
+        console.log("BARABARA");
+    }
+  };
+
+export const profileView = (template) => createView(template, reducer);

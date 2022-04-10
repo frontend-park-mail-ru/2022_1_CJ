@@ -14,7 +14,7 @@
   grid-template-rows: auto;
 }
 
-.user-image > .icon {
+.user-image > .icon-a {
   height: 4rem;
 }
 .user-info {
@@ -129,7 +129,7 @@
   text-align: center;
 }
 
-.comments-section .icon {
+.comments-section .icon-a {
   height: 2.5rem;
   align-items: unset;
 }

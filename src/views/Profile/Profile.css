@@ -20,12 +20,23 @@
   font-size: var(--fs-350);
   grid-gap: 0.5rem;
 }
-.profile-feed .user-image .icon {
+.profile-feed .user-image .icon-a {
   height: 3.25rem;
 }
 .profile-feed .settings .icon {
   height: 1.75rem;
 }
+
+.profile-feed .settings-info {
+  font-size: var(--fs-300);
+}
+.profile-feed .settings-info > .element {
+  height: 1.75rem;
+}
+.profile-feed .settings-info .element-text {
+  padding: 0 0.5rem;
+}
+
 .profile-feed .post .title {
   font-size: var(--fs-350);
 }
@@ -34,4 +45,53 @@
 }
 .profile-feed .reactions .icon {
   height: 1.25rem;
+}
+
+
+.profile-create-post {
+  padding: 0.5rem;
+  height: min-content;
+  display: none;
+  /* grid */
+  grid-gap: 0.5rem;
+}
+
+/* .profile-create-post-text {
+  width: 100%;
+} */
+
+.profile-create-post .textarea {
+  outline: none;
+  border: none;
+  border-radius: 0;
+  display: block;
+  width: 100%;
+  overflow-y: scroll;
+  min-height: 3rem;
+  max-height: 9rem;
+  line-height: 1.25rem;
+}
+
+.profile-create-post .textarea[contenteditable]:empty:focus::before,
+.profile-create-post .textarea[contenteditable]:empty::before {
+  content: 'Start type something';
+}
+
+.profile-create-post-more {
+  justify-content: space-between;
+} 
+
+.profile-create-post-more .icon {
+  padding: 0.35rem;
+  opacity: 70%;
+  height: 100%;
+}
+.profile-create-post-more .icon:hover {
+  opacity: 100%;
+}
+
+.profile-create-post-more .block {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
 }

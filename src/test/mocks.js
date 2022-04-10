@@ -165,11 +165,11 @@ export const getMockPosts = () => {
           last: getMockPostAuthorLastName(),
         }
       },
-      publishedTime: getMockPostDate(),
+      created_at: getMockPostDate(),
       message: getMockPostMessage(),
       images: getMockPostImages(),
-      likesCount: getMockPostLikesCount(),
-      watchedCount: getMockPostWatchedCount(),
+      likes_count: getMockPostLikesCount(),
+      watched_count: getMockPostWatchedCount(),
     });
   }
   return postArr;

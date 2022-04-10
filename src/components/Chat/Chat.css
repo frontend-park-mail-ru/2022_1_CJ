@@ -1,12 +1,13 @@
 /* absolute blocks */
 .absolute-block {
-    width: 41.25rem;
+    width: 40.25rem;
     position: absolute;
     z-index: 2000;
     background: var(--clr-bg);
 }
 .absolute-block:first-child {
     padding-top: 1rem;
+    margin: 0 0.5rem;
 }
 .absolute-block:last-child {
     bottom: 0;

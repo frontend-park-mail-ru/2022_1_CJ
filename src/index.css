@@ -159,12 +159,6 @@ a[data-link] * {
 /* -------------------------------- Utility Classes -------------------------------- */
 
 /* ---------------- General ---------------- */
-.icon {
-  height: 2rem;
-  aspect-ratio: 1 / 1;
-  border-radius: var(--br-circle);
-}
-
 .selectable {
   user-select: text;
 }
@@ -553,6 +547,12 @@ input {
 /* ---------------- Icons ---------------- */
 
 .icon {
+  height: 2rem;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--br-secondary__rem);
+}
+
+.icon-a {
   height: 2rem;
   aspect-ratio: 1 / 1;
   border-radius: var(--br-circle);
