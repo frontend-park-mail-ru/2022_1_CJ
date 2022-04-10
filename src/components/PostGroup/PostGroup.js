@@ -2,30 +2,38 @@ import { renderComponent } from '../../core/helpers/component.js';
 import { handleError } from '../../core/helpers/errors.js';
 import { createReaction } from '../../core/models/Action/Action.js';
 import { createComponent } from '../../core/models/Component/Component.js';
+import { postAPI } from '../../core/network/api/post.js';
 import { actions, store, thunks } from '../../store/store.js';
 import { ComponentsRegistry } from '../registry.js';
 
 let postGroup;
 
-const loadPosts = (element) => {
-  // first-time check (need to check url somehow or sth else)
-  // FIXME: need to check URL or sth else 
-  if (document.querySelector('.feed-page')) {
-    store.dispatch(thunks.user.getFeedPosts);
-  } else {
-    store.dispatch(thunks.user.getProfilePosts);
-  }
-  //
+const loadFeedPosts = (element) => {
+  store.dispatch(thunks.user.getFeedPostIDs);
   store.once(
-    createReaction(actions.user.getPosts.success, ({ payload }) => {
-      const { posts } = payload;
+    createReaction(actions.user.getFeedPostIDs.success, ({ payload }) => {
+      const postIDs = payload.feedPostIDs;
+      console.log(payload);
       const component = ComponentsRegistry.Post;
-      Object.values(posts).forEach((post) => {
-        element.insertAdjacentHTML('beforeend', renderComponent(component, { post }));
+      Object.values(postIDs).forEach(async (postID) => {
+        const json = await postAPI.getPost(postID);
+        element.insertAdjacentHTML('beforeend', renderComponent(component, { post: json.post }));
       });
     }),
-    createReaction(actions.user.getPosts.failure, ({ payload }) => handleError(payload.err))
+    createReaction(actions.user.getFeedPostIDs.failure, ({ payload }) => handleError(payload.err))
   );
+};
+
+const loadProfilePosts = (element) => {
+  store.dispatch(thunks.user.getProfilePosts);
+};
+
+const loadPosts = (element) => {
+  if (document.querySelector('.feed-page')) {
+    loadFeedPosts(element);
+  } else {
+    loadProfilePosts(element);
+  }
 };
 
 const reducer = {
@@ -47,9 +55,7 @@ const reducer = {
   }
 };
 
-
 // FIXME: scroll doesn't work as excpected
-// 
 function isInViewport(el) {
   const rect = el.getBoundingClientRect();
   return (

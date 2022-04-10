@@ -4,7 +4,8 @@ import { AuthAPI } from '../../core/network/api/auth.js';
 import { handleError } from '../../core/helpers/errors.js';
 
 export const userInitialState = {
-  user: null
+  user: null,
+  feedPostIDs: null
 };
 
 export const userActions = {
@@ -40,6 +41,11 @@ export const userActions = {
     }
   },
 
+  getFeedPostIDs: {
+    success: 'getFeedPostIDsSuccess',
+    failure: 'getFeedPostIDsFailure'
+  },
+
   getPosts: {
     success: 'getPostsSuccess',
     failure: 'getPostsFailure'
@@ -71,14 +77,15 @@ export const userThunks = {
       (err) => next(createAction(userActions.getUserData.failure, { err }))
     ),
 
-  getFeedPosts: (next) =>
-    UserAPI.GetFeedPosts().then(
-      (json) => next(createAction(userActions.getPosts.success, { posts: json.posts })),
-      (err) => next(createAction(userActions.getPosts.failure, { err }))
+  getFeedPostIDs: (next) =>
+    UserAPI.getFeedPostIDs().then(
+      (json) => next(createAction(userActions.getFeedPostIDs.success, { feedPostIDs: json.post_ids })),
+      (err) => next(createAction(userActions.getFeedPostIDs.failure, { err }))
     ),
+
   getProfilePosts: (next) =>
     UserAPI.GetProfilePosts().then(
       (json) => next(createAction(userActions.getPosts.success, { posts: json.posts })),
       (err) => next(createAction(userActions.getPosts.failure, { err }))
-    ),
+    )
 };

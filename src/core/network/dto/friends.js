@@ -1,4 +1,4 @@
-export const createPostDTO = (message, images) => {
+export const sendFriendRequestDTO = (message, images) => {
   return {
     message,
     images

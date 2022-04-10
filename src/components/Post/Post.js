@@ -1,5 +1,12 @@
 import { createComponent } from '../../core/models/Component/Component.js';
-import { checkTextOverflow, changeDisplay, setStyleVisibility, unsetStyleVisibility, setStyleDisplayBlock, setStyleDisplayGrid } from '../../test/baseFunction.js';
+import {
+  checkTextOverflow,
+  changeDisplay,
+  setStyleVisibility,
+  unsetStyleVisibility,
+  setStyleDisplayBlock,
+  setStyleDisplayGrid
+} from '../../test/baseFunction.js';
 
 /**
  *
@@ -49,8 +56,6 @@ const changeLike = (e) => {
     likesCount += 1;
   }
 
-
-
   let likesStr = String(likesCount);
   // let likesStr = convertor(likesCount);
   likesField.innerHTML = likesStr; // likesField get new number
@@ -67,7 +72,6 @@ const getComments = (e) => {
   // TODO: asking back for first 25 comments
   // create such elements and add them to comments section
 };
-
 
 /**
  *
@@ -117,7 +121,7 @@ const showAllPostImages = (e) => {
  *
  * @param {Event} e
  */
- const showModalReplies = (e) => {
+const showModalReplies = (e) => {
   let replies = document.getElementById('reply-container');
   setStyleDisplayGrid(replies);
 };
@@ -126,15 +130,15 @@ const showAllPostImages = (e) => {
  *
  * @param {Event} e
  */
- const showAuthorPage = (e) => {
-};
+const showAuthorPage = (e) => {};
 
 const reducer = {
   onShow: ({ post }) => {
     const currPost = document.getElementById(post.id);
 
     const postFirstImage = currPost.querySelector('.content .content-part');
-    if (postFirstImage) { // have any image
+    if (postFirstImage) {
+      // have any image
       postFirstImage.addEventListener('click', showAllPostImages);
     }
 

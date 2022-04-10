@@ -10,5 +10,6 @@ export const httpStatus = {
 export const httpMethod = {
   GET: 'GET',
   POST: 'POST',
+  PUT: 'PUT',
   DELETE: 'DELETE'
 };
