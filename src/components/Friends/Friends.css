@@ -1,29 +1,29 @@
 .friends-container {
-    box-shadow: var(--bs-secondary);
+  box-shadow: var(--bs-secondary);
 }
 .friends-container hr {
-    background: var(--clr-secondary-25);
+  background: var(--clr-secondary-25);
 }
 .friends-container hr:last-child {
-    height: 0;
+  height: 0;
 }
 
 .friend-section {
-    padding: 0.5rem;
+  padding: 0.5rem;
 }
 
 .friend-image .icon {
-    height: 4rem;
+  height: 4rem;
 }
 
 .friend-info p {
-    color: var(--clr-secondary);
+  color: var(--clr-secondary);
 }
 .friend-info .link {
-    color: var(--clr-text-35);
+  color: var(--clr-text-35);
 }
 
 .friend-section .settings-info {
-    margin: 0.5rem 2rem;
-    width: max-content;
+  margin: 0.5rem 2rem;
+  width: max-content;
 }

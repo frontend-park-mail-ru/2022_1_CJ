@@ -21,5 +21,5 @@ export const controllersRegistry = {
   friends: friendsController,
   search: searchController,
   notFound: notFoundController,
-  logout: logoutController,
+  logout: logoutController
 };

@@ -20,5 +20,5 @@ export const ViewsRegistry = {
   ProfileSettings: profileSettingsView(Handlebars.templates.ProfileSettings),
   Messenger: messengerView(Handlebars.templates.Messenger),
   Friends: friendsView(Handlebars.templates.Friends),
-  Search: searchView(Handlebars.templates.Search),
+  Search: searchView(Handlebars.templates.Search)
 };

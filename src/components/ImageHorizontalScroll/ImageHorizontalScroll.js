@@ -1,7 +1,6 @@
 import { createComponent } from '../../core/models/Component/Component.js';
 import { setStyleDisplayNone, unsetStyleVisibility } from '../../test/baseFunction.js';
 
-
 const reducer = {
   onShow: () => {
     let imagesContainer = document.getElementById('image-scroll-container');
@@ -12,7 +11,7 @@ const reducer = {
       document.addEventListener('click', (e) => {
         const withinBoundaries = e.composedPath().includes(imagesWindow);
         let dopBoundaries;
-        const correctTarget = e.target.className == "content-part";
+        const correctTarget = e.target.className == 'content-part';
 
         if (correctTarget) {
           dopBoundaries = e.composedPath().includes(e.target);
@@ -24,7 +23,7 @@ const reducer = {
       });
 
       document.addEventListener('keydown', function (e) {
-        if (e.key == "Escape") {
+        if (e.key == 'Escape') {
           setStyleDisplayNone(imagesContainer);
         }
       });

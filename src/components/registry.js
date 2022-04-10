@@ -34,5 +34,5 @@ export const ComponentsRegistry = {
   Dialogs: dialogsComponent(Handlebars.templates.Dialogs),
   Chat: chatComponent(Handlebars.templates.Chat),
   Friends: friendsComponent(Handlebars.templates.Friends),
-  FriendsMenu: friendsMenuComponent(Handlebars.templates.FriendsMenu),
+  FriendsMenu: friendsMenuComponent(Handlebars.templates.FriendsMenu)
 };
