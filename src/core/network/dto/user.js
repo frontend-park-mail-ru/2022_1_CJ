@@ -7,3 +7,7 @@ export class GetUserDataDTO {
     this.user_id = userID;
   }
 }
+
+export const searchUsersDTO = (selector) => {
+  return { selector };
+};
