@@ -8,12 +8,12 @@ const authMethods = {
   logout: '/api/auth/logout'
 };
 
-export const AuthAPI = {
+export const authAPI = {
   /**
    * @param {Object} dto
    * @returns {Promise<JSON>}
    */
-  async SignupUser(dto) {
+  async signupUser(dto) {
     const body = JSON.stringify(dto);
     const response = await fetchAPI(authMethods.signup, httpMethod.POST, { body });
     const json = await response.json();
@@ -27,7 +27,7 @@ export const AuthAPI = {
    * @param {Object} dto
    * @returns {Promise<JSON>}
    */
-  async LoginUser(dto) {
+  async loginUser(dto) {
     const body = JSON.stringify(dto);
     const response = await fetchAPI(authMethods.login, httpMethod.POST, { body });
     const json = await response.json();
@@ -40,7 +40,7 @@ export const AuthAPI = {
   /**
    * @returns {Promise<CodedError>}
    */
-  async LogoutUser() {
+  async logoutUser() {
     const response = await fetchAPI(authMethods.logout, httpMethod.DELETE);
     const json = await response.json();
     if (!response.ok) {

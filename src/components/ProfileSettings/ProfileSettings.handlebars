@@ -5,10 +5,10 @@
       {{#if user.image}}
         <img class='icon user-image' src='{{user.image}}' alt='' />
       {{else}}
-        <img class='icon user-image' src='static/images/default.jpeg' alt='' />
+        <img class='icon user-image' src='default.jpeg' alt='' />
       {{/if}}
     </div>
-    <p class='link'>upload image files</p>
+    <input type='file' id='update-photo' accept='.jpg, .jpeg, .png' />
   </div>
   <hr />
   <div class='settings-main-info'>

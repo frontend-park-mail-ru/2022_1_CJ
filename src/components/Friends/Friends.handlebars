@@ -1,4 +1,10 @@
-<div class="friends-container block">
+<div class='friends-container block'>
+  <div class='flex border-no-style border-4 bg-white'>
+    <img class='icon' src='{{icon "search"}}' alt='search icon' />
+    <input id='search-input' class='border-no-style' type='text' placeholder='Search' />
+  </div>
+
+  <div id='friends-container'>
     {{#each user.friends as |friend|}}
     <div class="header friend-section">
         <div class="user-image friend-image flex-c">
@@ -22,7 +28,7 @@
             </div>
         </div>
     </div>
-    <hr>
+    <hr /> --}}
     {{/each}}
     <div class="header friend-section">
         <div class="user-image friend-image flex-c">

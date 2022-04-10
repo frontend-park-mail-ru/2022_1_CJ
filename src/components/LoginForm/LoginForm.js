@@ -4,7 +4,7 @@ import { createReaction } from '../../core/models/Action/Action.js';
 import { createComponent } from '../../core/models/Component/Component.js';
 import { InputIDs, InputsRegistry, InputTypes } from '../../core/modules/InputValidator/InputsRegistry.js';
 import { Router } from '../../core/modules/Router/Router.js';
-import { LoginUserDTO } from '../../core/network/dto/auth.js';
+import { loginUserDTO } from '../../core/network/dto/auth.js';
 import { actions, store, thunks } from '../../store/store.js';
 
 const inputsRegistry = new InputsRegistry();
@@ -17,7 +17,7 @@ const onSubmit = (event) => {
   }
 
   store.dispatch(
-    thunks.user.login(new LoginUserDTO(inputsRegistry.value(InputIDs.Email), inputsRegistry.value(InputIDs.Password)))
+    thunks.user.login(new loginUserDTO(inputsRegistry.value(InputIDs.Email), inputsRegistry.value(InputIDs.Password)))
   );
 
   store.once(

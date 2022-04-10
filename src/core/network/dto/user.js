@@ -1,4 +1,4 @@
-export class GetUserDataDTO {
+export class getUserDataDTO {
   /**
    * @param {String} userID
    */
@@ -7,3 +7,7 @@ export class GetUserDataDTO {
     this.user_id = userID;
   }
 }
+
+export const searchUsersDTO = (selector) => {
+  return { selector };
+};
