@@ -7,6 +7,7 @@ import {
   setStyleDisplayBlock,
   setStyleDisplayGrid
 } from '../../test/baseFunction.js';
+import { ComponentsRegistry } from '../registry.js';
 
 /**
  *
@@ -134,6 +135,7 @@ const showAuthorPage = (e) => {};
 
 const reducer = {
   onShow: ({ post }) => {
+    console.table(post);
     const currPost = document.getElementById(post.id);
 
     const postFirstImage = currPost.querySelector('.content .content-part');

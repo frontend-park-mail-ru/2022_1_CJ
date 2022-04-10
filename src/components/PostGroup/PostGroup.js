@@ -2,25 +2,22 @@ import { renderComponent } from '../../core/helpers/component.js';
 import { handleError } from '../../core/helpers/errors.js';
 import { createReaction } from '../../core/models/Action/Action.js';
 import { createComponent } from '../../core/models/Component/Component.js';
-import { postAPI } from '../../core/network/api/post.js';
 import { actions, store, thunks } from '../../store/store.js';
 import { ComponentsRegistry } from '../registry.js';
 
 let postGroup;
 
 const loadFeedPosts = (element) => {
-  store.dispatch(thunks.user.getFeedPostIDs);
+  store.dispatch(thunks.user.getFeedPosts);
   store.once(
-    createReaction(actions.user.getFeedPostIDs.success, ({ payload }) => {
-      const postIDs = payload.feedPostIDs;
-      console.log(payload);
+    createReaction(actions.user.getFeedPosts.success, ({ payload }) => {
+      const { posts } = payload;
       const component = ComponentsRegistry.Post;
-      Object.values(postIDs).forEach(async (postID) => {
-        const json = await postAPI.getPost(postID);
-        element.insertAdjacentHTML('beforeend', renderComponent(component, { post: json.post }));
+      Object.values(posts).forEach(async (post) => {
+        element.insertAdjacentHTML('beforeend', renderComponent(component, { post }));
       });
     }),
-    createReaction(actions.user.getFeedPostIDs.failure, ({ payload }) => handleError(payload.err))
+    createReaction(actions.user.getFeedPosts.failure, ({ payload }) => handleError(payload.err))
   );
 };
 

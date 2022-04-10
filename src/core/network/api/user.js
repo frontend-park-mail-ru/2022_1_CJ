@@ -5,7 +5,7 @@ import { fetchAPI } from './common.js';
 
 const userMethods = {
   getData: '/api/user/get',
-  getFeedPostIDs: '/api/user/feed'
+  getFeedPosts: '/api/user/feed'
 };
 
 export const UserAPI = {
@@ -22,8 +22,8 @@ export const UserAPI = {
     return json;
   },
 
-  async getFeedPostIDs() {
-    const response = await fetchAPI(userMethods.getFeedPostIDs, httpMethod.GET);
+  async getFeedPosts() {
+    const response = await fetchAPI(userMethods.getFeedPosts, httpMethod.GET);
     const json = await response.json();
     if (!response.ok) {
       throw new CodedError(json.message, json.code);

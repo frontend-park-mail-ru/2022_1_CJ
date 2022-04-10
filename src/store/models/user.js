@@ -41,9 +41,9 @@ export const userActions = {
     }
   },
 
-  getFeedPostIDs: {
-    success: 'getFeedPostIDsSuccess',
-    failure: 'getFeedPostIDsFailure'
+  getFeedPosts: {
+    success: 'getFeedPostsSuccess',
+    failure: 'getFeedPostsFailure'
   },
 
   getPosts: {
@@ -77,10 +77,10 @@ export const userThunks = {
       (err) => next(createAction(userActions.getUserData.failure, { err }))
     ),
 
-  getFeedPostIDs: (next) =>
-    UserAPI.getFeedPostIDs().then(
-      (json) => next(createAction(userActions.getFeedPostIDs.success, { feedPostIDs: json.post_ids })),
-      (err) => next(createAction(userActions.getFeedPostIDs.failure, { err }))
+  getFeedPosts: (next) =>
+    UserAPI.getFeedPosts().then(
+      (json) => next(createAction(userActions.getFeedPosts.success, json)),
+      (err) => next(createAction(userActions.getFeedPosts.failure, { err }))
     ),
 
   getProfilePosts: (next) =>
