@@ -70,7 +70,10 @@ class Router {
    */
   navigateTo(path) {
     window.history.pushState(null, null, path);
-    Janitor.cleanup();
+    this.#route();
+  }
+
+  refresh() {
     this.#route();
   }
 
@@ -89,6 +92,7 @@ class Router {
   }
 
   #route() {
+    Janitor.cleanup();
     const match = this.#routes.find((route) => window.location.pathname.match(pathToRegex(route.path)) !== null);
     if (match) {
       match.controller.handle({ root: this.#root });
