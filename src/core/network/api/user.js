@@ -1,7 +1,7 @@
 import { CodedError } from '../../constants/errors.js';
 import { httpMethod } from '../../constants/network.js';
-import { fetchAPI } from './common.js';
-import { getMockPosts } from '../../../test/mocks.js'
+import { fetchAPI, fetchAPIFormData } from './common.js';
+import { getMockPosts } from '../../../test/mocks.js';
 
 const userMethods = {
   getData: '/api/user/get',
