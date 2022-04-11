@@ -2,11 +2,7 @@
   <div class='avatar-info'>
     <p class=''>Your current image</p>
     <div class='flex-c'>
-      {{#if user.image}}
-        <img class='icon user-image' src='{{user.image}}' alt='' />
-      {{else}}
-        <img class='icon user-image' src='default.jpeg' alt='' />
-      {{/if}}
+      <img class='icon user-image' src='{{user.image}}' alt='' />
     </div>
     <label for="update-photo" class="link">upload image</label>
     <input type='file' id='update-photo' accept='.jpg, .jpeg, .png' />
@@ -60,7 +56,7 @@
     <a class='block btn-primary __disabled'>
       <p class='save-info-text'>back</p>
     </a>
-    <div class='block btn-like __disabled' id='save-settings-btn'>
+    <div class='block btn-like __disabled' id='upload-new-user-info'>
       <img class='icon' src='static/icons/add_square.svg' alt='' />
       <p class='save-info-text'>save information</p>
     </div>

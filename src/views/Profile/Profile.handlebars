@@ -12,11 +12,14 @@
                 <div class="profile-create-post block fs-350">
                     <span class='textarea' role='textbox' contenteditable></span>
                     <div class="profile-create-post-images">
-                        <img src="../../static/images/p5.webp" alt="">
+                        
                     </div>
                     <hr>
                     <div class="profile-create-post-more flex-c">
-                        <img class="icon btn-like" src="../../static/icons/share.svg" alt="">
+                        <label for="upload-post-content" class="link">
+                            <img class="icon btn-like" src="../../static/icons/share.svg" alt="">
+                        </label>
+                        <input type='file' id='upload-post-content' multiple accept='.jpg, .jpeg, .png' />
                         <div class="block btn-primary">
                             <p>upload</p>
                         </div>

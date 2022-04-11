@@ -1,9 +1,5 @@
 <div class='profile-info block'>
-  {{#if user.image}}
-    <img class='icon' src='{{user.image}}' alt='' />
-  {{else}}
-    <img class='icon' src='static/images/default.jpeg' alt='' />
-  {{/if}}
+  <img class='icon' src='{{user.image}}' alt='' />
   <div class='main-info'>
     <div class='user-header main-info-part'>
       <p class='user-name selectable'>{{user.name.first}} {{user.name.last}}</p>

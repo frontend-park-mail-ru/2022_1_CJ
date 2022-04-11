@@ -94,6 +94,9 @@
 .profile-create-post-more .icon:hover {
   opacity: 100%;
 }
+#upload-post-content {
+  display: none;
+}
 
 .profile-create-post-more .block {
   padding: 0.5rem;

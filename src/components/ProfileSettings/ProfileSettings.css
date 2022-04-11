@@ -119,6 +119,6 @@
   display: flex;
   align-items: center;
 }
-#save-settings-btn {
+#upload-new-user-info {
   color: var(--clr-text-35);
 }

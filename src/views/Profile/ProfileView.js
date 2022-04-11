@@ -17,6 +17,20 @@ const showAddPostElement = (e) => {
  * 
  * @param {Event} e 
  */
+const uploadContent = (e) => {
+    let contentContainer = document.querySelector('.profile-create-post-images');
+    let photos = e.target.files;
+    for (let i = 0; i < photos.length; i++) {
+        let newImage = document.createElement('img');
+        newImage.src = window.URL.createObjectURL(photos[i]);
+        contentContainer.appendChild(newImage);
+    }
+}
+
+/**
+ * 
+ * @param {Event} e 
+ */
 const uploadNewPost = (e) => {
     let newPost = document.querySelector('.profile-create-post');
     let text = newPost.querySelector('.profile-create-post .textarea');
@@ -45,6 +59,9 @@ const reducer = {
         postAdd.addEventListener("click", showAddPostElement);
 
         let newPost = document.querySelector('.profile-create-post');
+        let uploadContentBtn = document.getElementById('upload-post-content');
+        uploadContentBtn.addEventListener('click', uploadContent);
+
         let uploadNewPostBtn = newPost.querySelector('.block.btn-primary');
         uploadNewPostBtn.addEventListener("click", uploadNewPost);
     }
