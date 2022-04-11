@@ -18,8 +18,10 @@ const showAddPostElement = (e) => {
  * @param {Event} e 
  */
 const uploadContent = (e) => {
-    let contentContainer = document.querySelector('.profile-create-post-images');
     let photos = e.target.files;
+    let contentContainer = document.querySelector('.profile-create-post-images');
+    console.log(contentContainer);
+    console.log(photos);
     for (let i = 0; i < photos.length; i++) {
         let newImage = document.createElement('img');
         newImage.src = window.URL.createObjectURL(photos[i]);
@@ -40,6 +42,8 @@ const uploadNewPost = (e) => {
         images.push(element.src);
     });
 
+    //TODO: check if information exist
+
     // store.dispatch(
     //     postAPI.createPost( 
     //         createPostDTO(
@@ -49,7 +53,6 @@ const uploadNewPost = (e) => {
     //     )
     // );
     
-    // text.innerHTML = "";
     setStyleDisplayNone(newPost);
 }
 

@@ -199,7 +199,7 @@ const reducer = {
     deletePostBtn.addEventListener('click', deletePost(post));
 
     const editPostBtn = element.querySelector('.edit-post-btn');
-    editPostBtn.addEventListener('click', editPost(post));
+    // editPostBtn.addEventListener('click', editPost(post));
   }
 };
 

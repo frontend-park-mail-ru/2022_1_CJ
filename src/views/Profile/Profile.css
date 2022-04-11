@@ -74,7 +74,7 @@
 }
 
 .profile-create-post-images img {
-  max-width: 100%;
+  width: 100%;
 }
 
 .profile-create-post .textarea[contenteditable]:empty:focus::before,
