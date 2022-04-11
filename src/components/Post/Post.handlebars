@@ -18,11 +18,15 @@
         <div class='element flex-c btn-like __disabled'>
           <p class='element-text'>Hide post</p>
         </div>
-        {{#if post.author.id == user.id}}
-          <div class='element flex-c btn-like delete-post-btn'>
-            <p class='element-text'>Delete post</p>
-          </div>
-        {{/if}}
+        {{!-- only user can delete all post in his profile --}}
+        <div class='element flex-c btn-like delete-post-btn'>
+          <p class='element-text'>Delete post</p>
+        </div>
+        {{!-- only user can edit only his own posts in his profile --}}
+        <div class='element flex-c btn-like delete-post-btn'>
+          <p class='element-text'>Edit post</p>
+        </div>
+
       </div>
     </div>
   </div>

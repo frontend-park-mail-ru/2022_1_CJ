@@ -1,6 +1,6 @@
 import { createComponent } from '../../core/models/Component/Component.js';
 import { postAPI } from '../../core/network/api/post.js';
-import { deletePostDTO } from '../../core/network/dto/post.js';
+import { deletePostDTO, editPostDTO } from '../../core/network/dto/post.js';
 import { store } from '../../store/store.js';
 import {
   checkTextOverflow,
@@ -138,12 +138,32 @@ const showAuthorPage = (e) => {};
 
 /**
  * 
+ * @param {Object} post
  */
-const deletePost = () => {
+const deletePost = (post) => {
   store.dispatch(
     postAPI.createPost( 
       deletePostDTO(
         post.id
+      )
+    )
+  );
+}
+
+/**
+ * 
+ * @param {Object} post
+ */
+ const editPost = (post) => {
+  //  FIXME: need logic to find fields and set them to contenteditable
+  // then need to await fixes
+  // then we end logic to back
+  store.dispatch(
+    postAPI.editPost( 
+      editPostDTO(
+        post.id,
+        message,
+        images
       )
     )
   );
@@ -176,7 +196,10 @@ const reducer = {
     author.addEventListener('click', showAuthorPage);
 
     const deletePostBtn = element.querySelector('.delete-post-btn');
-    // deletePostBtn.addEventListener('click', deletePost);
+    deletePostBtn.addEventListener('click', deletePost(post));
+
+    const editPostBtn = element.querySelector('.edit-post-btn');
+    editPostBtn.addEventListener('click', editPost(post));
   }
 };
 

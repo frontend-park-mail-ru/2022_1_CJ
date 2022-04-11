@@ -1,7 +1,9 @@
 import { createView } from '../../core/models/View/View.js';
 
 const reducer = {
-  onShow: () => {}
+  onShow: () => {
+    
+  }
 };
 
 export const friendsView = (template) => createView(template, reducer);

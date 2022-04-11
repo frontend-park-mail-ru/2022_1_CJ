@@ -12,6 +12,10 @@
   margin: auto;
 }
 
+#update-photo {
+  display: none;
+}
+
 .settings-main-info {
   padding: 2rem;
   display: grid;
