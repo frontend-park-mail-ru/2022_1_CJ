@@ -1,4 +1,7 @@
 import { createComponent } from '../../core/models/Component/Component.js';
+import { postAPI } from '../../core/network/api/post.js';
+import { deletePostDTO } from '../../core/network/dto/post.js';
+import { store } from '../../store/store.js';
 import {
   checkTextOverflow,
   changeDisplay,
@@ -133,6 +136,19 @@ const showModalReplies = (e) => {
  */
 const showAuthorPage = (e) => {};
 
+/**
+ * 
+ */
+const deletePost = () => {
+  store.dispatch(
+    postAPI.createPost( 
+      deletePostDTO(
+        post.id
+      )
+    )
+  );
+}
+
 const reducer = {
   onShow: ({ post }) => {
     const element = document.getElementById(post.id);
@@ -158,6 +174,9 @@ const reducer = {
 
     const author = document.getElementById(post.author.id);
     author.addEventListener('click', showAuthorPage);
+
+    const deletePostBtn = element.querySelector('.delete-post-btn');
+    // deletePostBtn.addEventListener('click', deletePost);
   }
 };
 

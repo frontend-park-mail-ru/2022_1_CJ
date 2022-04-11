@@ -35,9 +35,9 @@ export const userAPI = {
   },
 
   async getUserPosts() {
-    return {
-      posts: getMockPosts()
-    };
+    // return {
+    //   posts: getMockPosts()
+    // };
     const response = await fetchAPI(userMethods.getUserPosts, httpMethod.GET);
     const json = await response.json();
     if (!response.ok) {

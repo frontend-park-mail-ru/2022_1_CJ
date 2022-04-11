@@ -2,7 +2,7 @@ import { createView } from '../../core/models/View/View.js';
 import { postAPI } from '../../core/network/api/post.js';
 import { createPostDTO } from '../../core/network/dto/post.js';
 import { store, thunks } from '../../store/store.js';
-import { setStyleDisplayGrid } from '../../test/baseFunction.js';
+import { setStyleDisplayGrid, setStyleDisplayNone } from '../../test/baseFunction.js';
 
 /**
  * 
@@ -19,21 +19,24 @@ const showAddPostElement = (e) => {
  */
 const uploadNewPost = (e) => {
     let newPost = document.querySelector('.profile-create-post');
-    let text = newPost.querySelector('.textarea');
+    let text = newPost.querySelector('.profile-create-post .textarea');
     let postImages = newPost.querySelectorAll('.profile-create-post-images img');
     let images = []; 
     postImages.forEach((element) => {
         images.push(element.src);
-    }) 
+    });
 
-    store.dispatch(
-        postAPI.createPost( 
-            createPostDTO(
-                text.innerHTML,
-                images,
-            )
-        )
-    );
+    // store.dispatch(
+    //     postAPI.createPost( 
+    //         createPostDTO(
+    //             text,
+    //             images,
+    //         )
+    //     )
+    // );
+    
+    // text.innerHTML = "";
+    setStyleDisplayNone(newPost);
 }
 
 const reducer = {
