@@ -1,16 +1,22 @@
 import { Janitor } from '../Janitor/Janitor.js';
 
-const ParameterRegExp = /:(\w+)/g;
-const SolidStringPattern = '(.+)';
-const EscapedURLDelimiter = '\\/';
+const parameterRegExp = /:(\w+)/g;
+const solidStringPattern = '(.+)';
+const escapedURLDelimiter = '\\/';
 
 const pathToRegex = (path) =>
-  new RegExp(`^${path.replaceAll('/', EscapedURLDelimiter).replace(ParameterRegExp, SolidStringPattern)}$`);
+  new RegExp(`^${path.replaceAll('/', escapedURLDelimiter).replace(parameterRegExp, solidStringPattern)}$`);
 
-const getParams = (match) => {
-  const values = match.result.slice(1);
-  const keys = Array.from(match.route.path.matchAll(ParameterRegExp)).map((result) => result[1]);
-  return Object.fromEntries(keys.map((key, i) => [key, values[i]]));
+const getParams = (route) => {
+  const fragments = window.location.pathname.split('/');
+  const mapping = route.split('/').reduce((arr, fragment, index) => {
+    if (fragment.includes(':')) {
+      const key = fragment.slice(1);
+      arr.push([[key], fragments[index]]);
+    }
+    return arr;
+  }, []);
+  return Object.fromEntries(mapping);
 };
 
 class Router {
@@ -51,9 +57,9 @@ class Router {
    * Start routing and listening History changes
    */
   run() {
-    // if (this.#routes.length === 0) {
-    //   throw new Error('no routes are set up');
-    // }
+    if (this.#routes.length === 0) {
+      throw new Error('no routes are set up');
+    }
 
     if (!this.#notFoundController) {
       throw new Error('not found view is not set up');
@@ -95,7 +101,8 @@ class Router {
     Janitor.cleanup();
     const match = this.#routes.find((route) => window.location.pathname.match(pathToRegex(route.path)) !== null);
     if (match) {
-      match.controller.handle({ root: this.#root });
+      const params = getParams(match.path);
+      match.controller.handle({ root: this.#root, params });
     } else {
       this.#notFoundController.handle({ root: this.#root });
     }

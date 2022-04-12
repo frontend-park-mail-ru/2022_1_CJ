@@ -1,9 +1,9 @@
 <div class='profile-content'>
-  <div class="post-add-block block">
-      <div class='post-add btn-like'>
-    <img class='icon' src='static/icons/add_square.svg' alt='' />
-    <p class='profile-content-part-title'>create post</p>
-  </div>
+  <div class='post-add-block block'>
+    <div class='post-add btn-like'>
+      <img class='icon' src='/static/icons/add_square.svg' alt='' />
+      <p class='profile-content-part-title'>create post</p>
+    </div>
 
   </div>
   <div class='social-menu block'>
@@ -11,7 +11,7 @@
       <p class='profile-content-part-title fs-450 flex-c'>friend list</p>
       {{#each user.friends as |friend|}}
         <div class='social-menu-element flex-c btn-like'>
-          <img class='icon-a' src='{{friend.image}}' alt='' class='icon' />
+          <img class='icon-a' src='/{{friend.image}}' alt='' class='icon' />
           <p class='selectable'>{{friend.name.first}} {{friend.name.last}}</p>
         </div>
       {{/each}}
@@ -27,7 +27,7 @@
       <p class='profile-content-part-title fs-450 flex-c'>group list</p>
       {{#each user.groups as |group|}}
         <div class='social-menu-element flex-c btn-like'>
-          <img class='icon-a' src='{{group.image}}' alt='' class='icon' />
+          <img class='icon-a' src='/{{group.image}}' alt='' class='icon' />
           <p class='selectable'>{{group.name}}</p>
         </div>
       {{/each}}

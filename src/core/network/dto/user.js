@@ -1,12 +1,6 @@
-export class getUserDataDTO {
-  /**
-   * @param {String} userID
-   */
-  constructor(userID = '') {
-    // TODO: maybe backend should switch to js style naming
-    this.user_id = userID;
-  }
-}
+export const getUserDataDTO = (user_id) => {
+  return { user_id };
+};
 
 export const searchUsersDTO = (selector) => {
   return { selector };

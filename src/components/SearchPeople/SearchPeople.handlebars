@@ -1,101 +1,101 @@
-<div class="absolute-block">
-    <div class="chat-closing-part chat-title flex-c fs-450">
-        <a class="btn-like flex-c" href='/friends' data-link>
-            <img src="static/icons/cross.svg" alt="">
-        </a>
-        <input class="input-field fs-350" type="text" placeholder="Enter name of person you are looking for">
-        <div class="flex-c">
-        </div>
+<div class='absolute-block'>
+  <div class='chat-closing-part chat-title flex-c fs-450'>
+    <a class='btn-like flex-c' href='/friends' data-link>
+      <img src='/static/icons/cross.svg' alt='' />
+    </a>
+    <input class='input-field fs-350' type='text' placeholder='Enter name of person you are looking for' />
+    <div class='flex-c'>
     </div>
-    <hr>
+  </div>
+  <hr />
 </div>
-<div class="search-users-container">
-    <div class="search-users-scroll-window">
-        {{#each users as |user|}}
-            <div class="search-user-element flex-c  btn-like grid">
-                <img class="search-user-element-image icon" src="{{user.image}}" alt="">
-                <div class="search-user-element-status flex-c">
-                    <p class="search-user-element-name fs-450">{{user.name.first}} {{user.name.last}}</p>
-                    <img class="icon btn-like" src="static/icons/add_user.svg" alt="">
-                </div>
-            </div>
-        {{/each}}
-        <div class="search-user-element flex-c btn-like grid">
-            <img class="search-user-element-image icon" src="static/images/p3.webp" alt="">
-            <div class="search-user-element-status flex-c">
-                <p class="search-user-element-name fs-450">Boris Britva</p>
-                <img class="icon btn-like" src="static/icons/add_user.svg" alt="">
-            </div>
+<div class='search-users-container'>
+  <div class='search-users-scroll-window'>
+    {{#each users as |user|}}
+      <div class='search-user-element flex-c btn-like grid'>
+        <img class='search-user-element-image icon' src='/{{user.image}}' alt='' />
+        <div class='search-user-element-status flex-c'>
+          <p class='search-user-element-name fs-450'>{{user.name.first}} {{user.name.last}}</p>
+          <img class='icon btn-like' src='/static/icons/add_user.svg' alt='' />
         </div>
-        <div class="search-user-element flex-c  btn-like grid">
-            <img class="search-user-element-image icon" src="static/images/p3.webp" alt="">
-            <div class="search-user-element-status flex-c">
-                <p class="search-user-element-name fs-450">Boris Britva</p>
-                <img class="icon btn-like" src="static/icons/add_user.svg" alt="">
-            </div>
-        </div>
-        <div class="search-user-element flex-c  btn-like grid">
-            <img class="search-user-element-image icon" src="static/images/p3.webp" alt="">
-            <div class="search-user-element-status flex-c">
-                <p class="search-user-element-name fs-450">Boris Britva</p>
-                <img class="icon btn-like" src="static/icons/add_user.svg" alt="">
-            </div>
-        </div>
-        <div class="search-user-element flex-c  btn-like grid">
-            <img class="search-user-element-image icon" src="static/images/p3.webp" alt="">
-            <div class="search-user-element-status flex-c">
-                <p class="search-user-element-name fs-450">Boris Britva</p>
-                <img class="icon btn-like" src="static/icons/add_user.svg" alt="">
-            </div>
-        </div>
-        <div class="search-user-element flex-c  btn-like grid">
-            <img class="search-user-element-image icon" src="static/images/p3.webp" alt="">
-            <div class="search-user-element-status flex-c">
-                <p class="search-user-element-name fs-450">Boris Britva</p>
-                <img class="icon btn-like" src="static/icons/add_user.svg" alt="">
-            </div>
-        </div>
-        <div class="search-user-element flex-c  btn-like grid">
-            <img class="search-user-element-image icon" src="static/images/p3.webp" alt="">
-            <div class="search-user-element-status flex-c">
-                <p class="search-user-element-name fs-450">Boris Britva</p>
-                <img class="icon btn-like" src="static/icons/add_user.svg" alt="">
-            </div>
-        </div>
-        <div class="search-user-element flex-c  btn-like grid">
-            <img class="search-user-element-image icon" src="static/images/p3.webp" alt="">
-            <div class="search-user-element-status flex-c">
-                <p class="search-user-element-name fs-450">Boris Britva</p>
-                <img class="icon btn-like" src="static/icons/add_user.svg" alt="">
-            </div>
-        </div>
-        <div class="search-user-element flex-c  btn-like grid">
-            <img class="search-user-element-image icon" src="static/images/p3.webp" alt="">
-            <div class="search-user-element-status flex-c">
-                <p class="search-user-element-name fs-450">Boris Britva</p>
-                <img class="icon btn-like" src="static/icons/add_user.svg" alt="">
-            </div>
-        </div>
-        <div class="search-user-element flex-c  btn-like grid">
-            <img class="search-user-element-image icon" src="static/images/p3.webp" alt="">
-            <div class="search-user-element-status flex-c">
-                <p class="search-user-element-name fs-450">Boris Britva</p>
-                <img class="icon btn-like" src="static/icons/add_user.svg" alt="">
-            </div>
-        </div>
-        <div class="search-user-element flex-c  btn-like grid">
-            <img class="search-user-element-image icon" src="static/images/p3.webp" alt="">
-            <div class="search-user-element-status flex-c">
-                <p class="search-user-element-name fs-450">Boris Britva</p>
-                <img class="icon btn-like" src="static/icons/add_user.svg" alt="">
-            </div>
-        </div>
-        <div class="search-user-element flex-c  btn-like grid">
-            <img class="search-user-element-image icon" src="static/images/p3.webp" alt="">
-            <div class="search-user-element-status flex-c">
-                <p class="search-user-element-name fs-450">Boris Britva</p>
-                <img class="icon btn-like" src="static/icons/add_user.svg" alt="">
-            </div>
-        </div>
+      </div>
+    {{/each}}
+    <div class='search-user-element flex-c btn-like grid'>
+      <img class='search-user-element-image icon' src='/static/images/p3.webp' alt='' />
+      <div class='search-user-element-status flex-c'>
+        <p class='search-user-element-name fs-450'>Boris Britva</p>
+        <img class='icon btn-like' src='/static/icons/add_user.svg' alt='' />
+      </div>
     </div>
+    <div class='search-user-element flex-c btn-like grid'>
+      <img class='search-user-element-image icon' src='/static/images/p3.webp' alt='' />
+      <div class='search-user-element-status flex-c'>
+        <p class='search-user-element-name fs-450'>Boris Britva</p>
+        <img class='icon btn-like' src='/static/icons/add_user.svg' alt='' />
+      </div>
+    </div>
+    <div class='search-user-element flex-c btn-like grid'>
+      <img class='search-user-element-image icon' src='/static/images/p3.webp' alt='' />
+      <div class='search-user-element-status flex-c'>
+        <p class='search-user-element-name fs-450'>Boris Britva</p>
+        <img class='icon btn-like' src='/static/icons/add_user.svg' alt='' />
+      </div>
+    </div>
+    <div class='search-user-element flex-c btn-like grid'>
+      <img class='search-user-element-image icon' src='/static/images/p3.webp' alt='' />
+      <div class='search-user-element-status flex-c'>
+        <p class='search-user-element-name fs-450'>Boris Britva</p>
+        <img class='icon btn-like' src='/static/icons/add_user.svg' alt='' />
+      </div>
+    </div>
+    <div class='search-user-element flex-c btn-like grid'>
+      <img class='search-user-element-image icon' src='/static/images/p3.webp' alt='' />
+      <div class='search-user-element-status flex-c'>
+        <p class='search-user-element-name fs-450'>Boris Britva</p>
+        <img class='icon btn-like' src='/static/icons/add_user.svg' alt='' />
+      </div>
+    </div>
+    <div class='search-user-element flex-c btn-like grid'>
+      <img class='search-user-element-image icon' src='/static/images/p3.webp' alt='' />
+      <div class='search-user-element-status flex-c'>
+        <p class='search-user-element-name fs-450'>Boris Britva</p>
+        <img class='icon btn-like' src='/static/icons/add_user.svg' alt='' />
+      </div>
+    </div>
+    <div class='search-user-element flex-c btn-like grid'>
+      <img class='search-user-element-image icon' src='/static/images/p3.webp' alt='' />
+      <div class='search-user-element-status flex-c'>
+        <p class='search-user-element-name fs-450'>Boris Britva</p>
+        <img class='icon btn-like' src='/static/icons/add_user.svg' alt='' />
+      </div>
+    </div>
+    <div class='search-user-element flex-c btn-like grid'>
+      <img class='search-user-element-image icon' src='/static/images/p3.webp' alt='' />
+      <div class='search-user-element-status flex-c'>
+        <p class='search-user-element-name fs-450'>Boris Britva</p>
+        <img class='icon btn-like' src='/static/icons/add_user.svg' alt='' />
+      </div>
+    </div>
+    <div class='search-user-element flex-c btn-like grid'>
+      <img class='search-user-element-image icon' src='/static/images/p3.webp' alt='' />
+      <div class='search-user-element-status flex-c'>
+        <p class='search-user-element-name fs-450'>Boris Britva</p>
+        <img class='icon btn-like' src='/static/icons/add_user.svg' alt='' />
+      </div>
+    </div>
+    <div class='search-user-element flex-c btn-like grid'>
+      <img class='search-user-element-image icon' src='/static/images/p3.webp' alt='' />
+      <div class='search-user-element-status flex-c'>
+        <p class='search-user-element-name fs-450'>Boris Britva</p>
+        <img class='icon btn-like' src='/static/icons/add_user.svg' alt='' />
+      </div>
+    </div>
+    <div class='search-user-element flex-c btn-like grid'>
+      <img class='search-user-element-image icon' src='/static/images/p3.webp' alt='' />
+      <div class='search-user-element-status flex-c'>
+        <p class='search-user-element-name fs-450'>Boris Britva</p>
+        <img class='icon btn-like' src='/static/icons/add_user.svg' alt='' />
+      </div>
+    </div>
+  </div>
 </div>

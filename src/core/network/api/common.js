@@ -18,7 +18,6 @@ const formDataOptions = {
 export const fetchAPI = (url, method, options = {}) => {
   if (method === httpMethod.GET || method === httpMethod.DELETE) {
     const searchParams = new URLSearchParams(options.query || {});
-    console.log(`${url}?${searchParams.toString()}`);
     return fetch(`${url}?${searchParams.toString()}`, { method, ...defaultOptions });
   }
 

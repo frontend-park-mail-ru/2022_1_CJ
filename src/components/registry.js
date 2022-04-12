@@ -16,7 +16,6 @@ import { modalRepliesComponent } from './ModalReplies/ModalReplies.js';
 import { dialogsComponent } from './Dialogs/Dialogs.js';
 import { chatComponent } from './Chat/Chat.js';
 import { friendsComponent } from './Friends/Friends.js';
-import { friendsMenuComponent } from './FriendsMenu/FriendsMenu.js';
 import { searchPeopleComponent } from './SearchPeople/SearchPeople.js';
 
 export const ComponentsRegistry = {
@@ -35,6 +34,5 @@ export const ComponentsRegistry = {
   Dialogs: dialogsComponent(Handlebars.templates.Dialogs),
   Chat: chatComponent(Handlebars.templates.Chat),
   Friends: friendsComponent(Handlebars.templates.Friends),
-  FriendsMenu: friendsMenuComponent(Handlebars.templates.FriendsMenu),
-  SearchPeople: searchPeopleComponent(Handlebars.templates.SearchPeople),
+  SearchPeople: searchPeopleComponent(Handlebars.templates.SearchPeople)
 };

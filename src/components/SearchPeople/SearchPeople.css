@@ -1,33 +1,33 @@
 .search-users-scroll-window {
-    margin-top: 3.5rem;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    display: grid;
-    background: var(--clr-white);;
-    grid-template-columns: repeat(3, 1fr);
+  margin-top: 3.5rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: grid;
+  background: var(--clr-white);
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .search-user-element {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 .search-user-element-image {
-    height: 11rem;
-    border-radius: var(--br-primary__rem);
+  height: 11rem;
+  border-radius: var(--br-primary__rem);
 }
 
 .search-user-element-name {
-    width: 100%;
-    display: flex;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  width: 100%;
+  display: flex;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .search-user-element-status .icon {
-    opacity: 50%;
-    height: 1.5rem;
+  opacity: 50%;
+  height: 1.5rem;
 }
 .search-user-element-status .icon:hover {
-    opacity: 100%;
+  opacity: 100%;
 }

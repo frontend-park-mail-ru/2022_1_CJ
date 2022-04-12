@@ -48,7 +48,6 @@
   height: 1.25rem;
 }
 
-
 .profile-create-post {
   padding: 0.5rem;
   height: min-content;
@@ -84,7 +83,7 @@
 
 .profile-create-post-more {
   justify-content: space-between;
-} 
+}
 
 .profile-create-post-more .icon {
   padding: 0.35rem;

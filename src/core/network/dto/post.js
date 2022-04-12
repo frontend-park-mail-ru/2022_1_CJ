@@ -1,8 +1,8 @@
 /**
- * 
- * @param {string} message 
- * @param {Array.<string>} images 
- * @returns 
+ *
+ * @param {string} message
+ * @param {Array.<string>} images
+ * @returns
  */
 export const createPostDTO = (message, images) => {
   return {
@@ -12,9 +12,9 @@ export const createPostDTO = (message, images) => {
 };
 
 /**
- * 
- * @param {*} post_id 
- * @returns 
+ *
+ * @param {*} post_id
+ * @returns
  */
 export const getPostDTO = (post_id) => {
   return {
@@ -23,11 +23,11 @@ export const getPostDTO = (post_id) => {
 };
 
 /**
- * 
- * @param {*} post_id 
- * @param {string} message 
- * @param {Array.<string>} images 
- * @returns 
+ *
+ * @param {*} post_id
+ * @param {string} message
+ * @param {Array.<string>} images
+ * @returns
  */
 export const editPostDTO = (post_id, message = null, images = null) => {
   return {
@@ -37,9 +37,9 @@ export const editPostDTO = (post_id, message = null, images = null) => {
   };
 };
 /**
- * 
- * @param {*} post_id 
- * @returns 
+ *
+ * @param {*} post_id
+ * @returns
  */
 export const deletePostDTO = (post_id) => {
   return {

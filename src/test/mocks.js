@@ -150,7 +150,7 @@ export const getMockPosts = () => {
       message: getMockPostMessage(),
       images: getMockPostImages(),
       likes_count: getMockPostLikesCount(),
-      watched_count: getMockPostWatchedCount(),
+      watched_count: getMockPostWatchedCount()
     });
   }
   return postArr;

@@ -137,37 +137,23 @@ const showModalReplies = (e) => {
 const showAuthorPage = (e) => {};
 
 /**
- * 
+ *
  * @param {Object} post
  */
 const deletePost = (post) => {
-  store.dispatch(
-    postAPI.deletePost( 
-      deletePostDTO(
-        post.id
-      )
-    )
-  );
-}
+  store.dispatch(postAPI.createPost(deletePostDTO(post.id)));
+};
 
 /**
- * 
+ *
  * @param {Object} post
  */
- const editPost = (post) => {
+const editPost = (post) => {
   //  FIXME: need logic to find fields and set them to contenteditable
   // then need to await fixes
   // then we end logic to back
-  store.dispatch(
-    postAPI.editPost( 
-      editPostDTO(
-        post.id,
-        message,
-        images
-      )
-    )
-  );
-}
+  store.dispatch(postAPI.editPost(editPostDTO(post.id, post.message, post.images)));
+};
 
 const reducer = {
   onShow: ({ post }) => {

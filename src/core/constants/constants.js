@@ -8,11 +8,8 @@ export const URL = {
   ProfileSettings: '/settings',
   Messenger: '/messenger',
   Friends: '/friends',
-  Search: '/search'
-};
-
-export const ContextKey = {
-  User: 'user'
+  Search: '/search',
+  UserProfile: '/u/:user_id'
 };
 
 export const noop = () => {};

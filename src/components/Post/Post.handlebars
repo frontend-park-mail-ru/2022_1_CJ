@@ -1,7 +1,7 @@
 <div class='post grid block' id='{{post.id}}'>
   <div class='header'>
     <div class="user-image flex-c">
-        <img class="icon-a" src="{{post.author.image}}" alt="">
+        <img class="icon-a" src="/{{post.author.image}}" alt="">
     </div>
     <div id={{post.author.id}} class="user-info">
         <p class="link selectable author-name">{{post.author.name.first}} {{post.author.name.last}}</p>
@@ -9,7 +9,7 @@
     </div>
     <div class='settings-container'>
       <div class='settings'>
-        <img src='static/icons/arrow_down.svg' alt='' class='icon btn' />
+        <img src='/static/icons/arrow_down.svg' alt='' class='icon btn' />
       </div>
       <div class='settings-info block'>
         <div class='element flex-c btn-like __disabled'>
@@ -40,32 +40,32 @@
     <div class='content'>
       {{! still need logic to draw more than 1 images }}
       {{#each post.images as |image|}}
-        <img class='content-part' src='{{image}}' alt='' />
+        <img class='content-part' src='/{{image}}' alt='' />
       {{/each}}
     </div>
   {{/if}}
   <div class='reactions'>
     {{!-- {{#if post.likesCount}} --}}
       <div class='like block reactions-part btn-like'>
-        <img src='static/icons/like.svg' alt='' class='icon' />
+        <img src='/static/icons/like.svg' alt='' class='icon' />
         <p>{{post.likes_count}}</p>
       </div>
     {{!-- {{else}}
       <div class='like block reactions-part btn-like __disabled'>
-        <img src='static/icons/like.svg' alt='' class='icon' />
+        <img src='/static/icons/like.svg' alt='' class='icon' />
         <p>Nan</p>
       </div>
     {{/if}} --}}
     <div class='comment block reactions-part btn-like'>
-      <img src='static/icons/comment.svg' alt='' class='icon' />
+      <img src='/static/icons/comment.svg' alt='' class='icon' />
       <p>comment</p>
     </div>
     <div class='repost block reactions-part btn-like'>
-      <img src='static/icons/repost.svg' alt='' class='icon' />
+      <img src='/static/icons/repost.svg' alt='' class='icon' />
       <p>repost</p>
     </div>
     <div class='watch reactions-part'>
-      <img src='static/icons/watch.svg' alt='' class='icon' />
+      <img src='/static/icons/watch.svg' alt='' class='icon' />
       <p>{{post.watched_count}}</p>
       {{! <p>1.25k</p> }}
     </div>
@@ -79,9 +79,9 @@
       {{#component 'Comment' .}}{{/component}}
     {{/each}}
     <div class='user-comment'>
-      <img src='static/images/default.jpeg' alt='' class='icon-a' />
+      <img src='/static/images/default.jpeg' alt='' class='icon-a' />
       <input type='search' class='input-field' placeholder='Type here a comment' />
-      <img src='static/icons/arrow_right.svg' alt='' class='icon btn-like' />
+      <img src='/static/icons/arrow_right.svg' alt='' class='icon btn-like' />
     </div>
   </div>
 </div>

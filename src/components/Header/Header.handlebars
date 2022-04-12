@@ -1,34 +1,34 @@
 <header class='primary-header bg-white grid'>
   <div class='left'>
-    <img id='logo' src='static/svg/Logo CJ.svg' alt='' />
+    <img id='logo' src='/static/svg/Logo CJ.svg' alt='' />
   </div>
-  {{#if user}}
+  {{#with store.user}}
     <div class='middle flex-c'>
       <div class='search __disabled'>
-        <img class='icon search-part' src='static/icons/search.svg' alt='' />
+        <img class='icon search-part' src='/static/icons/search.svg' alt='' />
         <input class='search-part search-input' type='search' placeholder='search' />
       </div>
       <div class='flex-c btn-like __disabled'>
-        <img class='icon' src='static/icons/notifications.svg' alt='' />
+        <img class='icon' src='/static/icons/notifications.svg' alt='' />
       </div>
     </div>
     <div class='right'>
       <div class='profile flex-c btn-like'>
-        <img class='icon-a profile-avatar' src='{{user.image}}' alt='' />
-        <img class='icon profile-btn' src='static/icons/arrow_right.svg' alt='' />
-        <p class='profile-name text-light'>{{user.name.first}} {{user.name.last}}</p>
+        <img class='icon-a profile-avatar' src='/{{image}}' alt='' />
+        <img class='icon profile-btn' src='/static/icons/arrow_right.svg' alt='' />
+        <p class='profile-name text-light'>{{name.first}} {{name.last}}</p>
       </div>
       <div class='profile-menu'>
         <!-- <hr> -->
         <a class='element flex-c btn-like txt-decor-none' href='/settings' data-link>
-          <img src='static/icons/settings.svg' alt='' />
+          <img src='/static/icons/settings.svg' alt='' />
           <p class='text-light element-text'>Settings</p>
         </a>
         <a class='element flex-c btn-like txt-decor-none' href='/logout' data-link>
-          <img src='static/icons/exit_grey.svg' alt='' />
+          <img src='/static/icons/exit_grey.svg' alt='' />
           <p class='text-light element-text'>Sign out</p>
         </a>
       </div>
     </div>
-  {{/if}}
+  {{/with}}
 </header>

@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   Router.route(URL.Messenger, controllersRegistry.messenger);
   Router.route(URL.Friends, controllersRegistry.friends);
   Router.route(URL.Search, controllersRegistry.search);
-  Router.route(URL.Profile, controllersRegistry.profile);
+  Router.route(URL.UserProfile, controllersRegistry.profile);
   Router.route(URL.ProfileSettings, controllersRegistry.profileSettings);
 
   Router.setNotFoundController(controllersRegistry.notFound);

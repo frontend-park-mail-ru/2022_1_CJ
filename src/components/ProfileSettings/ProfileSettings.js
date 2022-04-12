@@ -3,33 +3,26 @@ import { Router } from '../../core/modules/Router/Router.js';
 import { userAPI } from '../../core/network/api/user.js';
 
 /**
- * 
- * @param {Event} e 
+ *
+ * @param {Event} e
  */
-const updatePhoto = (e) => {
-  let photo = e.target.files[0];
-  let imageField = document.querySelector('.user-image');
-  imageField.src = window.URL.createObjectURL(photo);
-
-  // let formData = new FormData();
-  // formData.append('photo', photo);
-  // userAPI.updatePhoto(formData).then(() => Router.refresh());
+const updatePhoto = () => {
+  let photo = document.getElementById('update-photo').files[0];
+  let formData = new FormData();
+  formData.append('photo', photo);
+  userAPI.updatePhoto(formData).then(() => Router.refresh());
 };
 
-
 /**
- * 
- * @param {Event} e 
+ *
+ * @param {Event} e
  */
 const uploadNewUserInfo = (e) => {
-
-}
+  updatePhoto();
+};
 
 const reducer = {
   onShow: () => {
-    const fileInput = document.getElementById('update-photo');
-    fileInput.addEventListener('change', updatePhoto);
-
     const uploadAllProfileChanges = document.getElementById('upload-new-user-info');
     uploadAllProfileChanges.addEventListener('click', uploadNewUserInfo);
   }
