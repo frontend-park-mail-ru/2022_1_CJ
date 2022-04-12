@@ -142,7 +142,7 @@ const showAuthorPage = (e) => {};
  */
 const deletePost = (post) => {
   store.dispatch(
-    postAPI.createPost( 
+    postAPI.deletePost( 
       deletePostDTO(
         post.id
       )

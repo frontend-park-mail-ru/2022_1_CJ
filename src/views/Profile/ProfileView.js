@@ -20,10 +20,9 @@ const showAddPostElement = (e) => {
 const uploadContent = (e) => {
     let photos = e.target.files;
     let contentContainer = document.querySelector('.profile-create-post-images');
-    console.log(contentContainer);
-    console.log(photos);
     for (let i = 0; i < photos.length; i++) {
         let newImage = document.createElement('img');
+        // TODO: need to check file extension again
         newImage.src = window.URL.createObjectURL(photos[i]);
         contentContainer.appendChild(newImage);
     }
@@ -35,7 +34,7 @@ const uploadContent = (e) => {
  */
 const uploadNewPost = (e) => {
     let newPost = document.querySelector('.profile-create-post');
-    let text = newPost.querySelector('.profile-create-post .textarea');
+    let text = "" || newPost.querySelector('.profile-create-post .textarea').textContent;
     let postImages = newPost.querySelectorAll('.profile-create-post-images img');
     let images = []; 
     postImages.forEach((element) => {
@@ -44,14 +43,14 @@ const uploadNewPost = (e) => {
 
     //TODO: check if information exist
 
-    // store.dispatch(
-    //     postAPI.createPost( 
-    //         createPostDTO(
-    //             text,
-    //             images,
-    //         )
-    //     )
-    // );
+    store.dispatch(
+        postAPI.createPost( 
+            createPostDTO(
+                text,
+                images,
+            )
+        )
+    );
     
     setStyleDisplayNone(newPost);
 }
@@ -63,7 +62,7 @@ const reducer = {
 
         let newPost = document.querySelector('.profile-create-post');
         let uploadContentBtn = document.getElementById('upload-post-content');
-        uploadContentBtn.addEventListener('click', uploadContent);
+        uploadContentBtn.addEventListener('change', uploadContent);
 
         let uploadNewPostBtn = newPost.querySelector('.block.btn-primary');
         uploadNewPostBtn.addEventListener("click", uploadNewPost);
