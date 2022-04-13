@@ -141,7 +141,7 @@ const showAuthorPage = (e) => {};
  * @param {Object} post
  */
 const deletePost = (post) => {
-  store.dispatch(postAPI.createPost(deletePostDTO(post.id)));
+  store.dispatch(postAPI.deletePost(deletePostDTO(post.id)));
 };
 
 /**
