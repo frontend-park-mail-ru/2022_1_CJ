@@ -1,0 +1,12 @@
+.friends-main-menu .main-menu-element {
+    justify-content: end;
+}
+
+#add-user-button.btn-primary {
+    box-shadow: none;
+}
+
+#add-user-button .icon {
+    margin: 0.125rem;
+    height: 1.75rem;
+}
