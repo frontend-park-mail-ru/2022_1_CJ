@@ -181,8 +181,8 @@ const reducer = {
     const author = document.getElementById(post.author.id);
     author.addEventListener('click', showAuthorPage);
 
-    const deletePostBtn = element.querySelector('.delete-post-btn');
-    deletePostBtn.addEventListener('click', deletePost(post));
+    // const deletePostBtn = element.querySelector('.delete-post-btn');
+    // deletePostBtn.addEventListener('click', deletePost(post));
 
     const editPostBtn = element.querySelector('.edit-post-btn');
     // editPostBtn.addEventListener('click', editPost(post));
