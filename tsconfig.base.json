@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ESNext",
+    "declaration": true,
+    "composite": true,
+    "declarationMap": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitThis": true,
+    "jsx": "react",
+    "jsxFactory": "elements.createElement",
+    "lib": ["ESNext", "DOM"],
+    "types": []
+  },
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"]
+}
