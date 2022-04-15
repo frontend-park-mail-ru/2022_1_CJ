@@ -35,18 +35,18 @@ const escapeAttrNodeValue = (value: string) => {
 	});
 };
 
-const makeAttribute = (value: string) => `${name}="${value}"`;
+const makeAttribute = (name: string, value: string) => `${name}="${value}"`;
 
 const attributeToString =
 	(attributes: Attributes) =>
 	(name: string): string => {
 		const value = attributes[name];
 		if (value instanceof Date) {
-			return makeAttribute(value.toISOString());
+			return makeAttribute(name, value.toISOString());
 		} else if (value instanceof Boolean) {
 			return value ? name : "";
 		}
-		return makeAttribute(escapeAttrNodeValue(value.toString()));
+		return makeAttribute(name, escapeAttrNodeValue(value.toString()));
 	};
 
 const attributesToString = (attributes: Attributes | undefined): string => {
@@ -73,6 +73,7 @@ export function createElement(
 	...contents: string[]
 ) {
 	const children = (attributes && attributes.children) || contents;
+	console.log(attributes, attributesToString(attributes));
 	if (element instanceof Function) {
 		return element(children ? { children, ...attributes } : attributes, contents);
 	} else if (isVoidElement(element) && !contents.length) {

@@ -1,6 +1,6 @@
 {
-	"defaultSeverity": "error",
-	"extends": ["tslint:recommended"],
+	"defaultSeverity": "warn",
+	"extends": ["tslint:recommended", "tslint-eslint-rules", "tslint-consistent-codestyle", "tslint-config-prettier"],
 	"jsRules": {},
 	"rules": {
 		"no-reference": false

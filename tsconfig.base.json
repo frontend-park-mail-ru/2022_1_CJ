@@ -4,7 +4,6 @@
     "target": "ESNext",
     "declaration": true,
     "composite": true,
-    "declarationMap": true,
     "noImplicitAny": true,
     "sourceMap": true,
     "forceConsistentCasingInFileNames": true,
@@ -17,7 +16,7 @@
     "jsx": "react",
     "jsxFactory": "elements.createElement",
     "lib": ["ESNext", "DOM"],
-    "types": []
+		"moduleResolution": "node"
   },
   "include": ["./src/**/*.ts", "./src/**/*.tsx"]
 }

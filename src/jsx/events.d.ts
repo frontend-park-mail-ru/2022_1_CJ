@@ -26,6 +26,7 @@ declare namespace JSX {
 		onkeypress?: string;
 		onkeyup?: string;
 		onclick?: string;
+		onClick?: Function;
 		ondblclick?: string;
 		ondrag?: string;
 		ondragend?: string;
@@ -51,7 +52,7 @@ declare namespace JSX {
 		oninput?: string;
 		oninvalid?: string;
 		onselect?: string;
-		onsubmit?: string;
+		onsubmit?: string | Function;
 	}
 	interface HtmlInputTag extends FormEvents {}
 	interface HtmlFieldSetTag extends FormEvents {}

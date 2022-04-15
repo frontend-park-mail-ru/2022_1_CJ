@@ -1,14 +1,12 @@
-import * as elements from "./jsx/elements.js";
+import { URL } from "./constants/constants.js";
+import { notFoundController } from "./controllers/notFound.js";
+import { signupController } from "./controllers/signup.js";
+import { Router } from "./core/modules/router.js";
 
-const root = document.getElementById("root");
+const root = document.getElementById("root") || document.body;
+const router = new Router(root, notFoundController);
 
 document.addEventListener("DOMContentLoaded", () => {
-	const body = (
-		<div>
-			<p>hello world!</p>
-		</div>
-	);
-	if (root) {
-		root.innerHTML = body;
-	}
+	router.route(URL.Base, signupController);
+	router.run();
 });

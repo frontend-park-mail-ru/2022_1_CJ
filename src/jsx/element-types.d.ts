@@ -83,7 +83,7 @@ declare namespace JSX {
 		type?: string;
 		width?: string;
 		height?: string;
-		[anything: string]: string | boolean | undefined;
+		[anything: string]: Function | string | boolean | undefined;
 	}
 	interface HtmlFieldSetTag extends HtmlTag {
 		disabled?: string;
