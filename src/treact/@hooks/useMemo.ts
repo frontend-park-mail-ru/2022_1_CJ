@@ -1,5 +1,5 @@
-import { State } from "../models.js";
-import { getLastHook, isEqual } from "./common.js";
+import { State } from "../models";
+import { getLastHook, isEqual } from "./common";
 
 export const useMemo = <T>(compute: () => T, deps: any[]): T => {
 	const lastHook = getLastHook();

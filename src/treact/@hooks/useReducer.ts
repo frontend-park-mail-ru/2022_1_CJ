@@ -1,5 +1,5 @@
-import { Action } from "../models.js";
-import { useState } from "./useState.js";
+import { Action } from "../models";
+import { useState } from "./useState";
 
 export const useReducer = <T>(reducer: Function, initialState: T): [T, Function] => {
 	const [state, setState] = useState(initialState);

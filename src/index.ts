@@ -1,7 +1,8 @@
-import { URL } from "./constants/constants.js";
-import { Router } from "./core/modules/router.js";
-import { NotFound } from "./views/notFound.js";
-import { Signup } from "./views/signup.js";
+import "./index.module.scss";
+import { URL } from "./constants/constants";
+import { Router } from "./core/modules/router";
+import { NotFound } from "./views/notFound";
+import { Signup } from "./views/signup";
 
 const root = document.getElementById("root") || document.body;
 const router = new Router(root, NotFound);

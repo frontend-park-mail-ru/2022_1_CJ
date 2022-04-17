@@ -1,4 +1,4 @@
-import { FiberAction, Node, Fiber, State } from "./models.js";
+import { FiberAction, Node, Fiber, State } from "./models";
 
 const TEXT_ELEMENT = "TEXT_ELEMENT";
 

@@ -1,4 +1,4 @@
-import { State } from "../models.js";
+import { State } from "../models";
 
 export const isEqual = (a: object, b: object) => {
 	if (Object.keys(a).length === Object.keys(b).length) {

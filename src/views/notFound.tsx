@@ -1,4 +1,4 @@
-import { treact } from "../treact/treact.js";
+import { treact } from "../treact/treact";
 
 export function NotFound() {
 	return (

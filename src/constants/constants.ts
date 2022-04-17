@@ -11,5 +11,3 @@ export const URL = {
 	Search: "/search",
 	UserProfile: "/u/:user_id",
 };
-
-export const noop = () => {};

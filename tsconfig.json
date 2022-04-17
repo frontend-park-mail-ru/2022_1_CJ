@@ -1,8 +1,30 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "src"
-    }
-  ]
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"lib": ["ESNext", "DOM"],
+
+		"moduleResolution": "node",
+		"composite": true,
+		"declaration": true,
+
+		"alwaysStrict": true,
+		"noImplicitAny": true,
+		"sourceMap": false,
+		"forceConsistentCasingInFileNames": true,
+		"isolatedModules": true,
+		"noUnusedLocals": true,
+		"noImplicitReturns": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitThis": true,
+
+		"jsx": "react",
+		"jsxFactory": "treact.createElement",
+
+		"baseUrl": ".",
+		"rootDir": ".",
+		"outDir": "dist"
+	},
+	"include": ["./src/**/*.ts", "./src/**/*.tsx"]
 }

@@ -1,6 +1,6 @@
-import { applyMiddlewares, createStore, StoreReducer } from "../core/models/store.js";
-import { loggerMiddleware, thunkMiddleware } from "./middlewares/middlewares.js";
-import { userActions, userInitialState, userThunks } from "./models/user.js";
+import { applyMiddlewares, createStore, StoreReducer } from "../core/models/store";
+import { loggerMiddleware, thunkMiddleware } from "./middlewares/middlewares";
+import { userActions, userInitialState, userThunks } from "./models/user";
 
 const storeInitialState = {
 	...userInitialState,

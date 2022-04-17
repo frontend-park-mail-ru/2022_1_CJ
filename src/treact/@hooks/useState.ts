@@ -1,5 +1,5 @@
-import { State } from "../models.js";
-import { getLastHook } from "./common.js";
+import { State } from "../models";
+import { getLastHook } from "./common";
 
 export const useState = <T>(initial: T): [T, (action: (prevState: T) => T) => void] => {
 	const lastHook = getLastHook();

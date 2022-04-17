@@ -1,5 +1,5 @@
-import { State } from "../models.js";
-import { getLastHook, isEqual } from "./common.js";
+import { State } from "../models";
+import { getLastHook, isEqual } from "./common";
 
 export const useEffect = (callback: () => void, deps: any[]) => {
 	const lastHook = getLastHook();

@@ -1,4 +1,4 @@
-import { Action, Reaction } from "./action.js";
+import { Action, Reaction } from "./action";
 
 type Store = {
 	getState(): object;

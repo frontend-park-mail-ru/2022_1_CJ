@@ -1,7 +1,7 @@
-import { treact } from "../../treact/treact.js";
-import janitor from "./janitor.js";
+import { treact } from "../../treact/treact";
+import janitor from "./janitor";
 
-interface router {
+interface IRotuer {
 	run(): void;
 	navigateTo(path: string): void;
 	route(path: string, handler: Function): void;
@@ -26,7 +26,7 @@ const getParams = (route: string) => {
 	return Object.fromEntries(mapping);
 };
 
-export class Router implements router {
+export class Router implements IRotuer {
 	#root: HTMLElement;
 	#notFoundhandler: Function;
 	#routes: { path: string; handler: Function }[] = [];
