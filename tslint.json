@@ -1,5 +1,5 @@
 {
-	"defaultSeverity": "warn",
+	"defaultSeverity": "warning",
 	"extends": ["tslint:recommended", "tslint-eslint-rules", "tslint-consistent-codestyle", "tslint-config-prettier"],
 	"jsRules": {},
 	"rules": {

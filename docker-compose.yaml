@@ -1,18 +1,16 @@
 version: '3.9'
 services:
-  app-frontend:
+  frontend:
     build:
       context: .
       target: nginx
-    image: cj-frontend:latest
-    networks:
-      - backend
+    image: frontend:latest
     ports:
       - 80:80
     volumes:
       - ./src:/var/www/web
 
 networks:
-  backend:
-    name: cj-backend
+  default:
+    name: api
     external: true

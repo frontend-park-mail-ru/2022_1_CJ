@@ -332,4 +332,3 @@ declare namespace JSX {
 		height?: string;
 	}
 }
-//# sourceMappingURL=element-types.d.ts.map

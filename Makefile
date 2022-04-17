@@ -18,15 +18,6 @@ build:
 up:
 	docker-compose -f ${DCOMPOSE} up -d --remove-orphans
 
-local: local-up
-
-local-up:
-	bash scripts/local.sh
-
-local-down:
-	unlink /etc/nginx/sites-enabled/default.conf
-	systemctl restart nginx.service
-
 cleanup:
 	rm -rf src/dist
 	rm -rf precompiled

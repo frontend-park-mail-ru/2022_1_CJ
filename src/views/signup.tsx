@@ -1,6 +1,10 @@
-import * as elements from "../jsx/elements.js";
-import { Attributes } from "../jsx/models.js";
+import { SignupForm } from "../components/signupForm.js";
+import { treact } from "../treact/treact.js";
 
-export const Signup = ({ children }: Attributes) => {
-	return <div>{children}</div>;
-};
+export function Signup() {
+	return (
+		<div>
+			<SignupForm />
+		</div>
+	);
+}

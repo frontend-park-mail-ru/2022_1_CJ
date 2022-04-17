@@ -115,4 +115,3 @@ declare namespace JSX {
 		wbr: HtmlTag;
 	}
 }
-//# sourceMappingURL=intrinsic-elements.d.ts.map

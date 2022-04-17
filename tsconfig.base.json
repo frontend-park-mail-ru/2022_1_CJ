@@ -1,22 +1,22 @@
 {
-  "compilerOptions": {
-    "module": "ESNext",
-    "target": "ESNext",
-    "declaration": true,
-    "composite": true,
-    "noImplicitAny": true,
-    "sourceMap": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noUnusedLocals": true,
-    "noImplicitReturns": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitThis": true,
-    "jsx": "react",
-    "jsxFactory": "elements.createElement",
-    "lib": ["ESNext", "DOM"],
+	"compilerOptions": {
+		"module": "ESNext",
+		"target": "ESNext",
+		"declaration": true,
+		"composite": true,
+		"noImplicitAny": true,
+		"sourceMap": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"noUnusedLocals": true,
+		"noImplicitReturns": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitThis": true,
+		"jsx": "react",
+		"jsxFactory": "treact.createElement",
+		"lib": ["ESNext", "DOM"],
 		"moduleResolution": "node"
-  },
-  "include": ["./src/**/*.ts", "./src/**/*.tsx"]
+	},
+	"include": ["./src/**/*.ts", "./src/**/*.tsx"]
 }

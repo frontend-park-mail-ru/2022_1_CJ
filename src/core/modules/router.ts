@@ -1,10 +1,10 @@
-import { Controller } from "../models/controller.js";
+import { treact } from "../../treact/treact.js";
 import janitor from "./janitor.js";
 
 interface router {
 	run(): void;
 	navigateTo(path: string): void;
-	route(path: string, controller: Controller): void;
+	route(path: string, handler: Function): void;
 }
 
 const parameterRegExp = /:(\w+)/g;
@@ -28,12 +28,12 @@ const getParams = (route: string) => {
 
 export class Router implements router {
 	#root: HTMLElement;
-	#notFoundController: Controller;
-	#routes: { path: string; controller: Controller }[] = [];
+	#notFoundhandler: Function;
+	#routes: { path: string; handler: Function }[] = [];
 
-	constructor(root: HTMLElement, notFoundControler: Controller) {
+	constructor(root: HTMLElement, notFoundControler: Function) {
 		this.#root = root;
-		this.#notFoundController = notFoundControler;
+		this.#notFoundhandler = notFoundControler;
 	}
 
 	run() {
@@ -47,8 +47,8 @@ export class Router implements router {
 		this.#route();
 	}
 
-	route(path: string, controller: Controller) {
-		this.#routes.push({ path, controller });
+	route(path: string, handler: Function) {
+		this.#routes.push({ path, handler });
 	}
 
 	#route() {
@@ -56,9 +56,9 @@ export class Router implements router {
 		const match = this.#routes.find((route) => window.location.pathname.match(pathToRegex(route.path)) !== null);
 		if (match) {
 			const params = getParams(match.path);
-			match.controller.handle({ root: this.#root, params });
+			treact.render(match.handler({ params }), this.#root);
 		} else {
-			this.#notFoundController.handle({ root: this.#root });
+			treact.render(this.#notFoundhandler, this.#root);
 		}
 	}
 
