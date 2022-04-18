@@ -1,4 +1,4 @@
-import { render, createElement } from "./core";
+import { render, createElement, createFragmentElement } from "./core";
 import { useEffect } from "./@hooks/useEffect";
 import { useMemo } from "./@hooks/useMemo";
 import { useReducer } from "./@hooks/useReducer";
@@ -15,4 +15,5 @@ export const treact = {
 	useCallback,
 	useReducer,
 	createStore,
+	createFragmentElement,
 };

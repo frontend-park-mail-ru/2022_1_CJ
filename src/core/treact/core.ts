@@ -193,6 +193,10 @@ const createTextElement = (text: string) => {
 	};
 };
 
+const createFragmentElement = (props: any) => {
+	return props.children;
+};
+
 const createElement = (type: string | Function, props: any, ...children: any[]) => {
 	children = toChildArray(children, []);
 	return {
@@ -217,7 +221,7 @@ const render = (element: any, container: Node) => {
 	State.nextUnitOfWork = State.wipRoot;
 };
 
-export { createElement, render };
+export { createElement, render, createFragmentElement };
 
 const nextUnitOfWork = (fiber: Fiber | undefined) => {
 	while (fiber) {

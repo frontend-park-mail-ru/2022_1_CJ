@@ -2,7 +2,6 @@ import { treact } from "@treact";
 import { useUserStore } from "src/stores/user";
 import "../styles/header.scss";
 
-// TODO: fragment
 export const Header = () => {
 	const [userStore] = useUserStore();
 	const { user } = userStore;
@@ -12,9 +11,8 @@ export const Header = () => {
 			<div className="left">
 				<img id="logo" src="/static/svg/Logo CJ.svg" alt="" />
 			</div>
-			<h1 className="duck">xxxxxxxxxxxx</h1>
 			{user && (
-				<div>
+				<>
 					<div className="middle flex-c">
 						<div className="search __disabled">
 							<img className="icon search-part" src="/static/icons/search.svg" alt="" />
@@ -43,7 +41,7 @@ export const Header = () => {
 							</a>
 						</div>
 					</div>
-				</div>
+				</>
 			)}
 		</header>
 	);

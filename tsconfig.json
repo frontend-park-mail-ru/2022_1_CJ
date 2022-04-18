@@ -21,6 +21,7 @@
 
 		"jsx": "react",
 		"jsxFactory": "treact.createElement",
+		"jsxFragmentFactory": "treact.createFragmentElement",
 
 		"baseUrl": ".",
 		"rootDir": ".",
