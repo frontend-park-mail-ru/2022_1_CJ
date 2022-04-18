@@ -1,11 +1,11 @@
 import { useState } from "./useState";
 
-type StoreReducer = (get: Function, set: Function) => object;
+type StoreReducer<T> = () => T;
 
-const createEmitter = () => {
+const createEmitter = <T>() => {
 	const subscriptions = new Map();
 	return {
-		emit: (store: object) => subscriptions.forEach((listener) => listener(store)),
+		emit: (store: T) => subscriptions.forEach((listener) => listener(store)),
 		subscribe: (listener: Function) => {
 			const key = Symbol();
 			subscriptions.set(key, listener);
@@ -14,22 +14,20 @@ const createEmitter = () => {
 	};
 };
 
-export const createStore = (reducer: StoreReducer) => {
-	let store = {};
+export const createStore = <T>(reducer: StoreReducer<T>) => {
+	let store = {} as T;
 	const emitter = createEmitter();
 
-	const get = () => store;
-	const set = (op: Function) => {
+	const setStore = (op: Function) => {
 		store = op(store);
 		emitter.emit(store);
 	};
-	store = reducer(get, set);
+	store = reducer();
 
-	const useStore = () => {
-		const [localStore, setLocalStore] = useState(get());
-		// useEffect(() => emitter.subscribe(setLocalStore), []);
+	const useStore = (): [T, Function] => {
+		const [localStore, setLocalStore] = useState(store);
 		emitter.subscribe(setLocalStore);
-		return localStore;
+		return [localStore, setStore];
 	};
 
 	return useStore;

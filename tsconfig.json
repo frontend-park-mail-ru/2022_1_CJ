@@ -10,7 +10,7 @@
 
 		"alwaysStrict": true,
 		"noImplicitAny": true,
-		"sourceMap": false,
+		"sourceMap": true,
 		"forceConsistentCasingInFileNames": true,
 		"isolatedModules": true,
 		"noUnusedLocals": true,
@@ -26,7 +26,6 @@
 		"rootDir": ".",
 		"outDir": "dist",
 		"paths": {
-			"@hooks/*": ["src/core/treact/@hooks/*"],
 			"@treact": ["src/core/treact/treact"]
 		}
 	},
