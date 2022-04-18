@@ -26,8 +26,8 @@
 		"rootDir": ".",
 		"outDir": "dist",
 		"paths": {
-			"@hooks/*": ["src/treact/@hooks/*"],
-			"@treact": ["src/treact/treact"]
+			"@hooks/*": ["src/core/treact/@hooks/*"],
+			"@treact": ["src/core/treact/treact"]
 		}
 	},
 	"include": ["./src/**/*.ts", "./src/**/*.tsx"]
