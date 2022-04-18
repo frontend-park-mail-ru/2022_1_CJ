@@ -58,7 +58,7 @@ export class Router implements IRotuer {
 			const params = getParams(match.path);
 			treact.render(match.handler({ params }), this.#root);
 		} else {
-			treact.render(this.#notFoundhandler, this.#root);
+			treact.render(this.#notFoundhandler(), this.#root);
 		}
 	}
 
