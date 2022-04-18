@@ -8,7 +8,7 @@ export const isEqual = (a: object, b: object) => {
 };
 
 export const getLastHook = () => {
-	if (State.wipFiber.alternate && State.wipFiber.alternate.hooks) {
+	if (State.wipFiber && State.wipFiber.alternate && State.wipFiber.alternate.hooks) {
 		return State.wipFiber.alternate.hooks[State.hookIndex];
 	}
 	return undefined;

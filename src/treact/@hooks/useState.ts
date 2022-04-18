@@ -9,11 +9,15 @@ export const useState = <T>(initial: T): [T, (action: (prevState: T) => T) => vo
 	};
 
 	const actions = lastHook ? lastHook.queue : [];
-	actions.forEach((action: any) => {
-		hook.state = action(hook.state);
+	actions.forEach((action: Function | object) => {
+		if (action instanceof Function) {
+			hook.state = action(hook.state);
+		} else {
+			hook.state = action;
+		}
 	});
 
-	const setState = (action: any) => {
+	const setState = (action: Function | object) => {
 		hook.queue.push(action);
 		State.wipRoot = {
 			node: State.currentRoot.node,

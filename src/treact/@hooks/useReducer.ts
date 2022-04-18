@@ -1,7 +1,7 @@
 import { Action } from "../models";
 import { useState } from "./useState";
 
-export const useReducer = <T>(reducer: Function, initialState: T): [T, Function] => {
+export const useReducer = <T>(reducer: Function, initialState: T): [T, (action: Action) => void] => {
 	const [state, setState] = useState(initialState);
 
 	const dispatch = (action: Action) => {
