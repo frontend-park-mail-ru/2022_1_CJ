@@ -4,14 +4,20 @@
 
 ### Авторы
 
-- [**Даниил Бахланов**](https://github.com/Similization) - _Фронтенд_
-- [**Ринат Хайруллин**](https://github.com/rinatkh) - _Бэкенд_
-- [**Частиков Александр**](https://github.com/papazloynt) - _Бэкенд_
-- [**Оганес Мирзоян**](https://github.com/senago) - _Фронтенд_
+- [Даниил Бахланов](https://github.com/Similization) - Фронтенд
+- [Ринат Хайруллин](https://github.com/rinatkh) - Бэкенд
+- [Частиков Александр](https://github.com/papazloynt) - Бэкенд
+- [Оганес Мирзоян](https://github.com/senago) - Фронтенд
 
-### Репозиторий backend: [ссылка](https://github.com/go-park-mail-ru/2022_1_CJ)
+### Ссылки
 
-### Репозиторий frontend: [ссылка](https://github.com/frontend-park-mail-ru/2022_1_CJ)
+- [Backend](https://github.com/go-park-mail-ru/2022_1_CJ)
+- [Frontend](https://github.com/frontend-park-mail-ru/2022_1_CJ)
 
-## Development Mode
-- run docker container and build watched by `make dev`
+## Материалы
+1. https://github.com/pomber/didact
+2. https://github.com/nicojs/typed-html
+3. https://reactjs.org/docs/hooks-reference.html
+4. https://kaihao.dev/posts/Stale-props-and-zombie-children-in-Redux
+5. https://medium.com/geekculture/create-your-own-react-context-b91060fd3ef0
+6. https://formidable.com/blog/2021/stores-no-context-api/
