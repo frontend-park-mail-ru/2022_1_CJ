@@ -1,4 +1,4 @@
-import { treact } from "../../treact/treact";
+import { treact } from "@treact";
 import janitor from "./janitor";
 
 interface IRotuer {

@@ -1,6 +1,6 @@
 // import { Layout } from "../components/layout";
 // import { SignupForm } from "../components/signupForm";
-import { treact } from "../treact/treact";
+import { treact } from "@treact";
 
 // export function Signup() {
 // 	return (

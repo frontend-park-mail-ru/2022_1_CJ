@@ -1,4 +1,4 @@
-import { treact } from "../treact/treact";
+import { treact } from "@treact";
 import { Header } from "./header";
 
 export function Layout(context: object) {
