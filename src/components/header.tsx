@@ -1,16 +1,16 @@
 import { treact } from "@treact";
 import { useUserStore } from "src/stores/user";
-import "../styles/header.scss";
+import "../assets/styles/header.scss";
 
 export const Header = () => {
 	const [userStore] = useUserStore();
 	const { user } = userStore;
 
 	return (
-		<header className="primary-header bg-white grid">
-			<div className="left">
-				<img id="logo" src="/static/svg/Logo CJ.svg" alt="" />
-			</div>
+		<header className="primary-header bg-white">
+			<a className="text-xxxl fw-700 text-shadow text-primary text-no-decoration" href="/" data-link>
+				CJ
+			</a>
 			{user && (
 				<>
 					<div className="middle flex-c">
@@ -31,16 +31,23 @@ export const Header = () => {
 							</p>
 						</div>
 						<div className="profile-menu">
-							<a className="element flex-c btn-like txt-decor-none" href="/settings" data-link>
+							<a className="flex-c btn-like txt-decor-none" href="/settings" data-link>
 								<img src="/static/icons/settings.svg" alt="" />
 								<p className="text-light element-text">Settings</p>
 							</a>
-							<a className="element flex-c btn-like txt-decor-none" href="/logout" data-link>
+							<a className="flex-c btn-like txt-decor-none" href="/logout" data-link>
 								<img src="/static/icons/exit_grey.svg" alt="" />
 								<p className="text-light element-text">Sign out</p>
 							</a>
 						</div>
 					</div>
+				</>
+			)}
+			{!user && (
+				<>
+					<a className="link" href="/logout" data-link>
+						Sign in
+					</a>
 				</>
 			)}
 		</header>

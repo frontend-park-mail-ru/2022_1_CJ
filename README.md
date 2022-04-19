@@ -21,3 +21,4 @@
 4. https://kaihao.dev/posts/Stale-props-and-zombie-children-in-Redux
 5. https://medium.com/geekculture/create-your-own-react-context-b91060fd3ef0
 6. https://formidable.com/blog/2021/stores-no-context-api/
+7. https://codyhouse.co/blog/post/dark-light-switch-css-javascript

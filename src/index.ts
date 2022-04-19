@@ -1,4 +1,4 @@
-import "./styles/index.scss";
+import "./assets/styles/index.scss";
 import { URL } from "./constants/constants";
 import { Router } from "./core/modules/router";
 import { NotFound } from "./views/notFound";
