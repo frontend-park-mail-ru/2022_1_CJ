@@ -3,12 +3,10 @@
 	"version": "1.0.0",
 	"description": "CJ Frontend - VK Social Network",
 	"source": "src/index.ts",
-	"module": "dist/index.js",
 	"scripts": {
-		"build": "npm run clean && npm run build:ts",
-		"build:ts": "parcel build src/index.ts",
+		"build": "parcel build src/index.html",
+		"build:watch": "parcel watch src/index.html",
 		"lint": "tslint -c tslint.json 'src/**/*.ts' 'src/**/*.tsx'",
-		"start": "npm run clean && parcel src/index.html --open",
 		"check": "tsc --noEmit",
 		"clean": "rm -rf ./dist"
 	},

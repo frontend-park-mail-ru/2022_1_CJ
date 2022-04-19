@@ -10,16 +10,16 @@ const authMethods = {
 	logout: "/api/auth/logout",
 };
 
-type signupUserRequest = {
+export type SignupUserRequest = {
 	email: string;
 	name: UserName;
 	password: string;
 };
 
-type signupUserResponse = BasicResponse;
+export type SignupUserResponse = BasicResponse;
 
-const signupUser = (dto: signupUserRequest) => {
-	const response = fetchAPI.post<signupUserRequest, signupUserResponse>(authMethods.signup, dto);
+const signupUser = (dto: SignupUserRequest) => {
+	const response = fetchAPI.post<SignupUserRequest, SignupUserResponse>(authMethods.signup, dto);
 	console.log(response);
 };
 
