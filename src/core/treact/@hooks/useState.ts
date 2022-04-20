@@ -1,7 +1,9 @@
 import { State } from "../models";
 import { getLastHook } from "./common";
 
-export const useState = <T>(initial: T): [T, (action: (prevState: T) => T) => void] => {
+type stateSetter<T> = (prevState: T) => T;
+
+export const useState = <T>(initial: T): [T, (op: stateSetter<T> | T) => void] => {
 	const lastHook = getLastHook();
 	const hook = {
 		state: lastHook ? lastHook.state : initial,
@@ -9,7 +11,7 @@ export const useState = <T>(initial: T): [T, (action: (prevState: T) => T) => vo
 	};
 
 	const actions = lastHook ? lastHook.queue : [];
-	actions.forEach((action: Function | object) => {
+	actions.forEach((action: stateSetter<T> | T) => {
 		if (action instanceof Function) {
 			hook.state = action(hook.state);
 		} else {
@@ -17,7 +19,7 @@ export const useState = <T>(initial: T): [T, (action: (prevState: T) => T) => vo
 		}
 	});
 
-	const setState = (action: Function | object) => {
+	const setState = (action: stateSetter<T> | T) => {
 		hook.queue.push(action);
 		State.wipRoot = {
 			node: State.currentRoot.node,
