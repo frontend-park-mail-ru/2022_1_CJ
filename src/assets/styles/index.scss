@@ -68,6 +68,8 @@
 	--text-xl: calc(var(--text-lg) * var(--text-scale-ratio));
 	--text-xxl: calc(var(--text-xl) * var(--text-scale-ratio));
 	--text-xxxl: calc(var(--text-xxl) * var(--text-scale-ratio));
+
+	--cols: 12;
 }
 
 /* -------------------------------- Basic Settings -------------------------------- */
@@ -105,14 +107,15 @@ html:focus-within {
 }
 
 .wrapper {
+	height: 100%;
 	display: grid;
 	grid-template-rows: min-content 1fr;
-	grid-template-columns: repeat(12, [col-start] 1fr);
-	gap: 20px;
+	grid-template-columns: repeat(var(--cols), [col-start] 1fr);
+	column-gap: 20px;
 }
 
-.wrapper > * {
-	grid-column: col-start / span 12;
+.wrapper > .content {
+	grid-column: col-start 2 / span 10;
 }
 
 a:not([class]) {
@@ -173,6 +176,10 @@ a[data-link] * {
 
 .items-stretch {
 	align-items: stretch;
+}
+
+.justify-between {
+	justify-content: space-between;
 }
 
 .grid {
@@ -409,10 +416,11 @@ input {
 /* ---------------- Forms ---------------- */
 
 .form {
-	background-color: var(--clr-white);
-	width: 33rem;
 	padding: 2rem;
 	place-self: center;
+	margin-inline: auto;
+	background-color: var(--clr-white);
+	width: clamp(20rem, 30vw + 5rem, 35rem);
 }
 
 /* ---------------- Links ----------------*/
@@ -477,6 +485,7 @@ input {
 }
 
 /* -------------- Unavailable -------------- */
+
 .__disabled {
 	pointer-events: none;
 	cursor: default;

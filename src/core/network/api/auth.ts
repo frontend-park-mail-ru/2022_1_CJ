@@ -19,8 +19,7 @@ export type SignupUserRequest = {
 export type SignupUserResponse = BasicResponse;
 
 const signupUser = (dto: SignupUserRequest) => {
-	const response = fetchAPI.post<SignupUserRequest, SignupUserResponse>(authMethods.signup, dto);
-	console.log(response);
+	fetchAPI.post<SignupUserRequest, SignupUserResponse>(authMethods.signup, dto);
 };
 
 export const authAPi = {

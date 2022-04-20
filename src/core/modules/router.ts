@@ -38,8 +38,8 @@ export class Router implements IRotuer {
 
 	run() {
 		this.#route();
-		window.onpopstate = this.#handlePopState.bind(this);
-		document.body.onclick = this.#handleClick.bind(this);
+		window.addEventListener("popstate", this.#handlePopState.bind(this));
+		document.body.addEventListener("click", this.#handleClick.bind(this));
 	}
 
 	navigateTo(path: string) {
@@ -63,10 +63,11 @@ export class Router implements IRotuer {
 	}
 
 	#handleClick(event: UIEvent) {
-		if (event.target instanceof HTMLLinkElement) {
-			if (event.target.matches("[data-link]")) {
-				event.preventDefault();
-				this.navigateTo(event.target.href);
+		const link = event.target as HTMLLinkElement;
+		if (link.type === "data-link") {
+			event.preventDefault();
+			if (link.href !== window.location.href) {
+				this.navigateTo(link.href);
 			}
 		}
 	}

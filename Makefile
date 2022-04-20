@@ -4,12 +4,13 @@ DCOMPOSE:=docker-compose.yaml
 # improve build time
 DOCKER_BUILD_KIT:=COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1
 
-docker: build docker-down docker-build docker-up
+production: cleanup build docker
 
-dev: docker watch
+docker: docker-down docker-build docker-up
+
+dev: cleanup docker watch
 
 build:
-	npm run clean
 	npm run build
 
 watch:
@@ -22,4 +23,7 @@ docker-build:
 	${DOCKER_BUILD_KIT} docker-compose build
 
 docker-up:
-	docker-compose -f ${DCOMPOSE} up -d --remove-orphans
+	docker-compose -f ${DCOMPOSE} up -V -d --remove-orphans
+
+cleanup:
+	npm run clean
