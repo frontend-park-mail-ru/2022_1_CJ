@@ -8,7 +8,7 @@ production: cleanup build docker
 
 docker: docker-down docker-build docker-up
 
-dev: cleanup docker watch
+dev: docker-down cleanup docker-up watch
 
 build:
 	npm run build
@@ -23,7 +23,7 @@ docker-build:
 	${DOCKER_BUILD_KIT} docker-compose build
 
 docker-up:
-	docker-compose -f ${DCOMPOSE} up -V -d --remove-orphans
+	docker-compose -f ${DCOMPOSE} up -d --remove-orphans
 
 cleanup:
 	npm run clean
