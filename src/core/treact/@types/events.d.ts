@@ -1,8 +1,8 @@
 declare namespace JSX {
 	interface HtmlBodyTag {
-		onAfterprint?: string | Function;
-		onBeforeprint?: string | Function;
-		onBeforeonload?: string | Function;
+		onAfterPrint?: string | Function;
+		onBeforePrint?: string | Function;
+		onBeforeUnload?: string | Function;
 		onBlur?: string | Function;
 		onError?: string | Function;
 		onFocus?: string | Function;
@@ -11,9 +11,9 @@ declare namespace JSX {
 		onMessage?: string | Function;
 		onOffline?: string | Function;
 		onOnline?: string | Function;
-		onPagehide?: string | Function;
-		onPageshow?: string | Function;
-		onPopstate?: string | Function;
+		onPageHide?: string | Function;
+		onPageShow?: string | Function;
+		onPopState?: string | Function;
 		onRedo?: string | Function;
 		onResize?: string | Function;
 		onStorage?: string | Function;
@@ -22,57 +22,58 @@ declare namespace JSX {
 	}
 	interface HtmlTag {
 		onContextmenu?: string | Function;
-		onKeydown?: string | Function;
-		onKeypress?: string | Function;
-		onKeyup?: string | Function;
+		onKeyDown?: string | Function;
+		onKeyPress?: string | Function;
+		onKeyUp?: string | Function;
 		onClick?: string | Function;
-		onDblclick?: string | Function;
+		onDblClick?: string | Function;
 		onDrag?: string | Function;
-		onDragend?: string | Function;
-		onDragenter?: string | Function;
-		onDragleave?: string | Function;
-		onDragover?: string | Function;
-		onDragstart?: string | Function;
+		onDragEnd?: string | Function;
+		onDragEnter?: string | Function;
+		onDragLeave?: string | Function;
+		onDragOver?: string | Function;
+		onDragStart?: string | Function;
 		onDrop?: string | Function;
-		onMousedown?: string | Function;
-		onMousemove?: string | Function;
-		onMouseout?: string | Function;
-		onMouseover?: string | Function;
-		onMouseup?: string | Function;
-		onMousewheel?: string | Function;
+		onMouseDown?: string | Function;
+		onMouseMove?: string | Function;
+		onMouseOut?: string | Function;
+		onMouseOver?: string | Function;
+		onMouseUp?: string | Function;
+		onMouseWheel?: string | Function;
 		onScroll?: string | Function;
 	}
 	interface FormEvents {
 		onBlur?: string | Function;
 		onChange?: string | Function;
 		onFocus?: string | Function;
-		onFormchange?: string | Function;
-		onForminput?: string | Function;
+		onFormChange?: string | Function;
+		onFormInput?: string | Function;
 		onInput?: string | Function;
 		onInvalid?: string | Function;
 		onSelect?: string | Function;
-		onSubmit?: string | Function | Function;
+		onSubmit?: string | Function;
 	}
 	interface HtmlInputTag extends FormEvents {}
+	interface HtmlSelectTag extends FormEvents {}
 	interface HtmlFieldSetTag extends FormEvents {}
 	interface HtmlFormTag extends FormEvents {}
 	interface MediaEvents {
 		onAbort?: string | Function;
 		onCanplay?: string | Function;
-		onCanplaythrough?: string | Function;
-		onDurationchange?: string | Function;
+		onCanPlaythrough?: string | Function;
+		onDurationChange?: string | Function;
 		onEmptied?: string | Function;
 		onEnded?: string | Function;
 		onError?: string | Function;
-		onLoadeddata?: string | Function;
-		onLoadedmetadata?: string | Function;
+		onLoadedData?: string | Function;
+		onLoadedMetadata?: string | Function;
 		onLoadstart?: string | Function;
 		onPause?: string | Function;
 		onPlay?: string | Function;
 		onPlaying?: string | Function;
 		onProgress?: string | Function;
-		onRatechange?: string | Function;
-		onReadystatechange?: string | Function;
+		onRateChange?: string | Function;
+		onReadyStateChange?: string | Function;
 		onSeeked?: string | Function;
 		onSeeking?: string | Function;
 		onStalled?: string | Function;

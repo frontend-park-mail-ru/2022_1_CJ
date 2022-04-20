@@ -143,13 +143,13 @@ declare namespace JSX {
 		pattern?: string;
 		placeholder?: string;
 		readonly?: string;
-		required?: string;
+		required?: boolean;
 		size?: string;
 		src?: string;
 		step?: string;
 		target?: string;
 		type?: string;
-		value?: string;
+		value?: string | number | Date;
 		width?: string;
 	}
 	interface HtmlModTag extends HtmlTag {
@@ -216,9 +216,9 @@ declare namespace JSX {
 		label?: string;
 	}
 	interface HtmlOptionTag extends HtmlTag {
-		disabled?: string;
+		disabled?: boolean;
 		label?: string;
-		selected?: string;
+		selected?: boolean;
 		value?: string;
 	}
 	interface HtmlOutputTag extends HtmlTag {
@@ -270,7 +270,7 @@ declare namespace JSX {
 		form?: string;
 		multiple?: string;
 		name?: string;
-		required?: string;
+		required?: boolean;
 		size?: string;
 	}
 	interface HtmlSourceTag extends HtmlTag {
@@ -301,7 +301,7 @@ declare namespace JSX {
 		name?: string;
 		placeholder?: string;
 		readonly?: string;
-		required?: string;
+		required?: boolean;
 		rows?: string;
 		wrap?: string;
 	}

@@ -1,23 +1,61 @@
 import { treact } from "@treact";
+import { useForm } from "src/core/treact/@hooks/useForm";
+import { HelperError } from "./helperError";
+import { ValidatorEmail, ValidatorRequired } from "./@helpers/validators";
+import { authAPi, LoginUserRequest } from "src/core/network/api/auth";
+
+type loginForm = {
+	email: string;
+	password: string;
+};
 
 export const LoginForm = () => {
+	const { handleSubmit, handleChange, data, errors } = useForm<loginForm>({
+		validators: {
+			email: ValidatorEmail,
+			password: ValidatorRequired,
+		},
+		onSubmit: () => {
+			const dto: LoginUserRequest = {
+				email: data.email,
+				password: data.password,
+			};
+			authAPi.loginUser(dto);
+		},
+	});
+
 	return (
-		<form className="form flow border-4" style="--flow-space: 1.5rem;">
+		<form className="form flow border-4" style="--flow-space: 1.5rem;" onSubmit={handleSubmit}>
 			<div className="form-field">
 				<span>
-					<input name="email" type="text" className="input-field" placeholder="Email" />
+					<input
+						type="text"
+						className="input-field"
+						placeholder="Email"
+						value={data.email}
+						onChange={handleChange("email")}
+					/>
+					{errors.email && <HelperError message={errors.email} />}
 				</span>
 			</div>
 			<div className="form-field">
 				<span>
-					<input name="password" type="password" className="input-field" placeholder="Password" />
+					<input
+						id="password"
+						type="password"
+						className="input-field"
+						placeholder="Password"
+						value={data.password}
+						onChange={handleChange("password")}
+					/>
+					{errors.password && <HelperError message={errors.password} />}
 				</span>
 			</div>
 			<div className="grid grid-c items-center">
 				<button className="btn btn-primary" type="submit">
 					Sign in
 				</button>
-				<a className="link" href="/signup" data-link type="data-link">
+				<a className="link" href="/signup" type="data-link">
 					Don't have an account?
 				</a>
 			</div>

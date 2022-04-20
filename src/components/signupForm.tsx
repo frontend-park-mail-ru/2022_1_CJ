@@ -1,33 +1,105 @@
 import { treact } from "@treact";
+import { useForm } from "src/core/treact/@hooks/useForm";
+import { HelperError } from "./helperError";
+import { ValidatorEmail, ValidatorRequired } from "./@helpers/validators";
+import { authAPi, SignupUserRequest } from "src/core/network/api/auth";
+
+type signupForm = {
+	firstname: string;
+	lastname: string;
+	email: string;
+	password: string;
+	passwordConfirmation: string;
+};
 
 export const SignupForm = () => {
+	const { handleSubmit, handleChange, data, errors } = useForm<signupForm>({
+		validators: {
+			firstname: ValidatorRequired,
+			lastname: ValidatorRequired,
+			email: ValidatorEmail,
+			password: ValidatorRequired,
+			passwordConfirmation: {
+				isValid: (value) => {
+					const input = document.getElementById("password") as HTMLInputElement;
+					return input.value === value;
+				},
+				message: "Passwords mismatch",
+			},
+		},
+		onSubmit: () => {
+			const dto: SignupUserRequest = {
+				name: { first: data.firstname, last: data.lastname },
+				email: data.email,
+				password: data.password,
+			};
+			authAPi.signupUser(dto);
+		},
+	});
+
 	return (
-		<form className="form flow border-4" style="--flow-space: 1.5rem;">
-			<div className="form-field grid grid-c">
+		<form className="form flow border-4" style="--flow-space: 1.5rem;" onSubmit={handleSubmit}>
+			<div className="form-field flex flex-r">
 				<span>
-					<input name="firstname" type="text" className="input-field" placeholder="First name" />
+					<input
+						type="text"
+						className="input-field"
+						placeholder="First name"
+						value={data.firstname}
+						onChange={handleChange("firstname")}
+					/>
+					{errors.firstname && <HelperError message={errors.firstname} />}
 				</span>
 				<span>
-					<input name="lastname" type="text" className="input-field" placeholder="Second name" />
+					<input
+						type="text"
+						className="input-field"
+						placeholder="Last name"
+						value={data.lastname}
+						onChange={handleChange("lastname")}
+					/>
+					{errors.lastname && <HelperError message={errors.lastname} />}
 				</span>
 			</div>
 			<div className="form-field">
 				<span>
-					<input name="email" type="text" className="input-field" placeholder="Email" />
+					<input
+						type="text"
+						className="input-field"
+						placeholder="Email"
+						value={data.email}
+						onChange={handleChange("email")}
+					/>
+					{errors.email && <HelperError message={errors.email} />}
 				</span>
 			</div>
-			<div className="form-field grid grid-r">
-				<div className="grid grid-c">
+			<div className="form-field flex flex-c">
+				<div className="flex flex-r">
 					<span>
-						<input name="password" type="password" className="input-field" placeholder="Password" />
+						<input
+							id="password"
+							type="password"
+							className="input-field"
+							placeholder="Password"
+							value={data.password}
+							onChange={handleChange("password")}
+						/>
+						{errors.password && <HelperError message={errors.password} />}
 					</span>
 					<span>
-						<input name="password" type="password" className="input-field" placeholder="Confirm" />
+						<input
+							type="password"
+							className="input-field"
+							placeholder="Confirm"
+							value={data.passwordConfirmation}
+							onChange={handleChange("passwordConfirmation")}
+						/>
+						{errors.passwordConfirmation && <HelperError message={errors.passwordConfirmation} />}
 					</span>
 				</div>
 				<div className="helper helper-hint">Use 8 or more characters with a mix of letters, numbers & symbols</div>
 			</div>
-			<div className="grid grid-c items-center" style="padding-top: 3rem;">
+			<div className="grid grid-c items-center">
 				<button className="btn btn-primary" type="submit">
 					Sign up
 				</button>

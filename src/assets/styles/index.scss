@@ -100,9 +100,8 @@ html:focus-within {
 	line-height: 1.5;
 	text-rendering: optimizeSpeed;
 
-	font-family: var(--ff-sans);
-	font-size: var(--fs-400);
 	color: var(--clr-text);
+	font-family: var(--ff-sans);
 	background-color: var(--clr-bg);
 }
 
@@ -399,10 +398,9 @@ input {
 /* ---------------- Helpers ---------------- */
 
 .helper {
-	height: 0;
-	overflow: visible;
-	overflow-wrap: anywhere;
-	font-size: var(--fs-300);
+	// magic
+	margin-bottom: -1.9em;
+	font-size: var(--text-xs);
 }
 
 .helper-error {
