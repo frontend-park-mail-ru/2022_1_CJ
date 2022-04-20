@@ -1,9 +1,9 @@
 import { treact } from "@treact";
 
-export function NotFound() {
+export const NotFound = () => {
 	return (
 		<div>
 			<p>Not Found</p>
 		</div>
 	);
-}
+};

@@ -1,6 +1,6 @@
 import { treact } from "@treact";
 
-export function LoginForm() {
+export const LoginForm = () => {
 	return (
 		<form className="form flow border-4" style="--flow-space: 1.5rem;">
 			<div className="form-field">
@@ -23,4 +23,4 @@ export function LoginForm() {
 			</div>
 		</form>
 	);
-}
+};
