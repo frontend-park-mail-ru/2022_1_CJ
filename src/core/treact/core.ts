@@ -80,10 +80,13 @@ const hoist = (fiber?: Fiber) => {
 	return fiber;
 };
 
+// TODO: get rid of recursion
 const commitWork = (fiber?: Fiber) => {
 	if (!fiber) {
 		return;
 	}
+
+	commitWork(fiber.child);
 
 	const parentFiber = hoist(fiber.parent);
 	const parentNode = parentFiber?.node || undefined;
@@ -97,7 +100,6 @@ const commitWork = (fiber?: Fiber) => {
 		commitDelete(parentNode, fiber);
 	}
 
-	commitWork(fiber.child);
 	commitWork(fiber.sibling);
 };
 
