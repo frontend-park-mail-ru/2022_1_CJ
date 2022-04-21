@@ -3,6 +3,8 @@ import { useForm } from "src/core/treact/@hooks/useForm";
 import { HelperError } from "./helperError";
 import { ValidatorEmail, ValidatorRequired } from "./@helpers/validators";
 import { authAPi, SignupUserRequest } from "src/core/network/api/auth";
+import { Link } from "./link";
+import { URL } from "src/constants/constants";
 
 type signupForm = {
 	firstname: string;
@@ -103,9 +105,7 @@ export const SignupForm = () => {
 				<button className="btn btn-primary" type="submit">
 					Sign up
 				</button>
-				<a className="link" href="/login" type="data-link">
-					Already have an account?
-				</a>
+				<Link to={URL.Login}>Already have an account?</Link>
 			</div>
 		</form>
 	);

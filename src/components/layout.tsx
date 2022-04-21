@@ -1,8 +1,9 @@
 import { treact } from "@treact";
+import { Component } from "./@types/component";
 import { Header } from "./header";
 
-export const Layout = (context: object) => {
-	const children = (context as any).children || [];
+export const Layout: Component = (props) => {
+	const children = props.children || [];
 	return (
 		<div className="wrapper">
 			<Header />

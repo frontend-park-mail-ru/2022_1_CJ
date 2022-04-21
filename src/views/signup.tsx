@@ -1,11 +1,12 @@
 import { treact } from "@treact";
-import { Layout } from "src/components/layout";
+import { UnauthMiddleware } from "src/components/@middlewares/unauth";
+import { Component } from "src/components/@types/component";
 import { SignupForm } from "src/components/signupForm";
 
-export const Signup = () => {
+export const Signup: Component = () => {
 	return (
-		<Layout>
+		<UnauthMiddleware>
 			<SignupForm />
-		</Layout>
+		</UnauthMiddleware>
 	);
 };

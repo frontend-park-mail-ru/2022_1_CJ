@@ -3,6 +3,10 @@ import { useForm } from "src/core/treact/@hooks/useForm";
 import { HelperError } from "./helperError";
 import { ValidatorEmail, ValidatorRequired } from "./@helpers/validators";
 import { authAPi, LoginUserRequest } from "src/core/network/api/auth";
+import { router } from "src/core/modules/router";
+import { URL } from "src/constants/constants";
+import { handleError } from "src/core/modules/error";
+import { Link } from "./link";
 
 type loginForm = {
 	email: string;
@@ -10,6 +14,7 @@ type loginForm = {
 };
 
 export const LoginForm = () => {
+	console.log("LOGGGGGGGGGGGGG");
 	const { handleSubmit, handleChange, data, errors } = useForm<loginForm>({
 		validators: {
 			email: ValidatorEmail,
@@ -20,7 +25,14 @@ export const LoginForm = () => {
 				email: data.email,
 				password: data.password,
 			};
-			authAPi.loginUser(dto);
+			authAPi.loginUser(dto).then(
+				() => {
+					router.navigateTo(URL.Feed);
+				},
+				(err) => {
+					handleError(err);
+				}
+			);
 		},
 	});
 
@@ -55,9 +67,7 @@ export const LoginForm = () => {
 				<button className="btn btn-primary" type="submit">
 					Sign in
 				</button>
-				<a className="link" href="/signup" type="data-link">
-					Don't have an account?
-				</a>
+				<Link to={URL.Signup}>Don't have an account?</Link>
 			</div>
 		</form>
 	);

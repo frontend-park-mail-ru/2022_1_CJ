@@ -25,6 +25,13 @@ const defaultOptions: RequestInit = {
 	},
 };
 
+export const withQuery = (url: string, dto: object = {}) => {
+	const query = Object.entries(dto)
+		.map(([key, value]) => `${key}=${value}`)
+		.join("&");
+	return `${url}?${query}`;
+};
+
 const http = async <T>(url: string, config: RequestInit): Promise<T> => {
 	const request = new Request(url, { ...defaultOptions, ...config });
 	const response = await fetch(request);

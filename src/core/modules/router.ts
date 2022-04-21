@@ -1,10 +1,10 @@
 import { treact } from "@treact";
-import janitor from "./janitor";
+import { Component } from "src/components/@types/component";
+import { RouterStore, useRouterStore } from "src/stores/router";
+import { StateSetter } from "../treact/@hooks/useState";
 
 interface IRotuer {
-	run(): void;
 	navigateTo(path: string): void;
-	route(path: string, handler: Function): void;
 }
 
 const parameterRegExp = /:(\w+)/g;
@@ -14,7 +14,7 @@ const escapedURLDelimiter = "\\/";
 const pathToRegex = (path: string) =>
 	new RegExp(`^${path.replaceAll("/", escapedURLDelimiter).replace(parameterRegExp, solidStringPattern)}$`);
 
-const getParams = (route: string) => {
+export const getParams = (route: string) => {
 	const fragments = window.location.pathname.split("/");
 	const mapping = [] as [string, string][];
 	route.split("/").forEach((fragment, index) => {
@@ -28,47 +28,37 @@ const getParams = (route: string) => {
 
 export class Router implements IRotuer {
 	#root: HTMLElement;
-	#notFoundhandler: Function;
-	#routes: { path: string; handler: Function }[] = [];
+	#notFoundhandler: Component;
+	#routes: { path: string; handler: Component }[] = [];
+	#setRouterStore: StateSetter<RouterStore>;
 
-	constructor(root: HTMLElement, notFoundControler: Function) {
-		this.#root = root;
-		this.#notFoundhandler = notFoundControler;
+	constructor() {
+		this.#setRouterStore = useRouterStore()[1];
+		window.addEventListener("popstate", this.#handlePopState.bind(this));
 	}
 
-	run() {
-		this.#route();
-		window.addEventListener("popstate", this.#handlePopState.bind(this));
-		document.body.addEventListener("click", this.#handleClick.bind(this));
+	setRoot(root: HTMLElement) {
+		this.#root = root;
+	}
+
+	setNotFoundhandler(handler: Component) {
+		this.#notFoundhandler = handler;
 	}
 
 	navigateTo(path: string) {
-		window.history.pushState(null, "", path);
-		this.#route();
-	}
-
-	route(path: string, handler: Function) {
-		this.#routes.push({ path, handler });
-	}
-
-	#route() {
-		janitor.cleanup();
-		const match = this.#routes.find((route) => window.location.pathname.match(pathToRegex(route.path)) !== null);
-		if (match) {
-			const params = getParams(match.path);
-			treact.render(match.handler({ params }), this.#root);
-		} else {
-			treact.render(this.#notFoundhandler(), this.#root);
+		if (path !== window.location.pathname) {
+			window.history.pushState(null, "", path);
+			this.#setRouterStore({ path });
 		}
 	}
 
-	#handleClick(event: UIEvent) {
-		const link = event.target as HTMLLinkElement;
-		if (link.type === "data-link") {
-			event.preventDefault();
-			if (link.href !== window.location.href) {
-				this.navigateTo(link.href);
-			}
+	#route() {
+		const match = this.#routes.find((route) => window.location.pathname.match(pathToRegex(route.path)) !== null);
+		console.log(match);
+		if (match) {
+			this.#setRouterStore({ path: match.path });
+		} else {
+			treact.render(this.#notFoundhandler(), this.#root);
 		}
 	}
 
@@ -76,3 +66,5 @@ export class Router implements IRotuer {
 		this.#route();
 	}
 }
+
+export const router = new Router();
