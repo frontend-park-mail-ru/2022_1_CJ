@@ -22,13 +22,15 @@ export const useState = <T>(initial: T): [T, StateSetter<T>] => {
 
 	const setState: StateSetter<T> = (action: SetStateAction<T>) => {
 		hook.queue.push(action);
-		State.wipRoot = {
-			node: State.currentRoot.node,
-			props: State.currentRoot.props,
-			alternate: State.currentRoot,
-		};
-		State.nextUnitOfWork = State.wipRoot;
-		State.deletions = [];
+		if (State.currentRoot) {
+			State.wipRoot = {
+				node: State.currentRoot.node,
+				props: State.currentRoot.props,
+				alternate: State.currentRoot,
+			};
+			State.nextUnitOfWork = State.wipRoot;
+			State.deletions = [];
+		}
 	};
 
 	if (State.wipFiber?.hooks) {

@@ -6,6 +6,7 @@ import { Router } from "./components/router";
 import { URL } from "./constants/constants";
 import { Feed } from "./views/feed";
 import { Login } from "./views/login";
+import { NotFound } from "./views/notFound";
 import { Signup } from "./views/signup";
 
 export const App: Component = () => {
@@ -15,6 +16,7 @@ export const App: Component = () => {
 				<Route path={URL.Signup} component={Signup} />
 				<Route path={URL.Login} component={Login} />
 				<Route path={URL.Feed} component={Feed} />
+				<Route path="" component={NotFound}></Route>
 			</Router>
 		</Layout>
 	);

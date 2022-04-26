@@ -16,11 +16,12 @@ export const Router: Component = (props) => {
 	const [routerStore, setRouterStore] = useRouterStore();
 
 	const route = () => {
-		const path = routes.find((route) => window.location.pathname.match(pathToRegex(route)) !== null);
+		const path = routes.find((route) => window.location.pathname.match(pathToRegex(route)) !== null) || "";
 		setRouterStore({ ...routerStore, path });
 	};
 
 	treact.useEffect(() => {
+		route();
 		window.addEventListener("popstate", route);
 	}, []);
 
