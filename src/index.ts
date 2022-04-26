@@ -8,8 +8,8 @@ const root = document.getElementById("root") || document.body;
 window.history.pushState = new Proxy(window.history.pushState, {
 	apply: (target, thisArg, argArray) => {
 		setTimeout(() => {
-			const myEvent = new Event("popstate");
-			window.dispatchEvent(myEvent);
+			const event = new Event("popstate");
+			window.dispatchEvent(event);
 		});
 		return target.apply(thisArg, argArray);
 	},
