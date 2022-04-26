@@ -1,4 +1,4 @@
-import { User } from "src/core/@types/user";
+import { GetUserDataRequest, GetUserDataResponse } from "../dto/user";
 import { fetchAPI, withQuery } from "./common";
 
 const userMethods = {
@@ -7,14 +7,6 @@ const userMethods = {
 	getUserPosts: "/api/user/posts",
 	updatePhoto: "/api/user/update_photo",
 	searchUsers: "/api/user/search",
-};
-
-export type GetUserDataRequest = {
-	user_id: string;
-};
-
-export type GetUserDataResponse = {
-	user: User;
 };
 
 const getUserData = (dto?: GetUserDataRequest) =>

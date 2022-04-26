@@ -9,16 +9,14 @@ export const AuthMiddleware: Component = (props) => {
 	const [userStore, setUserStore] = useUserStore();
 
 	treact.useEffect(() => {
-		if (userStore.status === UserStatus.Pending) {
-			userAPI.getUserData().then(
-				(response) => {
-					setUserStore({ ...userStore, user: response.user, status: UserStatus.Authorized });
-				},
-				() => {
-					setUserStore({ ...userStore, user: null, status: UserStatus.Unauthorized });
-				}
-			);
-		}
+		userAPI.getUserData().then(
+			(response) => {
+				setUserStore({ ...userStore, user: response.user, status: UserStatus.Authorized });
+			},
+			() => {
+				setUserStore({ ...userStore, user: null, status: UserStatus.Unauthorized });
+			}
+		);
 	}, []);
 
 	if (userStore.status === UserStatus.Authorized) {
