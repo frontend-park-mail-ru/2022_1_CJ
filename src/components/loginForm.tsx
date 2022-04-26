@@ -2,11 +2,12 @@ import { treact } from "@treact";
 import { useForm } from "src/core/treact/@hooks/useForm";
 import { HelperError } from "./helperError";
 import { ValidatorEmail, ValidatorRequired } from "./@helpers/validators";
-import { authAPi, LoginUserRequest } from "src/core/network/api/auth";
+import { authAPi } from "src/core/network/api/auth";
 import { URL } from "src/constants/constants";
 import { handleError } from "src/core/modules/error";
 import { Link } from "./link";
 import { navigateTo } from "./@helpers/router";
+import { LoginUserRequest } from "src/core/network/dto/auth";
 
 type loginForm = {
 	email: string;
