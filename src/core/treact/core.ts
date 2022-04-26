@@ -105,7 +105,7 @@ const commitWork = (fiber?: Fiber) => {
 
 const commitRoot = () => {
 	State.deletions.forEach(commitWork);
-	if (State.wipRoot && State.wipRoot.child) {
+	if (State.wipRoot?.child) {
 		commitWork(State.wipRoot.child);
 		State.currentRoot = State.wipRoot;
 	}

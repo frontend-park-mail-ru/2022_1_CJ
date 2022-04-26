@@ -1,3 +1,5 @@
+// TODO: add a way to pass cleanup callbacks on unmount
+
 export type Node = HTMLElement | Text;
 
 export type Action = {

@@ -8,7 +8,7 @@ export const useState = <T>(initial: T): [T, StateSetter<T>] => {
 	const lastHook = getLastHook();
 	const hook = {
 		state: lastHook ? lastHook.state : initial,
-		queue: [] as any[],
+		queue: [] as SetStateAction<T>[],
 	};
 
 	const actions = lastHook ? lastHook.queue : [];
@@ -31,7 +31,7 @@ export const useState = <T>(initial: T): [T, StateSetter<T>] => {
 		State.deletions = [];
 	};
 
-	if (State.wipFiber && State.wipFiber.hooks) {
+	if (State.wipFiber?.hooks) {
 		State.wipFiber.hooks.push(hook);
 		State.hookIndex++;
 	}

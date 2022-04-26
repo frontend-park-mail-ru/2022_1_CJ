@@ -1,6 +1,5 @@
+import { useEffect } from "./useEffect";
 import { StateSetter, useState } from "./useState";
-
-type StoreReducer<T> = () => T;
 
 const createEmitter = <T>() => {
 	const subscriptions = new Map();
@@ -14,8 +13,8 @@ const createEmitter = <T>() => {
 	};
 };
 
-export const createStore = <T>(reducer: StoreReducer<T>) => {
-	let store = {} as T;
+export const createStore = <T>(initialState: T) => {
+	let store = initialState;
 	const emitter = createEmitter();
 
 	const setStore: StateSetter<T> = (action) => {
@@ -26,12 +25,12 @@ export const createStore = <T>(reducer: StoreReducer<T>) => {
 		}
 		emitter.emit(store);
 	};
-	store = reducer();
 
+	// TODO: fix the ud behaviour, switch to returning localStore
 	const useStore = (): [T, StateSetter<T>] => {
-		const [localStore, setLocalStore] = useState(store);
-		emitter.subscribe(setLocalStore);
-		return [localStore, setStore];
+		const [_, setLocalStore] = useState(store);
+		useEffect(() => emitter.subscribe(setLocalStore), []);
+		return [store, setStore];
 	};
 
 	return useStore;

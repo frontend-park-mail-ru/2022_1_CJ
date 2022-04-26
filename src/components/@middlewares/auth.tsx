@@ -1,33 +1,33 @@
 import { treact } from "@treact";
+import { URL } from "src/constants/constants";
 import { userAPI } from "src/core/network/api/user";
-import { useUserStore } from "src/stores/user";
+import { UserStatus, useUserStore } from "src/stores/user";
+import { navigateTo } from "../@helpers/router";
 import { Component } from "../@types/component";
 
-enum Status {
-	Pending,
-	Authorized,
-	Unauthorized,
-}
-
 export const AuthMiddleware: Component = (props) => {
-	const [_, setUserStore] = useUserStore();
-	const [status, setStatus] = treact.useState(Status.Pending);
+	const [userStore, setUserStore] = useUserStore();
 
 	treact.useEffect(() => {
-		userAPI.getUserData().then(
-			(response) => {
-				setUserStore((state) => ({ ...state, user: response.user }));
-				setStatus(Status.Authorized);
-			},
-			() => {
-				setUserStore({ user: null });
-				setStatus(Status.Unauthorized);
-			}
-		);
-	});
+		if (userStore.status === UserStatus.Pending) {
+			userAPI.getUserData().then(
+				(response) => {
+					setUserStore({ ...userStore, user: response.user, status: UserStatus.Authorized });
+				},
+				() => {
+					setUserStore({ ...userStore, user: null, status: UserStatus.Unauthorized });
+				}
+			);
+		}
+	}, []);
 
-	if (status === Status.Authorized) {
+	if (userStore.status === UserStatus.Authorized) {
 		return <>{props.children}</>;
 	}
+
+	if (userStore.status === UserStatus.Unauthorized) {
+		navigateTo(URL.Login);
+	}
+
 	return null;
 };

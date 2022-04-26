@@ -4,8 +4,4 @@ export type RouterStore = {
 	path: string;
 };
 
-export const useRouterStore = treact.createStore((): RouterStore => {
-	return {
-		path: window.location.pathname,
-	};
-});
+export const useRouterStore = treact.createStore({ path: window.location.pathname } as RouterStore);
