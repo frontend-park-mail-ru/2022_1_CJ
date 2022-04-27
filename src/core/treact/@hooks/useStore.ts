@@ -18,15 +18,10 @@ export const createStore = <T>(initialState: T) => {
 	const emitter = createEmitter();
 
 	const setStore: StateSetter<T> = (action) => {
-		if (action instanceof Function) {
-			store = action(store);
-		} else {
-			store = action;
-		}
+		store = action instanceof Function ? action(store) : action;
 		emitter.emit(store);
 	};
 
-	// TODO: fix the ud behaviour, switch to returning localStore
 	const useStore = (): [T, StateSetter<T>] => {
 		const [_, setLocalStore] = useState(store);
 		useEffect(() => emitter.subscribe(setLocalStore), []);

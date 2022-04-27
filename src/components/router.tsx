@@ -9,15 +9,20 @@ const escapedURLDelimiter = "\\/";
 const pathToRegex = (path: string) =>
 	new RegExp(`^${path.replaceAll("/", escapedURLDelimiter).replace(parameterRegExp, solidStringPattern)}$`);
 
+const pathToRoute = (path: string, routes: string[]) => {
+	return routes.find((route) => path.match(pathToRegex(route)) !== null) || "";
+};
+
 export const Router: Component = (props) => {
 	const routes = (props.routes as string[]) || [];
-	const children = props.children || [];
-
+	const children = (props.children as object) || [];
 	const [routerStore, setRouterStore] = useRouterStore();
 
 	const route = () => {
-		const path = routes.find((route) => window.location.pathname.match(pathToRegex(route)) !== null) || "";
-		setRouterStore({ ...routerStore, path });
+		// Use setTimeout to defer update of routerStore, so that it reaches the subscribers.
+		setTimeout(() => {
+			setRouterStore({ ...routerStore, path: pathToRoute(window.location.pathname, routes) });
+		});
 	};
 
 	treact.useEffect(() => {

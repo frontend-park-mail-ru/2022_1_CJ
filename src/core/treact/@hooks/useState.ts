@@ -7,17 +7,13 @@ export type StateSetter<T> = (action: SetStateAction<T>) => void;
 export const useState = <T>(initial: T): [T, StateSetter<T>] => {
 	const lastHook = getLastHook();
 	const hook = {
-		state: lastHook ? lastHook.state : initial,
+		state: lastHook?.state || initial,
 		queue: [] as SetStateAction<T>[],
 	};
 
-	const actions = lastHook ? lastHook.queue : [];
+	const actions = lastHook?.queue || [];
 	actions.forEach((action: SetStateAction<T>) => {
-		if (action instanceof Function) {
-			hook.state = action(hook.state);
-		} else {
-			hook.state = action;
-		}
+		hook.state = action instanceof Function ? action(hook.state) : action;
 	});
 
 	const setState: StateSetter<T> = (action: SetStateAction<T>) => {

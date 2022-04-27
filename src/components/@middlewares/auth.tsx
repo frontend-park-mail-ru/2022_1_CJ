@@ -25,6 +25,7 @@ export const AuthMiddleware: Component = (props) => {
 
 	if (userStore.status === UserStatus.Unauthorized) {
 		navigateTo(URL.Login);
+		return null;
 	}
 
 	return null;

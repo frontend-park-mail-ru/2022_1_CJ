@@ -25,6 +25,7 @@ export const UnauthMiddleware: Component = (props) => {
 
 	if (userStore.status === UserStatus.Authorized) {
 		navigateTo(URL.Feed);
+		return null;
 	}
 
 	return null;

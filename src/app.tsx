@@ -14,11 +14,11 @@ export const App: Component = () => {
 	return (
 		<Layout>
 			<Router routes={Object.values(URL)}>
-				<Route path={URL.Signup} component={Signup} />
-				<Route path={URL.Login} component={Login} />
-				<Route path={URL.Logout} component={Logout} />
-				<Route path={URL.Feed} component={Feed} />
-				<Route path="" component={NotFound}></Route>
+				<Route to={URL.Signup} component={Signup} />
+				<Route to={URL.Login} component={Login} />
+				<Route to={URL.Logout} component={Logout} />
+				<Route to={URL.Feed} component={Feed} />
+				<Route to="" component={NotFound} />
 			</Router>
 		</Layout>
 	);
