@@ -1,7 +1,11 @@
 import { treact } from "@treact";
+import { pathToRoute } from "src/components/router";
+import { URL } from "src/constants/constants";
 
 export type RouterStore = {
 	path: string;
 };
 
-export const useRouterStore = treact.createStore({ path: window.location.pathname } as RouterStore);
+export const useRouterStore = treact.createStore({
+	path: pathToRoute(window.location.pathname, Object.values(URL)),
+} as RouterStore);

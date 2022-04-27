@@ -1,17 +1,19 @@
-import { GetUserDataRequest, GetUserDataResponse } from "../dto/user";
+import { GetUserDataRequest, GetUserDataResponse, GetUserFeedResponse } from "../dto/user";
 import { fetchAPI, withQuery } from "./common";
 
-const userMethods = {
+const methods = {
 	getData: "/api/user/get",
-	getFeedPosts: "/api/user/feed",
+	getFeed: "/api/user/feed",
 	getUserPosts: "/api/user/posts",
 	updatePhoto: "/api/user/update_photo",
 	searchUsers: "/api/user/search",
 };
 
-const getUserData = (dto?: GetUserDataRequest) =>
-	fetchAPI.get<GetUserDataResponse>(withQuery(userMethods.getData, dto));
+const getUserData = (dto?: GetUserDataRequest) => fetchAPI.get<GetUserDataResponse>(withQuery(methods.getData, dto));
+
+const getFeed = () => fetchAPI.get<GetUserFeedResponse>(methods.getFeed);
 
 export const userAPI = {
 	getUserData,
+	getFeed,
 };

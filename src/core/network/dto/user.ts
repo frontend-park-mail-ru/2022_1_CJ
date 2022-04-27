@@ -1,3 +1,4 @@
+import { Post } from "src/core/@types/post";
 import { User } from "src/core/@types/user";
 
 export type GetUserDataRequest = {
@@ -6,4 +7,8 @@ export type GetUserDataRequest = {
 
 export type GetUserDataResponse = {
 	user: User;
+};
+
+export type GetUserFeedResponse = {
+	posts: Post[];
 };

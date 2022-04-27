@@ -9,7 +9,7 @@ const escapedURLDelimiter = "\\/";
 const pathToRegex = (path: string) =>
 	new RegExp(`^${path.replaceAll("/", escapedURLDelimiter).replace(parameterRegExp, solidStringPattern)}$`);
 
-const pathToRoute = (path: string, routes: string[]) => {
+export const pathToRoute = (path: string, routes: string[]) => {
 	return routes.find((route) => path.match(pathToRegex(route)) !== null) || "";
 };
 
@@ -26,7 +26,6 @@ export const Router: Component = (props) => {
 	};
 
 	treact.useEffect(() => {
-		route();
 		window.addEventListener("popstate", route);
 	}, []);
 
