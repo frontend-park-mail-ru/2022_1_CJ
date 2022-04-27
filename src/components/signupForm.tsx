@@ -2,9 +2,10 @@ import { treact } from "@treact";
 import { useForm } from "src/core/treact/@hooks/useForm";
 import { HelperError } from "./helperError";
 import { ValidatorEmail, ValidatorRequired } from "./@helpers/validators";
-import { authAPi, SignupUserRequest } from "src/core/network/api/auth";
+import { authAPi } from "src/core/network/api/auth";
 import { Link } from "./link";
 import { URL } from "src/constants/constants";
+import { SignupUserRequest } from "src/core/network/dto/auth";
 
 type signupForm = {
 	firstname: string;

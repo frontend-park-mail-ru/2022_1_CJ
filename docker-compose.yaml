@@ -9,6 +9,7 @@ services:
       - 80:80
     volumes:
       - ./dist:/var/www/web
+      - ./src/assets/static:/var/www/web/static
 
 networks:
   default:
