@@ -38,27 +38,27 @@ const http = async <T>(url: string, config: RequestInit): Promise<T> => {
 	if (!response.ok) {
 		throw new CodedError(response.statusText, response.status);
 	}
-	return response.json().catch(() => ({}));
+	return response.json().catch(() => {});
 };
 
 const get = async <T>(url: string, config?: RequestInit): Promise<T> => {
 	const init = { method: httpMethod.GET, ...config };
-	return await http<T>(url, init);
+	return http<T>(url, init);
 };
 
 const _delete = async <T>(url: string, config?: RequestInit): Promise<T> => {
 	const init = { method: httpMethod.DELETE, ...config };
-	return await http<T>(url, init);
+	return http<T>(url, init);
 };
 
 const post = async <T, U>(url: string, body: T, config?: RequestInit): Promise<U> => {
 	const init = { method: httpMethod.POST, body: JSON.stringify(body), ...config };
-	return await http<U>(url, init);
+	return http<U>(url, init);
 };
 
 const put = async <T, U>(url: string, body: T, config?: RequestInit): Promise<U> => {
 	const init = { method: httpMethod.PUT, body: JSON.stringify(body), ...config };
-	return await http<U>(url, init);
+	return http<U>(url, init);
 };
 
 export const fetchAPI = {
