@@ -6,6 +6,7 @@ import { Router } from "./components/router";
 import { URL } from "./constants/constants";
 import { Feed } from "./views/feed";
 import { Login } from "./views/login";
+import { Messenger } from "./views/messenger";
 import { NotFound } from "./views/notFound";
 import { Signup } from "./views/signup";
 
@@ -16,6 +17,7 @@ export const App: Component = () => {
 			<Route to={URL.Login} component={Login} />
 			<Route to={URL.Logout} component={Logout} />
 			<Route to={URL.Feed} component={Feed} />
+			<Route to={URL.Messenger} component={Messenger} />
 			<Route to="" component={NotFound} />
 		</Router>
 	);
