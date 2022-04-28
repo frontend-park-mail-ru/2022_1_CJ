@@ -12,3 +12,11 @@ export type GetUserDataResponse = {
 export type GetUserFeedResponse = {
 	posts: Post[];
 };
+
+export type SearchUsersRequest = {
+	selector: string;
+};
+
+export type SearchUsersResponse = {
+	users: User[];
+};

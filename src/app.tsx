@@ -5,6 +5,7 @@ import { Route } from "./components/route";
 import { Router } from "./components/router";
 import { URL } from "./constants/constants";
 import { Feed } from "./views/feed";
+import { Friends } from "./views/friends";
 import { Login } from "./views/login";
 import { Messenger } from "./views/messenger";
 import { NotFound } from "./views/notFound";
@@ -18,6 +19,7 @@ export const App: Component = () => {
 			<Route to={URL.Logout} component={Logout} />
 			<Route to={URL.Feed} component={Feed} />
 			<Route to={URL.Messenger} component={Messenger} />
+			<Route to={URL.Friends} component={Friends} />
 			<Route to="" component={NotFound} />
 		</Router>
 	);

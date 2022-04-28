@@ -1,4 +1,10 @@
-import { GetUserDataRequest, GetUserDataResponse, GetUserFeedResponse } from "../dto/user";
+import {
+	GetUserDataRequest,
+	GetUserDataResponse,
+	GetUserFeedResponse,
+	SearchUsersRequest,
+	SearchUsersResponse,
+} from "../dto/user";
 import { fetchAPI, withQuery } from "./common";
 
 const methods = {
@@ -13,7 +19,10 @@ const getUserData = (dto?: GetUserDataRequest) => fetchAPI.get<GetUserDataRespon
 
 const getFeed = () => fetchAPI.get<GetUserFeedResponse>(methods.getFeed);
 
+const searchUsers = (dto: SearchUsersRequest) => fetchAPI.get<SearchUsersResponse>(withQuery(methods.searchUsers, dto));
+
 export const userAPI = {
 	getUserData,
 	getFeed,
+	searchUsers,
 };

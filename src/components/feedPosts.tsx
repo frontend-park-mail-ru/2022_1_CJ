@@ -8,7 +8,6 @@ export const FeedPosts: Component = () => {
 	const [posts, setPosts] = treact.useState([] as Post[]);
 	treact.useEffect(() => {
 		userAPI.getFeed().then((response) => {
-			console.log(response.posts);
 			setPosts(response.posts);
 		});
 	}, []);

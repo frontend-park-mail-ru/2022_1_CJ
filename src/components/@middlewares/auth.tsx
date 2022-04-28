@@ -4,7 +4,6 @@ import { userAPI } from "src/core/network/api/user";
 import { UserStatus, useUserStore } from "src/stores/user";
 import { navigateTo } from "../@helpers/router";
 import { Component } from "../@types/component";
-import { Layout } from "../layout";
 import { Loader } from "../loader";
 
 export const AuthMiddleware: Component = (props) => {
@@ -23,7 +22,7 @@ export const AuthMiddleware: Component = (props) => {
 	}, []);
 
 	if (userStore.status === UserStatus.Authorized) {
-		return <Layout>{props.children}</Layout>;
+		return <>{props.children}</>;
 	}
 
 	if (userStore.status === UserStatus.Unauthorized) {

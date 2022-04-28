@@ -1,14 +1,14 @@
 import { treact } from "@treact";
 import { AuthMiddleware } from "src/components/@middlewares/auth";
 import { Component } from "src/components/@types/component";
-import { Dialogs } from "src/components/dialogs";
+import { FriendsList } from "src/components/friends";
 import { Layout } from "src/components/layout";
 
-export const Messenger: Component = () => {
+export const Friends: Component = () => {
 	return (
 		<AuthMiddleware>
 			<Layout>
-				<Dialogs />
+				<FriendsList />
 			</Layout>
 		</AuthMiddleware>
 	);
