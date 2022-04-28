@@ -4,10 +4,10 @@ import { userAPI } from "src/core/network/api/user";
 import { UserStatus, useUserStore } from "src/stores/user";
 import { navigateTo } from "../@helpers/router";
 import { Component } from "../@types/component";
-import { Loader } from "../loader";
 
 export const UnauthMiddleware: Component = (props) => {
 	const [userStore, setUserStore] = useUserStore();
+	const { children } = props;
 
 	treact.useEffect(() => {
 		userStore.status = UserStatus.Pending;
@@ -22,7 +22,7 @@ export const UnauthMiddleware: Component = (props) => {
 	}, []);
 
 	if (userStore.status === UserStatus.Unauthorized) {
-		return <>{props.children}</>;
+		return <>{children}</>;
 	}
 
 	if (userStore.status === UserStatus.Authorized) {
@@ -30,5 +30,5 @@ export const UnauthMiddleware: Component = (props) => {
 		return null;
 	}
 
-	return <Loader />;
+	return <div className="full __disabled">{children}</div>;
 };
