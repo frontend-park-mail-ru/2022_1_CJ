@@ -4,27 +4,26 @@ import { userAPI } from "src/core/network/api/user";
 import { UserStatus, useUserStore } from "src/stores/user";
 import { navigateTo } from "../@helpers/router";
 import { Component } from "../@types/component";
+import { Layout } from "../layout";
+import { Loader } from "../loader";
 
 export const AuthMiddleware: Component = (props) => {
 	const [userStore, setUserStore] = useUserStore();
 
-	console.log("XXXXXXXXXXXXXXXXXXXXXXXXX");
-
 	treact.useEffect(() => {
-		if (userStore.status === UserStatus.Pending) {
-			userAPI.getUserData().then(
-				(response) => {
-					setUserStore({ ...userStore, user: response.user, status: UserStatus.Authorized });
-				},
-				() => {
-					setUserStore({ ...userStore, user: null, status: UserStatus.Unauthorized });
-				}
-			);
-		}
+		userStore.status = UserStatus.Pending;
+		userAPI.getUserData().then(
+			(response) => {
+				setUserStore({ ...userStore, user: response.user, status: UserStatus.Authorized });
+			},
+			() => {
+				setUserStore({ ...userStore, user: null, status: UserStatus.Unauthorized });
+			}
+		);
 	}, []);
 
 	if (userStore.status === UserStatus.Authorized) {
-		return <>{props.children}</>;
+		return <Layout>{props.children}</Layout>;
 	}
 
 	if (userStore.status === UserStatus.Unauthorized) {
@@ -32,7 +31,5 @@ export const AuthMiddleware: Component = (props) => {
 		return null;
 	}
 
-	console.log("RETURN NULL");
-
-	return null;
+	return <Loader />;
 };

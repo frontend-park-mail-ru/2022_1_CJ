@@ -1,7 +1,7 @@
 import { treact } from "@treact";
 import { URL } from "src/constants/constants";
 import { useUserStore } from "src/stores/user";
-import "../assets/styles/header.scss";
+import "/src/assets/styles/header.scss";
 import { Link } from "./link";
 
 export const Header = () => {

@@ -7,7 +7,6 @@ import { URL } from "src/constants/constants";
 import { handleError } from "src/core/modules/error";
 import { Link } from "./link";
 import { navigateTo } from "./@helpers/router";
-import { LoginUserRequest } from "src/core/network/dto/auth";
 
 type loginForm = {
 	email: string;
@@ -21,11 +20,7 @@ export const LoginForm = () => {
 			password: ValidatorRequired,
 		},
 		onSubmit: () => {
-			const dto: LoginUserRequest = {
-				email: data.email,
-				password: data.password,
-			};
-			authAPi.loginUser(dto).then(
+			authAPi.loginUser(data).then(
 				() => {
 					navigateTo(URL.Feed);
 				},
