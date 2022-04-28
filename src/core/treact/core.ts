@@ -61,15 +61,15 @@ const createNode = (fiber: Fiber): Node => {
 	return node;
 };
 
-const commitDelete = (parentNode: Node, fiber?: Fiber) => {
+const commitDelete = (fiber?: Fiber) => {
 	if (!fiber) {
 		return;
 	}
 
 	if (fiber.node) {
-		parentNode.removeChild(fiber.node);
+		fiber.node.remove();
 	} else if (fiber.child) {
-		commitDelete(parentNode, fiber.child);
+		commitDelete(fiber.child);
 	}
 };
 
@@ -97,7 +97,7 @@ const commitWork = (fiber?: Fiber) => {
 	} else if (action === FiberAction.Update && fiber.node && fiber.alternate) {
 		updateNode(fiber.node, fiber.alternate.props, fiber.props);
 	} else if (action === FiberAction.Delete && parentNode) {
-		commitDelete(parentNode, fiber);
+		commitDelete(fiber);
 	}
 
 	commitWork(fiber.sibling);
