@@ -13,5 +13,5 @@ export const FeedPosts: Component = () => {
 		});
 	}, []);
 	const map = (post: Post) => <PostComponent post={post} />;
-	return <>{posts.map(map)}</>;
+	return <div className="flex flex-c d-middle">{posts.map(map)}</div>;
 };
