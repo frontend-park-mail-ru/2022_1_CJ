@@ -5,7 +5,7 @@ const createEmitter = <T>() => {
 	const subscriptions = new Map();
 	return {
 		emit: (store: T) => subscriptions.forEach((listener) => listener(store)),
-		subscribe: (listener: Function) => {
+		subscribe: (listener: (store: T) => void) => {
 			const key = Symbol();
 			subscriptions.set(key, listener);
 			return () => subscriptions.delete(key);

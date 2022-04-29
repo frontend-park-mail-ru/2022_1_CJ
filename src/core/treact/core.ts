@@ -135,7 +135,7 @@ const updateHostComponent = (fiber: Fiber) => {
 const reconcileChildren = (wipFiber: Fiber, elements: any) => {
 	let index = 0;
 	let oldFiber = wipFiber.alternate && wipFiber.alternate.child;
-	let prevSibling: Fiber | undefined = undefined;
+	let prevSibling: Fiber | undefined;
 	while (index < elements.length || oldFiber) {
 		const element = elements[index];
 		const sameType = oldFiber && element && element.type === oldFiber.type;

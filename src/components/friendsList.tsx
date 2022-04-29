@@ -15,7 +15,7 @@ export const FriendsList: Component = () => {
 		friendsAPI.getFriends().then((response) => {
 			if (response.friend_ids) {
 				response.friend_ids.forEach((user_id) => {
-					userAPI.getUserData({ user_id }).then((response) => setFriends([...friends, response.user]));
+					userAPI.getUserData({ user_id }).then((r) => setFriends([...friends, r.user]));
 				});
 			}
 		});
