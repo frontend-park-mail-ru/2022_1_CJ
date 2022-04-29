@@ -2,7 +2,7 @@ import { treact } from "@treact";
 import { User } from "src/core/@types/user";
 
 export enum UserStatus {
-	Pending,
+	Unset,
 	Authorized,
 	Unauthorized,
 }
@@ -12,4 +12,4 @@ export type UserStore = {
 	status: UserStatus;
 };
 
-export const useUserStore = treact.createStore({ user: null, status: UserStatus.Pending } as UserStore);
+export const useUserStore = treact.createStore({ user: null, status: UserStatus.Unset } as UserStore);

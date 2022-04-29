@@ -1,9 +1,11 @@
 import { treact } from "@treact";
+import { URL, urlWithParameters } from "src/constants/constants";
 import { EventWithTarget } from "src/core/@types/event";
 import { User } from "src/core/@types/user";
 import { friendsAPI } from "src/core/network/api/friends";
 import { userAPI } from "src/core/network/api/user";
 import { Component } from "./@types/component";
+import { Link } from "./link";
 
 export const FriendsList: Component = () => {
 	const [friends, setFriends] = treact.useState([] as User[]);
@@ -27,7 +29,6 @@ export const FriendsList: Component = () => {
 		const selector = event.target.value;
 		if (selector.length > 0) {
 			userAPI.searchUsers({ selector }).then((response) => {
-				console.log(response.users);
 				setSearchResults(response.users);
 			});
 		} else {
@@ -35,7 +36,10 @@ export const FriendsList: Component = () => {
 		}
 	};
 
-	const map = (friend: User) => <p>{`${friend.name.first} ${friend.name.last}`}</p>;
+	const map = (friend: User) => {
+		const fullName = `${friend.name.first} ${friend.name.last}`;
+		return <Link to={urlWithParameters(URL.Profile, { user_id: friend.id })}>{fullName}</Link>;
+	};
 
 	const list = () => {
 		if (searchResults.length > 0) {

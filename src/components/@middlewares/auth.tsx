@@ -5,12 +5,17 @@ import { UserStatus, useUserStore } from "src/stores/user";
 import { navigateTo } from "../@helpers/router";
 import { Component } from "../@types/component";
 
+export enum AuthMiddlewarePolicy {
+	Authorized,
+	Unauthorized,
+}
+
 export const AuthMiddleware: Component = (props) => {
 	const [userStore, setUserStore] = useUserStore();
 	const { children } = props;
+	const policy = props.policy || AuthMiddlewarePolicy.Authorized;
 
 	treact.useEffect(() => {
-		userStore.status = UserStatus.Pending;
 		userAPI.getUserData().then(
 			(response) => {
 				setUserStore({ ...userStore, user: response.user, status: UserStatus.Authorized });
@@ -21,14 +26,21 @@ export const AuthMiddleware: Component = (props) => {
 		);
 	}, []);
 
-	if (userStore.status === UserStatus.Authorized) {
-		return <>{children}</>;
+	if (userStore.status !== UserStatus.Unset) {
+		const authorizedPolicy = policy === AuthMiddlewarePolicy.Authorized;
+		const authorizedStatus = userStore.status === UserStatus.Authorized;
+		const consensus = authorizedPolicy === authorizedStatus;
+
+		if (consensus) {
+			return <>{children}</>;
+		}
+
+		if (authorizedStatus) {
+			navigateTo(URL.Feed);
+		} else {
+			navigateTo(URL.Login);
+		}
 	}
 
-	if (userStore.status === UserStatus.Unauthorized) {
-		navigateTo(URL.Login);
-		return null;
-	}
-
-	return <div className="full __disabled">{children}</div>;
+	return null;
 };
