@@ -21,12 +21,8 @@ export const LoginForm = () => {
 		},
 		onSubmit: () => {
 			authAPi.loginUser(data).then(
-				() => {
-					navigateTo(URL.Feed);
-				},
-				(err) => {
-					handleError(err);
-				}
+				() => navigateTo(URL.Feed),
+				(err) => handleError(err)
 			);
 		},
 	});

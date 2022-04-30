@@ -25,15 +25,25 @@ const defaultOptions: RequestInit = {
 	},
 };
 
+const headers = {
+	csrf: "X-CSRF-Token",
+};
+
 export const withQuery = (url: string, dto: object = {}) => {
 	const query = Object.entries(dto)
 		.map(([key, value]) => `${key}=${value}`)
 		.join("&");
-	return `${url}?${query}`;
+	const prefix = url.indexOf("?") > 0 ? "&" : "?";
+	return url + prefix + query;
 };
 
+const withCSRFToken = (url: string, token: string) => withQuery(url, { [headers.csrf]: token });
+
+const getCookieValue = (name: string) => document.cookie.match("(^|;)\\s*" + name + "\\s*=\\s*([^;]+)")?.pop() || "";
+
 const http = async <T>(url: string, config: RequestInit): Promise<T> => {
-	const request = new Request(url, { ...defaultOptions, ...config });
+	const csrfToken = getCookieValue(headers.csrf);
+	const request = new Request(withCSRFToken(url, csrfToken), { ...defaultOptions, ...config });
 	const response = await fetch(request);
 	if (!response.ok) {
 		throw new CodedError(response.statusText, response.status);

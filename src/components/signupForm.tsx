@@ -6,6 +6,8 @@ import { authAPi } from "src/core/network/api/auth";
 import { Link } from "./link";
 import { URL } from "src/constants/constants";
 import { SignupUserRequest } from "src/core/network/dto/auth";
+import { navigateTo } from "./@helpers/router";
+import { handleError } from "src/core/modules/error";
 
 type signupForm = {
 	firstname: string;
@@ -36,7 +38,10 @@ export const SignupForm = () => {
 				email: data.email,
 				password: data.password,
 			};
-			authAPi.signupUser(dto);
+			authAPi.signupUser(dto).then(
+				() => navigateTo(URL.Feed),
+				(err) => handleError(err)
+			);
 		},
 	});
 
