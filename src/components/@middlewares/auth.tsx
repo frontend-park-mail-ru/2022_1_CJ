@@ -4,6 +4,7 @@ import { userAPI } from "src/core/network/api/user";
 import { UserStatus, useUserStore } from "src/stores/user";
 import { navigateTo } from "../@helpers/router";
 import { Component } from "../@types/component";
+import { Spinner } from "../spinner";
 
 export enum AuthMiddlewarePolicy {
 	Authorized,
@@ -42,5 +43,5 @@ export const AuthMiddleware: Component = (props) => {
 		}
 	}
 
-	return null;
+	return <Spinner />;
 };
