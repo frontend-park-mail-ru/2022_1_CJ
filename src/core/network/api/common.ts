@@ -33,7 +33,7 @@ export const withQuery = (url: string, dto: object = {}) => {
 	const query = Object.entries(dto)
 		.map(([key, value]) => `${key}=${value}`)
 		.join("&");
-	const prefix = url.indexOf("?") > 0 ? "&" : "?";
+	const prefix = url.includes("?") ? "&" : "?";
 	return url + prefix + query;
 };
 

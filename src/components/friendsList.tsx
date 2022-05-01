@@ -13,11 +13,9 @@ export const FriendsList: Component = () => {
 
 	treact.useEffect(() => {
 		friendsAPI.getFriends().then((response) => {
-			if (response.friend_ids) {
-				response.friend_ids.forEach((user_id) => {
-					userAPI.getUserData({ user_id }).then((r) => setFriends([...friends, r.user]));
-				});
-			}
+			response.friend_ids.forEach((user_id) => {
+				userAPI.getUserData({ user_id }).then((r) => setFriends([...friends, r.user]));
+			});
 		});
 	}, []);
 
@@ -43,9 +41,21 @@ export const FriendsList: Component = () => {
 
 	const list = () => {
 		if (searchResults.length > 0) {
-			return searchResults.map(map);
+			return (
+				<>
+					<p>Search results:</p>
+					{searchResults.map(map)}
+				</>
+			);
+		} else if (friends.length > 0) {
+			return (
+				<>
+					<p>Your friends:</p>
+					{friends.map(map)}
+				</>
+			);
 		}
-		return friends.length > 0 ? friends.map(map) : <p>Empty list</p>;
+		return <p>Empty list</p>;
 	};
 
 	return (
