@@ -2,8 +2,8 @@ import { treact } from "@treact";
 import { Message } from "src/core/@types/dialog";
 import { EventWithTarget } from "src/core/@types/event";
 import { messengerAPI } from "src/core/network/api/messenger";
-import { Component } from "./@types/component";
-import { Spinner } from "./spinner";
+import { Component } from "src/components/@types/component";
+import { Spinner } from "src/components/spinner";
 
 const decodeEntity = (str: string) => {
 	var textarea = document.createElement("textarea");
@@ -27,8 +27,9 @@ export const Dialog: Component = ({ dialog_id }: { dialog_id: string }) => {
 	}, []);
 
 	const map = (message: Message) => (
-		<div className="flex flex-c bg-white">
+		<div className="flex flex-c bg-white pd-8">
 			<p>{message.author_id}</p>
+			<hr />
 			<p>{decodeEntity(message.body)}</p>
 		</div>
 	);
@@ -44,7 +45,7 @@ export const Dialog: Component = ({ dialog_id }: { dialog_id: string }) => {
 
 	if (state.socket && state.messages) {
 		return (
-			<div className="flex flex-c">
+			<div className="flex flex-c d-middle">
 				{state.messages.map(map)}
 				<input onKeyUp={sendMessage} type="text" className="input-field" placeholder="Type a message" />
 			</div>
