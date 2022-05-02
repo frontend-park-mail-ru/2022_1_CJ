@@ -4,6 +4,7 @@ import { Logout } from "./components/logout";
 import { Route } from "./components/route";
 import { Router } from "./components/router";
 import { URL } from "./constants/constants";
+import { Base } from "./views/base";
 import { Feed } from "./views/feed";
 import { Friends } from "./views/friends";
 import { Login } from "./views/login";
@@ -15,6 +16,7 @@ import { Signup } from "./views/signup";
 export const App: Component = () => {
 	return (
 		<Router routes={Object.values(URL)}>
+			<Route to={URL.Base} component={Base} />
 			<Route to={URL.Signup} component={Signup} />
 			<Route to={URL.Login} component={Login} />
 			<Route to={URL.Logout} component={Logout} />

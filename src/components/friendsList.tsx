@@ -13,7 +13,7 @@ export const FriendsList: Component = () => {
 
 	treact.useEffect(() => {
 		friendsAPI.getFriends().then((response) => {
-			response.friend_ids.forEach((user_id) => {
+			response.friend_ids?.forEach((user_id) => {
 				userAPI.getUserData({ user_id }).then((r) => setFriends([...friends, r.user]));
 			});
 		});

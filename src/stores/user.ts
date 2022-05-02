@@ -10,6 +10,17 @@ export enum UserStatus {
 export type UserStore = {
 	user: User;
 	status: UserStatus;
+	friends: string[];
+	followers: string[];
+	subscriptions: string[];
 };
 
-export const useUserStore = treact.createStore({ user: null, status: UserStatus.Unset } as UserStore);
+const initialState: UserStore = {
+	user: null,
+	status: UserStatus.Unset,
+	friends: [],
+	followers: [],
+	subscriptions: [],
+};
+
+export const useUserStore = treact.createStore(initialState);
