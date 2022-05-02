@@ -88,7 +88,16 @@ const CurrentUserProfileInfo: Component = () => {
 };
 
 export const FriendButton: Component = ({ user_id }: { user_id: string }) => {
-	const [userStore] = useUserStore();
+	const [userStore, setUserStore] = useUserStore();
+
+	treact.useEffect(() => {
+		let followers: string[];
+		let friends: string[];
+		Promise.allSettled([
+			friendsAPI.getFriendRequests().then((response) => (followers = response.request_ids || [])),
+			friendsAPI.getFriends().then((response) => (friends = response.friend_ids || [])),
+		]).then(() => setUserStore({ ...userStore, followers, friends }));
+	}, []);
 
 	const addFriend = () => {
 		friendsAPI.sendFriendRequest({ user_id });
@@ -118,17 +127,10 @@ export const FriendButton: Component = ({ user_id }: { user_id: string }) => {
 };
 
 const OtherUserProfileInfo: Component = ({ user_id }: { user_id: string }) => {
-	const [userStore, setUserStore] = useUserStore();
+	const [userStore] = useUserStore();
 	const [user, setUser] = treact.useState(null as User);
 
 	treact.useEffect(() => {
-		let followers: string[];
-		let friends: string[];
-		Promise.allSettled([
-			friendsAPI.getFriendRequests().then((response) => (followers = response.request_ids)),
-			friendsAPI.getFriends().then((response) => (friends = response.friend_ids || [])),
-		]).then(() => setUserStore({ ...userStore, followers, friends }));
-
 		userAPI.getUserData({ user_id }).then((response) => setUser(response.user));
 	}, []);
 
