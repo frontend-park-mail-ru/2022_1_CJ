@@ -96,6 +96,7 @@ html:focus-within {
 }
 
 #root {
+	display: flex;
 	min-height: 100vh;
 	background-color: var(--main-background-color);
 
@@ -108,7 +109,7 @@ html:focus-within {
 }
 
 .wrapper {
-	height: 100%;
+	flex-grow: 1;
 	display: grid;
 	grid-template-rows: min-content 1fr;
 	grid-template-columns: repeat(var(--cols), [col-start] 1fr);
