@@ -1,4 +1,5 @@
 import { treact } from "@treact";
+import { ProfileSettings } from "src/views/profileSettings";
 import { Component } from "./components/@types/component";
 import { Logout } from "./components/logout";
 import { Route } from "./components/route";
@@ -26,6 +27,7 @@ export const App: Component = () => {
 			<Route to={URL.Friends} component={Friends} />
 			<Route to={URL.Profile} component={Profile} />
 			<Route to={URL.Dialog} component={MessengerDialog} />
+			<Route to={URL.ProfileSettings} component={ProfileSettings} />
 			<Route to="" component={NotFound} />
 		</Router>
 	);

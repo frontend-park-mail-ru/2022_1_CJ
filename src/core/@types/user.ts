@@ -9,3 +9,25 @@ export type User = {
 	name: UserName;
 	image: string;
 };
+
+export type UserInfo = {
+	id: string;
+	name: UserName;
+	email: string;
+	image: string;
+};
+
+export type UserProfile = {
+	user_info: UserInfo;
+	phone: string;
+	location: string;
+	birth_day: string;
+};
+
+export type ProfileSettings = {
+	name?: UserName;
+	avatar?: string;
+	phone?: string;
+	location?: string;
+	birth_day?: string;
+};

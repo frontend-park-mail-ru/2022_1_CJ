@@ -66,6 +66,8 @@ const CurrentUserProfileInfo: Component = () => {
 		<div className="flex flex-c">
 			<UserProfileInfo user={userStore.user} />
 
+			<Link to={URL.ProfileSettings}>Profile settings</Link>
+
 			{!show && (
 				<button onClick={showCreatePostBlock} className="btn btn-primary">
 					Create post

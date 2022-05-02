@@ -68,6 +68,17 @@ const post = async <T, U>(url: string, body: T, config?: RequestInit): Promise<U
 	return http<U>(url, init);
 };
 
+const postFormData = async <U>(url: string, body: FormData): Promise<U> => {
+	const init = {
+		method: httpMethod.POST,
+		body,
+		headers: {
+			Accept: "application/json",
+		},
+	};
+	return http<U>(url, init);
+};
+
 const put = async <T, U>(url: string, body: T, config?: RequestInit): Promise<U> => {
 	const init = { method: httpMethod.PUT, body: JSON.stringify(body), ...config };
 	return http<U>(url, init);
@@ -78,6 +89,7 @@ export const fetchAPI = {
 	delete: _delete,
 	post,
 	put,
+	postFormData,
 };
 
 export const ws = (url: string) => {

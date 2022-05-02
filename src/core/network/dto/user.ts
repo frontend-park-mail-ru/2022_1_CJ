@@ -1,5 +1,6 @@
 import { PostWrapper } from "src/core/@types/post";
-import { User } from "src/core/@types/user";
+import { ProfileSettings, User, UserProfile } from "src/core/@types/user";
+import { BasicResponse } from "src/core/network/dto/common";
 
 export type GetUserDataRequest = {
 	user_id: string;
@@ -20,3 +21,15 @@ export type SearchUsersRequest = {
 export type SearchUsersResponse = {
 	users: User[];
 };
+
+export type GetUserProfileRequest = {
+	user_id: string;
+};
+
+export type GetUserProfileResponse = {
+	user_profile: UserProfile;
+};
+
+export type EditUserProfileRequest = ProfileSettings;
+
+export type EditUserProfileResponse = BasicResponse;

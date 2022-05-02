@@ -1,5 +1,4 @@
 import { treact } from "@treact";
-import { useForm } from "src/core/treact/@hooks/useForm";
 import { HelperError } from "./helperError";
 import { ValidatorEmail, ValidatorRequired } from "./@helpers/validators";
 import { authAPi } from "src/core/network/api/auth";
@@ -18,7 +17,7 @@ type signupForm = {
 };
 
 export const SignupForm = () => {
-	const { handleSubmit, handleChange, data, errors } = useForm<signupForm>({
+	const { handleSubmit, handleChange, data, errors } = treact.useForm<signupForm>({
 		validators: {
 			firstname: ValidatorRequired,
 			lastname: ValidatorRequired,
