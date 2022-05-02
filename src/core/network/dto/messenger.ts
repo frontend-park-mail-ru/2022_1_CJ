@@ -1,4 +1,4 @@
-import { Dialog } from "src/core/@types/dialog";
+import { Dialog, Message } from "src/core/@types/dialog";
 
 export type CreateDialogRequest = {
 	name: string;
@@ -11,4 +11,13 @@ export type CreateDialogResponse = {
 
 export type GetDialogsResponse = {
 	dialogs: Dialog[];
+};
+
+export type GetDialogRequest = {
+	dialog_id: string;
+};
+
+export type GetDialogResponse = {
+	dialog: Dialog;
+	messages: Message[];
 };

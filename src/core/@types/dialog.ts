@@ -1,5 +1,11 @@
 export type Dialog = {
-	id: string;
+	dialog_id: string;
 	name: string;
 	participants: string[];
+};
+
+export type Message = {
+	author_id: string;
+	body: string;
+	created_at: number;
 };

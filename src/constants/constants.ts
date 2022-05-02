@@ -7,6 +7,7 @@ export const URL = {
 	Profile: "/u/:user_id",
 	ProfileSettings: "/settings",
 	Messenger: "/messenger",
+	Dialog: "/messenger/:dialog_id",
 	Friends: "/friends",
 	Search: "/search",
 };

@@ -30,11 +30,13 @@ const headers = {
 };
 
 export const withQuery = (url: string, dto: object = {}) => {
-	const query = Object.entries(dto)
-		.map(([key, value]) => `${key}=${value}`)
-		.join("&");
-	const prefix = url.includes("?") ? "&" : "?";
-	return url + prefix + query;
+	const data = Object.entries(dto).filter((value) => value.length > 0);
+	if (data.length > 0) {
+		const query = data.map(([key, value]) => `${key}=${value}`).join("&");
+		const prefix = url.includes("?") ? "&" : "?";
+		return url + prefix + query;
+	}
+	return url;
 };
 
 const withCSRFToken = (url: string, token: string) => withQuery(url, { [headers.csrf]: token });
@@ -76,4 +78,9 @@ export const fetchAPI = {
 	delete: _delete,
 	post,
 	put,
+};
+
+export const ws = (url: string) => {
+	const csrfToken = getCookieValue(headers.csrf);
+	return new WebSocket(withCSRFToken(url, csrfToken));
 };

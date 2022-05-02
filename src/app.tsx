@@ -5,6 +5,7 @@ import { Route } from "./components/route";
 import { Router } from "./components/router";
 import { URL } from "./constants/constants";
 import { Base } from "./views/base";
+import { MessengerDialog } from "./views/dialog";
 import { Feed } from "./views/feed";
 import { Friends } from "./views/friends";
 import { Login } from "./views/login";
@@ -24,6 +25,7 @@ export const App: Component = () => {
 			<Route to={URL.Messenger} component={Messenger} />
 			<Route to={URL.Friends} component={Friends} />
 			<Route to={URL.Profile} component={Profile} />
+			<Route to={URL.Dialog} component={MessengerDialog} />
 			<Route to="" component={NotFound} />
 		</Router>
 	);
