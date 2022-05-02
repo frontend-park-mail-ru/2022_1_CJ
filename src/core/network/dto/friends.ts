@@ -4,7 +4,7 @@ export type GetFriendsResponse = {
 	friend_ids: string[];
 };
 
-export type GetFriendReqsResponse = {
+export type GetIncomingFriendReqsResponse = {
 	request_ids: string[];
 };
 

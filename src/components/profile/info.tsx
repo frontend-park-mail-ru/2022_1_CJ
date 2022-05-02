@@ -53,7 +53,7 @@ const CurrentUserProfileInfo: Component = () => {
 		let followers: string[];
 		let friends: string[];
 		Promise.allSettled([
-			friendsAPI.getFriendRequests().then((response) => (followers = response.request_ids)),
+			friendsAPI.getIncomingFriendRequests().then((response) => (followers = response.request_ids || [])),
 			friendsAPI.getFriends().then((response) => (friends = response.friend_ids || [])),
 		]).then(() => setUserStore({ ...userStore, followers, friends }));
 	}, []);
@@ -94,7 +94,7 @@ export const FriendButton: Component = ({ user_id }: { user_id: string }) => {
 		let followers: string[];
 		let friends: string[];
 		Promise.allSettled([
-			friendsAPI.getFriendRequests().then((response) => (followers = response.request_ids || [])),
+			friendsAPI.getIncomingFriendRequests().then((response) => (followers = response.request_ids || [])),
 			friendsAPI.getFriends().then((response) => (friends = response.friend_ids || [])),
 		]).then(() => setUserStore({ ...userStore, followers, friends }));
 	}, []);

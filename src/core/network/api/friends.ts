@@ -1,7 +1,7 @@
 import {
 	AcceptFriendReqRequest,
 	AcceptFriendReqResponse,
-	GetFriendReqsResponse,
+	GetIncomingFriendReqsResponse,
 	GetFriendsResponse,
 	SendFriendReqRequest,
 	SendFriendReqResponse,
@@ -10,14 +10,14 @@ import { fetchAPI } from "./common";
 
 const methods = {
 	getFriends: "/api/friends/get",
-	getFriendRequests: "/api/friends/requests",
+	getIncomingFriendRequests: "/api/friends/requests/incoming",
 	sendFriendRequest: "/api/friends/request",
 	acceptFriendRequest: "/api/friends/accept",
 };
 
 const getFriends = () => fetchAPI.get<GetFriendsResponse>(methods.getFriends);
 
-const getFriendRequests = () => fetchAPI.get<GetFriendReqsResponse>(methods.getFriendRequests);
+const getIncomingFriendRequests = () => fetchAPI.get<GetIncomingFriendReqsResponse>(methods.getIncomingFriendRequests);
 
 const sendFriendRequest = (dto: SendFriendReqRequest) =>
 	fetchAPI.post<SendFriendReqRequest, SendFriendReqResponse>(methods.sendFriendRequest, dto);
@@ -27,7 +27,7 @@ const acceptFriendRequest = (dto: AcceptFriendReqRequest) =>
 
 export const friendsAPI = {
 	getFriends,
-	getFriendRequests,
+	getIncomingFriendRequests,
 	sendFriendRequest,
 	acceptFriendRequest,
 };
