@@ -32,27 +32,22 @@ const CreatePostBlock: Component = () => {
 };
 
 const UserProfileInfo: Component = ({ user }: { user: User }) => {
-	const [show, setShow] = treact.useState(false);
-	const showCreatePostBlock = () => {
-		setShow(true);
-	};
 	return (
 		<div className="flex flex-c">
 			<p>
 				{user.name.first} {user.name.last}
 			</p>
-			{!show && (
-				<button onClick={showCreatePostBlock} className="btn btn-primary">
-					Create post
-				</button>
-			)}
-			{show && <CreatePostBlock />}
 		</div>
 	);
 };
 
 const CurrentUserProfileInfo: Component = () => {
 	const [userStore, setUserStore] = useUserStore();
+
+	const [show, setShow] = treact.useState(false);
+	const showCreatePostBlock = () => {
+		setShow(true);
+	};
 
 	treact.useEffect(() => {
 		let followers: string[];
@@ -70,15 +65,21 @@ const CurrentUserProfileInfo: Component = () => {
 	return (
 		<div className="flex flex-c">
 			<UserProfileInfo user={userStore.user} />
+
+			{!show && (
+				<button onClick={showCreatePostBlock} className="btn btn-primary">
+					Create post
+				</button>
+			)}
+			{show && <CreatePostBlock />}
+
 			<div className="flex flex-r">
 				<p>Friends:</p>
 				{userStore.friends.map(map)}
 			</div>
 			<div className="flex flex-r">
 				<p>Followers:</p>
-				{userStore.followers.map((follower) => (
-					<p>{follower}</p>
-				))}
+				{userStore.followers.map(map)}
 			</div>
 		</div>
 	);
