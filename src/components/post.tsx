@@ -1,17 +1,16 @@
 import { treact } from "@treact";
-import { Post } from "src/core/@types/post";
+import { PostWrapper } from "src/core/@types/post";
 import { Component } from "./@types/component";
 
-export const PostComponent: Component = ({ post }: { post: Post }) => {
+export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWrapper }) => {
+	const { post } = postWrapper;
 	return (
-		<div className="post bg-white">
-			<div className="post__header flex flex-r items-center">
-				<img className="icon profile-avatar" src={`/${post.author.image}`} alt="" />
-				<p className="text-light">
-					{post.author.name.first} {post.author.name.last}
-				</p>
+		<div className="bg-white pd-8">
+			<div className="flex flex-r items-center">
+				<img className="icon" src={`/${post.author.image}`} alt="" />
+				<p className="text-light">{post.author.name}</p>
 			</div>
-			<div className="message">{post.message}</div>
+			<span> {post.message} </span>
 		</div>
 	);
 };

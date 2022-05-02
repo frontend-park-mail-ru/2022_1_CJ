@@ -1,4 +1,4 @@
-import { Post } from "src/core/@types/post";
+import { PostWrapper } from "src/core/@types/post";
 import { User } from "src/core/@types/user";
 
 export type GetUserDataRequest = {
@@ -10,7 +10,7 @@ export type GetUserDataResponse = {
 };
 
 export type GetUserFeedResponse = {
-	posts: Post[];
+	posts: PostWrapper[];
 };
 
 export type SearchUsersRequest = {

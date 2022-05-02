@@ -1,5 +1,7 @@
 /* -------------------------------- Custom Properties -------------------------------- */
 
+@import "./padding.scss";
+
 :root {
 	/* colors */
 	--clr-bg: rgb(238, 239, 241);
@@ -94,7 +96,7 @@ html:focus-within {
 }
 
 #root {
-	height: 100vh;
+	min-height: 100vh;
 	background-color: var(--main-background-color);
 
 	line-height: 1.5;

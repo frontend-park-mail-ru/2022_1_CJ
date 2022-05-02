@@ -1,19 +1,52 @@
 import { treact } from "@treact";
 import { URL, urlWithParameters } from "src/constants/constants";
+import { EventWithTarget } from "src/core/@types/event";
 import { User } from "src/core/@types/user";
 import { friendsAPI } from "src/core/network/api/friends";
 import { messengerAPI } from "src/core/network/api/messenger";
+import { postAPI } from "src/core/network/api/post";
 import { userAPI } from "src/core/network/api/user";
 import { useUserStore } from "src/stores/user";
 import { Component } from "../@types/component";
 import { Link } from "../link";
 
-const UserProfileInfo = ({ user }: { user: User }) => {
+const CreatePostBlock: Component = () => {
+	const [message, setMessage] = treact.useState("");
+
+	const handleChange = (event: EventWithTarget<HTMLSpanElement>) => {
+		setMessage(event.target.innerText);
+	};
+
+	const createPost = () => {
+		postAPI.createPost({ message });
+	};
+
+	return (
+		<div className="flex flex-c bg-white pd-8">
+			<span onKeyUp={handleChange} contentEditable />
+			<button onClick={createPost} className="btn btn-primary">
+				Create post
+			</button>
+		</div>
+	);
+};
+
+const UserProfileInfo: Component = ({ user }: { user: User }) => {
+	const [show, setShow] = treact.useState(false);
+	const showCreatePostBlock = () => {
+		setShow(true);
+	};
 	return (
 		<div className="flex flex-c">
 			<p>
 				{user.name.first} {user.name.last}
 			</p>
+			{!show && (
+				<button onClick={showCreatePostBlock} className="btn btn-primary">
+					Create post
+				</button>
+			)}
+			{show && <CreatePostBlock />}
 		</div>
 	);
 };

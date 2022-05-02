@@ -2,7 +2,7 @@ declare namespace JSX {
 	interface HtmlTag {
 		accesskey?: string;
 		className?: string;
-		contenteditable?: string;
+		contentEditable?: string | boolean;
 		dir?: string;
 		hidden?: string | boolean;
 		id?: string;

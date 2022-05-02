@@ -3,7 +3,7 @@ import { BasicResponse } from "./common";
 
 export type CreatePostRequest = {
 	message: string;
-	images: string[];
+	images?: string[];
 };
 
 export type CreatePostResponse = BasicResponse;
