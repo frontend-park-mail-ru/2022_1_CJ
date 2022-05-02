@@ -7,16 +7,21 @@ import { userAPI } from "src/core/network/api/user";
 import { Component } from "./@types/component";
 import { Link } from "./link";
 
+const initialState = {
+	friends: [] as User[],
+	searchResults: [] as User[],
+};
+
 export const FriendsList: Component = () => {
-	const [friends, setFriends] = treact.useState([] as User[]);
-	const [searchResults, setSearchResults] = treact.useState([] as User[]);
+	const [state, setState] = treact.useState(initialState);
+	const { friends, searchResults } = state;
 
 	treact.useEffect(() => {
 		friendsAPI.getFriends().then((response) => {
 			let fetchedFriends = [] as User[];
 			Promise.allSettled(
 				response.friend_ids?.map((user_id) => userAPI.getUserData({ user_id }).then((r) => fetchedFriends.push(r.user)))
-			).then(() => setFriends(fetchedFriends));
+			).then(() => setState({ ...state, friends: fetchedFriends }));
 		});
 	}, []);
 
@@ -28,10 +33,10 @@ export const FriendsList: Component = () => {
 		const selector = event.target.value;
 		if (selector.length > 0) {
 			userAPI.searchUsers({ selector }).then((response) => {
-				setSearchResults(response.users || []);
+				setState({ ...state, searchResults: response.users || [] });
 			});
 		} else {
-			setSearchResults([]);
+			setState({ ...state, searchResults: [] });
 		}
 	};
 
