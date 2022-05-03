@@ -19,9 +19,12 @@ export const FriendsList: Component = () => {
 	treact.useEffect(() => {
 		friendsAPI.getFriends().then((response) => {
 			let fetchedFriends = [] as User[];
-			Promise.allSettled(
-				response.friend_ids?.map((user_id) => userAPI.getUserData({ user_id }).then((r) => fetchedFriends.push(r.user)))
-			).then(() => setState({ ...state, friends: fetchedFriends }));
+			if (response.friend_ids) {
+				const promises = response.friend_ids.map((user_id) =>
+					userAPI.getUserData({ user_id }).then((r) => fetchedFriends.push(r.user))
+				);
+				Promise.all(promises).then(() => setState({ ...state, friends: fetchedFriends }));
+			}
 		});
 	}, []);
 

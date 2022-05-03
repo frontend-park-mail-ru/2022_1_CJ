@@ -8,6 +8,10 @@ export type GetIncomingFriendReqsResponse = {
 	request_ids: string[];
 };
 
+export type GetOutcomingFriendReqsResponse = {
+	request_ids: string[];
+};
+
 export type SendFriendReqRequest = {
 	user_id: string;
 };

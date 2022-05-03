@@ -6,10 +6,10 @@ import { PostWrapper } from "src/core/@types/post";
 import { userAPI } from "src/core/network/api/user";
 
 export const FeedPosts: Component = () => {
-	const [posts, setPosts] = treact.useState([] as PostWrapper[]);
+	const [posts, setPosts] = treact.useState(null as PostWrapper[]);
 	treact.useEffect(() => {
 		userAPI.getFeed().then((response) => {
-			setPosts(response.posts);
+			setPosts(response.posts || []);
 		});
 	}, []);
 	const map = (postWrapper: PostWrapper) => <Post postWrapper={postWrapper} />;

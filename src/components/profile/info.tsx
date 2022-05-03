@@ -27,7 +27,16 @@ export const ProfileInfo: Component = ({ user_id }: { user_id: string }) => {
 			);
 		};
 
-		Promise.all([getFriends(), getIncomingFriendRequests()]).then(() =>
+		const outcomingRequests = [] as User[];
+		const getOutcomingFriendRequests = async () => {
+			const response = await friendsAPI.getOutcomingFriendRequests();
+			const ids = response.request_ids || [];
+			await Promise.all(
+				ids.map((user_id) => userAPI.getUserData({ user_id }).then((r) => outcomingRequests.push(r.user)))
+			);
+		};
+
+		Promise.all([getFriends(), getIncomingFriendRequests(), getOutcomingFriendRequests()]).then(() =>
 			setUserStore({ ...userStore, friends, incomingRequests })
 		);
 	}, []);
