@@ -8,12 +8,12 @@ export const useState = <T>(initial: T): [T, StateSetter<T>] => {
 	const lastHook = getLastHook();
 	const hook = {
 		state: lastHook?.state || initial,
-		queue: [] as SetStateAction<T>[],
+		queue: lastHook?.queue || [],
 	};
 
-	const actions = lastHook?.queue || [];
-	actions.forEach((action: SetStateAction<T>) => {
+	hook.queue.forEach((action: SetStateAction<T>) => {
 		hook.state = action instanceof Function ? action(hook.state) : action;
+		console.log(action);
 	});
 
 	const setState: StateSetter<T> = (action: SetStateAction<T>) => {
