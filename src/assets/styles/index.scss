@@ -2,6 +2,7 @@
 
 @import "./generic.scss";
 @import "./post.scss";
+@import "./dialog.scss";
 
 :root {
 	/* colors */
@@ -170,8 +171,16 @@ a[data-link] * {
 	flex-direction: column;
 }
 
+.flex-cr {
+	flex-direction: column-reverse;
+}
+
 .flex-r {
 	flex-direction: row;
+}
+
+.flex-rr {
+	flex-direction: row-reverse;
 }
 
 .items-center {
