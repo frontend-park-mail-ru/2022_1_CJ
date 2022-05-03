@@ -1,7 +1,7 @@
 import { treact } from "@treact";
 import { Message } from "src/core/@types/dialog";
 import { EventWithTarget } from "src/core/@types/event";
-import { messengerAPI } from "src/core/network/api/messenger";
+import { messengerAPI, WSReducer } from "src/core/network/api/messenger";
 import { Component } from "src/components/@types/component";
 import { Spinner } from "src/components/spinner";
 
@@ -11,19 +11,23 @@ const decodeEntity = (str: string) => {
 	return textarea.value;
 };
 
-const initialState = {
-	socket: null as WebSocket,
-	messages: null as Message[],
-};
-
 export const Dialog: Component = ({ dialog_id }: { dialog_id: string }) => {
-	const [state, setState] = treact.useState(initialState);
+	const [messages, setMessages] = treact.useState(null as Message[]);
+	const [socket, setSocket] = treact.useState(null as WebSocket);
+
+	const wsReducer: WSReducer = {
+		onopen: function () {
+			this.send(JSON.stringify({ dialog_id, event: "join" }));
+			setSocket(this);
+		},
+		onmessage: function (ev) {
+			console.log(ev.data);
+		},
+	};
 
 	treact.useEffect(() => {
-		Promise.allSettled([
-			messengerAPI.getDialog({ dialog_id }).then((response) => (state.messages = response.messages || [])),
-			setTimeout(() => (state.socket = messengerAPI.openWSConnection())),
-		]).then(() => setState(state));
+		messengerAPI.getDialog({ dialog_id }).then((response) => setMessages(response.messages || []));
+		setTimeout(() => messengerAPI.openWSConnection(wsReducer));
 	}, []);
 
 	const map = (message: Message) => (
@@ -40,13 +44,13 @@ export const Dialog: Component = ({ dialog_id }: { dialog_id: string }) => {
 		}
 
 		const body = event.target.value;
-		state.socket.send(JSON.stringify({ dialog_id, body, event: "send" }));
+		socket.send(JSON.stringify({ dialog_id, body, event: "send" }));
 	};
 
-	if (state.socket && state.messages) {
+	if (socket && messages) {
 		return (
 			<div className="flex flex-c d-middle">
-				{state.messages.map(map)}
+				{messages.map(map)}
 				<input onKeyUp={sendMessage} type="text" className="input-field" placeholder="Type a message" />
 			</div>
 		);

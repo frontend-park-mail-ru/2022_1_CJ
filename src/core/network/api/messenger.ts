@@ -21,24 +21,20 @@ const getDialogs = () => fetchAPI.get<GetDialogsResponse>(methods.getDialogs);
 
 const getDialog = (dto: GetDialogRequest) => fetchAPI.get<GetDialogResponse>(withQuery(methods.getDialog, dto));
 
-const openWSConnection = () => {
+export type WSReducer = {
+	onopen?: WebSocket["onopen"];
+	onmessage?: WebSocket["onmessage"];
+	onclose?: WebSocket["onclose"];
+	onerror?: WebSocket["onerror"];
+};
+
+const openWSConnection = (reducer: WSReducer) => {
 	const socket = ws("ws://localhost:8080/api/messenger/ws");
 
-	socket.onopen = () => {
-		console.log("Successfully Connected");
-	};
-
-	socket.onmessage = function () {
-		console.log(arguments);
-	};
-
-	socket.onclose = (event) => {
-		console.log("Socket Closed Connection: ", event);
-	};
-
-	socket.onerror = (error) => {
-		console.log("Socket Error: ", error);
-	};
+	socket.onopen = reducer.onopen;
+	socket.onmessage = reducer.onmessage;
+	socket.onclose = reducer.onclose;
+	socket.onerror = reducer.onerror;
 
 	return socket;
 };
