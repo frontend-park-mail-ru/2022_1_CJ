@@ -1,3 +1,8 @@
+export const PostAuthorType = {
+	user: "User",
+	community: "Community",
+};
+
 export type PostAuthor = {
 	id: string;
 	name: string;
