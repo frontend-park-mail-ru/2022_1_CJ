@@ -125,8 +125,8 @@ declare namespace JSX {
 		accept?: string;
 		action?: string;
 		alt?: string;
-		autocomplete?: string;
-		autofocus?: string;
+		autocomplete?: string | boolean;
+		autofocus?: string | boolean;
 		checked?: string | boolean;
 		disabled?: string | boolean;
 		enctype?: string;
