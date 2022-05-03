@@ -53,7 +53,7 @@ export const LoginForm = () => {
 					{errors.password && <HelperError message={errors.password} />}
 				</span>
 			</div>
-			<div className="grid grid-c items-center">
+			<div className="flex flex-r items-center">
 				<button className="btn btn-primary" type="submit">
 					Sign in
 				</button>

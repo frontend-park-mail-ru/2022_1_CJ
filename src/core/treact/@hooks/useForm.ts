@@ -9,7 +9,7 @@ type ErrorRecord<T> = Partial<Record<keyof T, string>>;
 
 type Validators<T> = Partial<Record<keyof T, Validator>>;
 
-export const useForm = <T extends Record<keyof T, any> = {}>(options: {
+export const useForm = <T extends Partial<Record<keyof T, any>> = {}>(options: {
 	validators: Validators<T>;
 	initialValues?: Partial<T>;
 	onSubmit: () => void;

@@ -10,6 +10,8 @@ export const URL = {
 	Dialog: "/messenger/:dialog_id",
 	Friends: "/friends",
 	Search: "/search",
+	Communities: "/communities",
+	CommunitiyCreate: "/community_create",
 };
 
 export const urlWithParameters = (url: string, parameters: object) =>

@@ -8,6 +8,8 @@ import {
 	GetCommunityPostsResponse,
 	GetCommunityRequest,
 	GetCommunityResponse,
+	SearchCommunitiesRequest,
+	SearchCommunitiesResponse,
 } from "src/core/network/dto/communities";
 
 const methods = {
@@ -15,6 +17,7 @@ const methods = {
 	get: "/api/communities/get",
 	createPost: "/api/communities/post/create",
 	getPosts: "/api/communities/posts",
+	search: "/api/communities/search",
 };
 
 const createCommunity = (dto: CreateCommunityRequest) =>
@@ -28,9 +31,13 @@ const createCommunityPost = (dto: CreateCommunityPostRequest) =>
 const getCommunityPosts = (dto: GetCommunityPostsRequest) =>
 	fetchAPI.get<GetCommunityPostsResponse>(withQuery(methods.getPosts, dto));
 
+const searchCommunities = (dto: SearchCommunitiesRequest) =>
+	fetchAPI.get<SearchCommunitiesResponse>(withQuery(methods.search, dto));
+
 export const communitiesAPI = {
 	createCommunity,
 	getCommunity,
 	createCommunityPost,
 	getCommunityPosts,
+	searchCommunities,
 };

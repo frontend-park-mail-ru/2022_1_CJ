@@ -1,4 +1,4 @@
-import { Community } from "src/core/@types/community";
+import { Community, CommunityShort } from "src/core/@types/community";
 import { PostWrapper } from "src/core/@types/post";
 import { BasicResponse } from "src/core/network/dto/common";
 
@@ -33,4 +33,12 @@ export type GetCommunityPostsRequest = {
 
 export type GetCommunityPostsResponse = {
 	posts: PostWrapper[];
+};
+
+export type SearchCommunitiesRequest = {
+	selector: string;
+};
+
+export type SearchCommunitiesResponse = {
+	communities: CommunityShort[];
 };

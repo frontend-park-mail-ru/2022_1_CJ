@@ -106,7 +106,7 @@ export const SignupForm = () => {
 				</div>
 				<div className="helper helper-hint">Use 8 or more characters with a mix of letters, numbers & symbols</div>
 			</div>
-			<div className="grid grid-c items-center">
+			<div className="flex flex-r items-center">
 				<button className="btn btn-primary" type="submit">
 					Sign up
 				</button>

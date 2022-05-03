@@ -12,6 +12,7 @@ export const Menu: Component = () => {
 			<Link to={URL.Feed}>Feed</Link>
 			<Link to={URL.Messenger}>Messenger</Link>
 			<Link to={URL.Friends}>Friends</Link>
+			<Link to={URL.Communities}>Communities</Link>
 		</div>
 	);
 };
