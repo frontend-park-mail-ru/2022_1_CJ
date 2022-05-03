@@ -15,7 +15,7 @@ export type UserStore = {
 	outcomingRequests: User[];
 };
 
-const initialState: UserStore = {
+export const userStoreInitialState: UserStore = {
 	user: null,
 	status: UserStatus.Unset,
 	friends: [],
@@ -23,4 +23,4 @@ const initialState: UserStore = {
 	outcomingRequests: [],
 };
 
-export const useUserStore = treact.createStore(initialState);
+export const useUserStore = treact.createStore(userStoreInitialState);

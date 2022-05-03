@@ -27,7 +27,7 @@ export const ForeignUserProfileInfo: Component = ({ user_id }: { user_id: string
 		return (
 			<div className="flex flex-c">
 				<p>
-					{userStore.user.name.first} {userStore.user.name.last}
+					{user.name.first} {user.name.last}
 				</p>
 
 				<FriendButton user_id={user_id} />

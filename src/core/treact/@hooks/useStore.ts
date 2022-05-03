@@ -23,9 +23,9 @@ export const createStore = <T>(initialState: T) => {
 	};
 
 	const useStore = (): [T, StateSetter<T>] => {
-		const [_, setLocalStore] = useState(store);
+		const [localStore, setLocalStore] = useState(store);
 		useEffect(() => emitter.subscribe(setLocalStore), []);
-		return [store, setStore];
+		return [localStore, setStore];
 	};
 
 	return useStore;

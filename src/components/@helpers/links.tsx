@@ -5,7 +5,7 @@ import { URL, urlWithParameters } from "src/constants/constants";
 import { PostAuthor, PostAuthorType } from "src/core/@types/post";
 import { User } from "src/core/@types/user";
 
-export const UserProfileLink: Component = (user: User) => (
+export const UserProfileLink: Component = ({ user }: { user: User }) => (
 	<Link to={urlWithParameters(URL.Profile, { user_id: user.id })}>
 		{user.name.first} {user.name.last}
 	</Link>
