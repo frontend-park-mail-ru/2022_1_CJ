@@ -37,6 +37,8 @@ export const OtherUserProfileInfo: Component = ({ user_id }: { user_id: string }
 					{user.name.first} {user.name.last}
 				</p>
 
+				<p>{user.email}</p>
+
 				<FriendButton user_id={user_id} />
 				<button onClick={writeMessage} className="btn btn-primary">
 					Write message
