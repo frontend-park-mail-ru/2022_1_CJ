@@ -1,4 +1,5 @@
 import { treact } from "@treact";
+import { Spinner } from "src/components/spinner";
 import { PostWrapper } from "src/core/@types/post";
 import { userAPI } from "src/core/network/api/user";
 import { Component } from "./@types/component";
@@ -12,5 +13,8 @@ export const FeedPosts: Component = () => {
 		});
 	}, []);
 	const map = (postWrapper: PostWrapper) => <PostComponent postWrapper={postWrapper} />;
-	return <div className="flex flex-c d-middle">{posts && posts.map(map)}</div>;
+	if (posts) {
+		return <div className="post flow d-middle">{posts.map(map)}</div>;
+	}
+	return <Spinner />;
 };

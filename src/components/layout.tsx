@@ -7,7 +7,7 @@ export const Layout: Component = (props) => {
 	return (
 		<div className="wrapper">
 			<Header />
-			<div className="content flex flex-r">{children}</div>
+			<div className="content flex flex-r mt-8">{children}</div>
 		</div>
 	);
 };
