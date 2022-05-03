@@ -226,6 +226,10 @@ a[data-link] * {
 	user-select: text;
 }
 
+.unselectable {
+	user-select: none;
+}
+
 .pointer {
 	cursor: pointer;
 }

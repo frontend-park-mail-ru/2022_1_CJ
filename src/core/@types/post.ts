@@ -1,3 +1,5 @@
+import { Likes } from "src/core/@types/likes";
+
 export const PostAuthorType = {
 	user: "User",
 	community: "Community",
@@ -15,11 +17,6 @@ export type Post = {
 	author: PostAuthor;
 	message: string;
 	images: string[];
-};
-
-export type Likes = {
-	amount: number;
-	my_like: boolean;
 };
 
 export type PostWrapper = {
