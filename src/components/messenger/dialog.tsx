@@ -10,9 +10,10 @@ import { FetchUsers } from "src/components/@helpers/user";
 import { UserProfileLink } from "src/components/@helpers/links";
 import { useUserStore } from "src/stores/user";
 
+// TODO: refactor; messages somehow comes into onmessage empty
 export const Dialog: Component = ({ dialog_id }: { dialog_id: string }) => {
 	const [userStore] = useUserStore();
-	const [messages, setMessages] = treact.useState(null as Message[]);
+	const [messages, setMessages] = treact.useState([] as Message[]);
 	const [participants, setParticipants] = treact.useState(null as { [key: string]: User });
 	const [socket, setSocket] = treact.useState(null as WebSocket);
 
@@ -21,8 +22,16 @@ export const Dialog: Component = ({ dialog_id }: { dialog_id: string }) => {
 			this.send(JSON.stringify({ dialog_id, event: "join" }));
 			setSocket(this);
 		},
-		onmessage: (ev) => {
-			console.log(ev.data);
+		onmessage: (event) => {
+			const data = JSON.parse(event.data);
+			if (data.event === "send") {
+				// const message: Message = {
+				// 	body: data.body,
+				// 	author_id: data.author_id,
+				// 	created_at: data.created_at,
+				// };
+				messengerAPI.getDialog({ dialog_id }).then((response) => setMessages(response.messages || []));
+			}
 		},
 	};
 
@@ -54,9 +63,11 @@ export const Dialog: Component = ({ dialog_id }: { dialog_id: string }) => {
 
 		const body = event.target.value;
 		socket.send(JSON.stringify({ dialog_id, body, event: "send" }));
+		messengerAPI.getDialog({ dialog_id }).then((response) => setMessages(response.messages || []));
+		event.target.value = "";
 	};
 
-	if (socket && messages && participants) {
+	if (socket && participants) {
 		return (
 			<div className="flex flex-c d-middle">
 				<div className="dialog flex flex-cr">{messages.map(map)}</div>
