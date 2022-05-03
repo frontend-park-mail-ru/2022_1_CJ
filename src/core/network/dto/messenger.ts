@@ -21,3 +21,11 @@ export type GetDialogResponse = {
 	dialog: Dialog;
 	messages: Message[];
 };
+
+export type GetDialogIDByUserIDRequest = {
+	user_id: string;
+};
+
+export type GetDialogIDByUserIDResponse = {
+	dialog_id: string;
+};

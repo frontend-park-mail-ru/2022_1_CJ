@@ -1,16 +1,26 @@
 import {
 	CreateDialogRequest,
 	CreateDialogResponse,
+	GetDialogIDByUserIDRequest,
+	GetDialogIDByUserIDResponse,
 	GetDialogRequest,
 	GetDialogResponse,
 	GetDialogsResponse,
-} from "../dto/messenger";
+} from "src/core/network/dto/messenger";
 import { fetchAPI, withQuery, ws } from "./common";
+
+export type WSReducer = {
+	onopen?: WebSocket["onopen"];
+	onmessage?: WebSocket["onmessage"];
+	onclose?: WebSocket["onclose"];
+	onerror?: WebSocket["onerror"];
+};
 
 const methods = {
 	createDialog: "/api/messenger/create",
 	getDialogs: "/api/messenger/dialogs",
 	getDialog: "/api/messenger/get",
+	getDialogIDByUserID: "/api/messenger/user_dialog",
 	wsConnection: "/api/messenger/ws",
 };
 
@@ -21,12 +31,8 @@ const getDialogs = () => fetchAPI.get<GetDialogsResponse>(methods.getDialogs);
 
 const getDialog = (dto: GetDialogRequest) => fetchAPI.get<GetDialogResponse>(withQuery(methods.getDialog, dto));
 
-export type WSReducer = {
-	onopen?: WebSocket["onopen"];
-	onmessage?: WebSocket["onmessage"];
-	onclose?: WebSocket["onclose"];
-	onerror?: WebSocket["onerror"];
-};
+const getDialogIDByUserID = (dto: GetDialogIDByUserIDRequest) =>
+	fetchAPI.get<GetDialogIDByUserIDResponse>(withQuery(methods.getDialogIDByUserID, dto));
 
 const openWSConnection = (reducer: WSReducer) => {
 	const socket = ws("ws://localhost:8080/api/messenger/ws");
@@ -43,5 +49,6 @@ export const messengerAPI = {
 	createDialog,
 	getDialogs,
 	getDialog,
+	getDialogIDByUserID,
 	openWSConnection,
 };

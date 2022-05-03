@@ -1,7 +1,7 @@
 import { treact } from "@treact";
 import { Component } from "src/components/@types/component";
 import { CurrentUserProfileInfo } from "src/components/profile/currentUserProfile";
-import { ForeignUserProfileInfo } from "src/components/profile/foreignUserProfile";
+import { OtherUserProfileInfo } from "src/components/profile/otherUserProfile";
 import { User } from "src/core/@types/user";
 import { friendsAPI } from "src/core/network/api/friends";
 import { userAPI } from "src/core/network/api/user";
@@ -45,5 +45,5 @@ export const ProfileInfo: Component = ({ user_id }: { user_id: string }) => {
 		return <CurrentUserProfileInfo />;
 	}
 
-	return <ForeignUserProfileInfo user_id={user_id} />;
+	return <OtherUserProfileInfo user_id={user_id} />;
 };
