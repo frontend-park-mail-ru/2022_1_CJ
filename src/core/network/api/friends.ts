@@ -6,8 +6,10 @@ import {
 	SendFriendReqRequest,
 	SendFriendReqResponse,
 	GetOutcomingFriendReqsResponse,
+	DeleteFriendRequest,
+	DeleteFriendResponse,
 } from "src/core/network/dto/friends";
-import { fetchAPI } from "./common";
+import { fetchAPI, withQuery } from "./common";
 
 const methods = {
 	getFriends: "/api/friends/get",
@@ -15,6 +17,7 @@ const methods = {
 	getOutcomingFriendRequests: "/api/friends/requests/outcoming",
 	sendFriendRequest: "/api/friends/request",
 	acceptFriendRequest: "/api/friends/accept",
+	delete: "/api/friends/delete",
 };
 
 const getFriends = () => fetchAPI.get<GetFriendsResponse>(methods.getFriends);
@@ -30,10 +33,14 @@ const sendFriendRequest = (dto: SendFriendReqRequest) =>
 const acceptFriendRequest = (dto: AcceptFriendReqRequest) =>
 	fetchAPI.post<AcceptFriendReqRequest, AcceptFriendReqResponse>(methods.acceptFriendRequest, dto);
 
+const deleteFriend = (dto: DeleteFriendRequest) =>
+	fetchAPI.delete<DeleteFriendResponse>(withQuery(methods.delete, dto));
+
 export const friendsAPI = {
 	getFriends,
 	getIncomingFriendRequests,
 	getOutcomingFriendRequests,
 	sendFriendRequest,
 	acceptFriendRequest,
+	deleteFriend,
 };

@@ -29,6 +29,11 @@ export const CurrentUserProfileInfo: Component = () => {
 				<p>Incoming requests:</p>
 				{userStore.incomingRequests.map(map)}
 			</div>
+
+			<div className="flex flex-r">
+				<p>Outcoming requests:</p>
+				{userStore.outcomingRequests.map(map)}
+			</div>
 		</div>
 	);
 };

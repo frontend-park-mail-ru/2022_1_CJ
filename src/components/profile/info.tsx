@@ -37,7 +37,7 @@ export const ProfileInfo: Component = ({ user_id }: { user_id: string }) => {
 		};
 
 		Promise.all([getFriends(), getIncomingFriendRequests(), getOutcomingFriendRequests()]).then(() =>
-			setUserStore({ ...userStore, friends, incomingRequests })
+			setUserStore({ ...userStore, friends, incomingRequests, outcomingRequests })
 		);
 	}, []);
 

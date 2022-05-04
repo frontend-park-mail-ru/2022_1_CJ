@@ -14,14 +14,34 @@ export const FriendButton: Component = ({ user_id }: { user_id: string }) => {
 		friendsAPI.acceptFriendRequest({ user_id, is_accepted: true });
 	};
 
-	if (userStore.friends.find((user) => user.id === user_id)) {
-		return <p>You're friends</p>;
+	const unfollow = () => {
+		friendsAPI.acceptFriendRequest({ user_id, is_accepted: false });
+	};
+
+	const unfriend = () => {
+		friendsAPI.deleteFriend({ ex_friend_id: user_id });
+	};
+
+	if (userStore.friends.some((user) => user.id === user_id)) {
+		return (
+			<button onClick={unfriend} className="btn btn-negative">
+				Unfriend
+			</button>
+		);
 	}
 
-	if (userStore.incomingRequests.find((user) => user.id === user_id)) {
+	if (userStore.incomingRequests.some((user) => user.id === user_id)) {
 		return (
 			<button onClick={acceptFriend} className="btn btn-secondary">
 				Accept friend
+			</button>
+		);
+	}
+
+	if (userStore.outcomingRequests.some((user) => user.id === user_id)) {
+		return (
+			<button onClick={unfollow} className="btn btn-negative">
+				Unfollow
 			</button>
 		);
 	}

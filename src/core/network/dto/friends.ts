@@ -24,3 +24,11 @@ export type AcceptFriendReqRequest = {
 };
 
 export type AcceptFriendReqResponse = BasicResponse;
+
+export type DeleteFriendRequest = {
+	ex_friend_id: string;
+};
+
+export type DeleteFriendResponse = {
+	friend_ids: string[];
+};
