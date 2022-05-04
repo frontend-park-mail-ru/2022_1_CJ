@@ -15,5 +15,5 @@ export const PostAuthorLink: Component = ({ author }: { author: PostAuthor }) =>
 	if (author.type === PostAuthorType.user) {
 		return <Link to={urlWithParameters(URL.Profile, { user_id: author.id })}>{author.name}</Link>;
 	}
-	return <span>duck</span>; // TODO: link to community
+	return <Link to={urlWithParameters(URL.Community, { community_id: author.id })}>{author.name}</Link>;
 };

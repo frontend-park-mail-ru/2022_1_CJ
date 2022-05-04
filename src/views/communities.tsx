@@ -11,7 +11,7 @@ export const Communities: Component = () => {
 		<AuthMiddleware>
 			<Layout>
 				<div className="flex flex-c">
-					<Link to={URL.CommunitiyCreate}>Create community</Link>
+					<Link to={URL.CommunityCreate}>Create community</Link>
 					<CommunitiesList />
 				</div>
 			</Layout>

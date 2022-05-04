@@ -1,17 +1,22 @@
 export const URL = {
 	Base: "/",
+
 	Signup: "/signup",
 	Login: "/login",
-	Feed: "/feed",
 	Logout: "/logout",
+
+	Feed: "/feed",
+
 	Profile: "/u/:user_id",
 	ProfileSettings: "/settings",
+
 	Messenger: "/messenger",
 	Dialog: "/messenger/:dialog_id",
 	Friends: "/friends",
-	Search: "/search",
+
 	Communities: "/communities",
-	CommunitiyCreate: "/community_create",
+	CommunityCreate: "/community_create",
+	Community: "/community/:community_id",
 };
 
 export const urlWithParameters = (url: string, parameters: object) =>

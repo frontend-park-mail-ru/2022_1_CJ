@@ -1,5 +1,5 @@
 import { treact } from "@treact";
-import { pathToRoute } from "src/components/router";
+import { pathToRoute } from "src/components/@helpers/router";
 import { URL } from "src/constants/constants";
 
 export type RouterStore = {

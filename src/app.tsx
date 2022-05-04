@@ -1,5 +1,6 @@
 import { treact } from "@treact";
 import { Communities } from "src/views/communities";
+import { Community } from "src/views/community";
 import { CommunityCreate } from "src/views/communityCreate";
 import { ProfileSettings } from "src/views/profileSettings";
 import { Component } from "./components/@types/component";
@@ -33,8 +34,9 @@ export const App: Component = () => {
 
 			<Route to={URL.Dialog} component={MessengerDialog} />
 
+			<Route to={URL.Community} component={Community} />
 			<Route to={URL.Communities} component={Communities} />
-			<Route to={URL.CommunitiyCreate} component={CommunityCreate} />
+			<Route to={URL.CommunityCreate} component={CommunityCreate} />
 
 			<Route to="" component={NotFound} />
 		</Router>
