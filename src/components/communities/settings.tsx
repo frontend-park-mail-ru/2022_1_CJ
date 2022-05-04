@@ -26,7 +26,7 @@ export const CommunitySettingsComponent: Component = ({ community_id }: { commun
 			<div className="flex flex-c items-center d-middle">
 				<img className="icon" src={`/${community.image}`} alt="" style="height: 15rem;" />
 				<input type="file" id="update-photo" accept=".jpg, .jpeg, .png" />
-				<button onClick={updatePhoto} className="btn btn-transparent __disabled">
+				<button onClick={updatePhoto} className="btn btn-transparent">
 					Update photo
 				</button>
 			</div>

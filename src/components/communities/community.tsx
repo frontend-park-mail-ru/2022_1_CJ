@@ -1,5 +1,6 @@
 import { treact } from "@treact";
 import { Component } from "src/components/@types/component";
+import { ControlButton } from "src/components/communities/controlButton";
 import { CreateCommunityPost } from "src/components/communities/createPost";
 import { Link } from "src/components/link";
 import { Post } from "src/components/posts/post";
@@ -17,18 +18,19 @@ export const CommunityComponent: Component = ({ community_id }: { community_id: 
 
 	treact.useEffect(async () => {
 		communitiesAPI.getCommunity({ community_id }).then((response) => setCommunity(response.community));
-		communitiesAPI.getCommunityPosts({ community_id }).then((response) => setPosts(response.posts));
+		communitiesAPI.getCommunityPosts({ community_id }).then((response) => setPosts(response.posts || []));
 	}, []);
 
 	const map = (postWrapper: PostWrapper) => <Post postWrapper={postWrapper} />;
 	const list = () => (posts ? posts.map(map) : <Spinner />);
 
 	if (community) {
-		const isAdmin = community.admins.some((user) => user.id === userStore.user.id);
+		const isAdmin = community.admins?.some((user) => user.id === userStore.user.id);
 		return (
 			<div className="flex flex-c d-middle">
 				<p className="text-lg">{community.name}</p>
 				<p>{community.info}</p>
+				{!isAdmin && <ControlButton community_id={community_id} />}
 				{isAdmin && <Link to={urlWithParameters(URL.CommunitySettings, { community_id })}>Settings</Link>}
 				{isAdmin && <CreateCommunityPost community_id={community_id} />}
 				<div className="flow">

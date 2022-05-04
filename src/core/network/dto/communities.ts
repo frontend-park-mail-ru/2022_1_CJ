@@ -67,3 +67,23 @@ export type UpdateCommunityPhotoRequest = {
 export type UpdateCommunityPhotoResponse = {
 	url: string;
 };
+
+export type ListCommunitiesRequest = {
+	user_id: string;
+};
+
+export type ListCommunitiesResponse = {
+	communities: CommunityShort[];
+};
+
+export type JoinCommunityRequest = {
+	community_id: string;
+};
+
+export type JoinCommunityResponse = BasicResponse;
+
+export type LeaveCommunityRequest = {
+	community_id: string;
+};
+
+export type LeaveCommunityResponse = BasicResponse;

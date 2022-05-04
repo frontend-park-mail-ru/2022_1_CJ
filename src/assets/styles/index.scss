@@ -507,6 +507,15 @@ input {
 	background-color: var(--clr-transparent-d);
 }
 
+.btn-negative {
+	background-color: var(--clr-negative-75);
+	color: var(--clr-white);
+}
+
+.btn-negative:hover {
+	background-color: var(--clr-negative);
+}
+
 /* -------------- Unavailable -------------- */
 
 .__disabled {

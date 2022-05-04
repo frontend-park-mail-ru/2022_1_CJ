@@ -12,6 +12,11 @@ import {
 	GetCommunityPostsResponse,
 	GetCommunityRequest,
 	GetCommunityResponse,
+	JoinCommunityRequest,
+	LeaveCommunityRequest,
+	LeaveCommunityResponse,
+	ListCommunitiesRequest,
+	ListCommunitiesResponse,
 	SearchCommunitiesRequest,
 	SearchCommunitiesResponse,
 	UpdateCommunityPhotoRequest,
@@ -27,6 +32,9 @@ const methods = {
 	edit: "/api/communities/edit",
 	delete: "/api/communities/delete",
 	updatePhoto: "/api/communities/update_photo",
+	list: "/api/communities/list",
+	join: "/api/communities/join",
+	leave: "/api/communities/leave",
 };
 
 const createCommunity = (dto: CreateCommunityRequest) =>
@@ -55,6 +63,12 @@ const updatePhoto = (dto: UpdateCommunityPhotoRequest) =>
 		dto.data
 	);
 
+const list = (dto?: ListCommunitiesRequest) => fetchAPI.get<ListCommunitiesResponse>(withQuery(methods.list, dto));
+
+const join = (dto: JoinCommunityRequest) => fetchAPI.get<JoinCommunityRequest>(withQuery(methods.join, dto));
+
+const leave = (dto: LeaveCommunityRequest) => fetchAPI.get<LeaveCommunityResponse>(withQuery(methods.leave, dto));
+
 export const communitiesAPI = {
 	createCommunity,
 	getCommunity,
@@ -64,4 +78,7 @@ export const communitiesAPI = {
 	editCommunity,
 	deleteCommunity,
 	updatePhoto,
+	list,
+	join,
+	leave,
 };
