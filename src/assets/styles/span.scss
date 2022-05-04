@@ -1,0 +1,13 @@
+span[contenteditable] {
+	@extend .pd-4;
+	@extend .border;
+	@extend .border-8;
+	outline: none;
+}
+
+span[contenteditable]:empty:focus::before,
+span[contenteditable]:empty::before {
+	@extend .text-sm;
+	@extend .text-light;
+	content: "Type a message...";
+}

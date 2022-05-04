@@ -12,9 +12,9 @@ export const FeedPosts: Component = () => {
 			setPosts(response.posts || []);
 		});
 	}, []);
+
 	const map = (postWrapper: PostWrapper) => <Post postWrapper={postWrapper} />;
-	if (posts) {
-		return <div className="post flow d-middle">{posts.map(map)}</div>;
-	}
-	return <Spinner />;
+	const list = () => (posts ? posts.map(map) : <Spinner />);
+
+	return <div className="post flow d-middle">{list()}</div>;
 };

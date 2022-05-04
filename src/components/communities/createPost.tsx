@@ -23,7 +23,7 @@ export const CreateCommunityPost: Component = ({ community_id }: { community_id:
 
 	return (
 		<div className="post flex flex-c bg-white pd-8 border-8">
-			{show && <span onKeyUp={handleChange} contentEditable />}
+			{show && <span className="textarea" onKeyUp={handleChange} contentEditable />}
 			<button onClick={createPost} className="btn btn-transparent d-middle">
 				Create post
 			</button>
