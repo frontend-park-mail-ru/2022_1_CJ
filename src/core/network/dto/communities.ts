@@ -87,3 +87,18 @@ export type LeaveCommunityRequest = {
 };
 
 export type LeaveCommunityResponse = BasicResponse;
+
+export type GetManagedCommunitiesRequest = {
+	user_id: string;
+};
+
+export type GetManagedCommunitiesResponse = {
+	communities: CommunityShort[];
+};
+
+export type DeleteCommunityPostRequest = {
+	community_id: string;
+	post_id: string;
+};
+
+export type DeleteCommunityPostResponse = BasicResponse;

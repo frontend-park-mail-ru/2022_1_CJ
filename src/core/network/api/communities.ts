@@ -4,6 +4,8 @@ import {
 	CreateCommunityPostResponse,
 	CreateCommunityRequest,
 	CreateCommunityResponse,
+	DeleteCommunityPostRequest,
+	DeleteCommunityPostResponse,
 	DeleteCommunityRequest,
 	DeleteCommunityResponse,
 	EditCommunityRequest,
@@ -12,6 +14,8 @@ import {
 	GetCommunityPostsResponse,
 	GetCommunityRequest,
 	GetCommunityResponse,
+	GetManagedCommunitiesRequest,
+	GetManagedCommunitiesResponse,
 	JoinCommunityRequest,
 	LeaveCommunityRequest,
 	LeaveCommunityResponse,
@@ -35,6 +39,8 @@ const methods = {
 	list: "/api/communities/list",
 	join: "/api/communities/join",
 	leave: "/api/communities/leave",
+	getManagedCommunities: "/api/communities/managed_list",
+	deletePost: "/api/communities/post/delete",
 };
 
 const createCommunity = (dto: CreateCommunityRequest) =>
@@ -69,6 +75,12 @@ const join = (dto: JoinCommunityRequest) => fetchAPI.get<JoinCommunityRequest>(w
 
 const leave = (dto: LeaveCommunityRequest) => fetchAPI.get<LeaveCommunityResponse>(withQuery(methods.leave, dto));
 
+const getManagedCommunities = (dto: GetManagedCommunitiesRequest) =>
+	fetchAPI.get<GetManagedCommunitiesResponse>(withQuery(methods.getManagedCommunities, dto));
+
+const deletePost = (dto: DeleteCommunityPostRequest) =>
+	fetchAPI.delete<DeleteCommunityPostResponse>(withQuery(methods.deletePost, dto));
+
 export const communitiesAPI = {
 	createCommunity,
 	getCommunity,
@@ -81,4 +93,6 @@ export const communitiesAPI = {
 	list,
 	join,
 	leave,
+	getManagedCommunities,
+	deletePost,
 };

@@ -1,4 +1,11 @@
-import { CreatePostRequest, CreatePostResponse, GetPostRequest, GetPostResponse } from "../dto/post";
+import {
+	CreatePostRequest,
+	CreatePostResponse,
+	GetPostRequest,
+	GetPostResponse,
+	DeletePostRequest,
+	DeletePostResponse,
+} from "../dto/post";
 import { fetchAPI, withQuery } from "./common";
 
 const methods = {
@@ -13,7 +20,10 @@ const createPost = (dto: CreatePostRequest) =>
 
 const getPost = (dto: GetPostRequest) => fetchAPI.get<GetPostResponse>(withQuery(methods.getPost, dto));
 
+const deletePost = (dto: DeletePostRequest) => fetchAPI.delete<DeletePostResponse>(withQuery(methods.deletePost, dto));
+
 export const postAPI = {
 	createPost,
 	getPost,
+	deletePost,
 };

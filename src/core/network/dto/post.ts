@@ -15,3 +15,9 @@ export type GetPostRequest = {
 export type GetPostResponse = {
 	post: Post;
 };
+
+export type DeletePostRequest = {
+	post_id: string;
+};
+
+export type DeletePostResponse = BasicResponse;

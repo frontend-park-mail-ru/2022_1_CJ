@@ -1,4 +1,5 @@
 import { treact } from "@treact";
+import { CommunityShort } from "src/core/@types/community";
 import { User } from "src/core/@types/user";
 
 export enum UserStatus {
@@ -13,6 +14,7 @@ export type UserStore = {
 	friends: User[];
 	incomingRequests: User[];
 	outcomingRequests: User[];
+	managedCommunities: CommunityShort[];
 };
 
 export const userStoreInitialState: UserStore = {
@@ -21,6 +23,7 @@ export const userStoreInitialState: UserStore = {
 	friends: [],
 	incomingRequests: [],
 	outcomingRequests: [],
+	managedCommunities: [],
 };
 
 export const useUserStore = treact.createStore(userStoreInitialState);
