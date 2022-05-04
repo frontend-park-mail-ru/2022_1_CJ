@@ -58,7 +58,7 @@ const searchCommunities = (dto: SearchCommunitiesRequest) =>
 	fetchAPI.get<SearchCommunitiesResponse>(withQuery(methods.search, dto));
 
 const editCommunity = (dto: EditCommunityRequest) =>
-	fetchAPI.put<EditCommunityRequest, EditCommunityResponse>(methods.delete, dto);
+	fetchAPI.put<EditCommunityRequest, EditCommunityResponse>(methods.edit, dto);
 
 const deleteCommunity = (dto: DeleteCommunityRequest) =>
 	fetchAPI.delete<DeleteCommunityResponse>(withQuery(methods.delete, dto));

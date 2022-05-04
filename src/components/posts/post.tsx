@@ -41,6 +41,7 @@ export const Post: Component = ({ postWrapper }: { postWrapper: PostWrapper }) =
 
 		return null;
 	};
+
 	return (
 		<div className="flow bg-white pd-8 border-8">
 			<PostAuthorComponent author={post.author} />
