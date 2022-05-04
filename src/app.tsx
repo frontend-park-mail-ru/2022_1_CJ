@@ -17,6 +17,7 @@ import { Messenger } from "./views/messenger/messenger";
 import { NotFound } from "./views/notFound";
 import { Profile } from "./views/profile/profile";
 import { Signup } from "./views/auth/signup";
+import { CommunitySettings } from "src/views/communities/settings";
 
 export const App: Component = () => {
 	return (
@@ -37,6 +38,7 @@ export const App: Component = () => {
 			<Route to={URL.Community} component={Community} />
 			<Route to={URL.Communities} component={Communities} />
 			<Route to={URL.CommunityCreate} component={CommunityCreate} />
+			<Route to={URL.CommunitySettings} component={CommunitySettings} />
 
 			<Route to="" component={NotFound} />
 		</Router>

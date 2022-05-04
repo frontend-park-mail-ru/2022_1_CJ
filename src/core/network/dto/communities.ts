@@ -58,3 +58,12 @@ export type DeleteCommunityRequest = {
 };
 
 export type DeleteCommunityResponse = BasicResponse;
+
+export type UpdateCommunityPhotoRequest = {
+	data: FormData;
+	community_id: string;
+};
+
+export type UpdateCommunityPhotoResponse = {
+	url: string;
+};

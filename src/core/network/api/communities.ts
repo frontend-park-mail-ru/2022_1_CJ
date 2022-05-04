@@ -14,6 +14,8 @@ import {
 	GetCommunityResponse,
 	SearchCommunitiesRequest,
 	SearchCommunitiesResponse,
+	UpdateCommunityPhotoRequest,
+	UpdateCommunityPhotoResponse,
 } from "src/core/network/dto/communities";
 
 const methods = {
@@ -24,6 +26,7 @@ const methods = {
 	search: "/api/communities/search",
 	edit: "/api/communities/edit",
 	delete: "/api/communities/delete",
+	updatePhoto: "/api/communities/update_photo",
 };
 
 const createCommunity = (dto: CreateCommunityRequest) =>
@@ -46,6 +49,12 @@ const editCommunity = (dto: EditCommunityRequest) =>
 const deleteCommunity = (dto: DeleteCommunityRequest) =>
 	fetchAPI.delete<DeleteCommunityResponse>(withQuery(methods.delete, dto));
 
+const updatePhoto = (dto: UpdateCommunityPhotoRequest) =>
+	fetchAPI.postFormData<UpdateCommunityPhotoResponse>(
+		withQuery(methods.updatePhoto, { community_id: dto.community_id }),
+		dto.data
+	);
+
 export const communitiesAPI = {
 	createCommunity,
 	getCommunity,
@@ -54,4 +63,5 @@ export const communitiesAPI = {
 	searchCommunities,
 	editCommunity,
 	deleteCommunity,
+	updatePhoto,
 };

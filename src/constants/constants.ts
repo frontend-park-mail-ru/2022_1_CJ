@@ -17,6 +17,7 @@ export const URL = {
 	Communities: "/communities",
 	CommunityCreate: "/community_create",
 	Community: "/community/:community_id",
+	CommunitySettings: "/community/:community_id/settings",
 };
 
 export const urlWithParameters = (url: string, parameters: object) =>
