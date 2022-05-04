@@ -68,7 +68,6 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 		}
 
 		socket.send(JSON.stringify({ dialog_id, body, event: "send" }));
-		messengerAPI.getDialog({ dialog_id }).then((response) => setMessages(response.messages || []));
 		event.target.value = "";
 	};
 
