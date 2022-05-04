@@ -1,12 +1,14 @@
-const parameterRegExp = /:(\w+)/g;
-const solidStringPattern = "(.+)";
-const escapedURLDelimiter = "\\/";
+const parameterRegExp = /(:\w+)/g;
+const solidStringPattern = "([^\\/]+)";
 
-const pathToRegex = (path: string) =>
-	new RegExp(`^${path.replaceAll("/", escapedURLDelimiter).replace(parameterRegExp, solidStringPattern)}$`);
+// TODO: precompute this
+const routeToRegex = (route: string) => {
+	const regex = `^${route.replaceAll("/", "\\/").replace(parameterRegExp, solidStringPattern)}$`;
+	return new RegExp(regex);
+};
 
 export const pathToRoute = (path: string, routes: string[]) => {
-	return routes.find((route) => path.match(pathToRegex(route)) !== null) || "";
+	return routes.find((route) => path.match(routeToRegex(route)) !== null) || "";
 };
 
 export const getParams = (route: string, path: string = window.location.pathname) => {
