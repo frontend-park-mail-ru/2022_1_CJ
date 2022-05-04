@@ -4,6 +4,10 @@ import {
 	CreateCommunityPostResponse,
 	CreateCommunityRequest,
 	CreateCommunityResponse,
+	DeleteCommunityRequest,
+	DeleteCommunityResponse,
+	EditCommunityRequest,
+	EditCommunityResponse,
 	GetCommunityPostsRequest,
 	GetCommunityPostsResponse,
 	GetCommunityRequest,
@@ -18,6 +22,8 @@ const methods = {
 	createPost: "/api/communities/post/create",
 	getPosts: "/api/communities/posts",
 	search: "/api/communities/search",
+	edit: "/api/communities/edit",
+	delete: "/api/communities/delete",
 };
 
 const createCommunity = (dto: CreateCommunityRequest) =>
@@ -34,10 +40,18 @@ const getCommunityPosts = (dto: GetCommunityPostsRequest) =>
 const searchCommunities = (dto: SearchCommunitiesRequest) =>
 	fetchAPI.get<SearchCommunitiesResponse>(withQuery(methods.search, dto));
 
+const editCommunity = (dto: EditCommunityRequest) =>
+	fetchAPI.put<EditCommunityRequest, EditCommunityResponse>(methods.delete, dto);
+
+const deleteCommunity = (dto: DeleteCommunityRequest) =>
+	fetchAPI.delete<DeleteCommunityResponse>(withQuery(methods.delete, dto));
+
 export const communitiesAPI = {
 	createCommunity,
 	getCommunity,
 	createCommunityPost,
 	getCommunityPosts,
 	searchCommunities,
+	editCommunity,
+	deleteCommunity,
 };

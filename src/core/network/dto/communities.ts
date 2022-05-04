@@ -42,3 +42,19 @@ export type SearchCommunitiesRequest = {
 export type SearchCommunitiesResponse = {
 	communities: CommunityShort[];
 };
+
+export type EditCommunityRequest = {
+	community_id: string;
+	name?: string;
+	image?: string;
+	info?: string;
+	admins?: string[];
+};
+
+export type EditCommunityResponse = BasicResponse;
+
+export type DeleteCommunityRequest = {
+	community_id: string;
+};
+
+export type DeleteCommunityResponse = BasicResponse;
