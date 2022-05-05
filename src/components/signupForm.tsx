@@ -31,6 +31,13 @@ export const SignupForm = () => {
 				message: "Passwords mismatch",
 			},
 		},
+		initialValues: {
+			firstname: "testname",
+			lastname: "testsurname",
+			email: "test@test.com",
+			password: "test",
+			passwordConfirmation: "test",
+		},
 		onSubmit: () => {
 			const dto: SignupUserRequest = {
 				name: { first: data.firstname, last: data.lastname },

@@ -11,18 +11,22 @@ export enum UserStatus {
 export type UserStore = {
 	user: User;
 	status: UserStatus;
-	friends: User[];
-	incomingRequests: User[];
-	outcomingRequests: User[];
+
+	friends: string[];
+	incomingRequests: string[];
+	outcomingRequests: string[];
+
 	managedCommunities: CommunityShort[];
 };
 
 export const userStoreInitialState: UserStore = {
 	user: null,
 	status: UserStatus.Unset,
+
 	friends: [],
 	incomingRequests: [],
 	outcomingRequests: [],
+
 	managedCommunities: [],
 };
 

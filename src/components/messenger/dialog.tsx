@@ -6,7 +6,7 @@ import { Component } from "src/components/@types/component";
 import { Spinner } from "src/components/spinner";
 import { decodeEntity } from "src/components/@helpers/utils";
 import { User } from "src/core/@types/user";
-import { FetchUsers } from "src/components/@helpers/user";
+import { fetchUsers } from "src/components/@helpers/user";
 import { UserProfileLink } from "src/components/@helpers/links";
 import { useUserStore } from "src/stores/user";
 import { fromTimestamp } from "src/components/@helpers/time";
@@ -24,7 +24,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 		const response = await messengerAPI.getDialog({ dialog_id });
 		setDialog(response.dialog);
 		setMessages(response.messages || []);
-		FetchUsers(response.dialog.participants).then((users) => {
+		fetchUsers(response.dialog.participants).then((users) => {
 			const mapping = Object.fromEntries(users.map((user) => [user.id, user]));
 			setParticipants(mapping);
 		});
