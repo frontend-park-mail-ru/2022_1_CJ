@@ -8,7 +8,8 @@ export const useEffect = (callback: () => void, deps: any[]) => {
 	};
 
 	if (!lastHook || !isEqual(lastHook.deps, hook.deps)) {
-		callback();
+		// Use setTimeout to prevent causing side effects before the first render.
+		setTimeout(callback);
 	}
 
 	if (State.wipFiber?.hooks) {
