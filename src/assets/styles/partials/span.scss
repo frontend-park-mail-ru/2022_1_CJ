@@ -10,7 +10,7 @@ span[contenteditable] {
 
 span[contenteditable]:empty:focus::before,
 span[contenteditable]:empty::before {
-	@extend .text-sm;
+	@extend .fs-sm;
 	@extend .text-light;
 	content: "Type a message...";
 }

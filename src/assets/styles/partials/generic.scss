@@ -21,4 +21,8 @@ $base-space: 0.125rem;
 	.mt-#{$i} {
 		margin-top: var(--space-#{$i});
 	}
+
+	.mb-#{$i} {
+		margin-bottom: var(--space-#{$i});
+	}
 }

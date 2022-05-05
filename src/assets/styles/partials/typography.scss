@@ -1,0 +1,36 @@
+.bold {
+	font-weight: bold;
+}
+
+.fs-sm {
+	font-size: clamp(0.5rem, 8vw - 2rem, 0.75rem);
+}
+
+.fs-md {
+	font-size: clamp(0.75rem, 8vw - 2rem, 1rem);
+}
+
+.fs-lg {
+	line-height: 1.1;
+	font-size: clamp(1.5rem, 8vw - 2rem, 2rem);
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.no-decoration {
+	text-decoration: none;
+}
+
+.text-primary {
+	color: var(--clr-primary);
+}
+
+.text-light {
+	color: var(--clr-text-35);
+}
+
+.text-shadow {
+	text-shadow: 0px 1px 1px;
+}

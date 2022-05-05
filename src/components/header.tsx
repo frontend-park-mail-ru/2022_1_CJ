@@ -1,7 +1,6 @@
 import { treact } from "@treact";
 import { Routes } from "src/constants/routes";
 import { useUserStore } from "src/stores/user";
-import "/src/assets/styles/header.scss";
 import { Link } from "./link";
 
 export const Header = () => {
@@ -9,9 +8,9 @@ export const Header = () => {
 	const { user } = userStore;
 
 	return (
-		<header className="primary-header wrapper bg-white">
-			<div className="content flex flex-r items-center justify-between">
-				<a className="text-xxl fw-700 text-shadow text-primary text-no-decoration" href="/" data-link>
+		<header className="wrapper primary-header bg-white">
+			<div className="flex flex-r items-center justify-between">
+				<a className="fs-lg bold text-shadow text-primary no-decoration" href="/" data-link>
 					CJ
 				</a>
 				{user && (

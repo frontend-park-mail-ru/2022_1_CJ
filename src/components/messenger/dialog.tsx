@@ -11,7 +11,6 @@ import { UserProfileLink } from "src/components/@helpers/links";
 import { useUserStore } from "src/stores/user";
 import { fromTimestamp } from "src/components/@helpers/time";
 
-// TODO: refactor; messages somehow comes into onmessage empty
 export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string }) => {
 	const [userStore] = useUserStore();
 

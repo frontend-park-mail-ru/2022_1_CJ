@@ -1,0 +1,225 @@
+.flex {
+	display: flex;
+	gap: 1rem;
+}
+
+.grow {
+	flex-grow: 1;
+}
+
+.flex-w {
+	flex-wrap: wrap;
+}
+
+.flex-c {
+	flex-direction: column;
+}
+
+.flex-cr {
+	flex-direction: column-reverse;
+}
+
+.flex-r {
+	flex-direction: row;
+}
+
+.flex-rr {
+	flex-direction: row-reverse;
+}
+
+.items-center {
+	align-items: center;
+}
+
+.items-stretch {
+	align-items: stretch;
+}
+
+.justify-center {
+	justify-content: center;
+}
+
+.justify-between {
+	justify-content: space-between;
+}
+
+.grid {
+	display: grid;
+	gap: var(--gap, 1rem);
+}
+
+.grid-r {
+	grid-auto-flow: row;
+}
+
+.grid-c {
+	grid-auto-flow: column;
+}
+
+.d-block {
+	display: block;
+}
+
+.d-middle {
+	margin-inline: auto;
+}
+
+.flow > *:where(:not(:first-child)) {
+	margin-top: var(--flow-space, 1rem);
+}
+
+.selectable {
+	user-select: text;
+}
+
+.unselectable {
+	user-select: none;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.pointer:hover {
+	background-color: var(--clr-hover);
+}
+
+.transparent {
+	background: transparent;
+}
+
+.bg-white {
+	background-color: var(--clr-white);
+}
+
+.cross {
+	cursor: pointer;
+	line-height: 0.5;
+	width: fit-content;
+	margin-left: auto;
+
+	&::after {
+		font-size: 1.75rem;
+		content: "\00D7";
+	}
+}
+
+.form {
+	padding: 1.5rem;
+	place-self: center;
+	margin-inline: auto;
+	background-color: var(--clr-white);
+	width: clamp(20rem, 30vw + 5rem, 35rem);
+}
+
+.icon {
+	height: 2rem;
+	aspect-ratio: 1;
+	border-radius: 50%;
+}
+
+/* -------------------------------- Borders -------------------------------- */
+
+.border {
+	border: 1px solid var(--clr-border);
+}
+
+.border-sm {
+	border-radius: 4px;
+}
+
+.border-md {
+	border-radius: 8px;
+}
+
+.border-no-style {
+	outline: none;
+	border-style: none;
+}
+
+/* -------------------------------- Helpers -------------------------------- */
+
+.helper {
+	@extend .fs-sm;
+	line-height: 1rem;
+	margin-bottom: -1rem;
+}
+
+.helper-error {
+	color: var(--clr-negative-75);
+}
+
+.helper-hint {
+	color: var(--clr-text-75);
+}
+
+/* -------------------------------- Links -------------------------------- */
+
+.link {
+	text-decoration: none;
+	color: var(--clr-primary);
+}
+
+.link:hover {
+	text-decoration: underline;
+}
+
+/* -------------------------------- Buttons -------------------------------- */
+
+.btn {
+	@extend .border-sm;
+	border: none;
+	outline: none;
+	appearance: none;
+	width: fit-content;
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+}
+
+.btn-primary {
+	background-color: var(--clr-primary);
+	color: var(--clr-white);
+	box-shadow: 1px 1px 1px var(--clr-primary-25);
+}
+
+.btn-primary:hover {
+	background-color: var(--clr-primary-d);
+}
+
+.btn-secondary {
+	background-color: var(--clr-secondary);
+	color: var(--clr-white);
+	box-shadow: 1px 1px 1px var(--clr-secondary-25);
+}
+
+.btn-secondary:hover {
+	background-color: var(--clr-secondary-d);
+}
+
+.btn-white {
+	background-color: var(--clr-white);
+	color: var(--clr-text);
+}
+
+.btn-white:hover {
+	background-color: var(--clr-white-d);
+}
+
+.btn-transparent {
+	background-color: transparent;
+	color: var(--clr-text);
+	box-shadow: none;
+}
+
+.btn-transparent:hover {
+	background-color: var(--clr-transparent-d);
+}
+
+.btn-negative {
+	background-color: var(--clr-negative-75);
+	color: var(--clr-white);
+}
+
+.btn-negative:hover {
+	background-color: var(--clr-negative);
+}

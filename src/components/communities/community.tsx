@@ -48,7 +48,7 @@ export const CommunityComponent: Component = ({ community_id }: { community_id: 
 		const isAdmin = community.admins?.some((user) => user.id === userStore.user.id);
 		return (
 			<div className="flex flex-c d-middle">
-				<p className="text-lg">{community.name}</p>
+				<p className="fs-lg">{community.name}</p>
 				<p>{community.info}</p>
 				{!isAdmin && <ControlButton community_id={community_id} />}
 				{isAdmin && <Link to={withParameters(Routes.CommunitySettings, { community_id })}>Settings</Link>}

@@ -1,0 +1,24 @@
+input {
+	overflow: auto;
+}
+
+.input-field {
+	@extend .border-sm;
+	width: 100%;
+	border-style: none;
+	padding: 0.5rem;
+	color: var(--clr-text-75);
+	outline: 1px solid var(--clr-border);
+}
+
+.input-field:where(:hover, :focus) {
+	outline: 1px solid var(--clr-primary);
+}
+
+.input-field.ok {
+	outline: 1px solid var(--clr-positive);
+}
+
+.input-field.error {
+	outline: 1px solid var(--clr-negative);
+}
