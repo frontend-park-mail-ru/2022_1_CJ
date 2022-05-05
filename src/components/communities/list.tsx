@@ -37,7 +37,7 @@ export const CommunitiesList: Component = () => {
 
 	return (
 		<div className="flex flex-c">
-			<div className="border-no-style border-4 pd-2 bg-white">
+			<div className="border-no-style border-sm pd-2 bg-white">
 				<input onKeyUp={searchCommunities} className="border-no-style" type="text" placeholder="Search" />
 			</div>
 			{searchResults.length > 0 && (

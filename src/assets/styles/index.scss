@@ -4,6 +4,8 @@
 @import "./post.scss";
 @import "./dialog.scss";
 @import "./span.scss";
+@import "./profile.scss";
+@import "./modal.scss";
 
 :root {
 	/* colors */
@@ -45,9 +47,6 @@
 	/* font-families */
 	--ff-serif: Arial, sans-serif;
 	--ff-sans: Arial, sans-serif;
-
-	/* border-radiuses */
-	--br-circle: 50%;
 
 	/* spaces */
 	--space-unit: 1em;
@@ -119,7 +118,7 @@ html:focus-within {
 }
 
 .wrapper > .content {
-	grid-column: col-start 2 / span 10;
+	grid-column: col-start 3 / span 8;
 }
 
 .content > * {
@@ -163,11 +162,23 @@ a[data-link] * {
 	pointer-events: none;
 }
 
+input[type="file"] {
+	display: none;
+}
+
 /* -------------------------------- Utility Classes -------------------------------- */
 
 .flex {
 	display: flex;
-	gap: var(--gap, 1rem);
+	gap: 1rem;
+}
+
+.grow {
+	flex-grow: 1;
+}
+
+.flex-w {
+	flex-wrap: wrap;
 }
 
 .flex-c {
@@ -192,6 +203,10 @@ a[data-link] * {
 
 .items-stretch {
 	align-items: stretch;
+}
+
+.justify-center {
+	justify-content: center;
 }
 
 .justify-between {
@@ -380,11 +395,11 @@ a[data-link] * {
 	border: 1px solid var(--clr-border);
 }
 
-.border-4 {
+.border-sm {
 	border-radius: 4px;
 }
 
-.border-8 {
+.border-md {
 	border-radius: 8px;
 }
 
@@ -460,10 +475,12 @@ input {
 /* ---------------- Buttons ---------------- */
 
 .btn {
+	@extend .border-sm;
 	border: none;
 	outline: none;
+	appearance: none;
 	width: fit-content;
-	padding: 0.5rem 1.5rem;
+	padding: 0.33rem 1.32rem;
 	border-radius: 8px;
 	cursor: pointer;
 }
@@ -528,6 +545,20 @@ input {
 
 .icon {
 	height: 2rem;
-	aspect-ratio: 1 / 1;
-	border-radius: var(--br-circle);
+	aspect-ratio: 1;
+	border-radius: 50%;
+}
+
+/* ---------------- Cross ---------------- */
+
+.cross {
+	cursor: pointer;
+	line-height: 0.5;
+	width: fit-content;
+	margin-left: auto;
+
+	&::after {
+		font-size: 1.75rem;
+		content: "\00D7";
+	}
 }

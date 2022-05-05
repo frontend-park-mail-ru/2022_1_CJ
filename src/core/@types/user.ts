@@ -10,15 +10,11 @@ export type User = {
 	image: string;
 };
 
-export type UserInfo = {
-	id: string;
-	name: UserName;
-	email: string;
-	image: string;
-};
-
 export type UserProfile = {
-	user_info: UserInfo;
+	id: string;
+	email: string;
+	name: UserName;
+	avatar: string;
 	phone: string;
 	location: string;
 	birth_day: string;

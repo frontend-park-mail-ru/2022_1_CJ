@@ -43,7 +43,7 @@ export const Post: Component = ({ postWrapper }: { postWrapper: PostWrapper }) =
 	};
 
 	return (
-		<div className="flow bg-white pd-8 border-8">
+		<div className="flow bg-white pd-8 border-sm">
 			<PostAuthorComponent author={post.author} />
 			<p> {post.message} </p>
 			<div className="flex flex-r">

@@ -19,7 +19,7 @@ export const CreateCommunity: Component = () => {
 	});
 
 	return (
-		<form className="form flow border-4" style="--flow-space: 1.5rem;" onSubmit={handleSubmit}>
+		<form className="form flow border-sm" style="--flow-space: 1.5rem;" onSubmit={handleSubmit}>
 			<div className="form-field">
 				<span>
 					<input

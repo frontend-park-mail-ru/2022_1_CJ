@@ -9,7 +9,7 @@ export const Layout: Component = (props) => {
 	return (
 		<div className="wrapper">
 			<Header />
-			<div className="content flex flex-r mt-8">
+			<div className="content flex flex-r mt-8" style="gap: 2rem">
 				{userStore.status === UserStatus.Authorized && <Menu />}
 				{props.children}
 			</div>

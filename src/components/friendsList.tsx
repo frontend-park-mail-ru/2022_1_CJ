@@ -69,7 +69,7 @@ export const FriendsList: Component = () => {
 
 	return (
 		<div className="flex flex-c">
-			<div className="border-no-style border-4 pd-2 bg-white">
+			<div className="border-no-style border-sm pd-2 bg-white">
 				<input onKeyUp={searchUsers} className="border-no-style" type="text" placeholder="Search" />
 			</div>
 			<div className="flex flex-c">{list()}</div>

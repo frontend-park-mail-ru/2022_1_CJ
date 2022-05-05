@@ -16,7 +16,7 @@ export const FeedPosts: Component = () => {
 			setPosts(response.posts || []);
 		});
 		communitiesAPI.getManagedCommunities({ user_id: userStore.user.id }).then((response) => {
-			setUserStore({ ...userStore, managedCommunities: response.communities });
+			setUserStore({ ...userStore, managedCommunities: response.communities || [] });
 		});
 	}, []);
 

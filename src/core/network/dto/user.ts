@@ -33,3 +33,7 @@ export type GetUserProfileResponse = {
 export type EditUserProfileRequest = ProfileSettings;
 
 export type EditUserProfileResponse = BasicResponse;
+
+export type UpdatePhotoResponse = {
+	url: string;
+};

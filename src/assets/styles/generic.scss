@@ -15,7 +15,7 @@ $base-space: 0.125rem;
 
 @for $i from 1 through $range {
 	.m-#{$i} {
-		margin: var(--space-#{$i});
+		margin: 0 var(--space-#{$i});
 	}
 
 	.mt-#{$i} {

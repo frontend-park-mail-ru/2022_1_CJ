@@ -9,6 +9,7 @@ import {
 	GetUserProfileResponse,
 	SearchUsersRequest,
 	SearchUsersResponse,
+	UpdatePhotoResponse,
 } from "src/core/network/dto/user";
 
 const methods = {
@@ -33,7 +34,7 @@ const getProfile = (dto?: GetUserProfileRequest) =>
 const editProfile = (dto: EditUserProfileRequest) =>
 	fetchAPI.post<EditUserProfileRequest, EditUserProfileResponse>(methods.editProfile, dto);
 
-const updatePhoto = (data: FormData) => fetchAPI.postFormData(methods.updatePhoto, data);
+const updatePhoto = (data: FormData) => fetchAPI.postFormData<UpdatePhotoResponse>(methods.updatePhoto, data);
 
 export const userAPI = {
 	getUserData,
