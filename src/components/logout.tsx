@@ -1,4 +1,4 @@
-import { URL } from "src/constants/constants";
+import { Routes } from "src/constants/routes";
 import { authAPi } from "src/core/network/api/auth";
 import { userStoreInitialState, useUserStore } from "src/stores/user";
 import { navigateTo } from "./@helpers/router";
@@ -8,7 +8,7 @@ export const Logout: Component = () => {
 	const [_, setUserStore] = useUserStore();
 	authAPi.logoutUser().then(() => {
 		setUserStore(userStoreInitialState);
-		navigateTo(URL.Login);
+		navigateTo(Routes.Login);
 	});
 	return null;
 };

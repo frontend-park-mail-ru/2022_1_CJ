@@ -3,7 +3,7 @@ import { navigateTo } from "src/components/@helpers/router";
 import { Component } from "src/components/@types/component";
 import { PostAuthorComponent } from "src/components/posts/author";
 import { PostLikeButton } from "src/components/posts/likeButton";
-import { URL } from "src/constants/constants";
+import { Routes } from "src/constants/routes";
 import { PostWrapper } from "src/core/@types/post";
 import { communitiesAPI } from "src/core/network/api/communities";
 import { postAPI } from "src/core/network/api/post";
@@ -15,11 +15,11 @@ export const Post: Component = ({ postWrapper }: { postWrapper: PostWrapper }) =
 
 	// TODO: add a better way to refresh
 	const deletePost = () => {
-		postAPI.deletePost({ post_id: post.id }).then(() => navigateTo(URL.Base));
+		postAPI.deletePost({ post_id: post.id }).then(() => navigateTo(Routes.Base));
 	};
 
 	const deleteCommunityPost = () => {
-		communitiesAPI.deletePost({ community_id: post.author.id, post_id: post.id }).then(() => navigateTo(URL.Base));
+		communitiesAPI.deletePost({ community_id: post.author.id, post_id: post.id }).then(() => navigateTo(Routes.Base));
 	};
 
 	const deleteButton = () => {

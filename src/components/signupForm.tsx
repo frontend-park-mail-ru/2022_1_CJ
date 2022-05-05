@@ -3,7 +3,7 @@ import { HelperError } from "./helperError";
 import { ValidatorEmail, ValidatorRequired } from "./@helpers/validators";
 import { authAPi } from "src/core/network/api/auth";
 import { Link } from "./link";
-import { URL } from "src/constants/constants";
+import { Routes } from "src/constants/routes";
 import { SignupUserRequest } from "src/core/network/dto/auth";
 import { navigateTo } from "./@helpers/router";
 import { handleError } from "src/core/modules/error";
@@ -38,7 +38,7 @@ export const SignupForm = () => {
 				password: data.password,
 			};
 			authAPi.signupUser(dto).then(
-				() => navigateTo(URL.Feed),
+				() => navigateTo(Routes.Feed),
 				(err) => handleError(err)
 			);
 		},
@@ -110,7 +110,7 @@ export const SignupForm = () => {
 				<button className="btn btn-primary" type="submit">
 					Sign up
 				</button>
-				<Link to={URL.Login}>Already have an account?</Link>
+				<Link to={Routes.Login}>Already have an account?</Link>
 			</div>
 		</form>
 	);

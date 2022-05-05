@@ -3,7 +3,7 @@ import { navigateTo } from "src/components/@helpers/router";
 import { ValidatorRequired } from "src/components/@helpers/validators";
 import { Component } from "src/components/@types/component";
 import { HelperError } from "src/components/helperError";
-import { URL } from "src/constants/constants";
+import { Routes } from "src/constants/routes";
 import { communitiesAPI } from "src/core/network/api/communities";
 import { CreateCommunityRequest } from "src/core/network/dto/communities";
 
@@ -14,7 +14,7 @@ export const CreateCommunity: Component = () => {
 			info: ValidatorRequired,
 		},
 		onSubmit: () => {
-			communitiesAPI.createCommunity(data).then(() => navigateTo(URL.Communities));
+			communitiesAPI.createCommunity(data).then(() => navigateTo(Routes.Communities));
 		},
 	});
 

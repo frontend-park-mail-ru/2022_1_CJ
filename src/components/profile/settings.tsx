@@ -1,7 +1,7 @@
 import { treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 import { Component } from "src/components/@types/component";
-import { URL as URLL } from "src/constants/constants";
+import { Routes } from "src/constants/routes";
 import { EventWithTarget } from "src/core/@types/event";
 import { userAPI } from "src/core/network/api/user";
 import { EditUserProfileRequest } from "src/core/network/dto/user";
@@ -35,7 +35,7 @@ export const ProfileSettingsBlock: Component = () => {
 				birth_day: data.birth_day,
 			};
 
-			userAPI.editProfile(dto).then(() => navigateTo(URLL.Feed));
+			userAPI.editProfile(dto).then(() => navigateTo(Routes.Feed));
 		},
 	});
 

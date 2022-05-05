@@ -1,7 +1,7 @@
 import { treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 import { Component } from "src/components/@types/component";
-import { URL } from "src/constants/constants";
+import { Routes } from "src/constants/routes";
 import { EventWithTarget } from "src/core/@types/event";
 import { postAPI } from "src/core/network/api/post";
 
@@ -23,7 +23,7 @@ const Modal: Component = ({ setShow }: { setShow: Function }) => {
 	};
 
 	const post = () => {
-		postAPI.createPost({ message }).then(() => navigateTo(URL.Feed));
+		postAPI.createPost({ message }).then(() => navigateTo(Routes.Feed));
 	};
 
 	return (

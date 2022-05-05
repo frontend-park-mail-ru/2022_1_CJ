@@ -6,7 +6,7 @@ import { CreateCommunityPost } from "src/components/communities/createPost";
 import { Link } from "src/components/link";
 import { Post } from "src/components/posts/post";
 import { Spinner } from "src/components/spinner";
-import { URL, urlWithParameters } from "src/constants/constants";
+import { Routes, withParameters } from "src/constants/routes";
 import { Community } from "src/core/@types/community";
 import { PostWrapper } from "src/core/@types/post";
 import { communitiesAPI } from "src/core/network/api/communities";
@@ -29,7 +29,7 @@ export const CommunityComponent: Component = ({ community_id }: { community_id: 
 	const list = () => (posts ? posts.map(map) : <Spinner />);
 
 	const deleteCommunity = () => {
-		communitiesAPI.deleteCommunity({ community_id }).then(() => navigateTo(URL.Communities));
+		communitiesAPI.deleteCommunity({ community_id }).then(() => navigateTo(Routes.Communities));
 	};
 
 	const deleteButton = () => {
@@ -51,7 +51,7 @@ export const CommunityComponent: Component = ({ community_id }: { community_id: 
 				<p className="text-lg">{community.name}</p>
 				<p>{community.info}</p>
 				{!isAdmin && <ControlButton community_id={community_id} />}
-				{isAdmin && <Link to={urlWithParameters(URL.CommunitySettings, { community_id })}>Settings</Link>}
+				{isAdmin && <Link to={withParameters(Routes.CommunitySettings, { community_id })}>Settings</Link>}
 				{deleteButton()}
 				{isAdmin && <CreateCommunityPost community_id={community_id} />}
 				<div className="flow">

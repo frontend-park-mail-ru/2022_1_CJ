@@ -1,7 +1,7 @@
 import { treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 import { Component } from "src/components/@types/component";
-import { URL } from "src/constants/constants";
+import { Routes } from "src/constants/routes";
 import { EventWithTarget } from "src/core/@types/event";
 import { communitiesAPI } from "src/core/network/api/communities";
 
@@ -15,7 +15,7 @@ export const CreateCommunityPost: Component = ({ community_id }: { community_id:
 
 	const createPost = () => {
 		if (show && message.length > 0) {
-			communitiesAPI.createCommunityPost({ community_id, message }).then(() => navigateTo(URL.Feed));
+			communitiesAPI.createCommunityPost({ community_id, message }).then(() => navigateTo(Routes.Feed));
 		} else {
 			setShow(true);
 		}

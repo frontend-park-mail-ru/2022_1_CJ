@@ -7,7 +7,7 @@ import { Component } from "./components/@types/component";
 import { Logout } from "./components/logout";
 import { Route } from "./components/route";
 import { Router } from "./components/router";
-import { URL } from "./constants/constants";
+import { Routes } from "./constants/routes";
 import { Base } from "./views/base";
 import { MessengerDialog } from "./views/messenger/dialog";
 import { Feed } from "./views/feed";
@@ -21,24 +21,24 @@ import { CommunitySettings } from "src/views/communities/settings";
 
 export const App: Component = () => {
 	return (
-		<Router routes={Object.values(URL)}>
-			<Route to={URL.Base} component={Base} />
-			<Route to={URL.Signup} component={Signup} />
-			<Route to={URL.Login} component={Login} />
-			<Route to={URL.Logout} component={Logout} />
-			<Route to={URL.Feed} component={Feed} />
-			<Route to={URL.Messenger} component={Messenger} />
-			<Route to={URL.Friends} component={Friends} />
+		<Router routes={Object.values(Routes)}>
+			<Route to={Routes.Base} component={Base} />
+			<Route to={Routes.Signup} component={Signup} />
+			<Route to={Routes.Login} component={Login} />
+			<Route to={Routes.Logout} component={Logout} />
+			<Route to={Routes.Feed} component={Feed} />
+			<Route to={Routes.Messenger} component={Messenger} />
+			<Route to={Routes.Friends} component={Friends} />
 
-			<Route to={URL.Profile} component={Profile} />
-			<Route to={URL.ProfileSettings} component={ProfileSettings} />
+			<Route to={Routes.Profile} component={Profile} />
+			<Route to={Routes.ProfileSettings} component={ProfileSettings} />
 
-			<Route to={URL.Dialog} component={MessengerDialog} />
+			<Route to={Routes.Dialog} component={MessengerDialog} />
 
-			<Route to={URL.Community} component={Community} />
-			<Route to={URL.Communities} component={Communities} />
-			<Route to={URL.CommunityCreate} component={CommunityCreate} />
-			<Route to={URL.CommunitySettings} component={CommunitySettings} />
+			<Route to={Routes.Community} component={Community} />
+			<Route to={Routes.Communities} component={Communities} />
+			<Route to={Routes.CommunityCreate} component={CommunityCreate} />
+			<Route to={Routes.CommunitySettings} component={CommunitySettings} />
 
 			<Route to="" component={NotFound} />
 		</Router>

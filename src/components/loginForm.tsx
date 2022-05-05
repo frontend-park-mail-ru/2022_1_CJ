@@ -2,7 +2,7 @@ import { treact } from "@treact";
 import { HelperError } from "./helperError";
 import { ValidatorEmail, ValidatorRequired } from "./@helpers/validators";
 import { authAPi } from "src/core/network/api/auth";
-import { URL } from "src/constants/constants";
+import { Routes } from "src/constants/routes";
 import { handleError } from "src/core/modules/error";
 import { Link } from "./link";
 import { navigateTo } from "./@helpers/router";
@@ -20,7 +20,7 @@ export const LoginForm = () => {
 		},
 		onSubmit: () => {
 			authAPi.loginUser(data).then(
-				() => navigateTo(URL.Feed),
+				() => navigateTo(Routes.Feed),
 				(err) => handleError(err)
 			);
 		},
@@ -57,7 +57,7 @@ export const LoginForm = () => {
 				<button className="btn btn-primary" type="submit">
 					Sign in
 				</button>
-				<Link to={URL.Signup}>Don't have an account?</Link>
+				<Link to={Routes.Signup}>Don't have an account?</Link>
 			</div>
 		</form>
 	);

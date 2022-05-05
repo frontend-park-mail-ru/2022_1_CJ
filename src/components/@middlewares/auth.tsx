@@ -1,5 +1,5 @@
 import { treact } from "@treact";
-import { URL } from "src/constants/constants";
+import { Routes } from "src/constants/routes";
 import { userAPI } from "src/core/network/api/user";
 import { UserStatus, useUserStore } from "src/stores/user";
 import { navigateTo } from "../@helpers/router";
@@ -37,9 +37,9 @@ export const AuthMiddleware: Component = (props) => {
 		}
 
 		if (authorizedStatus) {
-			navigateTo(URL.Feed);
+			navigateTo(Routes.Feed);
 		} else {
-			navigateTo(URL.Login);
+			navigateTo(Routes.Login);
 		}
 	}
 

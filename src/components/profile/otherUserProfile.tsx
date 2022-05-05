@@ -2,7 +2,7 @@ import { treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 import { Component } from "src/components/@types/component";
 import { FriendButton } from "src/components/profile/friendButton";
-import { URL, urlWithParameters } from "src/constants/constants";
+import { Routes, withParameters } from "src/constants/routes";
 import { UserProfile } from "src/core/@types/user";
 import { messengerAPI } from "src/core/network/api/messenger";
 import { userAPI } from "src/core/network/api/user";
@@ -27,7 +27,7 @@ export const OtherUserProfileInfo: Component = ({ user_id }: { user_id: string }
 	const writeMessage = async () => {
 		const response = await messengerAPI.getDialogIDByUserID({ user_id });
 		const dialog_id = response ? response.dialog_id : await createDialog();
-		navigateTo(urlWithParameters(URL.Dialog, { dialog_id }));
+		navigateTo(withParameters(Routes.Dialog, { dialog_id }));
 	};
 
 	if (profile) {

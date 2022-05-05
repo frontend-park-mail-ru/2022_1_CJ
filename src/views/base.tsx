@@ -1,7 +1,7 @@
 import { treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 import { Component } from "src/components/@types/component";
-import { URL } from "src/constants/constants";
+import { Routes } from "src/constants/routes";
 import { userAPI } from "src/core/network/api/user";
 import { UserStatus, useUserStore } from "src/stores/user";
 
@@ -21,9 +21,9 @@ export const Base: Component = () => {
 
 	if (userStore.status !== UserStatus.Unset) {
 		if (userStore.status === UserStatus.Authorized) {
-			navigateTo(URL.Feed);
+			navigateTo(Routes.Feed);
 		} else {
-			navigateTo(URL.Login);
+			navigateTo(Routes.Login);
 		}
 	}
 

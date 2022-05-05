@@ -1,4 +1,4 @@
-export const URL = {
+export const Routes = {
 	Base: "/",
 
 	Signup: "/signup",
@@ -20,8 +20,8 @@ export const URL = {
 	CommunitySettings: "/community/:community_id/settings",
 };
 
-export const urlWithParameters = (url: string, parameters: object) =>
-	url
+export const withParameters = (route: string, parameters: object) =>
+	route
 		.split("/")
 		.reduce((result, part) =>
 			result.concat(part.startsWith(":") ? `/${(parameters as any)[part.slice(1)]}` : `/${part}`)

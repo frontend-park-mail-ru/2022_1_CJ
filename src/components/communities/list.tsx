@@ -1,7 +1,7 @@
 import { treact } from "@treact";
 import { Component } from "src/components/@types/component";
 import { Link } from "src/components/link";
-import { URL, urlWithParameters } from "src/constants/constants";
+import { Routes, withParameters } from "src/constants/routes";
 import { CommunityShort } from "src/core/@types/community";
 import { EventWithTarget } from "src/core/@types/event";
 import { communitiesAPI } from "src/core/network/api/communities";
@@ -30,7 +30,7 @@ export const CommunitiesList: Component = () => {
 	};
 
 	const map = (cs: CommunityShort) => (
-		<Link to={urlWithParameters(URL.Community, { community_id: cs.id })}>{cs.name}</Link>
+		<Link to={withParameters(Routes.Community, { community_id: cs.id })}>{cs.name}</Link>
 	);
 
 	const listCommunities = () => (communities ? communities.map(map) : null);

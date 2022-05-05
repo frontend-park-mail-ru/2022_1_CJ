@@ -1,5 +1,5 @@
 import { treact } from "@treact";
-import { URL, urlWithParameters } from "src/constants/constants";
+import { Routes, withParameters } from "src/constants/routes";
 import { EventWithTarget } from "src/core/@types/event";
 import { User } from "src/core/@types/user";
 import { friendsAPI } from "src/core/network/api/friends";
@@ -45,7 +45,7 @@ export const FriendsList: Component = () => {
 
 	const map = (friend: User) => {
 		const fullName = `${friend.name.first} ${friend.name.last}`;
-		return <Link to={urlWithParameters(URL.Profile, { user_id: friend.id })}>{fullName}</Link>;
+		return <Link to={withParameters(Routes.Profile, { user_id: friend.id })}>{fullName}</Link>;
 	};
 
 	const list = () => {

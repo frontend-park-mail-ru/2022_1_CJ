@@ -1,5 +1,5 @@
 import { treact } from "@treact";
-import { URL } from "src/constants/constants";
+import { Routes } from "src/constants/routes";
 import { useUserStore } from "src/stores/user";
 import "/src/assets/styles/header.scss";
 import { Link } from "./link";
@@ -22,13 +22,13 @@ export const Header = () => {
 								<p className="text-light">
 									{user.name.first} {user.name.last}
 								</p>
-								<Link to={URL.ProfileSettings}>Settings</Link>
-								<Link to={URL.Logout}>Sign out</Link>
+								<Link to={Routes.ProfileSettings}>Settings</Link>
+								<Link to={Routes.Logout}>Sign out</Link>
 							</div>
 						</div>
 					</div>
 				)}
-				{!user && <Link to={URL.Login}>Sign in</Link>}
+				{!user && <Link to={Routes.Login}>Sign in</Link>}
 			</div>
 		</header>
 	);
