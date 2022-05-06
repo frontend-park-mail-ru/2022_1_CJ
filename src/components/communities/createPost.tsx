@@ -32,7 +32,7 @@ const Modal: ModalComponent = (props) => {
 		<div className="modal flex items-center">
 			<div className="flex flex-c d-middle bg-white pd-8 border-sm">
 				<span className="cross" onClick={hide} />
-				<span onKeyUp={handleChange} contentEditable />
+				<div onKeyUp={handleChange} contentEditable />
 				<button onClick={post} className="btn btn-primary d-middle">
 					Post
 				</button>

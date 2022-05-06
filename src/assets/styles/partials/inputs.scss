@@ -22,3 +22,19 @@ input {
 .input-field.error {
 	outline: 1px solid var(--clr-negative);
 }
+
+div[contenteditable] {
+	@extend .pd-4;
+	@extend .border;
+	@extend .border-sm;
+	outline: none;
+	overflow-y: scroll;
+	overflow-wrap: break-word;
+}
+
+div[contenteditable]:empty:focus::before,
+div[contenteditable]:empty::before {
+	@extend .fs-sm;
+	@extend .text-light;
+	content: "Type a message...";
+}

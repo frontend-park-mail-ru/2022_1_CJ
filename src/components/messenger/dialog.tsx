@@ -56,13 +56,15 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 
 	const mapMessage = (message: Message) => {
 		const author = participants[message.author_id] || userStore.user;
+		const isAuthor = author.id === userStore.user.id;
+		const style = isAuthor ? "align-self: flex-end" : "align-self: flex-start";
 		return (
-			<div className="flex flex-c bg-white pd-8 border-sm">
+			<div className="flex flex-c bg-white pd-8 border-sm" style={style}>
 				<span>
 					<UserProfileLink user={author} />
 					<p className="text-light">{fromTimestamp(message.created_at)}</p>
 				</span>
-				<p>{decodeEntity(message.body)}</p>
+				<p className="flex break-word">{decodeEntity(message.body)}</p>
 			</div>
 		);
 	};
@@ -82,12 +84,12 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 
 	if (socket && participants && dialog && messages) {
 		return (
-			<div className="flex flex-c grow">
+			<div className="flex flex-c grow justify-between">
 				<p className="d-middle bg-white pd-4 border-sm">{dialog.name}</p>
-				<div className="dialog flex flex-cr overflow">{messages.map(mapMessage)}</div>
+				<div className="dialog flex flex-cr grow overflow">{messages.map(mapMessage)}</div>
 				<div className="flex flex-c">
-					<div className="helper helper-hint">Send with [shift + enter]</div>
-					<span onKeyDown={sendMessage} className="grow bg-white" style="max-height: 8rem;" contentEditable />
+					<div className="helper helper-hint pd-1">Send with [shift + enter]</div>
+					<div onKeyDown={sendMessage} className="grow bg-white break-word" style="max-height: 8rem;" contentEditable />
 				</div>
 			</div>
 		);

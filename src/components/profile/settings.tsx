@@ -48,7 +48,7 @@ export const ProfileSettingsBlock: Component = () => {
 	return (
 		<div className="flex flex-c d-middle">
 			<div className="flex flex-c items-center bg-white pd-8 border-sm">
-				<img className="icon" src={`${image}`} alt="" style="height: 10rem;" />
+				<img className="icon" src={image} alt="" style="height: 10rem;" />
 				<label className="btn">
 					<input onChange={updatePhoto} type="file" id="photo" accept=".jpg, .jpeg, .png" />
 					Upload

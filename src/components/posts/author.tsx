@@ -6,7 +6,7 @@ import { PostAuthor } from "src/core/@types/post";
 export const PostAuthorComponent: Component = ({ author }: { author: PostAuthor }) => {
 	return (
 		<div className="flex flex-r items-center">
-			<img className="icon" src={`/${author.image || "defautl.jpeg"}`} alt="" />
+			<img className="icon" src={author.image} alt="" />
 			<PostAuthorLink author={author} />
 		</div>
 	);

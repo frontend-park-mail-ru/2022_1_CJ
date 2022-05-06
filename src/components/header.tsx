@@ -17,7 +17,7 @@ export const Header = () => {
 					<div className="flex flex-r">
 						<div className="flex flex-r">
 							<div className="profile flex flex-r items-center">
-								<img className="icon" src={`/${user.image}`} alt="" />
+								<img className="icon" src={user.image} alt="" />
 								<p className="text-light">
 									{user.name.first} {user.name.last}
 								</p>

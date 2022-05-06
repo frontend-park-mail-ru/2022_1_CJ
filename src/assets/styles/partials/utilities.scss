@@ -110,12 +110,17 @@
 
 .icon {
 	height: 2rem;
+	// width: 2rem;
 	aspect-ratio: 1 / 1;
 	border-radius: 50%;
 }
 
 .overflow {
 	overflow: auto;
+}
+
+.break-word {
+	word-break: break-word;
 }
 
 /* -------------------------------- Borders -------------------------------- */

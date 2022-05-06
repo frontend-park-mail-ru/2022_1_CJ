@@ -8,8 +8,8 @@ export const ProfileFriendsList: Component = ({ friends }: { friends: User[] }) 
 	const map = (user: User) => {
 		return (
 			<Link to={withParameters(Routes.Profile, { user_id: user.id })}>
-				<div className="flex flex-c">
-					<img className="icon" src={`/${user.image}`} alt="" />
+				<div>
+					<img className="icon d-middle" src={user.image} alt="" />
 					<p>{user.name.first}</p>
 				</div>
 			</Link>

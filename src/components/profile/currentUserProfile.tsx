@@ -23,7 +23,7 @@ export const CurrentUserProfileInfo: Component = () => {
 		return (
 			<div className="flex flex-c grow items-center items-stretch">
 				<div className="flex flex-r bg-white pd-8 border-sm">
-					<img className="profile-picture" src={`/${profile.avatar}`} alt="" />
+					<img className="profile-picture" src={profile.avatar} alt="" />
 					<div>
 						<p>
 							{profile.name.first} {profile.name.last}
