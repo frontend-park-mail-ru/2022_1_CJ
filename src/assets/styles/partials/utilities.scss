@@ -80,10 +80,6 @@
 	cursor: pointer;
 }
 
-.pointer:hover {
-	background-color: var(--clr-hover);
-}
-
 .transparent {
 	background: transparent;
 }
@@ -118,6 +114,10 @@
 	border-radius: 50%;
 }
 
+.overflow {
+	overflow: auto;
+}
+
 /* -------------------------------- Borders -------------------------------- */
 
 .border {
@@ -150,7 +150,7 @@
 }
 
 .helper-hint {
-	color: var(--clr-text-75);
+	@extend .text-light;
 }
 
 /* -------------------------------- Links -------------------------------- */
@@ -162,64 +162,4 @@
 
 .link:hover {
 	text-decoration: underline;
-}
-
-/* -------------------------------- Buttons -------------------------------- */
-
-.btn {
-	@extend .border-sm;
-	border: none;
-	outline: none;
-	appearance: none;
-	width: fit-content;
-	padding: 0.5rem 1rem;
-	cursor: pointer;
-}
-
-.btn-primary {
-	background-color: var(--clr-primary);
-	color: var(--clr-white);
-	box-shadow: 1px 1px 1px var(--clr-primary-25);
-}
-
-.btn-primary:hover {
-	background-color: var(--clr-primary-d);
-}
-
-.btn-secondary {
-	background-color: var(--clr-secondary);
-	color: var(--clr-white);
-	box-shadow: 1px 1px 1px var(--clr-secondary-25);
-}
-
-.btn-secondary:hover {
-	background-color: var(--clr-secondary-d);
-}
-
-.btn-white {
-	background-color: var(--clr-white);
-	color: var(--clr-text);
-}
-
-.btn-white:hover {
-	background-color: var(--clr-white-d);
-}
-
-.btn-transparent {
-	background-color: transparent;
-	color: var(--clr-text);
-	box-shadow: none;
-}
-
-.btn-transparent:hover {
-	background-color: var(--clr-transparent-d);
-}
-
-.btn-negative {
-	background-color: var(--clr-negative-75);
-	color: var(--clr-white);
-}
-
-.btn-negative:hover {
-	background-color: var(--clr-negative);
 }

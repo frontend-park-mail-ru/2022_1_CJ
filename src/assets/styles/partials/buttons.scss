@@ -1,0 +1,56 @@
+.btn {
+	@extend .pointer;
+	@extend .border-sm;
+	border: none;
+	outline: none;
+	appearance: none;
+	width: fit-content;
+	padding: 0.5rem 1rem;
+}
+
+.btn-primary {
+	background-color: var(--clr-primary);
+	color: var(--clr-white);
+	box-shadow: 1px 1px 1px var(--clr-primary-25);
+}
+
+.btn-primary:hover {
+	background-color: var(--clr-primary-d);
+}
+
+.btn-secondary {
+	background-color: var(--clr-secondary);
+	color: var(--clr-white);
+	box-shadow: 1px 1px 1px var(--clr-secondary-25);
+}
+
+.btn-secondary:hover {
+	background-color: var(--clr-secondary-d);
+}
+
+.btn-white {
+	color: var(--clr-primary);
+	background-color: var(--clr-white);
+}
+
+.btn-white:hover {
+	outline: 2px solid var(--clr-primary);
+}
+
+.btn-transparent {
+	color: var(--clr-text);
+	background-color: transparent;
+}
+
+.btn-transparent:hover {
+	outline: 2px solid var(--clr-primary);
+}
+
+.btn-negative {
+	background-color: var(--clr-negative-75);
+	color: var(--clr-white);
+}
+
+.btn-negative:hover {
+	background-color: var(--clr-negative);
+}

@@ -44,7 +44,7 @@ export const CreatePost: Component = () => {
 
 	return (
 		<>
-			<button onClick={() => setShow(true)} className="btn bg-white d-middle text-primary">
+			<button onClick={() => setShow(true)} className="btn btn-white d-middle">
 				Create post
 			</button>
 			{show && <Modal setShow={setShow} />}

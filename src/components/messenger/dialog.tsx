@@ -43,7 +43,8 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 						author_id: data.author_id,
 						created_at: data.created_at,
 					};
-					setMessages([message].concat(messages));
+					messages.unshift(message);
+					setMessages(messages);
 				}
 			},
 		};
@@ -57,29 +58,37 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 		const author = participants[message.author_id] || userStore.user;
 		return (
 			<div className="flex flex-c bg-white pd-8 border-sm">
-				<div>
+				<span>
 					<UserProfileLink user={author} />
 					<p className="text-light">{fromTimestamp(message.created_at)}</p>
-				</div>
+				</span>
 				<p>{decodeEntity(message.body)}</p>
 			</div>
 		);
 	};
 
 	const sendMessage = (event: EventWithTarget<HTMLInputElement, KeyboardEvent>) => {
-		const body = event.target.value;
-		if (event.key === "Enter" && body.length > 0) {
-			event.target.value = "";
-			socket.send(JSON.stringify({ dialog_id, body, event: "send" }));
+		if (event.key === "Enter") {
+			const body = event.target.innerText.trim();
+			if (body.length === 0) {
+				event.preventDefault();
+			} else if (event.shiftKey) {
+				event.preventDefault();
+				event.target.innerText = "";
+				socket.send(JSON.stringify({ dialog_id, body, event: "send" }));
+			}
 		}
 	};
 
 	if (socket && participants && dialog && messages) {
 		return (
-			<div className="flex flex-c d-middle">
+			<div className="flex flex-c grow">
 				<p className="d-middle bg-white pd-4 border-sm">{dialog.name}</p>
-				<div className="dialog flex flex-cr">{messages.map(mapMessage)}</div>
-				<input onKeyUp={sendMessage} type="text" className="input-field" placeholder="Message..." />
+				<div className="dialog flex flex-cr overflow">{messages.map(mapMessage)}</div>
+				<div className="flex flex-c">
+					<div className="helper helper-hint">Send with [shift + enter]</div>
+					<span onKeyDown={sendMessage} className="grow bg-white" style="max-height: 8rem;" contentEditable />
+				</div>
 			</div>
 		);
 	}

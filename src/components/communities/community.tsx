@@ -56,7 +56,7 @@ export const CommunityComponent: Component = ({ community_id }: { community_id: 
 				{isAdmin && <CreateCommunityPost community_id={community_id} />}
 				<div className="flow">
 					<p>Posts:</p>
-					<div className="post flow d-middle">{list()}</div>
+					<div className="flow d-middle">{list()}</div>
 				</div>
 			</div>
 		);

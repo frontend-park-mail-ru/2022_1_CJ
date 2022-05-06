@@ -1,57 +1,13 @@
-/* -------------------------------- Custom Properties -------------------------------- */
-
-@import "./partials/dialog.scss";
+@import "./partials/buttons.scss";
+@import "./partials/colors.scss";
 @import "./partials/generic.scss";
 @import "./partials/header.scss";
 @import "./partials/inputs.scss";
 @import "./partials/modal.scss";
-@import "./partials/post.scss";
 @import "./partials/profile.scss";
 @import "./partials/span.scss";
 @import "./partials/typography.scss";
 @import "./partials/utilities.scss";
-
-:root {
-	/* colors */
-	--clr-bg: rgb(238, 239, 241);
-	--clr-text: rgb(77, 77, 77);
-	--clr-text-75: rgba(77, 77, 77, 0.75);
-	--clr-text-35: rgba(0, 0, 0, 0.35);
-	--clr-text-05: rgba(0, 0, 0, 0.05);
-
-	--clr-primary: rgb(48, 103, 192);
-	--clr-primary-d: rgb(37, 79, 147);
-	--clr-primary-25: rgba(48, 103, 192, 0.25);
-	--clr-primary-50: rgba(48, 103, 192, 0.5);
-
-	--clr-secondary: rgb(92, 163, 235);
-	--clr-secondary-d: rgb(37, 133, 228);
-	--clr-secondary-25: rgba(92, 163, 235, 0.25);
-
-	--clr-positive: rgb(48, 166, 103);
-	--clr-negative: rgb(215, 40, 84);
-	--clr-negative-75: rgba(215, 40, 84, 0.75);
-	--clr-negative-50: rgba(215, 40, 84, 0.5);
-
-	--clr-warning: rgb(240, 186, 25);
-	--clr-warning-75: rgba(240, 186, 25, 0.75);
-	--clr-warning-75: rgba(240, 186, 25, 0.5);
-
-	--clr-white: rgb(255, 255, 255);
-	--clr-white-d: var(--clr-bg);
-
-	--clr-transparent-d: rgb(222, 230, 237);
-
-	--clr-border: rgb(222, 223, 227);
-
-	--clr-hover: rgba(92, 163, 235, 0.1);
-
-	--clr-modal-dark: rgb(30, 30, 30);
-}
-
-/* -------------------------------- Basic Settings -------------------------------- */
-
-/* Note: checkout https://piccalil.li/blog/a-modern-css-reset */
 
 *,
 *::before,
@@ -59,6 +15,11 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+	display: none;
 }
 
 ul,
@@ -102,8 +63,8 @@ select {
 #root {
 	@extend .fs-md;
 
+	height: 100vh;
 	display: flex;
-	min-height: 100vh;
 	color: var(--clr-text);
 	background-color: var(--clr-bg);
 
@@ -119,13 +80,14 @@ select {
 }
 
 .wrapper {
+	overflow: hidden;
 	display: grid;
 	column-gap: 20px;
 	grid-template-columns: repeat(12, [col-start] 1fr);
 }
 
 .wrapper > * {
-	overflow: hidden;
+	overflow: inherit;
 	grid-column: col-start 3 / col-start 11;
 }
 

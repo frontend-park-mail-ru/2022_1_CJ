@@ -9,15 +9,17 @@ import { useUserStore } from "src/stores/user";
 
 export const CurrentUserProfileInfo: Component = () => {
 	const [userStore] = useUserStore();
-	const [profile, setProfile] = treact.useState(null as UserProfile);
 	const [friends, setFriends] = treact.useState(null as User[]);
+	const [profile, setProfile] = treact.useState(null as UserProfile);
 
 	treact.useEffect(() => {
 		userAPI.getProfile({ user_id: userStore.user.id }).then((response) => setProfile(response.user_profile));
-		fetchUsers(userStore.friends).then(setFriends);
-	}, []);
+		fetchUsers(userStore.friends).then((users) => {
+			setFriends(users);
+		});
+	}, [userStore]);
 
-	if (profile) {
+	if (profile && friends) {
 		return (
 			<div className="flex flex-c grow items-center items-stretch">
 				<div className="flex flex-r bg-white pd-8 border-sm">

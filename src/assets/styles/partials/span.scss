@@ -3,7 +3,6 @@ span[contenteditable] {
 	@extend .border;
 	@extend .border-sm;
 	outline: none;
-	max-height: 50vh;
 	overflow-y: scroll;
 	overflow-wrap: break-word;
 }

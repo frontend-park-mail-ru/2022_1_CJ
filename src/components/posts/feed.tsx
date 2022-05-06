@@ -23,5 +23,5 @@ export const FeedPosts: Component = () => {
 	const map = (postWrapper: PostWrapper) => <Post postWrapper={postWrapper} />;
 	const list = () => (posts ? posts.map(map) : <Spinner />);
 
-	return <div className="post flow d-middle">{list()}</div>;
+	return <div className="flow d-middle overflow">{list()}</div>;
 };

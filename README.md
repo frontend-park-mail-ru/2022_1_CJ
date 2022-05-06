@@ -25,3 +25,4 @@
 7. https://codyhouse.co/blog/post/dark-light-switch-css-javascript
 8. https://freshman.tech/snippets/typescript/fix-value-not-exist-eventtarget/
 9. https://stephanwagner.me/only-css-loading-spinner
+10. https://piccalil.li/blog/a-modern-css-reset
