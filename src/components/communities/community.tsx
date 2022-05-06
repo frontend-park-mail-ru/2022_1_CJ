@@ -12,6 +12,7 @@ import { PostWrapper } from "src/core/@types/post";
 import { communitiesAPI } from "src/core/network/api/communities";
 import { useUserStore } from "src/stores/user";
 
+// TODO: move buttons to components to avoid wasting
 export const CommunityComponent: Component = ({ community_id }: { community_id: string }) => {
 	const [userStore, setUserStore] = useUserStore();
 	const [community, setCommunity] = treact.useState(null as Community);
@@ -33,7 +34,6 @@ export const CommunityComponent: Component = ({ community_id }: { community_id: 
 	};
 
 	const deleteButton = () => {
-		console.log(userStore.managedCommunities);
 		if (userStore.managedCommunities.some((cs) => cs.id === community_id)) {
 			return (
 				<button onClick={deleteCommunity} className="btn btn-negative">

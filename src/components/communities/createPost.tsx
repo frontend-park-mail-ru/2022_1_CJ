@@ -1,32 +1,55 @@
 import { treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
-import { Component } from "src/components/@types/component";
+import { Component, ModalComponent } from "src/components/@types/component";
 import { Routes } from "src/constants/routes";
 import { EventWithTarget } from "src/core/@types/event";
 import { communitiesAPI } from "src/core/network/api/communities";
 
-export const CreateCommunityPost: Component = ({ community_id }: { community_id: string }) => {
+const Modal: ModalComponent = (props) => {
 	const [message, setMessage] = treact.useState("");
-	const [show, setShow] = treact.useState(false);
+	const hide = props.hide;
+	const community_id = props.community_id as string;
 
-	const handleChange = (event: EventWithTarget<HTMLSpanElement>) => {
+	treact.useEffect(() => {
+		const close = (event: KeyboardEvent) => {
+			if (event.key === "Escape") {
+				hide();
+				window.removeEventListener("keydown", close);
+			}
+		};
+		window.addEventListener("keydown", close);
+	}, []);
+
+	const handleChange = (event: EventWithTarget<HTMLSpanElement, KeyboardEvent>) => {
 		setMessage(event.target.innerText);
 	};
 
-	const createPost = () => {
-		if (show && message.length > 0) {
-			communitiesAPI.createCommunityPost({ community_id, message }).then(() => navigateTo(Routes.Feed));
-		} else {
-			setShow(true);
-		}
+	const post = () => {
+		communitiesAPI.createCommunityPost({ community_id, message }).then(() => navigateTo(Routes.Feed));
 	};
 
 	return (
-		<div className="flex flex-c bg-white pd-8 border-sm">
-			{show && <span className="textarea" onKeyUp={handleChange} contentEditable />}
-			<button onClick={createPost} className="btn btn-transparent d-middle">
+		<div className="modal flex items-center">
+			<div className="flex flex-c d-middle bg-white pd-8 border-sm">
+				<span className="cross" onClick={hide} />
+				<span onKeyUp={handleChange} contentEditable />
+				<button onClick={post} className="btn btn-primary d-middle">
+					Post
+				</button>
+			</div>
+		</div>
+	);
+};
+
+export const CreateCommunityPost: Component = ({ community_id }: { community_id: string }) => {
+	const [show, setShow] = treact.useState(false);
+	const hide = () => setShow(false);
+	return (
+		<>
+			<button onClick={() => setShow(true)} className="btn btn-white d-middle">
 				Create post
 			</button>
-		</div>
+			{show && <Modal hide={hide} community_id={community_id} />}
+		</>
 	);
 };
