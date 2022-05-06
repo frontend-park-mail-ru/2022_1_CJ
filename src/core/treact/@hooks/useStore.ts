@@ -1,3 +1,4 @@
+import { State } from "src/core/treact/models";
 import { useEffect } from "./useEffect";
 import { StateSetter, useState } from "./useState";
 
@@ -5,7 +6,6 @@ type UpdateStoreFunction<T> = (update: Partial<T>) => void;
 type StoreModifier<T> = { set: StateSetter<T>; update: UpdateStoreFunction<T> };
 type UseStoreFunction<T> = () => [T, StoreModifier<T>];
 
-// TODO: use cleanup
 const createEmitter = <T>() => {
 	const subscriptions = new Map();
 	return {
@@ -34,7 +34,7 @@ export const createStore = <T>(initialState: T): [UseStoreFunction<T>, StoreModi
 
 	const use: UseStoreFunction<T> = () => {
 		const [localStore, setLocalStore] = useState(store);
-		useEffect(() => emitter.subscribe(setLocalStore), []);
+		useEffect(() => emitter.subscribe(setLocalStore), [State.wipRoot]);
 		return [localStore, { set, update }];
 	};
 

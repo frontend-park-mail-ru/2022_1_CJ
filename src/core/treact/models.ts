@@ -32,6 +32,8 @@ type State = {
 	nextUnitOfWork?: Fiber;
 	hookIndex: number;
 	deletions: Fiber[];
+	cleanups?: (() => void)[];
+	pendingCleanups?: (() => void)[];
 };
 
 export const State = {} as State;

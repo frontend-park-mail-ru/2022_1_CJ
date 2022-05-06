@@ -89,7 +89,7 @@ const commitWork = (fiber?: Fiber) => {
 	commitWork(fiber.child);
 
 	const parentFiber = hoist(fiber.parent);
-	const parentNode = parentFiber?.node || undefined;
+	const parentNode = parentFiber?.node || null;
 
 	const { action } = fiber;
 	if (action === FiberAction.Create && fiber.node && parentNode) {
@@ -103,13 +103,20 @@ const commitWork = (fiber?: Fiber) => {
 	commitWork(fiber.sibling);
 };
 
+const performCleanup = () => {
+	State.pendingCleanups.forEach((cleanup) => cleanup());
+	State.pendingCleanups = State.cleanups;
+	State.cleanups = [];
+};
+
 const commitRoot = () => {
+	performCleanup();
 	State.deletions.forEach(commitWork);
 	if (State.wipRoot?.child) {
 		commitWork(State.wipRoot.child);
 		State.currentRoot = State.wipRoot;
 	}
-	State.wipRoot = undefined;
+	State.wipRoot = null;
 };
 
 const resetState = (fiber: Fiber) => {
@@ -135,16 +142,16 @@ const updateHostComponent = (fiber: Fiber) => {
 const reconcileChildren = (wipFiber: Fiber, elements: any) => {
 	let index = 0;
 	let oldFiber = wipFiber.alternate && wipFiber.alternate.child;
-	let prevSibling: Fiber | undefined;
+	let prevSibling: Fiber | null;
 	while (index < elements.length || oldFiber) {
 		const element = elements[index];
 		const sameType = oldFiber && element && element.type === oldFiber.type;
-		const newFiber = ((): Fiber | undefined => {
+		const newFiber = ((): Fiber | null => {
 			if (sameType) {
 				return {
-					type: oldFiber ? oldFiber.type : undefined,
+					type: oldFiber ? oldFiber.type : null,
 					props: element.props,
-					node: oldFiber ? oldFiber.node : undefined,
+					node: oldFiber ? oldFiber.node : null,
 					parent: wipFiber,
 					alternate: oldFiber,
 					action: FiberAction.Update,
@@ -155,14 +162,14 @@ const reconcileChildren = (wipFiber: Fiber, elements: any) => {
 				return {
 					type: element.type,
 					props: element.props,
-					node: undefined,
+					node: null,
 					parent: wipFiber,
-					alternate: undefined,
+					alternate: null,
 					action: FiberAction.Create,
 				};
 			}
 
-			return undefined;
+			return null;
 		})();
 
 		if (oldFiber && !sameType) {
@@ -220,19 +227,21 @@ const render = (element: any, container: Node) => {
 		hooks: [],
 	};
 	State.deletions = [];
+	State.cleanups = [];
+	State.pendingCleanups = [];
 	State.nextUnitOfWork = State.wipRoot;
 };
 
 export { createElement, render, createFragmentElement };
 
-const nextUnitOfWork = (fiber: Fiber | undefined) => {
+const nextUnitOfWork = (fiber: Fiber | null) => {
 	while (fiber) {
 		if (fiber.sibling) {
 			return fiber.sibling;
 		}
 		fiber = fiber.parent;
 	}
-	return undefined;
+	return null;
 };
 
 const performUnitOfWork = (fiber: Fiber) => {
