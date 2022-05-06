@@ -10,7 +10,7 @@ export const ProfileFriendsList: Component = ({ friends }: { friends: User[] }) 
 			<Link to={withParameters(Routes.Profile, { user_id: user.id })}>
 				<div className="flex flex-c">
 					<img className="icon" src={`/${user.image}`} alt="" />
-					{user.name.first}
+					<p>{user.name.first}</p>
 				</div>
 			</Link>
 		);

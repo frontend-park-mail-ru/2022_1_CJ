@@ -1,7 +1,4 @@
 import { treact } from "@treact";
-import { Communities } from "src/views/communities/communities";
-import { Community } from "src/views/communities/community";
-import { CommunityCreate } from "src/views/communities/communityCreate";
 import { ProfileSettings } from "src/views/profile/profileSettings";
 import { Component } from "./components/@types/component";
 import { Logout } from "./components/logout";
@@ -17,7 +14,7 @@ import { Messenger } from "./views/messenger/messenger";
 import { NotFound } from "./views/notFound";
 import { Profile } from "./views/profile/profile";
 import { Signup } from "./views/auth/signup";
-import { CommunitySettings } from "src/views/communities/settings";
+import { CommunitiesRegistry } from "src/views/communities/registry";
 
 export const App: Component = () => {
 	return (
@@ -35,10 +32,7 @@ export const App: Component = () => {
 
 			<Route to={Routes.Dialog} component={MessengerDialog} />
 
-			<Route to={Routes.Community} component={Community} />
-			<Route to={Routes.Communities} component={Communities} />
-			<Route to={Routes.CommunityCreate} component={CommunityCreate} />
-			<Route to={Routes.CommunitySettings} component={CommunitySettings} />
+			<CommunitiesRegistry />
 
 			<Route to="" component={NotFound} />
 		</Router>

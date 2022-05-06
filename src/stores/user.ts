@@ -1,6 +1,7 @@
 import { treact } from "@treact";
 import { CommunityShort } from "src/core/@types/community";
 import { User } from "src/core/@types/user";
+import { friendsAPI } from "src/core/network/api/friends";
 
 export enum UserStatus {
 	Unset,
@@ -30,4 +31,14 @@ export const userStoreInitialState: UserStore = {
 	managedCommunities: [],
 };
 
-export const useUserStore = treact.createStore(userStoreInitialState);
+export const [useUserStore, updateUserStore] = treact.createStore(userStoreInitialState);
+
+export const updateFriendsState = () => {
+	Promise.all([
+		friendsAPI.getFriends().then((response) => response.friend_ids || []),
+		friendsAPI.getIncomingFriendRequests().then((response) => response.request_ids || []),
+		friendsAPI.getOutcomingFriendRequests().then((response) => response.request_ids || []),
+	]).then(([friends, incomingRequests, outcomingRequests]) => {
+		updateUserStore({ friends, incomingRequests, outcomingRequests });
+	});
+};

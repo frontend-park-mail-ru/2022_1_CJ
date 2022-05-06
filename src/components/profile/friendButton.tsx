@@ -1,8 +1,7 @@
 import { treact } from "@treact";
-import { updateFriendsState } from "src/components/@helpers/user";
 import { Component } from "src/components/@types/component";
 import { friendsAPI } from "src/core/network/api/friends";
-import { useUserStore } from "src/stores/user";
+import { updateFriendsState, useUserStore } from "src/stores/user";
 
 export const FriendButton: Component = ({ user_id }: { user_id: string }) => {
 	const [userStore] = useUserStore();

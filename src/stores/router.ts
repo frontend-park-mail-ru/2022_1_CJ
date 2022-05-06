@@ -6,6 +6,6 @@ export type RouterStore = {
 	path: string;
 };
 
-export const useRouterStore = treact.createStore({
+export const [useRouterStore] = treact.createStore({
 	path: pathToRoute(window.location.pathname, Object.values(Routes)),
 } as RouterStore);

@@ -21,7 +21,7 @@ export const ProfileSettingsBlock: Component = () => {
 
 	const { handleSubmit, handleChange, data } = treact.useForm<profileSettings>({
 		onSubmit: async () => {
-			if (userStore.user.image !== image) {
+			if (userStore.user.image !== image && image.length > 0) {
 				const input = document.getElementById("photo") as HTMLInputElement;
 				const formData = new FormData();
 				formData.append("photo", input.files[0]);
