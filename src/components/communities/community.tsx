@@ -13,7 +13,7 @@ import { useUserStore } from "src/stores/user";
 
 // TODO: move buttons to components to avoid wasting
 export const CommunityComponent: Component = ({ community_id }: { community_id: string }) => {
-	const [userStore, setUserStore] = useUserStore();
+	const [userStore, modUserStore] = useUserStore();
 	const [community, setCommunity] = treact.useState(null as Community);
 	const [posts, setPosts] = treact.useState(null as PostWrapper[]);
 
@@ -21,7 +21,7 @@ export const CommunityComponent: Component = ({ community_id }: { community_id: 
 		communitiesAPI.getCommunity({ community_id }).then((response) => setCommunity(response.community));
 		communitiesAPI.getCommunityPosts({ community_id }).then((response) => setPosts(response.posts || []));
 		communitiesAPI.getManagedCommunities({ user_id: userStore.user.id }).then((response) => {
-			setUserStore({ ...userStore, managedCommunities: response.communities || [] });
+			modUserStore.update({ managedCommunities: response.communities || [] });
 		});
 	}, []);
 

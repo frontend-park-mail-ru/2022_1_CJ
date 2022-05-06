@@ -8,7 +8,7 @@ import { userAPI } from "src/core/network/api/user";
 import { useUserStore } from "src/stores/user";
 
 export const FeedPosts: Component = () => {
-	const [userStore, setUserStore] = useUserStore();
+	const [userStore, modUserStore] = useUserStore();
 	const [posts, setPosts] = treact.useState(null as PostWrapper[]);
 
 	treact.useEffect(() => {
@@ -16,7 +16,7 @@ export const FeedPosts: Component = () => {
 			setPosts(response.posts || []);
 		});
 		communitiesAPI.getManagedCommunities({ user_id: userStore.user.id }).then((response) => {
-			setUserStore({ ...userStore, managedCommunities: response.communities || [] });
+			modUserStore.update({ managedCommunities: response.communities || [] });
 		});
 	}, []);
 

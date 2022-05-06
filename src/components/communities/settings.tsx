@@ -16,7 +16,7 @@ type profileSettings = {
 };
 
 export const CommunitySettingsComponent: Component = ({ community_id }: { community_id: string }) => {
-	const [userStore, setUserStore] = useUserStore();
+	const [userStore, modUserStore] = useUserStore();
 	const [image, setImage] = treact.useState("");
 	const [community, setCommunity] = treact.useState(null as Community);
 
@@ -27,7 +27,7 @@ export const CommunitySettingsComponent: Component = ({ community_id }: { commun
 		});
 		communitiesAPI.getManagedCommunities({ user_id: userStore.user.id }).then((response) => {
 			const managedCommunities = response.communities || [];
-			setUserStore({ ...userStore, managedCommunities });
+			modUserStore.update({ managedCommunities });
 			if (!managedCommunities.some((cs) => cs.id === community_id)) {
 				navigateTo(Routes.Communities);
 			}

@@ -6,25 +6,19 @@ import { userAPI } from "src/core/network/api/user";
 import { UserStatus, useUserStore } from "src/stores/user";
 
 export const Base: Component = () => {
-	const [userStore, setUserStore] = useUserStore();
+	const [userStore, modUserStore] = useUserStore();
 
 	treact.useEffect(() => {
 		userAPI.getUserData().then(
-			(response) => {
-				setUserStore({ ...userStore, user: response.user, status: UserStatus.Authorized });
-			},
-			() => {
-				setUserStore({ ...userStore, user: null, status: UserStatus.Unauthorized });
-			}
+			(response) => modUserStore.update({ user: response.user, status: UserStatus.Authorized }),
+			() => modUserStore.update({ user: null, status: UserStatus.Unauthorized })
 		);
 	}, []);
 
-	if (userStore.status !== UserStatus.Unset) {
-		if (userStore.status === UserStatus.Authorized) {
-			navigateTo(Routes.Feed);
-		} else {
-			navigateTo(Routes.Login);
-		}
+	if (userStore.status === UserStatus.Authorized) {
+		navigateTo(Routes.Feed);
+	} else if (userStore.status === UserStatus.Unauthorized) {
+		navigateTo(Routes.Login);
 	}
 
 	return null;

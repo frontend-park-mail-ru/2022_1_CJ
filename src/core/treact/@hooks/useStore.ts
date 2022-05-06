@@ -1,8 +1,9 @@
 import { useEffect } from "./useEffect";
 import { StateSetter, useState } from "./useState";
 
-type UseStoreFunction<T> = () => [T, StateSetter<T>];
 type UpdateStoreFunction<T> = (update: Partial<T>) => void;
+type StoreModifier<T> = { set: StateSetter<T>; update: UpdateStoreFunction<T> };
+type UseStoreFunction<T> = () => [T, StoreModifier<T>];
 
 // TODO: use cleanup
 const createEmitter = <T>() => {
@@ -17,26 +18,25 @@ const createEmitter = <T>() => {
 	};
 };
 
-// TODO: switch to update
-export const createStore = <T>(initialState: T): [UseStoreFunction<T>, UpdateStoreFunction<T>] => {
+export const createStore = <T>(initialState: T): [UseStoreFunction<T>, StoreModifier<T>] => {
 	let store = initialState;
 	const emitter = createEmitter();
 
-	const setStore: StateSetter<T> = (action) => {
+	const set: StateSetter<T> = (action) => {
 		store = action instanceof Function ? action(store) : action;
 		emitter.emit(store);
 	};
 
-	const updateStore: UpdateStoreFunction<T> = (update) => {
+	const update: UpdateStoreFunction<T> = (update) => {
 		store = { ...store, ...update };
 		emitter.emit(store);
 	};
 
-	const useStore: UseStoreFunction<T> = () => {
+	const use: UseStoreFunction<T> = () => {
 		const [localStore, setLocalStore] = useState(store);
 		useEffect(() => emitter.subscribe(setLocalStore), []);
-		return [localStore, setStore];
+		return [localStore, { set, update }];
 	};
 
-	return [useStore, updateStore];
+	return [use, { set, update }];
 };

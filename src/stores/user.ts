@@ -31,7 +31,7 @@ export const userStoreInitialState: UserStore = {
 	managedCommunities: [],
 };
 
-export const [useUserStore, updateUserStore] = treact.createStore(userStoreInitialState);
+export const [useUserStore, modUserStore] = treact.createStore(userStoreInitialState);
 
 export const updateFriendsState = () => {
 	Promise.all([
@@ -39,6 +39,6 @@ export const updateFriendsState = () => {
 		friendsAPI.getIncomingFriendRequests().then((response) => response.request_ids || []),
 		friendsAPI.getOutcomingFriendRequests().then((response) => response.request_ids || []),
 	]).then(([friends, incomingRequests, outcomingRequests]) => {
-		updateUserStore({ friends, incomingRequests, outcomingRequests });
+		modUserStore.update({ friends, incomingRequests, outcomingRequests });
 	});
 };

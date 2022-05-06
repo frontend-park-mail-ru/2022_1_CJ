@@ -5,9 +5,9 @@ import { navigateTo } from "./@helpers/router";
 import { Component } from "./@types/component";
 
 export const Logout: Component = () => {
-	const [_, setUserStore] = useUserStore();
+	const [_, modUserStore] = useUserStore();
 	authAPi.logoutUser().then(() => {
-		setUserStore(userStoreInitialState);
+		modUserStore.set(userStoreInitialState);
 		navigateTo(Routes.Login);
 	});
 	return null;
