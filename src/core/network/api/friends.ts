@@ -1,46 +1,52 @@
 import {
-	AcceptFriendReqRequest,
-	AcceptFriendReqResponse,
-	GetIncomingFriendReqsResponse,
-	GetFriendsResponse,
-	SendFriendReqRequest,
-	SendFriendReqResponse,
-	GetOutcomingFriendReqsResponse,
+	AcceptFriendRequestRequest,
+	AcceptFriendRequestResponse,
 	DeleteFriendRequest,
 	DeleteFriendResponse,
+	GetFriendsResponse,
+	GetIncomingRequestsResponse,
+	GetOutcomingRequestsResponse,
+	RevokeFriendRequestRequest,
+	RevokeFriendRequestResponse,
+	SendFriendRequestRequest,
+	SendFriendRequestResponse,
 } from "src/core/network/dto/friends";
 import { fetchAPI, withQuery } from "./common";
 
 const methods = {
+	sendRequest: "/api/friends/request/send",
+	revokeRequest: "/api/friends/request/revoke",
+	acceptRequest: "/api/friends/request/accept",
 	getFriends: "/api/friends/get",
+	deleteFriend: "/api/friends/delete",
 	getIncomingFriendRequests: "/api/friends/requests/incoming",
 	getOutcomingFriendRequests: "/api/friends/requests/outcoming",
-	sendFriendRequest: "/api/friends/request",
-	acceptFriendRequest: "/api/friends/accept",
-	delete: "/api/friends/delete",
 };
+
+const sendRequest = (dto: SendFriendRequestRequest) =>
+	fetchAPI.post<SendFriendRequestResponse>(methods.sendRequest, dto);
+
+const revokeRequest = (dto: RevokeFriendRequestRequest) =>
+	fetchAPI.post<RevokeFriendRequestResponse>(methods.revokeRequest, dto);
+
+const acceptRequest = (dto: AcceptFriendRequestRequest) =>
+	fetchAPI.post<AcceptFriendRequestResponse>(methods.acceptRequest, dto);
 
 const getFriends = () => fetchAPI.get<GetFriendsResponse>(methods.getFriends);
 
-const getIncomingFriendRequests = () => fetchAPI.get<GetIncomingFriendReqsResponse>(methods.getIncomingFriendRequests);
-
-const getOutcomingFriendRequests = () =>
-	fetchAPI.get<GetOutcomingFriendReqsResponse>(methods.getOutcomingFriendRequests);
-
-const sendFriendRequest = (dto: SendFriendReqRequest) =>
-	fetchAPI.post<SendFriendReqRequest, SendFriendReqResponse>(methods.sendFriendRequest, dto);
-
-const acceptFriendRequest = (dto: AcceptFriendReqRequest) =>
-	fetchAPI.post<AcceptFriendReqRequest, AcceptFriendReqResponse>(methods.acceptFriendRequest, dto);
-
 const deleteFriend = (dto: DeleteFriendRequest) =>
-	fetchAPI.delete<DeleteFriendResponse>(withQuery(methods.delete, dto));
+	fetchAPI.delete<DeleteFriendResponse>(withQuery(methods.deleteFriend, dto));
+
+const getIncomingFriendRequests = () => fetchAPI.get<GetIncomingRequestsResponse>(methods.getIncomingFriendRequests);
+
+const getOutcomingFriendRequests = () => fetchAPI.get<GetOutcomingRequestsResponse>(methods.getOutcomingFriendRequests);
 
 export const friendsAPI = {
+	sendRequest,
+	revokeRequest,
+	acceptRequest,
 	getFriends,
+	deleteFriend,
 	getIncomingFriendRequests,
 	getOutcomingFriendRequests,
-	sendFriendRequest,
-	acceptFriendRequest,
-	deleteFriend,
 };

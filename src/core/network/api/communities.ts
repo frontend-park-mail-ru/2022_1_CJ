@@ -43,13 +43,12 @@ const methods = {
 	deletePost: "/api/communities/post/delete",
 };
 
-const createCommunity = (dto: CreateCommunityRequest) =>
-	fetchAPI.post<CreateCommunityRequest, CreateCommunityResponse>(methods.create, dto);
+const createCommunity = (dto: CreateCommunityRequest) => fetchAPI.post<CreateCommunityResponse>(methods.create, dto);
 
 const getCommunity = (dto: GetCommunityRequest) => fetchAPI.get<GetCommunityResponse>(withQuery(methods.get, dto));
 
 const createCommunityPost = (dto: CreateCommunityPostRequest) =>
-	fetchAPI.post<CreateCommunityPostRequest, CreateCommunityPostResponse>(methods.createPost, dto);
+	fetchAPI.post<CreateCommunityPostResponse>(methods.createPost, dto);
 
 const getCommunityPosts = (dto: GetCommunityPostsRequest) =>
 	fetchAPI.get<GetCommunityPostsResponse>(withQuery(methods.getPosts, dto));
@@ -57,8 +56,7 @@ const getCommunityPosts = (dto: GetCommunityPostsRequest) =>
 const searchCommunities = (dto: SearchCommunitiesRequest) =>
 	fetchAPI.get<SearchCommunitiesResponse>(withQuery(methods.search, dto));
 
-const editCommunity = (dto: EditCommunityRequest) =>
-	fetchAPI.put<EditCommunityRequest, EditCommunityResponse>(methods.edit, dto);
+const editCommunity = (dto: EditCommunityRequest) => fetchAPI.put<EditCommunityResponse>(methods.edit, dto);
 
 const deleteCommunity = (dto: DeleteCommunityRequest) =>
 	fetchAPI.delete<DeleteCommunityResponse>(withQuery(methods.delete, dto));

@@ -15,8 +15,7 @@ const methods = {
 	deletePost: "/api/post/delete",
 };
 
-const createPost = (dto: CreatePostRequest) =>
-	fetchAPI.post<CreatePostRequest, CreatePostResponse>(methods.createPost, dto);
+const createPost = (dto: CreatePostRequest) => fetchAPI.post<CreatePostResponse>(methods.createPost, dto);
 
 const getPost = (dto: GetPostRequest) => fetchAPI.get<GetPostResponse>(withQuery(methods.getPost, dto));
 

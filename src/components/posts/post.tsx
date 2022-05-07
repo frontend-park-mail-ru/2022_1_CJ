@@ -1,5 +1,6 @@
 import { treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
+import { decodeEntity } from "src/components/@helpers/utils";
 import { Component } from "src/components/@types/component";
 import { PostAuthorComponent } from "src/components/posts/author";
 import { PostLikeButton } from "src/components/posts/likeButton";
@@ -45,7 +46,7 @@ export const Post: Component = ({ postWrapper }: { postWrapper: PostWrapper }) =
 	return (
 		<div className="flow bg-white pd-8 border-sm" style="max-width: 75ch;">
 			<PostAuthorComponent author={post.author} />
-			<p> {post.message} </p>
+			<p className="break-word">{decodeEntity(post.message)}</p>
 			<div className="flex flex-r">
 				<PostLikeButton postWrapper={postWrapper} />
 				{deleteButton()}

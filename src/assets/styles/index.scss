@@ -106,3 +106,9 @@ input[type="file"] {
 	color: white;
 	background: var(--clr-secondary);
 }
+
+@media only screen and (hover: none) and (pointer: coarse) {
+	.wrapper > * {
+		grid-column: col-start 2 / col-start 12;
+	}
+}

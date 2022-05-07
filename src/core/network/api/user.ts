@@ -31,8 +31,7 @@ const searchUsers = (dto: SearchUsersRequest) => fetchAPI.get<SearchUsersRespons
 const getProfile = (dto?: GetUserProfileRequest) =>
 	fetchAPI.get<GetUserProfileResponse>(withQuery(methods.getProfile, dto));
 
-const editProfile = (dto: EditUserProfileRequest) =>
-	fetchAPI.post<EditUserProfileRequest, EditUserProfileResponse>(methods.editProfile, dto);
+const editProfile = (dto: EditUserProfileRequest) => fetchAPI.post<EditUserProfileResponse>(methods.editProfile, dto);
 
 const updatePhoto = (data: FormData) => fetchAPI.postFormData<UpdatePhotoResponse>(methods.updatePhoto, data);
 

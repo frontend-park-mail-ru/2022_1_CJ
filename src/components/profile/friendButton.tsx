@@ -7,19 +7,19 @@ export const FriendButton: Component = ({ user_id }: { user_id: string }) => {
 	const [userStore] = useUserStore();
 
 	const addFriend = () => {
-		friendsAPI.sendFriendRequest({ user_id }).then(updateFriendsState);
+		friendsAPI.sendRequest({ to: user_id }).then(updateFriendsState);
 	};
 
 	const acceptFriend = () => {
-		friendsAPI.acceptFriendRequest({ user_id, is_accepted: true }).then(updateFriendsState);
+		friendsAPI.acceptRequest({ from: user_id }).then(updateFriendsState);
 	};
 
 	const unfollow = () => {
-		friendsAPI.acceptFriendRequest({ user_id, is_accepted: false }).then(updateFriendsState);
+		friendsAPI.revokeRequest({ to: user_id }).then(updateFriendsState);
 	};
 
 	const unfriend = () => {
-		friendsAPI.deleteFriend({ ex_friend_id: user_id }).then(updateFriendsState);
+		friendsAPI.deleteFriend({ friend_id: user_id }).then(updateFriendsState);
 	};
 
 	if (userStore.friends.includes(user_id)) {

@@ -24,8 +24,7 @@ const methods = {
 	wsConnection: "/api/messenger/ws",
 };
 
-const createDialog = (dto: CreateDialogRequest) =>
-	fetchAPI.post<CreateDialogRequest, CreateDialogResponse>(methods.createDialog, dto);
+const createDialog = (dto: CreateDialogRequest) => fetchAPI.post<CreateDialogResponse>(methods.createDialog, dto);
 
 const getDialogs = () => fetchAPI.get<GetDialogsResponse>(methods.getDialogs);
 

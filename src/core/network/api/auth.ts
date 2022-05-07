@@ -7,10 +7,9 @@ const authMethods = {
 	logout: "/api/auth/logout",
 };
 
-const signupUser = (dto: SignupUserRequest) =>
-	fetchAPI.post<SignupUserRequest, SignupUserResponse>(authMethods.signup, dto);
+const signupUser = (dto: SignupUserRequest) => fetchAPI.post<SignupUserResponse>(authMethods.signup, dto);
 
-const loginUser = (dto: LoginUserRequest) => fetchAPI.post<LoginUserRequest, LoginUserResponse>(authMethods.login, dto);
+const loginUser = (dto: LoginUserRequest) => fetchAPI.post<LoginUserResponse>(authMethods.login, dto);
 
 const logoutUser = () => fetchAPI.delete(authMethods.logout);
 

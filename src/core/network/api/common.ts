@@ -53,22 +53,22 @@ const http = async <T>(url: string, config: RequestInit): Promise<T> => {
 	return response.json().catch(() => {});
 };
 
-const get = async <T>(url: string, config?: RequestInit): Promise<T> => {
+const get = async <T>(url: string, config?: RequestInit) => {
 	const init = { method: httpMethod.GET, ...config };
 	return http<T>(url, init);
 };
 
-const _delete = async <T>(url: string, config?: RequestInit): Promise<T> => {
+const _delete = async <T>(url: string, config?: RequestInit) => {
 	const init = { method: httpMethod.DELETE, ...config };
 	return http<T>(url, init);
 };
 
-const post = async <T, U>(url: string, body: T, config?: RequestInit): Promise<U> => {
+const post = async <T>(url: string, body: object, config?: RequestInit) => {
 	const init = { method: httpMethod.POST, body: JSON.stringify(body), ...config };
-	return http<U>(url, init);
+	return http<T>(url, init);
 };
 
-const postFormData = async <U>(url: string, body: FormData): Promise<U> => {
+const postFormData = async <T>(url: string, body: FormData) => {
 	const init = {
 		method: httpMethod.POST,
 		body,
@@ -76,12 +76,12 @@ const postFormData = async <U>(url: string, body: FormData): Promise<U> => {
 			Accept: "application/json",
 		},
 	};
-	return http<U>(url, init);
+	return http<T>(url, init);
 };
 
-const put = async <T, U>(url: string, body: T, config?: RequestInit): Promise<U> => {
+const put = async <T>(url: string, body: object, config?: RequestInit) => {
 	const init = { method: httpMethod.PUT, body: JSON.stringify(body), ...config };
-	return http<U>(url, init);
+	return http<T>(url, init);
 };
 
 export const fetchAPI = {

@@ -1,34 +1,36 @@
 import { BasicResponse } from "./common";
 
+export type SendFriendRequestRequest = {
+	to: string;
+};
+export type SendFriendRequestResponse = BasicResponse;
+
+export type RevokeFriendRequestRequest = {
+	to: string;
+};
+export type RevokeFriendRequestResponse = BasicResponse;
+
+export type AcceptFriendRequestRequest = {
+	from: string;
+};
+export type AcceptFriendRequestResponse = BasicResponse;
+
+export type GetFriendsRequest = {};
 export type GetFriendsResponse = {
 	friend_ids: string[];
 };
 
-export type GetIncomingFriendReqsResponse = {
-	request_ids: string[];
-};
-
-export type GetOutcomingFriendReqsResponse = {
-	request_ids: string[];
-};
-
-export type SendFriendReqRequest = {
-	user_id: string;
-};
-
-export type SendFriendReqResponse = BasicResponse;
-
-export type AcceptFriendReqRequest = {
-	user_id: string;
-	is_accepted: boolean;
-};
-
-export type AcceptFriendReqResponse = BasicResponse;
-
 export type DeleteFriendRequest = {
-	ex_friend_id: string;
+	friend_id: string;
+};
+export type DeleteFriendResponse = BasicResponse;
+
+export type GetIncomingRequestsRequest = {};
+export type GetIncomingRequestsResponse = {
+	request_ids: string[];
 };
 
-export type DeleteFriendResponse = {
-	friend_ids: string[];
+export type GetOutcomingRequestsRequest = {};
+export type GetOutcomingRequestsResponse = {
+	request_ids: string[];
 };
