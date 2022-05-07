@@ -34,6 +34,10 @@ export const CommunitySettingsComponent: Component = ({ community_id }: { commun
 	}, []);
 
 	const { handleSubmit, handleChange, data } = treact.useForm<profileSettings>({
+		initialValues: {
+			name: community.name,
+			info: community.info,
+		},
 		onSubmit: async () => {
 			if (community.image !== image && image.length > 0) {
 				const input = document.getElementById("photo") as HTMLInputElement;

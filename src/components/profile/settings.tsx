@@ -1,11 +1,11 @@
 import { treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 import { Component } from "src/core/treact/models";
-import { Routes } from "src/constants/routes";
+import { Routes, withParameters } from "src/constants/routes";
 import { EventWithTarget } from "src/core/@types/event";
 import { userAPI } from "src/core/network/api/user";
 import { EditUserProfileRequest } from "src/core/network/dto/user";
-import { useUserStore } from "src/stores/user";
+import { UserProfile } from "src/core/@types/user";
 
 type profileSettings = {
 	firstname?: string;
@@ -16,12 +16,30 @@ type profileSettings = {
 };
 
 export const ProfileSettingsBlock: Component = () => {
-	const [userStore] = useUserStore();
-	const [image, setImage] = treact.useState(userStore.user.image);
+	const [image, setImage] = treact.useState("");
+	const [profile, setProfile] = treact.useState(null as UserProfile);
+
+	treact.useEffect(() => {
+		userAPI.getProfile().then((response) => {
+			setProfile(response.user_profile);
+			setImage(response.user_profile.avatar);
+		});
+	}, []);
+
+	if (!profile) {
+		return null;
+	}
 
 	const { handleSubmit, handleChange, data } = treact.useForm<profileSettings>({
+		initialValues: {
+			firstname: profile.name.first,
+			lastname: profile.name.last,
+			phone: profile.phone,
+			location: profile.location,
+			birth_day: profile.birth_day,
+		},
 		onSubmit: async () => {
-			if (userStore.user.image !== image && image.length > 0) {
+			if (profile.avatar !== image && image.length > 0) {
 				const input = document.getElementById("photo") as HTMLInputElement;
 				const formData = new FormData();
 				formData.append("photo", input.files[0]);
@@ -35,7 +53,7 @@ export const ProfileSettingsBlock: Component = () => {
 				birth_day: data.birth_day,
 			};
 
-			userAPI.editProfile(dto).then(() => navigateTo(Routes.Feed));
+			userAPI.editProfile(dto).then(() => navigateTo(withParameters(Routes.Profile, { user_id: profile.id })));
 		},
 	});
 
