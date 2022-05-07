@@ -47,10 +47,12 @@ const http = async <T>(url: string, config: RequestInit): Promise<T> => {
 	const csrfToken = getCookieValue(headers.csrf);
 	const request = new Request(withCSRFToken(url, csrfToken), { ...defaultOptions, ...config });
 	const response = await fetch(request);
+	const promise = response.json().catch(() => {});
 	if (!response.ok) {
-		throw new CodedError(response.statusText, response.status);
+		const json = await promise;
+		throw new CodedError(json.message || response.statusText, response.status);
 	}
-	return response.json().catch(() => {});
+	return promise;
 };
 
 const get = async <T>(url: string, config?: RequestInit) => {

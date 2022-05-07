@@ -8,6 +8,8 @@ import { EventWithTarget } from "src/core/@types/event";
 import { communitiesAPI } from "src/core/network/api/communities";
 import { EditCommunityRequest } from "src/core/network/dto/communities";
 import { useUserStore } from "src/stores/user";
+import { FileSize } from "src/constants/size";
+import { modAlertStore } from "src/stores/alert";
 
 type profileSettings = {
 	name?: string;
@@ -57,7 +59,12 @@ export const CommunitySettingsComponent: Component = ({ community_id }: { commun
 
 	const updatePhoto = (event: EventWithTarget<HTMLInputElement>) => {
 		if (event.target.files && event.target.files[0]) {
-			setImage(URL.createObjectURL(event.target.files[0]));
+			const file = event.target.files[0];
+			if (file.size > FileSize.MB) {
+				modAlertStore.set({ message: "File is too large", level: "error" });
+			} else {
+				setImage(URL.createObjectURL(event.target.files[0]));
+			}
 		}
 	};
 

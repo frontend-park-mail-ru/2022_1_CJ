@@ -1,3 +1,5 @@
+import { modAlertStore } from "src/stores/alert";
+
 export class CodedError extends Error {
 	code: number;
 	constructor(message: string, code: number) {
@@ -6,10 +8,6 @@ export class CodedError extends Error {
 	}
 }
 
-export const handleError = (err: Error | CodedError) => {
-	if (err instanceof CodedError) {
-		console.log(err.message, err.code);
-	} else {
-		console.log(err.message);
-	}
+export const handleError = (err: Error) => {
+	modAlertStore.set({ message: err.message, level: "error" });
 };

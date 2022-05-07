@@ -6,6 +6,8 @@ import { EventWithTarget } from "src/core/@types/event";
 import { userAPI } from "src/core/network/api/user";
 import { EditUserProfileRequest } from "src/core/network/dto/user";
 import { UserProfile } from "src/core/@types/user";
+import { FileSize } from "src/constants/size";
+import { modAlertStore } from "src/stores/alert";
 
 type profileSettings = {
 	firstname?: string;
@@ -59,7 +61,12 @@ export const ProfileSettingsBlock: Component = () => {
 
 	const updatePhoto = (event: EventWithTarget<HTMLInputElement>) => {
 		if (event.target.files && event.target.files[0]) {
-			setImage(URL.createObjectURL(event.target.files[0]));
+			const file = event.target.files[0];
+			if (file.size > FileSize.MB) {
+				modAlertStore.set({ message: "File is too large", level: "error" });
+			} else {
+				setImage(URL.createObjectURL(event.target.files[0]));
+			}
 		}
 	};
 

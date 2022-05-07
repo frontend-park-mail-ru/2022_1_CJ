@@ -1,0 +1,24 @@
+.alert {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 1rem;
+	padding: 0.25rem 0.75rem;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.alert-info {
+	color: var(--clr-white);
+	background-color: var(--clr-secondary);
+}
+
+.alert-error {
+	color: var(--clr-white);
+	background-color: var(--clr-negative);
+}
+
+.alert-warning {
+	color: var(--clr-white);
+	background-color: var(--clr-warning);
+}
