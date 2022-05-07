@@ -56,7 +56,7 @@ export const ProfileSettingsBlock: Component = () => {
 			</div>
 
 			<form className="form flow border-sm" style="--flow-space: 1.5rem;" onSubmit={handleSubmit}>
-				<div className="form-field flex flex-r">
+				<div className="flex flex-r">
 					<span>
 						<input
 							type="text"
@@ -77,7 +77,7 @@ export const ProfileSettingsBlock: Component = () => {
 					</span>
 				</div>
 
-				<div className="form-field">
+				<div>
 					<span>
 						<input
 							type="text"
@@ -89,7 +89,7 @@ export const ProfileSettingsBlock: Component = () => {
 					</span>
 				</div>
 
-				<div className="form-field">
+				<div>
 					<span>
 						<input
 							type="text"
@@ -101,7 +101,7 @@ export const ProfileSettingsBlock: Component = () => {
 					</span>
 				</div>
 
-				<div className="form-field">
+				<div>
 					<span>
 						<input
 							type="text"

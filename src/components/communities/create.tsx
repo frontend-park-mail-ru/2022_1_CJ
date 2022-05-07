@@ -20,7 +20,7 @@ export const CreateCommunity: Component = () => {
 
 	return (
 		<form className="form flow border-sm" style="--flow-space: 1.5rem;" onSubmit={handleSubmit}>
-			<div className="form-field">
+			<div>
 				<span>
 					<input
 						type="text"
@@ -32,7 +32,7 @@ export const CreateCommunity: Component = () => {
 					{errors.name && <HelperError message={errors.name} />}
 				</span>
 			</div>
-			<div className="form-field">
+			<div>
 				<span>
 					<input
 						type="text"

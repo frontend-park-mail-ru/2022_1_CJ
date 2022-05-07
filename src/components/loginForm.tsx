@@ -32,7 +32,7 @@ export const LoginForm = () => {
 
 	return (
 		<form className="form flow border-sm" style="--flow-space: 1.5rem;" onSubmit={handleSubmit}>
-			<div className="form-field">
+			<div>
 				<span>
 					<input
 						type="text"
@@ -44,7 +44,7 @@ export const LoginForm = () => {
 					{errors.email && <HelperError message={errors.email} />}
 				</span>
 			</div>
-			<div className="form-field">
+			<div>
 				<span>
 					<input
 						id="password"

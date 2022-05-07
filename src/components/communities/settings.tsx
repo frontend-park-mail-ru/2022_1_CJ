@@ -81,7 +81,7 @@ export const CommunitySettingsComponent: Component = ({ community_id }: { commun
 				{deleteButton()}
 
 				<form className="form flow border-sm" style="--flow-space: 1.5rem;" onSubmit={handleSubmit}>
-					<div className="form-field">
+					<div>
 						<span>
 							<input
 								type="text"
@@ -93,7 +93,7 @@ export const CommunitySettingsComponent: Component = ({ community_id }: { commun
 						</span>
 					</div>
 
-					<div className="form-field">
+					<div>
 						<span>
 							<input
 								type="text"

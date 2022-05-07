@@ -105,12 +105,11 @@
 	place-self: center;
 	margin-inline: auto;
 	background-color: var(--clr-white);
-	width: clamp(20rem, 30vw + 5rem, 35rem);
+	max-width: clamp(20rem, 30vw + 5rem, 35rem);
 }
 
 .icon {
 	height: 2rem;
-	// width: 2rem;
 	aspect-ratio: 1 / 1;
 	border-radius: 50%;
 }

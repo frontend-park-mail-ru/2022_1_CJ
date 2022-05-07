@@ -53,7 +53,7 @@ export const SignupForm = () => {
 
 	return (
 		<form className="form flow border-sm" style="--flow-space: 1.5rem;" onSubmit={handleSubmit}>
-			<div className="form-field flex flex-r">
+			<div className="flex flex-r">
 				<span>
 					<input
 						type="text"
@@ -75,7 +75,7 @@ export const SignupForm = () => {
 					{errors.lastname && <HelperError message={errors.lastname} />}
 				</span>
 			</div>
-			<div className="form-field">
+			<div>
 				<span>
 					<input
 						type="text"
@@ -87,7 +87,7 @@ export const SignupForm = () => {
 					{errors.email && <HelperError message={errors.email} />}
 				</span>
 			</div>
-			<div className="form-field flex flex-c">
+			<div className="flex flex-c">
 				<div className="flex flex-r">
 					<span>
 						<input
