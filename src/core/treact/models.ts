@@ -1,4 +1,10 @@
-// TODO: add a way to pass cleanup callbacks on unmount
+type ComponentProperties = {
+	[key: string]: object | string | number;
+};
+
+export type Component = (props?: ComponentProperties) => JSX.Element;
+
+export type ModalComponent = (props?: ComponentProperties & { hide: () => void }) => JSX.Element;
 
 export type Node = HTMLElement | Text;
 
@@ -17,7 +23,7 @@ export type Fiber = {
 	props: any;
 	alternate?: Fiber;
 	node?: Node;
-	type?: string | Function;
+	type?: string | Component;
 	action?: FiberAction;
 	parent?: Fiber;
 	child?: Fiber;

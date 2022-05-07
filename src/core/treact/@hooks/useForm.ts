@@ -30,7 +30,7 @@ export const useForm = <T extends Partial<Record<keyof T, any>> = {}>(options: {
 
 	const handleSubmit = async (event: SubmitEvent) => {
 		event.preventDefault();
-		const validators = options.validators;
+		const { validators } = options;
 		if (validators) {
 			let valid = true;
 			const newErrors: ErrorRecord<T> = {};

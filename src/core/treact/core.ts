@@ -1,4 +1,4 @@
-import { FiberAction, Node, Fiber, State } from "./models";
+import { FiberAction, Node, Fiber, State, Component } from "src/core/treact/models";
 
 const TEXT_ELEMENT = "TEXT_ELEMENT";
 
@@ -127,7 +127,7 @@ const resetState = (fiber: Fiber) => {
 
 const updateFunctionComponent = (fiber: Fiber) => {
 	resetState(fiber);
-	const results = (fiber.type as Function)(fiber.props);
+	const results = (fiber.type as Component)(fiber.props);
 	const children = Array.isArray(results) ? results : [results];
 	reconcileChildren(fiber, children);
 };
@@ -206,7 +206,7 @@ const createFragmentElement = (props: any) => {
 	return props.children;
 };
 
-const createElement = (type: string | Function, props: any, ...children: any[]) => {
+const createElement = (type: string | Component, props: any, ...children: any[]) => {
 	children = toChildArray(children, []);
 	return {
 		type,

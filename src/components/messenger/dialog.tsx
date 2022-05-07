@@ -2,7 +2,6 @@ import { treact } from "@treact";
 import { Dialog, Message } from "src/core/@types/dialog";
 import { EventWithTarget } from "src/core/@types/event";
 import { messengerAPI, WSReducer } from "src/core/network/api/messenger";
-import { Component } from "src/components/@types/component";
 import { Spinner } from "src/components/spinner";
 import { decodeEntity } from "src/components/@helpers/utils";
 import { User } from "src/core/@types/user";
@@ -10,6 +9,7 @@ import { fetchUsers } from "src/components/@helpers/user";
 import { UserProfileLink } from "src/components/@helpers/links";
 import { useUserStore } from "src/stores/user";
 import { fromTimestamp } from "src/components/@helpers/time";
+import { Component } from "src/core/treact/models";
 
 export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string }) => {
 	const [userStore] = useUserStore();
@@ -31,7 +31,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 
 	if (participants && dialog && messages) {
 		const wsReducer: WSReducer = {
-			onopen: function () {
+			onopen() {
 				setSocket(this);
 				this.send(JSON.stringify({ dialog_id, event: "join" }));
 			},

@@ -1,6 +1,6 @@
 import { treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
-import { Component, ModalComponent } from "src/components/@types/component";
+import { Component, ModalComponent } from "src/core/treact/models";
 import { Routes } from "src/constants/routes";
 import { EventWithTarget } from "src/core/@types/event";
 import { postAPI } from "src/core/network/api/post";

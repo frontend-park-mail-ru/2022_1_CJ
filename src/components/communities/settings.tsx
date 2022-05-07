@@ -1,6 +1,6 @@
 import { treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
-import { Component } from "src/components/@types/component";
+import { Component } from "src/core/treact/models";
 import { Spinner } from "src/components/spinner";
 import { Routes } from "src/constants/routes";
 import { Community } from "src/core/@types/community";

@@ -1,6 +1,6 @@
 import { treact } from "@treact";
 import { navigateTo } from "./@helpers/router";
-import { Component } from "./@types/component";
+import { Component } from "src/core/treact/models";
 
 export const Link: Component = ({ to, children }: { to: string; children: object }) => {
 	const handleClick = (event: MouseEvent) => {

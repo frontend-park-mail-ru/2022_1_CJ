@@ -1,10 +1,11 @@
 import { treact } from "@treact";
+import { fetchUsers } from "src/components/@helpers/user";
 import { Routes, withParameters } from "src/constants/routes";
 import { EventWithTarget } from "src/core/@types/event";
 import { User } from "src/core/@types/user";
 import { friendsAPI } from "src/core/network/api/friends";
 import { userAPI } from "src/core/network/api/user";
-import { Component } from "./@types/component";
+import { Component } from "src/core/treact/models";
 import { Link } from "./link";
 
 const initialState = {
@@ -18,13 +19,7 @@ export const FriendsList: Component = () => {
 
 	treact.useEffect(() => {
 		friendsAPI.getFriends().then((response) => {
-			let fetchedFriends = [] as User[];
-			if (response.friend_ids) {
-				const promises = response.friend_ids.map((user_id) =>
-					userAPI.getUserData({ user_id }).then((r) => fetchedFriends.push(r.user))
-				);
-				Promise.all(promises).then(() => setState({ ...state, friends: fetchedFriends }));
-			}
+			fetchUsers(response.friend_ids).then((users) => setState({ ...state, friends: users }));
 		});
 	}, []);
 

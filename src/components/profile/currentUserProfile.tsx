@@ -1,6 +1,6 @@
 import { treact } from "@treact";
 import { fetchUsers } from "src/components/@helpers/user";
-import { Component } from "src/components/@types/component";
+import { Component } from "src/core/treact/models";
 import { CreatePost } from "src/components/profile/createPost";
 import { ProfileFriendsList } from "src/components/profile/friends";
 import { User, UserProfile } from "src/core/@types/user";

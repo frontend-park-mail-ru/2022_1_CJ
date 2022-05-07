@@ -1,6 +1,5 @@
 import { treact } from "@treact";
 import { ProfileSettings } from "src/views/profile/profileSettings";
-import { Component } from "./components/@types/component";
 import { Logout } from "./components/logout";
 import { Route } from "./components/route";
 import { Router } from "./components/router";
@@ -15,6 +14,7 @@ import { NotFound } from "./views/notFound";
 import { Profile } from "./views/profile/profile";
 import { Signup } from "./views/auth/signup";
 import { CommunitiesRegistry } from "src/views/communities/registry";
+import { Component } from "src/core/treact/models";
 
 export const App: Component = () => {
 	return (

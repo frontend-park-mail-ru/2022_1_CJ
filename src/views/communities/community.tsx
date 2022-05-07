@@ -1,7 +1,7 @@
 import { treact } from "@treact";
 import { getParams } from "src/components/@helpers/router";
 import { AuthMiddleware } from "src/components/@middlewares/auth";
-import { Component } from "src/components/@types/component";
+import { Component } from "src/core/treact/models";
 import { CommunityComponent } from "src/components/communities/community";
 import { Layout } from "src/components/layout";
 import { Routes } from "src/constants/routes";

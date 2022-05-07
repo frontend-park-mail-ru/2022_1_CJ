@@ -1,6 +1,6 @@
 import { treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
-import { Component } from "src/components/@types/component";
+import { Component } from "src/core/treact/models";
 import { Routes } from "src/constants/routes";
 import { userAPI } from "src/core/network/api/user";
 import { UserStatus, useUserStore } from "src/stores/user";

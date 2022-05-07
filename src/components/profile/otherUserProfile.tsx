@@ -1,6 +1,6 @@
 import { treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
-import { Component } from "src/components/@types/component";
+import { Component } from "src/core/treact/models";
 import { FriendButton } from "src/components/profile/friendButton";
 import { Routes, withParameters } from "src/constants/routes";
 import { UserProfile } from "src/core/@types/user";

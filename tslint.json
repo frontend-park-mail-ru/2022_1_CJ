@@ -3,7 +3,8 @@
 	"extends": ["tslint:recommended", "tslint-eslint-rules", "tslint-consistent-codestyle", "tslint-config-prettier"],
 	"jsRules": {},
 	"rules": {
-		"no-reference": false
+		"no-reference": false,
+		"variable-name": false
 	},
 	"linterOptions": {
 		"exclude": ["src/**/*d.ts"]

@@ -1,7 +1,7 @@
 import { treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 import { decodeEntity } from "src/components/@helpers/utils";
-import { Component } from "src/components/@types/component";
+import { Component } from "src/core/treact/models";
 import { PostAuthorComponent } from "src/components/posts/author";
 import { PostLikeButton } from "src/components/posts/likeButton";
 import { Routes } from "src/constants/routes";

@@ -27,8 +27,8 @@ export const createStore = <T>(initialState: T): [UseStoreFunction<T>, StoreModi
 		emitter.emit(store);
 	};
 
-	const update: UpdateStoreFunction<T> = (update) => {
-		store = { ...store, ...update };
+	const update: UpdateStoreFunction<T> = (partial) => {
+		store = { ...store, ...partial };
 		emitter.emit(store);
 	};
 

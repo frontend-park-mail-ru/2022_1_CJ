@@ -1,9 +1,9 @@
 import { treact } from "@treact";
 import { Routes } from "src/constants/routes";
 import { userAPI } from "src/core/network/api/user";
+import { Component } from "src/core/treact/models";
 import { UserStatus, useUserStore } from "src/stores/user";
 import { navigateTo } from "../@helpers/router";
-import { Component } from "../@types/component";
 import { Spinner } from "../spinner";
 
 export enum AuthMiddlewarePolicy {

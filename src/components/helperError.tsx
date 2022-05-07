@@ -1,5 +1,5 @@
 import { treact } from "@treact";
-import { Component } from "./@types/component";
+import { Component } from "src/core/treact/models";
 
 export const HelperError: Component = (props) => {
 	const { message } = props;
