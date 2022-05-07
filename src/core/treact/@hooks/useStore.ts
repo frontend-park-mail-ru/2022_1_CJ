@@ -1,6 +1,6 @@
 import { State } from "src/core/treact/models";
-import { useEffect } from "./useEffect";
-import { StateSetter, useState } from "./useState";
+import { useEffect } from "src/core/treact/@hooks/useEffect";
+import { StateSetter, useState } from "src/core/treact/@hooks/useState";
 
 type UpdateStoreFunction<T> = (update: Partial<T>) => void;
 type StoreModifier<T> = { set: StateSetter<T>; update: UpdateStoreFunction<T> };

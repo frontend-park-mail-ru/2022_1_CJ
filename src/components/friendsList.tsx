@@ -6,7 +6,7 @@ import { User } from "src/core/@types/user";
 import { friendsAPI } from "src/core/network/api/friends";
 import { userAPI } from "src/core/network/api/user";
 import { Component } from "src/core/treact/models";
-import { Link } from "./link";
+import { Link } from "src/components/link";
 
 const initialState = {
 	friends: [] as User[],

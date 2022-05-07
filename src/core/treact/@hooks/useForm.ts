@@ -1,4 +1,4 @@
-import { useState } from "./useState";
+import { useState } from "src/core/treact/@hooks/useState";
 
 export type Validator = {
 	isValid: (value: string) => boolean;

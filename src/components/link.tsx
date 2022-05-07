@@ -1,5 +1,5 @@
 import { treact } from "@treact";
-import { navigateTo } from "./@helpers/router";
+import { navigateTo } from "src/components/@helpers/router";
 import { Component } from "src/core/treact/models";
 
 export const Link: Component = ({ to, children }: { to: string; children: object }) => {

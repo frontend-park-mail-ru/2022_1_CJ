@@ -1,7 +1,7 @@
 import { treact } from "@treact";
 import { Routes } from "src/constants/routes";
 import { useUserStore } from "src/stores/user";
-import { Link } from "./link";
+import { Link } from "src/components/link";
 
 export const Header = () => {
 	const [userStore] = useUserStore();

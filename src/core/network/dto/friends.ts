@@ -1,4 +1,4 @@
-import { BasicResponse } from "./common";
+import { BasicResponse } from "src/core/network/dto/common";
 
 export type SendFriendRequestRequest = {
 	to: string;

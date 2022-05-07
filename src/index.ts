@@ -1,5 +1,5 @@
 import { treact } from "@treact";
-import { App } from "./app";
+import { App } from "src/app";
 import "./assets/styles/index.scss";
 
 const root = document.getElementById("root") || document.body;

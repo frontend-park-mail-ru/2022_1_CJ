@@ -1,10 +1,10 @@
 import { treact } from "@treact";
-import { HelperError } from "../helperError";
-import { ValidatorEmail, ValidatorRequired } from "../@helpers/validators";
+import { HelperError } from "src/components/helperError";
+import { ValidatorEmail, ValidatorRequired } from "src/components/@helpers/validators";
 import { authAPi } from "src/core/network/api/auth";
 import { Routes } from "src/constants/routes";
 import { SignupUserRequest } from "src/core/network/dto/auth";
-import { navigateTo } from "../@helpers/router";
+import { navigateTo } from "src/components/@helpers/router";
 import { handleError } from "src/core/modules/error";
 import { Link } from "src/components/link";
 

@@ -5,8 +5,8 @@ import {
 	GetPostResponse,
 	DeletePostRequest,
 	DeletePostResponse,
-} from "../dto/post";
-import { fetchAPI, withQuery } from "./common";
+} from "src/core/network/dto/post";
+import { fetchAPI, withQuery } from "src/core/network/api/common";
 
 const methods = {
 	createPost: "/api/post/create",

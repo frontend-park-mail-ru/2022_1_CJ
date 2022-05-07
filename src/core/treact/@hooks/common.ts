@@ -1,4 +1,4 @@
-import { State } from "../models";
+import { State } from "src/core/treact/models";
 
 export const isEqual = (a: object, b: object) => {
 	if (Object.keys(a).length === Object.keys(b).length) {

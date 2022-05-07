@@ -11,7 +11,7 @@ import {
 	SendFriendRequestRequest,
 	SendFriendRequestResponse,
 } from "src/core/network/dto/friends";
-import { fetchAPI, withQuery } from "./common";
+import { fetchAPI, withQuery } from "src/core/network/api/common";
 
 const methods = {
 	sendRequest: "/api/friends/request/send",

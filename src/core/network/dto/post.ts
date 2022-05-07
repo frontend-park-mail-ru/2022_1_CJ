@@ -1,5 +1,5 @@
 import { Post } from "src/core/@types/post";
-import { BasicResponse } from "./common";
+import { BasicResponse } from "src/core/network/dto/common";
 
 export type CreatePostRequest = {
 	message: string;

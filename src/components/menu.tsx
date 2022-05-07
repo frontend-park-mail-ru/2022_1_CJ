@@ -2,7 +2,7 @@ import { treact } from "@treact";
 import { Routes, withParameters } from "src/constants/routes";
 import { useUserStore } from "src/stores/user";
 import { Component } from "src/core/treact/models";
-import { Link } from "./link";
+import { Link } from "src/components/link";
 
 export const Menu: Component = () => {
 	const [userStore] = useUserStore();

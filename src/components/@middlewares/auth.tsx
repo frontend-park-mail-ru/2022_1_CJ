@@ -3,8 +3,8 @@ import { Routes } from "src/constants/routes";
 import { userAPI } from "src/core/network/api/user";
 import { Component } from "src/core/treact/models";
 import { UserStatus, useUserStore } from "src/stores/user";
-import { navigateTo } from "../@helpers/router";
-import { Spinner } from "../spinner";
+import { navigateTo } from "src/components/@helpers/router";
+import { Spinner } from "src/components/spinner";
 
 export enum AuthMiddlewarePolicy {
 	Authorized,

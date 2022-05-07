@@ -1,5 +1,5 @@
-import { fetchAPI } from "./common";
-import { LoginUserRequest, LoginUserResponse, SignupUserRequest, SignupUserResponse } from "../dto/auth";
+import { fetchAPI } from "src/core/network/api/common";
+import { LoginUserRequest, LoginUserResponse, SignupUserRequest, SignupUserResponse } from "src/core/network/dto/auth";
 
 const authMethods = {
 	signup: "/api/auth/signup",

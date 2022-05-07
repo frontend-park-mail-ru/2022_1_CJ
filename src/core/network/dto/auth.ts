@@ -1,5 +1,5 @@
 import { UserName } from "src/core/@types/user";
-import { BasicResponse } from "./common";
+import { BasicResponse } from "src/core/network/dto/common";
 
 export type SignupUserRequest = {
 	email: string;

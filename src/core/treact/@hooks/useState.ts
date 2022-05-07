@@ -1,5 +1,5 @@
-import { State } from "../models";
-import { getLastHook } from "./common";
+import { State } from "src/core/treact/models";
+import { getLastHook } from "src/core/treact/@hooks/common";
 
 export type SetStateAction<T> = ((prevState: T) => T) | T;
 export type StateSetter<T> = (action: SetStateAction<T>) => void;
