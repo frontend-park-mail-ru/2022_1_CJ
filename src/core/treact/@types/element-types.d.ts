@@ -9,9 +9,9 @@ declare namespace JSX {
 		role?: string;
 		lang?: string;
 		draggable?: string | boolean;
-		spellcheck?: string | boolean;
+		spellCheck?: string | boolean;
 		style?: string;
-		tabindex?: string;
+		tabIndex?: string;
 		title?: string;
 		translate?: string | boolean;
 	}

@@ -27,3 +27,4 @@
 9. https://stephanwagner.me/only-css-loading-spinner
 10. https://piccalil.li/blog/a-modern-css-reset
 11. https://observablehq.com/@saneef/fluid-typography-css-clamp-value-generator
+12. https://www.30secondsofcode.org/

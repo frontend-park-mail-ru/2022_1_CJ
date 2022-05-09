@@ -33,7 +33,7 @@ export const userStoreInitialState: UserStore = {
 
 export const [useUserStore, modUserStore] = treact.createStore(userStoreInitialState);
 
-export const updateFriendsState = () => {
+export const updateFriendsState = () =>
 	Promise.all([
 		friendsAPI.getFriends().then((response) => response.friend_ids || []),
 		friendsAPI.getIncomingFriendRequests().then((response) => response.request_ids || []),
@@ -41,4 +41,3 @@ export const updateFriendsState = () => {
 	]).then(([friends, incomingRequests, outcomingRequests]) => {
 		modUserStore.update({ friends, incomingRequests, outcomingRequests });
 	});
-};

@@ -14,7 +14,6 @@ export const Alert: Component = () => {
 		}, [alertStore]);
 
 		const hide = () => {
-			console.log("XXXXXXXXXXXX");
 			clearTimeout(timeoutID);
 			modAlertStore.set(null);
 		};
