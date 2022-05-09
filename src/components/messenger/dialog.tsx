@@ -54,35 +54,35 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 		}, []);
 	}
 
-	const mapMessage = (message: Message) => {
-		const author = participants[message.author_id] || userStore.user;
-		const isAuthor = author.id === userStore.user.id;
-		const style = isAuthor ? "align-self: flex-end" : "align-self: flex-start";
-		return (
-			<div className="flex flex-c bg-white pd-8 border-sm" style={style}>
-				<span>
-					<UserProfileLink user={author} />
-					<p className="text-light">{fromTimestamp(message.created_at)}</p>
-				</span>
-				<p className="flex break-word">{decodeEntity(message.body)}</p>
-			</div>
-		);
-	};
-
-	const sendMessage = (event: EventWithTarget<HTMLInputElement, KeyboardEvent>) => {
-		if (event.key === "Enter") {
-			const body = event.target.innerText.trim();
-			if (body.length === 0) {
-				event.preventDefault();
-			} else if (event.shiftKey) {
-				event.preventDefault();
-				event.target.innerText = "";
-				socket.send(JSON.stringify({ dialog_id, body, event: "send" }));
-			}
-		}
-	};
-
 	if (socket && participants && dialog && messages) {
+		const mapMessage = (message: Message) => {
+			const author = participants[message.author_id] || userStore.user;
+			const isAuthor = author.id === userStore.user.id;
+			const style = isAuthor ? "align-self: flex-end" : "align-self: flex-start";
+			return (
+				<div className="flex flex-c bg-white pd-8 border-sm" style={style}>
+					<span>
+						<UserProfileLink user={author} />
+						<p className="text-light">{fromTimestamp(message.created_at)}</p>
+					</span>
+					<p className="flex break-word">{decodeEntity(message.body)}</p>
+				</div>
+			);
+		};
+
+		const sendMessage = (event: EventWithTarget<HTMLInputElement, KeyboardEvent>) => {
+			if (event.key === "Enter") {
+				const body = event.target.innerText.trim();
+				if (body.length === 0) {
+					event.preventDefault();
+				} else if (event.shiftKey) {
+					event.preventDefault();
+					event.target.innerText = "";
+					socket.send(JSON.stringify({ dialog_id, body, event: "send" }));
+				}
+			}
+		};
+
 		return (
 			<div className="flex flex-c grow justify-between">
 				<p className="d-middle bg-white pd-4 border-sm">{dialog.name}</p>

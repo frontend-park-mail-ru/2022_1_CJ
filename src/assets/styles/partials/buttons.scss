@@ -1,3 +1,5 @@
+$outline-width: 2px;
+
 .btn {
 	@extend .pointer;
 	@extend .border-sm;
@@ -6,6 +8,7 @@
 	appearance: none;
 	width: fit-content;
 	padding: 0.25rem 0.75rem;
+	outline-offset: -$outline-width;
 }
 
 .btn-primary {
@@ -34,7 +37,7 @@
 }
 
 .btn-white:hover {
-	outline: 2px solid var(--clr-primary);
+	outline: $outline-width solid var(--clr-primary);
 }
 
 .btn-transparent {
@@ -43,7 +46,7 @@
 }
 
 .btn-transparent:hover {
-	outline: 2px solid var(--clr-primary);
+	outline: $outline-width solid var(--clr-primary);
 }
 
 .btn-negative {

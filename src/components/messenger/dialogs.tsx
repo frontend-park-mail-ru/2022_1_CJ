@@ -10,9 +10,11 @@ export const Dialogs: Component = () => {
 	treact.useEffect(() => {
 		messengerAPI.getDialogs().then((response) => setDialogs(response.dialogs || []));
 	}, []);
+
 	const map = (dialog: Dialog) => (
 		<Link to={withParameters(Routes.Dialog, { dialog_id: dialog.dialog_id })}>{dialog.name}</Link>
 	);
+
 	return (
 		<div className="flex flex-c">
 			<p>Dialogs:</p>

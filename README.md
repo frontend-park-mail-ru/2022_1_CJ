@@ -26,3 +26,4 @@
 8. https://freshman.tech/snippets/typescript/fix-value-not-exist-eventtarget/
 9. https://stephanwagner.me/only-css-loading-spinner
 10. https://piccalil.li/blog/a-modern-css-reset
+11. https://observablehq.com/@saneef/fluid-typography-css-clamp-value-generator
