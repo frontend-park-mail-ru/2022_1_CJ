@@ -17,6 +17,7 @@ export type Post = {
 	author: PostAuthor;
 	message: string;
 	images: string[];
+	created_at: number;
 };
 
 export type PostWrapper = {

@@ -17,7 +17,7 @@ export const FriendsList: Component = () => {
 		incomingRequests: [] as User[],
 		outcomingRequests: [] as User[],
 	});
-	const [searchResults, setSearchResults] = treact.useState(null as User[]);
+	const [searchResults, setSearchResults] = treact.useState([] as User[]);
 	const [option, setOption] = treact.useState("Friends" as Option);
 
 	treact.useEffect(updateFriendsState, []);
@@ -37,62 +37,57 @@ export const FriendsList: Component = () => {
 			if (selector.length > 0) {
 				userAPI.searchUsers({ selector }).then((response) => setSearchResults(response.users || []));
 			} else {
-				setSearchResults(null);
+				setSearchResults([]);
 			}
 		}
 	};
 
-	const map = (friend: User) => {
-		const fullName = `${friend.name.first} ${friend.name.last}`;
-		return <Link to={withParameters(Routes.Profile, { user_id: friend.id })}>{fullName}</Link>;
+	const map = (user: User) => {
+		const fullName = `${user.name.first} ${user.name.last}`;
+		return (
+			<Link to={withParameters(Routes.Profile, { user_id: user.id })}>
+				<div className="flex flex-r items-center" style="width: fit-content;">
+					<img className="icon d-middle" src={user.image} alt="" />
+					<p>{fullName}</p>
+				</div>
+			</Link>
+		);
 	};
 
 	const list = () => {
 		switch (option) {
 			case "Friends":
-				return (
-					<>
-						Amount: {users.friends.length}
-						{users.friends.map(map)}
-					</>
-				);
+				return <>{users.friends.map(map)}</>;
 			case "Incoming requests":
-				return (
-					<>
-						Amount: {users.incomingRequests.length}
-						{users.incomingRequests.map(map)}
-					</>
-				);
+				return <>{users.incomingRequests.map(map)}</>;
 			case "Outcoming requests":
-				return (
-					<>
-						Amount: {users.outcomingRequests.length}
-						{users.outcomingRequests.map(map)}
-					</>
-				);
+				return <>{users.outcomingRequests.map(map)}</>;
 			case "Search results":
 				return <>{searchResults.map(map)}</>;
 		}
 	};
 
-	const optionButton = (opt: Option) => {
+	const optionButton = (opt: Option, amount = 0) => {
 		const classes = option === opt ? "btn btn-white" : "btn btn-transparent";
 		return (
 			<button onClick={() => setOption(opt)} className={classes}>
-				{opt}
+				{opt} {amount}
 			</button>
 		);
 	};
 
 	return (
 		<div className="flex flex-c">
-			<div className="border-no-style border-sm pd-2 bg-white">
-				<input onKeyUp={searchUsers} className="border-no-style" type="text" placeholder="Search" />
-			</div>
+			<input
+				onKeyUp={searchUsers}
+				className="border-no-style border-sm pd-2 bg-white"
+				type="text"
+				placeholder="Search"
+			/>
 			<div className="flex flex-r">
-				{optionButton("Friends")}
-				{optionButton("Incoming requests")}
-				{optionButton("Outcoming requests")}
+				{optionButton("Friends", userStore.friends.length)}
+				{optionButton("Incoming requests", userStore.incomingRequests.length)}
+				{optionButton("Outcoming requests", userStore.outcomingRequests.length)}
 			</div>
 			<div className="flex flex-c">{list()}</div>
 		</div>

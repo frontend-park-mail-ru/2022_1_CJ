@@ -14,7 +14,7 @@ $outline-width: 2px;
 .btn-primary {
 	background-color: var(--clr-primary);
 	color: var(--clr-white);
-	box-shadow: 1px 1px 1px var(--clr-primary-25);
+	box-shadow: 1px 1px 1px var(--clr-primary-l);
 }
 
 .btn-primary:hover {
@@ -24,7 +24,7 @@ $outline-width: 2px;
 .btn-secondary {
 	background-color: var(--clr-secondary);
 	color: var(--clr-white);
-	box-shadow: 1px 1px 1px var(--clr-secondary-25);
+	box-shadow: 1px 1px 1px var(--clr-secondary-l);
 }
 
 .btn-secondary:hover {
@@ -55,5 +55,5 @@ $outline-width: 2px;
 }
 
 .btn-negative:hover {
-	background-color: var(--clr-negative);
+	background-color: var(--clr-negative-d);
 }

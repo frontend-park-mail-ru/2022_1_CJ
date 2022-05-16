@@ -8,8 +8,8 @@ import { User } from "src/core/@types/user";
 import { fetchUsers } from "src/components/@helpers/user";
 import { UserProfileLink } from "src/components/@helpers/links";
 import { useUserStore } from "src/stores/user";
-import { fromTimestamp } from "src/components/@helpers/time";
 import { Component } from "src/core/treact/models";
+import { DateFromTimestamp } from "src/components/@helpers/date";
 
 export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string }) => {
 	const [userStore] = useUserStore();
@@ -63,7 +63,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 				<div className="flex flex-c bg-white pd-8 border-sm" style={style}>
 					<span>
 						<UserProfileLink user={author} />
-						<p className="text-light">{fromTimestamp(message.created_at)}</p>
+						<DateFromTimestamp timestamp={message.created_at} />
 					</span>
 					<p className="flex break-word">{decodeEntity(message.body)}</p>
 				</div>
@@ -84,7 +84,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 		};
 
 		return (
-			<div className="flex flex-c grow justify-between">
+			<div className="flex flex-c justify-between d-middle" style="width: min(100%, 40rem);">
 				<p className="d-middle bg-white pd-4 border-sm">{dialog.name}</p>
 				<div className="dialog flex flex-cr grow overflow">{messages.map(mapMessage)}</div>
 				<div className="flex flex-c">

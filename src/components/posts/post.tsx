@@ -9,6 +9,7 @@ import { PostWrapper } from "src/core/@types/post";
 import { communitiesAPI } from "src/core/network/api/communities";
 import { postAPI } from "src/core/network/api/post";
 import { useUserStore } from "src/stores/user";
+import { DateFromTimestamp } from "src/components/@helpers/date";
 
 export const Post: Component = ({ postWrapper }: { postWrapper: PostWrapper }) => {
 	const [userStore] = useUserStore();
@@ -45,7 +46,10 @@ export const Post: Component = ({ postWrapper }: { postWrapper: PostWrapper }) =
 
 	return (
 		<div className="flow bg-white pd-8 border-sm" style="max-width: 75ch;">
-			<PostAuthorComponent author={post.author} />
+			<div className="flex flex-r items-center">
+				<PostAuthorComponent author={post.author} />
+				<DateFromTimestamp timestamp={post.created_at} />
+			</div>
 			<p className="break-word">{decodeEntity(post.message)}</p>
 			<div className="flex flex-r">
 				<PostLikeButton postWrapper={postWrapper} />

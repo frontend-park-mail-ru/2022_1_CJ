@@ -80,16 +80,17 @@ select {
 	grid-template-rows: min-content 1fr;
 }
 
+.content > * {
+	margin-bottom: 1rem;
+}
+
 .wrapper {
-	overflow: hidden;
 	display: grid;
-	column-gap: 20px;
-	grid-template-columns: repeat(12, [col-start] 1fr);
+	overflow: auto;
 }
 
 .wrapper > * {
-	overflow: inherit;
-	grid-column: col-start 3 / col-start 11;
+	margin: 0 clamp(0.5rem, calc(-4.18rem + 23.41vw), 12.5rem);
 }
 
 a:not([class]) {
