@@ -35,50 +35,50 @@ export const CommunitySettingsComponent: Component = ({ community_id }: { commun
 		});
 	}, []);
 
-	const { handleSubmit, handleChange, data } = treact.useForm<profileSettings>({
-		initialValues: {
-			name: community.name,
-			info: community.info,
-		},
-		onSubmit: async () => {
-			if (community.image !== image && image.length > 0) {
-				const input = document.getElementById("photo") as HTMLInputElement;
-				const formData = new FormData();
-				formData.append("photo", input.files[0]);
-				await communitiesAPI.updatePhoto({ data: formData, community_id });
-			}
-
-			const dto: EditCommunityRequest = {
-				...data,
-				community_id,
-			};
-
-			communitiesAPI.editCommunity(dto).then(() => navigateTo(Routes.Communities));
-		},
-	});
-
-	const updatePhoto = (event: EventWithTarget<HTMLInputElement>) => {
-		if (event.target.files && event.target.files[0]) {
-			const file = event.target.files[0];
-			if (file.size > FileSize.MB) {
-				modAlertStore.set({ message: "File is too large", level: "error" });
-			} else {
-				setImage(URL.createObjectURL(event.target.files[0]));
-			}
-		}
-	};
-
-	const deleteCommunity = () => {
-		communitiesAPI.deleteCommunity({ community_id }).then(() => navigateTo(Routes.Communities));
-	};
-
-	const deleteButton = () => (
-		<button onClick={deleteCommunity} className="btn btn-negative">
-			Delete community
-		</button>
-	);
-
 	if (community) {
+		const { handleSubmit, handleChange, data } = treact.useForm<profileSettings>({
+			initialValues: {
+				name: community.name,
+				info: community.info,
+			},
+			onSubmit: async () => {
+				if (community.image !== image && image.length > 0) {
+					const input = document.getElementById("photo") as HTMLInputElement;
+					const formData = new FormData();
+					formData.append("photo", input.files[0]);
+					await communitiesAPI.updatePhoto({ data: formData, community_id });
+				}
+
+				const dto: EditCommunityRequest = {
+					...data,
+					community_id,
+				};
+
+				communitiesAPI.editCommunity(dto).then(() => navigateTo(Routes.Communities));
+			},
+		});
+
+		const updatePhoto = (event: EventWithTarget<HTMLInputElement>) => {
+			if (event.target.files && event.target.files[0]) {
+				const file = event.target.files[0];
+				if (file.size > FileSize.MB) {
+					modAlertStore.set({ message: "File is too large", level: "error" });
+				} else {
+					setImage(URL.createObjectURL(event.target.files[0]));
+				}
+			}
+		};
+
+		const deleteCommunity = () => {
+			communitiesAPI.deleteCommunity({ community_id }).then(() => navigateTo(Routes.Communities));
+		};
+
+		const deleteButton = () => (
+			<button onClick={deleteCommunity} className="btn btn-negative d-middle">
+				Delete community
+			</button>
+		);
+
 		return (
 			<div className="flex flex-c d-middle">
 				<div className="flex flex-c items-center bg-white pd-8 border-sm">
