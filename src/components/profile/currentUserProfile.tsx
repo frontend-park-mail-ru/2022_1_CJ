@@ -7,6 +7,7 @@ import { userAPI } from "src/core/network/api/user";
 import { useUserStore } from "src/stores/user";
 import { ProfileInformaiton } from "src/components/profile/profileInformation";
 import { CreatePost } from "src/components/posts/create";
+import { ProfilePosts } from "src/components/profile/posts";
 
 export const CurrentUserProfileInfo: Component = () => {
 	const [userStore] = useUserStore();
@@ -29,6 +30,7 @@ export const CurrentUserProfileInfo: Component = () => {
 						<CreatePost />
 						<ProfileFriendsList friends={friends} />
 					</div>
+					<ProfilePosts user_id={userStore.user.id} />
 				</div>
 			</div>
 		);

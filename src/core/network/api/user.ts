@@ -5,6 +5,8 @@ import {
 	GetUserDataRequest,
 	GetUserDataResponse,
 	GetUserFeedResponse,
+	GetUserPostsRequest,
+	GetUserPostsResponse,
 	GetUserProfileRequest,
 	GetUserProfileResponse,
 	SearchUsersRequest,
@@ -26,6 +28,8 @@ const getUserData = (dto?: GetUserDataRequest) => fetchAPI.get<GetUserDataRespon
 
 const getFeed = () => fetchAPI.get<GetUserFeedResponse>(methods.getFeed);
 
+const getPosts = (dto: GetUserPostsRequest) => fetchAPI.get<GetUserPostsResponse>(withQuery(methods.getUserPosts, dto));
+
 const searchUsers = (dto: SearchUsersRequest) => fetchAPI.get<SearchUsersResponse>(withQuery(methods.searchUsers, dto));
 
 const getProfile = (dto?: GetUserProfileRequest) =>
@@ -38,6 +42,7 @@ const updatePhoto = (data: FormData) => fetchAPI.postFormData<UpdatePhotoRespons
 export const userAPI = {
 	getUserData,
 	getFeed,
+	getPosts,
 	searchUsers,
 	getProfile,
 	editProfile,

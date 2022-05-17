@@ -14,6 +14,14 @@ export type GetUserFeedResponse = {
 	posts: PostWrapper[];
 };
 
+export type GetUserPostsRequest = {
+	user_id?: string;
+};
+
+export type GetUserPostsResponse = {
+	posts: PostWrapper[];
+};
+
 export type SearchUsersRequest = {
 	selector: string;
 };
