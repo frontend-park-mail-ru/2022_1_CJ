@@ -5,6 +5,8 @@ import {
 	GetPostResponse,
 	DeletePostRequest,
 	DeletePostResponse,
+	EditPostRequest,
+	EditPostResponse,
 } from "src/core/network/dto/post";
 import { fetchAPI, withQuery } from "src/core/network/api/common";
 
@@ -19,10 +21,13 @@ const createPost = (dto: CreatePostRequest) => fetchAPI.post<CreatePostResponse>
 
 const getPost = (dto: GetPostRequest) => fetchAPI.get<GetPostResponse>(withQuery(methods.getPost, dto));
 
+const editPost = (dto: EditPostRequest) => fetchAPI.put<EditPostResponse>(methods.editPost, dto);
+
 const deletePost = (dto: DeletePostRequest) => fetchAPI.delete<DeletePostResponse>(withQuery(methods.deletePost, dto));
 
 export const postAPI = {
 	createPost,
 	getPost,
+	editPost,
 	deletePost,
 };

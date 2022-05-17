@@ -1,4 +1,4 @@
-import { Post } from "src/core/@types/post";
+import { PostWrapper } from "src/core/@types/post";
 import { BasicResponse } from "src/core/network/dto/common";
 
 export type CreatePostRequest = {
@@ -12,9 +12,15 @@ export type GetPostRequest = {
 	post_id: string;
 };
 
-export type GetPostResponse = {
-	post: Post;
+export type GetPostResponse = PostWrapper;
+
+export type EditPostRequest = {
+	post_id: string;
+	message?: string;
+	images?: string[];
 };
+
+export type EditPostResponse = BasicResponse;
 
 export type DeletePostRequest = {
 	post_id: string;

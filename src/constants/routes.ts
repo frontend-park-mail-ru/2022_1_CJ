@@ -6,12 +6,13 @@ export const Routes = {
 	Logout: "/logout",
 
 	Feed: "/feed",
+	Post: "/p/:post_id",
 
 	Profile: "/u/:user_id",
 	ProfileSettings: "/settings",
 
 	Messenger: "/messenger",
-	Dialog: "/messenger/:dialog_id",
+	Dialog: "/messenger/:dialog_id", // TODO: rename
 	Friends: "/friends",
 
 	Communities: "/communities",

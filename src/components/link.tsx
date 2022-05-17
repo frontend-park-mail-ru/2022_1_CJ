@@ -11,7 +11,7 @@ export const Link: Component = ({ to, children }: { to: string; children: object
 	};
 
 	return (
-		<a className="link d-block" href={to} onClick={handleClick}>
+		<a className="link d-block pointer" href={to} onClick={handleClick}>
 			{children}
 		</a>
 	);
