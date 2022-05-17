@@ -9,7 +9,7 @@ export const Header = () => {
 
 	return (
 		<header className="wrapper primary-header bg-white">
-			<div className="flex flex-r items-center justify-between">
+			<div className="flex flex-r grow items-center justify-between">
 				<a className="fs-lg bold text-shadow text-primary no-decoration" href="/" data-link>
 					CJ
 				</a>
