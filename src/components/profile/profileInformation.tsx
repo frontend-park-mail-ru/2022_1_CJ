@@ -1,5 +1,4 @@
-import { treact, Component, ModalComponent } from "@treact";
-
+import { Component, treact } from "@treact";
 import { UserProfile } from "src/core/@types/user";
 
 export const ProfileInformaiton: Component = ({ profile }: { profile: UserProfile }) => {

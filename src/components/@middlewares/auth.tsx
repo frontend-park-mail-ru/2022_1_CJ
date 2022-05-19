@@ -1,10 +1,9 @@
-import { treact, Component, ModalComponent } from "@treact";
-import { Routes } from "src/constants/routes";
-import { userAPI } from "src/core/network/api/user";
-
-import { UserStatus, useUserStore } from "src/stores/user";
+import { Component, treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 import { Spinner } from "src/components/spinner";
+import { Routes } from "src/constants/routes";
+import { userAPI } from "src/core/network/api/user";
+import { UserStatus, useUserStore } from "src/stores/user";
 
 export enum AuthMiddlewarePolicy {
 	Authorized,

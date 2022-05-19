@@ -1,3 +1,4 @@
+import { fetchAPI, withQuery, ws } from "src/core/network/api/common";
 import {
 	CreateDialogRequest,
 	CreateDialogResponse,
@@ -7,7 +8,6 @@ import {
 	GetDialogResponse,
 	GetDialogsResponse,
 } from "src/core/network/dto/messenger";
-import { fetchAPI, withQuery, ws } from "src/core/network/api/common";
 
 export type WSReducer = {
 	onopen?: WebSocket["onopen"];

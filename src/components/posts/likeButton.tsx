@@ -1,5 +1,4 @@
-import { treact, Component, ModalComponent } from "@treact";
-
+import { Component, treact } from "@treact";
 import { PostWrapper } from "src/core/@types/post";
 import { likeAPI } from "src/core/network/api/like";
 

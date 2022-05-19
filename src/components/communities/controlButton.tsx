@@ -1,5 +1,4 @@
-import { treact, Component, ModalComponent } from "@treact";
-
+import { Component, treact } from "@treact";
 import { Spinner } from "src/components/spinner";
 import { communitiesAPI } from "src/core/network/api/communities";
 

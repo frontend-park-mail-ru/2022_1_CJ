@@ -1,5 +1,4 @@
-import { treact, Component, ModalComponent } from "@treact";
-
+import { Component, treact } from "@treact";
 import { ControlButton } from "src/components/communities/controlButton";
 import { CreateCommunityPost } from "src/components/communities/createPost";
 import { Link } from "src/components/link";

@@ -1,9 +1,9 @@
-import { treact, Component, ModalComponent } from "@treact";
+import { ModalComponent, treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 import { Routes } from "src/constants/routes";
 import { EventWithTarget } from "src/core/@types/event";
-import { postAPI } from "src/core/network/api/post";
 import { Post } from "src/core/@types/post";
+import { postAPI } from "src/core/network/api/post";
 
 export const ModalCreate: ModalComponent = ({ hide }) => {
 	const [message, setMessage] = treact.useState("");

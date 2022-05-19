@@ -1,15 +1,14 @@
-import { treact, Component, ModalComponent } from "@treact";
+import { Component, treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
-
 import { Spinner } from "src/components/spinner";
 import { Routes } from "src/constants/routes";
+import { FileSize } from "src/constants/size";
 import { Community } from "src/core/@types/community";
 import { EventWithTarget } from "src/core/@types/event";
 import { communitiesAPI } from "src/core/network/api/communities";
 import { EditCommunityRequest } from "src/core/network/dto/communities";
-import { useUserStore } from "src/stores/user";
-import { FileSize } from "src/constants/size";
 import { modAlertStore } from "src/stores/alert";
+import { useUserStore } from "src/stores/user";
 
 type profileSettings = {
 	name?: string;

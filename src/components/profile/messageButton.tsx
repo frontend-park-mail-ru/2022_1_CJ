@@ -1,4 +1,4 @@
-import { treact, Component, ModalComponent } from "@treact";
+import { treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 import { Routes, withParameters } from "src/constants/routes";
 import { messengerAPI } from "src/core/network/api/messenger";

@@ -1,12 +1,11 @@
-import { treact, Component, ModalComponent } from "@treact";
+import { Component, treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
-
 import { Routes, withParameters } from "src/constants/routes";
+import { FileSize } from "src/constants/size";
 import { EventWithTarget } from "src/core/@types/event";
+import { UserProfile } from "src/core/@types/user";
 import { userAPI } from "src/core/network/api/user";
 import { EditUserProfileRequest } from "src/core/network/dto/user";
-import { UserProfile } from "src/core/@types/user";
-import { FileSize } from "src/constants/size";
 import { modAlertStore } from "src/stores/alert";
 
 type profileSettings = {

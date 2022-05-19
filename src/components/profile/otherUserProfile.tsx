@@ -1,11 +1,10 @@
-import { treact, Component, ModalComponent } from "@treact";
-
+import { Component, treact } from "@treact";
 import { FriendButton } from "src/components/profile/friendButton";
-import { UserProfile } from "src/core/@types/user";
-import { userAPI } from "src/core/network/api/user";
-import { ProfileInformaiton } from "src/components/profile/profileInformation";
 import { MessageButton } from "src/components/profile/messageButton";
 import { ProfilePosts } from "src/components/profile/posts";
+import { ProfileInformaiton } from "src/components/profile/profileInformation";
+import { UserProfile } from "src/core/@types/user";
+import { userAPI } from "src/core/network/api/user";
 
 export const OtherUserProfileInfo: Component = ({ user_id }: { user_id: string }) => {
 	const [profile, setProfile] = treact.useState(null as UserProfile);

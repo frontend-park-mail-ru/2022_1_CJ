@@ -1,8 +1,7 @@
-import { treact, Component, ModalComponent } from "@treact";
+import { Component, treact } from "@treact";
+import { Header } from "src/components/header";
 import { Menu } from "src/components/menu";
 import { UserStatus, useUserStore } from "src/stores/user";
-
-import { Header } from "src/components/header";
 
 export const Layout: Component = (props) => {
 	const [userStore] = useUserStore();

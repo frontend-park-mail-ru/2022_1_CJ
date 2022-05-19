@@ -1,11 +1,11 @@
-import { treact, Component, ModalComponent } from "@treact";
-import { HelperError } from "src/components/helperError";
+import { treact } from "@treact";
+import { navigateTo } from "src/components/@helpers/router";
 import { ValidatorEmail, ValidatorRequired } from "src/components/@helpers/validators";
-import { authAPi } from "src/core/network/api/auth";
+import { HelperError } from "src/components/helperError";
+import { Link } from "src/components/link";
 import { Routes } from "src/constants/routes";
 import { handleError } from "src/core/modules/error";
-import { navigateTo } from "src/components/@helpers/router";
-import { Link } from "src/components/link";
+import { authAPi } from "src/core/network/api/auth";
 
 type loginForm = {
 	email: string;

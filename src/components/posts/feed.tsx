@@ -1,5 +1,4 @@
-import { treact, Component, ModalComponent } from "@treact";
-
+import { Component, treact } from "@treact";
 import { Post } from "src/components/posts/post";
 import { Spinner } from "src/components/spinner";
 import { PostWrapper } from "src/core/@types/post";

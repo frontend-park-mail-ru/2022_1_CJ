@@ -1,4 +1,4 @@
-import { treact, Component, ModalComponent } from "@treact";
+import { Component, ModalComponent, treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 import { Routes } from "src/constants/routes";
 import { EventWithTarget } from "src/core/@types/event";

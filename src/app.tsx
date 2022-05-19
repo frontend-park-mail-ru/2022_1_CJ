@@ -1,22 +1,21 @@
-import { treact, Component, ModalComponent } from "@treact";
-import { ProfileSettings } from "src/views/profile/profileSettings";
+import { Component, treact } from "@treact";
+import { Alert } from "src/components/@helpers/alert";
 import { Logout } from "src/components/logout";
 import { Route } from "src/components/route";
 import { Router } from "src/components/router";
 import { Routes } from "src/constants/routes";
-import { Base } from "src/views/base";
-import { MessengerDialog } from "src/views/messenger/dialog";
-import { Friends } from "src/views/friends";
 import { Login } from "src/views/auth/login";
+import { Signup } from "src/views/auth/signup";
+import { Base } from "src/views/base";
+import { CommunitiesRegistry } from "src/views/communities/registry";
+import { Friends } from "src/views/friends";
+import { MessengerDialog } from "src/views/messenger/dialog";
 import { Messenger } from "src/views/messenger/messenger";
 import { NotFound } from "src/views/notFound";
-import { Profile } from "src/views/profile/profile";
-import { Signup } from "src/views/auth/signup";
-import { CommunitiesRegistry } from "src/views/communities/registry";
-
-import { Alert } from "src/components/@helpers/alert";
 import { Feed } from "src/views/posts/feed";
 import { Post } from "src/views/posts/post";
+import { Profile } from "src/views/profile/profile";
+import { ProfileSettings } from "src/views/profile/profileSettings";
 
 export const App: Component = () => {
 	return (

@@ -1,13 +1,12 @@
-import { treact, Component, ModalComponent } from "@treact";
+import { Component, treact } from "@treact";
 import { fetchUsers } from "src/components/@helpers/user";
-
+import { CreatePost } from "src/components/posts/createPost";
 import { ProfileFriendsList } from "src/components/profile/friends";
+import { ProfilePosts } from "src/components/profile/posts";
+import { ProfileInformaiton } from "src/components/profile/profileInformation";
 import { User, UserProfile } from "src/core/@types/user";
 import { userAPI } from "src/core/network/api/user";
 import { useUserStore } from "src/stores/user";
-import { ProfileInformaiton } from "src/components/profile/profileInformation";
-import { CreatePost } from "src/components/posts/createPost";
-import { ProfilePosts } from "src/components/profile/posts";
 
 export const CurrentUserProfileInfo: Component = () => {
 	const [userStore] = useUserStore();

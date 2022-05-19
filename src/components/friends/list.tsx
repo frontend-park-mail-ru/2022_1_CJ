@@ -1,11 +1,10 @@
-import { treact, Component, ModalComponent } from "@treact";
+import { Component, treact } from "@treact";
 import { fetchUsers } from "src/components/@helpers/user";
+import { Link } from "src/components/link";
 import { Routes, withParameters } from "src/constants/routes";
 import { EventWithTarget } from "src/core/@types/event";
 import { User } from "src/core/@types/user";
 import { userAPI } from "src/core/network/api/user";
-
-import { Link } from "src/components/link";
 import { updateFriendsState, useUserStore } from "src/stores/user";
 
 type Option = "Friends" | "Incoming requests" | "Outcoming requests" | "Search results";

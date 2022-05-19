@@ -1,5 +1,4 @@
-import { treact, Component, ModalComponent } from "@treact";
-
+import { Component, treact } from "@treact";
 import { CurrentUserProfileInfo } from "src/components/profile/currentUserProfile";
 import { OtherUserProfileInfo } from "src/components/profile/otherUserProfile";
 import { updateFriendsState, useUserStore } from "src/stores/user";

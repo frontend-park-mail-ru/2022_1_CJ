@@ -1,4 +1,4 @@
-import { treact, Component, ModalComponent } from "@treact";
+import { Component, treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 
 export const Link: Component = ({ to, children }: { to: string; children: object }) => {

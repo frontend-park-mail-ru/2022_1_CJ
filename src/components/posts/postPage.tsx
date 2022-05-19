@@ -1,4 +1,4 @@
-import { treact, Component, ModalComponent } from "@treact";
+import { Component, treact } from "@treact";
 import { Post } from "src/components/posts/post";
 import { PostWrapper } from "src/core/@types/post";
 import { postAPI } from "src/core/network/api/post";
