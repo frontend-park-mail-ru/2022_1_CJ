@@ -1,5 +1,5 @@
-import { treact } from "@treact";
-import { Component } from "src/core/treact/models";
+import { treact, Component, ModalComponent } from "@treact";
+
 import { Spinner } from "src/components/spinner";
 import { communitiesAPI } from "src/core/network/api/communities";
 

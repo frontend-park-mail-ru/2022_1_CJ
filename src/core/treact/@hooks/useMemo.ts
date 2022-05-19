@@ -1,4 +1,4 @@
-import { State } from "src/core/treact/models";
+import { State } from "src/core/treact/core/models";
 import { getLastHook, isEqual } from "src/core/treact/@hooks/common";
 
 export const useMemo = <T>(compute: () => T, deps: any[]): T => {

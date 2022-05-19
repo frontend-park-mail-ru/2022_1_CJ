@@ -1,4 +1,4 @@
-import { State } from "src/core/treact/models";
+import { State } from "src/core/treact/core/models";
 import { useEffect } from "src/core/treact/@hooks/useEffect";
 import { StateSetter, useState } from "src/core/treact/@hooks/useState";
 

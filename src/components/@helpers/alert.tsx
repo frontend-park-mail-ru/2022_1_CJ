@@ -1,5 +1,4 @@
-import { treact } from "@treact";
-import { Component } from "src/core/treact/models";
+import { Component, treact } from "@treact";
 import { useAlertStore } from "src/stores/alert";
 import "/src/assets/styles/modules/alert.scss";
 

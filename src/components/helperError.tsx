@@ -1,5 +1,4 @@
-import { treact } from "@treact";
-import { Component } from "src/core/treact/models";
+import { treact, Component, ModalComponent } from "@treact";
 
 export const HelperError: Component = (props) => {
 	const { message } = props;

@@ -23,7 +23,7 @@ export type Fiber = {
 	props: any;
 	alternate?: Fiber;
 	node?: Node;
-	type?: string | Component;
+	type?: keyof JSX.IntrinsicElements | "TEXT_ELEMENT" | Component;
 	action?: FiberAction;
 	parent?: Fiber;
 	child?: Fiber;
@@ -35,11 +35,13 @@ type State = {
 	wipRoot?: Fiber;
 	wipFiber: Fiber;
 	currentRoot: Fiber;
-	nextUnitOfWork?: Fiber;
 	hookIndex: number;
+
 	deletions: Fiber[];
 	cleanups?: (() => void)[];
 	pendingCleanups?: (() => void)[];
+
+	nextUnitOfWork?: Fiber;
 };
 
 export const State = {} as State;

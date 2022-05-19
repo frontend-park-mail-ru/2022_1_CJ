@@ -1,4 +1,4 @@
-import { treact } from "@treact";
+import { treact, Component, ModalComponent } from "@treact";
 
 type AlertLevel = "info" | "warn" | "error";
 

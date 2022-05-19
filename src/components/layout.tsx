@@ -1,7 +1,7 @@
-import { treact } from "@treact";
+import { treact, Component, ModalComponent } from "@treact";
 import { Menu } from "src/components/menu";
 import { UserStatus, useUserStore } from "src/stores/user";
-import { Component } from "src/core/treact/models";
+
 import { Header } from "src/components/header";
 
 export const Layout: Component = (props) => {

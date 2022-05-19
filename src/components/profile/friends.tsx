@@ -1,5 +1,5 @@
-import { treact } from "@treact";
-import { Component } from "src/core/treact/models";
+import { treact, Component, ModalComponent } from "@treact";
+
 import { Link } from "src/components/link";
 import { Routes, withParameters } from "src/constants/routes";
 import { User } from "src/core/@types/user";

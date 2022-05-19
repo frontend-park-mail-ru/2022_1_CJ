@@ -1,5 +1,5 @@
-import { treact } from "@treact";
-import { Component } from "src/core/treact/models";
+import { treact, Component, ModalComponent } from "@treact";
+
 import { ControlButton } from "src/components/communities/controlButton";
 import { CreateCommunityPost } from "src/components/communities/createPost";
 import { Link } from "src/components/link";
@@ -11,7 +11,6 @@ import { PostWrapper } from "src/core/@types/post";
 import { communitiesAPI } from "src/core/network/api/communities";
 import { useUserStore } from "src/stores/user";
 
-// TODO: move buttons to components to avoid wasting
 export const CommunityComponent: Component = ({ community_id }: { community_id: string }) => {
 	const [userStore, modUserStore] = useUserStore();
 	const [community, setCommunity] = treact.useState(null as Community);

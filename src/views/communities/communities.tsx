@@ -1,6 +1,6 @@
-import { treact } from "@treact";
+import { treact, Component, ModalComponent } from "@treact";
 import { AuthMiddleware } from "src/components/@middlewares/auth";
-import { Component } from "src/core/treact/models";
+
 import { CommunitiesList } from "src/components/communities/list";
 import { Layout } from "src/components/layout";
 import { Link } from "src/components/link";

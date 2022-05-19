@@ -1,7 +1,7 @@
-import { treact } from "@treact";
+import { treact, Component, ModalComponent } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 import { decodeEntity } from "src/components/@helpers/utils";
-import { Component } from "src/core/treact/models";
+
 import { PostAuthorComponent } from "src/components/posts/author";
 import { PostLikeButton } from "src/components/posts/likeButton";
 import { Routes, withParameters } from "src/constants/routes";
@@ -11,7 +11,7 @@ import { postAPI } from "src/core/network/api/post";
 import { useUserStore } from "src/stores/user";
 import { DateFromTimestamp } from "src/components/@helpers/date";
 import { Link } from "src/components/link";
-import { EditPost } from "src/components/posts/create";
+import { EditPost } from "src/components/posts/editPost";
 
 export const Post: Component = ({ postWrapper }: { postWrapper: PostWrapper }) => {
 	const [userStore] = useUserStore();

@@ -1,9 +1,8 @@
-import { treact } from "@treact";
+import { treact, Component, ModalComponent } from "@treact";
 import { Post } from "src/components/posts/post";
 import { Spinner } from "src/components/spinner";
 import { PostWrapper } from "src/core/@types/post";
 import { userAPI } from "src/core/network/api/user";
-import { Component } from "src/core/treact/models";
 
 export const ProfilePosts: Component = ({ user_id }: { user_id: string }) => {
 	const [posts, setPosts] = treact.useState(null as PostWrapper[]);

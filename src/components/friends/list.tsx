@@ -1,10 +1,10 @@
-import { treact } from "@treact";
+import { treact, Component, ModalComponent } from "@treact";
 import { fetchUsers } from "src/components/@helpers/user";
 import { Routes, withParameters } from "src/constants/routes";
 import { EventWithTarget } from "src/core/@types/event";
 import { User } from "src/core/@types/user";
 import { userAPI } from "src/core/network/api/user";
-import { Component } from "src/core/treact/models";
+
 import { Link } from "src/components/link";
 import { updateFriendsState, useUserStore } from "src/stores/user";
 

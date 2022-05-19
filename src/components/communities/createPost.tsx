@@ -1,6 +1,5 @@
-import { treact } from "@treact";
+import { treact, Component, ModalComponent } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
-import { Component, ModalComponent } from "src/core/treact/models";
 import { Routes } from "src/constants/routes";
 import { EventWithTarget } from "src/core/@types/event";
 import { communitiesAPI } from "src/core/network/api/communities";

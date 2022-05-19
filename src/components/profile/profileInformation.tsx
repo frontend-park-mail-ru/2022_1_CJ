@@ -1,5 +1,5 @@
-import { treact } from "@treact";
-import { Component } from "src/core/treact/models";
+import { treact, Component, ModalComponent } from "@treact";
+
 import { UserProfile } from "src/core/@types/user";
 
 export const ProfileInformaiton: Component = ({ profile }: { profile: UserProfile }) => {

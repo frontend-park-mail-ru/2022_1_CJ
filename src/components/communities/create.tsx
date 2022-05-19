@@ -1,7 +1,7 @@
-import { treact } from "@treact";
+import { treact, Component, ModalComponent } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 import { ValidatorRequired } from "src/components/@helpers/validators";
-import { Component } from "src/core/treact/models";
+
 import { HelperError } from "src/components/helperError";
 import { Routes } from "src/constants/routes";
 import { communitiesAPI } from "src/core/network/api/communities";

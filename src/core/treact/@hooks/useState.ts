@@ -1,4 +1,4 @@
-import { State } from "src/core/treact/models";
+import { State } from "src/core/treact/core/models";
 import { getLastHook } from "src/core/treact/@hooks/common";
 
 export type SetStateAction<T> = ((prevState: T) => T) | T;

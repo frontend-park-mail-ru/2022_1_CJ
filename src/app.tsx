@@ -1,4 +1,4 @@
-import { treact } from "@treact";
+import { treact, Component, ModalComponent } from "@treact";
 import { ProfileSettings } from "src/views/profile/profileSettings";
 import { Logout } from "src/components/logout";
 import { Route } from "src/components/route";
@@ -13,7 +13,7 @@ import { NotFound } from "src/views/notFound";
 import { Profile } from "src/views/profile/profile";
 import { Signup } from "src/views/auth/signup";
 import { CommunitiesRegistry } from "src/views/communities/registry";
-import { Component } from "src/core/treact/models";
+
 import { Alert } from "src/components/@helpers/alert";
 import { Feed } from "src/views/posts/feed";
 import { Post } from "src/views/posts/post";

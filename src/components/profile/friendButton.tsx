@@ -1,5 +1,5 @@
-import { treact } from "@treact";
-import { Component } from "src/core/treact/models";
+import { treact, Component, ModalComponent } from "@treact";
+
 import { friendsAPI } from "src/core/network/api/friends";
 import { updateFriendsState, useUserStore } from "src/stores/user";
 

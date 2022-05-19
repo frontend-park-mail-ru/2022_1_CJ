@@ -1,4 +1,4 @@
-import { treact } from "@treact";
+import { treact, Component, ModalComponent } from "@treact";
 import { HelperError } from "src/components/helperError";
 import { ValidatorEmail, ValidatorRequired } from "src/components/@helpers/validators";
 import { authAPi } from "src/core/network/api/auth";

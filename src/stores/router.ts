@@ -1,4 +1,4 @@
-import { treact } from "@treact";
+import { treact, Component, ModalComponent } from "@treact";
 import { pathToRoute } from "src/components/@helpers/router";
 import { Routes } from "src/constants/routes";
 

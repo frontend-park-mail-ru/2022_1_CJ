@@ -1,4 +1,4 @@
-import { treact } from "@treact";
+import { treact, Component, ModalComponent } from "@treact";
 import { App } from "src/app";
 import "./assets/styles/index.scss";
 

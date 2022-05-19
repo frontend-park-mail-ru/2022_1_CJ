@@ -1,7 +1,6 @@
-import { treact } from "@treact";
+import { treact, Component, ModalComponent } from "@treact";
 import { pathToRoute } from "src/components/@helpers/router";
 import { useRouterStore } from "src/stores/router";
-import { Component } from "src/core/treact/models";
 
 export const Router: Component = (props) => {
 	const [_, modRouterStore] = useRouterStore();

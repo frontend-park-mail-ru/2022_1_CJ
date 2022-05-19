@@ -12,7 +12,7 @@ export const Routes = {
 	ProfileSettings: "/settings",
 
 	Messenger: "/messenger",
-	Dialog: "/messenger/:dialog_id", // TODO: rename
+	Dialog: "/messenger/:dialog_id",
 	Friends: "/friends",
 
 	Communities: "/communities",
