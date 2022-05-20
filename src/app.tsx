@@ -12,6 +12,7 @@ import { Friends } from "src/views/friends";
 import { MessengerDialog } from "src/views/messenger/dialog";
 import { Messenger } from "src/views/messenger/messenger";
 import { NotFound } from "src/views/notFound";
+import { Offline } from "src/views/offline";
 import { Feed } from "src/views/posts/feed";
 import { Post } from "src/views/posts/post";
 import { Profile } from "src/views/profile/profile";
@@ -20,7 +21,7 @@ import { ProfileSettings } from "src/views/profile/profileSettings";
 export const App: Component = () => {
 	return (
 		<>
-			<Router routes={Object.values(Routes)}>
+			<Router>
 				<Route to={Routes.Base} component={Base} />
 				<Route to={Routes.Signup} component={Signup} />
 				<Route to={Routes.Login} component={Login} />
@@ -39,6 +40,8 @@ export const App: Component = () => {
 				<CommunitiesRegistry />
 
 				<Route to="" component={NotFound} />
+
+				<Route to={Routes.Offline} component={Offline} />
 			</Router>
 			<Alert />
 		</>

@@ -23,7 +23,7 @@ export const getParams = (route: string, path: string = window.location.pathname
 	return Object.fromEntries(mapping);
 };
 
-const triggerRoute = () => {
+export const triggerRoute = () => {
 	const event = new Event("popstate");
 	window.dispatchEvent(event);
 };

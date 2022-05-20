@@ -1,5 +1,5 @@
-import { State } from "src/core/treact/core/models";
 import { getLastHook, isEqual } from "src/core/treact/@hooks/common";
+import { State } from "src/core/treact/core/models";
 
 export const useEffect = (callback: () => any, deps: any[]) => {
 	const lastHook = getLastHook();

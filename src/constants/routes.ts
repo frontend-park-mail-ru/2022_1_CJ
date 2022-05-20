@@ -19,6 +19,8 @@ export const Routes = {
 	CommunityCreate: "/community_create",
 	Community: "/community/:community_id",
 	CommunitySettings: "/community/:community_id/settings",
+
+	Offline: "/offline",
 };
 
 export const withParameters = (route: string, parameters: object) =>
