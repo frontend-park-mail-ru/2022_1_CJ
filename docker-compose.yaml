@@ -6,11 +6,11 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./dist:/var/www/web:ro
-      - ./src/assets/static:/var/www/web/static:ro
-      - ./nginx/conf/:/etc/nginx/conf.d:ro
-      - ./certbot/www:/var/www/certbot:ro
-      - ./certbot/conf:/etc/letsencrypt:ro
+      - ./dist:/var/www/web
+      - ./src/assets/static:/var/www/web/static
+      - ./nginx/conf/:/etc/nginx/conf.d
+      - ./certbot/www:/var/www/certbot
+      - ./certbot/conf:/etc/letsencrypt
 
   certbot:
     image: certbot/certbot:latest
