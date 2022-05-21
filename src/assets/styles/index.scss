@@ -93,6 +93,19 @@ select {
 	margin: 0 clamp(0.5rem, calc(-4.18rem + 23.41vw), 12.5rem);
 }
 
+.wrapper-content {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	overflow: auto;
+}
+
+@media only screen and (hover: none) and (pointer: coarse) {
+	.wrapper-content {
+		flex-direction: column-reverse;
+	}
+}
+
 a:not([class]) {
 	text-decoration-skip-ink: auto;
 }

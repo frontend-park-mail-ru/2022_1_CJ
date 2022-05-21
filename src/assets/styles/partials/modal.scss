@@ -7,6 +7,6 @@
 	background-color: rgba(0, 0, 0, 0.5);
 
 	& > * {
-		width: 32%;
+		width: clamp(35%, 75vw, 75% - 30vw);
 	}
 }

@@ -1,0 +1,11 @@
+.menu {
+	display: flex;
+	flex-direction: column;
+}
+
+@media only screen and (hover: none) and (pointer: coarse) {
+	.menu {
+		flex-direction: row;
+		justify-content: space-between;
+	}
+}

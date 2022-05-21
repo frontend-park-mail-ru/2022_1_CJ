@@ -28,3 +28,4 @@
 10. https://piccalil.li/blog/a-modern-css-reset
 11. https://observablehq.com/@saneef/fluid-typography-css-clamp-value-generator
 12. https://www.30secondsofcode.org/
+13. https://pentacent.medium.com/nginx-and-lets-encrypt-with-docker-in-less-than-5-minutes-b4b8a60d3a71

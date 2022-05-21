@@ -92,7 +92,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 		};
 
 		return (
-			<div className="flex flex-c justify-between d-middle" style="width: min(100%, 40rem);">
+			<div className="flex flex-c grow overflow justify-between d-middle" style="width: min(100%, 40rem);">
 				<p className="d-middle bg-white pd-4 border-sm">{chatName()}</p>
 				<div className="dialog flex flex-cr grow overflow">{messages.map(mapMessage)}</div>
 				<div className="flex flex-c">

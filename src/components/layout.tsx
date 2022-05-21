@@ -9,7 +9,7 @@ export const Layout: Component = (props) => {
 		<div className="content">
 			<Header />
 			<div className="wrapper">
-				<div className="flex flex-r mt-8 mb-8 grow" style="gap: 2rem">
+				<div className="wrapper-content mt-8 mb-8 grow" style="gap: 4vw">
 					{userStore.status === UserStatus.Authorized && <Menu />}
 					{props.children}
 				</div>
