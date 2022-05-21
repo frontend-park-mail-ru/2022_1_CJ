@@ -30,7 +30,9 @@ const headers = {
 };
 
 export const withQuery = (url: string, dto: object = {}) => {
-	const data = Object.entries(dto).filter(([, value]) => value.length > 0);
+	const data = Object.entries(dto)
+		.map(([key, value]) => [key, String(value)])
+		.filter(([, value]) => value.length > 0);
 	if (data.length > 0) {
 		const query = data.map(([key, value]) => `${key}=${value}`).join("&");
 		const prefix = url.includes("?") ? "&" : "?";

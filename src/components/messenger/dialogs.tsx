@@ -11,13 +11,10 @@ export const Dialogs: Component = () => {
 	}, []);
 
 	const map = (dialog: Dialog) => (
-		<Link to={withParameters(Routes.Dialog, { dialog_id: dialog.dialog_id })}>{dialog.name}</Link>
-	);
-
-	return (
-		<div className="flex flex-c">
-			<p>Dialogs:</p>
-			{dialogs.map(map)}
+		<div className="bg-white border-sm pd-4">
+			<Link to={withParameters(Routes.Dialog, { dialog_id: dialog.dialog_id })}>{dialog.name}</Link>
 		</div>
 	);
+
+	return <div className="flex flex-c grow items-center">{dialogs.length > 0 ? dialogs.map(map) : "Yet no chats"}</div>;
 };

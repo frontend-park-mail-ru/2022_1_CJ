@@ -3,7 +3,9 @@ import { DateFromTimestamp } from "src/components/@helpers/date";
 import { UserProfileLink } from "src/components/@helpers/links";
 import { fetchUsers } from "src/components/@helpers/user";
 import { decodeEntity } from "src/components/@helpers/utils";
+import { Link } from "src/components/link";
 import { Spinner } from "src/components/spinner";
+import { Routes, withParameters } from "src/constants/routes";
 import { Dialog, Message } from "src/core/@types/dialog";
 import { EventWithTarget } from "src/core/@types/event";
 import { User } from "src/core/@types/user";
@@ -82,9 +84,16 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 			}
 		};
 
+		const chatName = () => {
+			if (dialog.participants.length === 1) {
+				return <Link to={withParameters(Routes.Profile, { user_id: dialog.participants[0] })}>{dialog.name}</Link>;
+			}
+			return dialog.name;
+		};
+
 		return (
 			<div className="flex flex-c justify-between d-middle" style="width: min(100%, 40rem);">
-				<p className="d-middle bg-white pd-4 border-sm">{dialog.name}</p>
+				<p className="d-middle bg-white pd-4 border-sm">{chatName()}</p>
 				<div className="dialog flex flex-cr grow overflow">{messages.map(mapMessage)}</div>
 				<div className="flex flex-c">
 					<div className="helper helper-hint pd-1">Send with [shift + enter]</div>
