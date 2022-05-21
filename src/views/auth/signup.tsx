@@ -1,8 +1,7 @@
-import { treact, Component, ModalComponent } from "@treact";
+import { Component, treact } from "@treact";
 import { AuthMiddleware, AuthMiddlewarePolicy } from "src/components/@middlewares/auth";
-
-import { Layout } from "src/components/layout";
 import { SignupForm } from "src/components/auth/signupForm";
+import { Layout } from "src/components/layout";
 
 export const Signup: Component = () => {
 	return (

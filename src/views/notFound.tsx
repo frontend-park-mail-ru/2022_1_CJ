@@ -1,5 +1,4 @@
-import { treact, Component, ModalComponent } from "@treact";
-
+import { Component, treact } from "@treact";
 import { Layout } from "src/components/layout";
 
 export const NotFound: Component = () => {

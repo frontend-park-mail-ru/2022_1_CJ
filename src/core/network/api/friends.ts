@@ -1,8 +1,10 @@
+import { fetchAPI, withQuery } from "src/core/network/api/common";
 import {
 	AcceptFriendRequestRequest,
 	AcceptFriendRequestResponse,
 	DeleteFriendRequest,
 	DeleteFriendResponse,
+	GetFriendsRequest,
 	GetFriendsResponse,
 	GetIncomingRequestsResponse,
 	GetOutcomingRequestsResponse,
@@ -11,7 +13,6 @@ import {
 	SendFriendRequestRequest,
 	SendFriendRequestResponse,
 } from "src/core/network/dto/friends";
-import { fetchAPI, withQuery } from "src/core/network/api/common";
 
 const methods = {
 	sendRequest: "/api/friends/request/send",
@@ -32,7 +33,7 @@ const revokeRequest = (dto: RevokeFriendRequestRequest) =>
 const acceptRequest = (dto: AcceptFriendRequestRequest) =>
 	fetchAPI.post<AcceptFriendRequestResponse>(methods.acceptRequest, dto);
 
-const getFriends = () => fetchAPI.get<GetFriendsResponse>(methods.getFriends);
+const getFriends = (dto: GetFriendsRequest) => fetchAPI.get<GetFriendsResponse>(withQuery(methods.getFriends, dto));
 
 const deleteFriend = (dto: DeleteFriendRequest) =>
 	fetchAPI.delete<DeleteFriendResponse>(withQuery(methods.deleteFriend, dto));

@@ -1,15 +1,14 @@
-import { treact, Component, ModalComponent } from "@treact";
+import { Component, treact } from "@treact";
+import { DateFromTimestamp } from "src/components/@helpers/date";
+import { UserProfileLink } from "src/components/@helpers/links";
+import { fetchUsers } from "src/components/@helpers/user";
+import { decodeEntity } from "src/components/@helpers/utils";
+import { Spinner } from "src/components/spinner";
 import { Dialog, Message } from "src/core/@types/dialog";
 import { EventWithTarget } from "src/core/@types/event";
-import { messengerAPI, WSReducer } from "src/core/network/api/messenger";
-import { Spinner } from "src/components/spinner";
-import { decodeEntity } from "src/components/@helpers/utils";
 import { User } from "src/core/@types/user";
-import { fetchUsers } from "src/components/@helpers/user";
-import { UserProfileLink } from "src/components/@helpers/links";
+import { messengerAPI, WSReducer } from "src/core/network/api/messenger";
 import { useUserStore } from "src/stores/user";
-
-import { DateFromTimestamp } from "src/components/@helpers/date";
 
 export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string }) => {
 	const [userStore] = useUserStore();

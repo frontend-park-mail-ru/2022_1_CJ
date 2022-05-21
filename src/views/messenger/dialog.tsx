@@ -1,7 +1,6 @@
-import { treact, Component, ModalComponent } from "@treact";
+import { Component, treact } from "@treact";
 import { getParams } from "src/components/@helpers/router";
 import { AuthMiddleware } from "src/components/@middlewares/auth";
-
 import { Layout } from "src/components/layout";
 import { DialogComponent } from "src/components/messenger/dialog";
 import { Routes } from "src/constants/routes";

@@ -3,7 +3,7 @@ import { fetchUsers } from "src/components/@helpers/user";
 import { CreatePost } from "src/components/posts/createPost";
 import { ProfileFriendsList } from "src/components/profile/friends";
 import { ProfilePosts } from "src/components/profile/posts";
-import { ProfileInformaiton } from "src/components/profile/profileInformation";
+import { ProfileInformaitonComponent, ProfileInformation } from "src/components/profile/profileInformation";
 import { User, UserProfile } from "src/core/@types/user";
 import { userAPI } from "src/core/network/api/user";
 import { useUserStore } from "src/stores/user";
@@ -21,9 +21,14 @@ export const CurrentUserProfileInfo: Component = () => {
 	}, [userStore]);
 
 	if (profile && friends) {
+		const profileInformation: ProfileInformation = {
+			...profile,
+			AmountOfFriends: friends.length,
+		};
+
 		return (
 			<div className="flex flex-c grow items-center items-stretch">
-				<ProfileInformaiton profile={profile} />
+				<ProfileInformaitonComponent profileInformation={profileInformation} />
 				<div className="flex flex-r">
 					<div style="width: 15vw;" className="flex flex-c">
 						<CreatePost />

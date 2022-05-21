@@ -1,4 +1,4 @@
-import { treact, Component, ModalComponent } from "@treact";
+import { treact } from "@treact";
 import { CommunityShort } from "src/core/@types/community";
 import { User } from "src/core/@types/user";
 import { friendsAPI } from "src/core/network/api/friends";

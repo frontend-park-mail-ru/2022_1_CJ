@@ -1,5 +1,5 @@
-import { commitRoot, updateComponent } from "src/core/treact/core/reconciliation";
 import { Fiber, State } from "src/core/treact/core/models";
+import { commitRoot, updateComponent } from "src/core/treact/core/reconciliation";
 
 const nextUnitOfWork = (fiber: Fiber) => {
 	while (fiber) {

@@ -1,8 +1,7 @@
-import { treact, Component, ModalComponent } from "@treact";
+import { Component, treact } from "@treact";
+import { Link } from "src/components/link";
 import { Routes, withParameters } from "src/constants/routes";
 import { useUserStore } from "src/stores/user";
-
-import { Link } from "src/components/link";
 
 export const Menu: Component = () => {
 	const [userStore] = useUserStore();

@@ -1,14 +1,14 @@
+import { fetchAPI, withQuery } from "src/core/network/api/common";
 import {
 	CreatePostRequest,
 	CreatePostResponse,
-	GetPostRequest,
-	GetPostResponse,
 	DeletePostRequest,
 	DeletePostResponse,
 	EditPostRequest,
 	EditPostResponse,
+	GetPostRequest,
+	GetPostResponse,
 } from "src/core/network/dto/post";
-import { fetchAPI, withQuery } from "src/core/network/api/common";
 
 const methods = {
 	createPost: "/api/post/create",

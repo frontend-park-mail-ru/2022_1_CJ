@@ -1,10 +1,10 @@
-import { render, createElement, createFragmentElement } from "src/core/treact/core/jsx";
+import { useCallback } from "src/core/treact/@hooks/useCallback";
 import { useEffect } from "src/core/treact/@hooks/useEffect";
+import { useForm } from "src/core/treact/@hooks/useForm";
 import { useMemo } from "src/core/treact/@hooks/useMemo";
 import { useState } from "src/core/treact/@hooks/useState";
 import { createStore } from "src/core/treact/@hooks/useStore";
-import { useCallback } from "src/core/treact/@hooks/useCallback";
-import { useForm } from "src/core/treact/@hooks/useForm";
+import { createElement, createFragmentElement, render } from "src/core/treact/core/jsx";
 
 export const treact = {
 	render,

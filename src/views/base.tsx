@@ -1,6 +1,5 @@
-import { treact, Component, ModalComponent } from "@treact";
+import { Component, treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
-
 import { Routes } from "src/constants/routes";
 import { userAPI } from "src/core/network/api/user";
 import { UserStatus, useUserStore } from "src/stores/user";

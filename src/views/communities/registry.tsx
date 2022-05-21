@@ -1,5 +1,4 @@
-import { treact, Component, ModalComponent } from "@treact";
-
+import { Component, treact } from "@treact";
 import { Route } from "src/components/route";
 import { Routes } from "src/constants/routes";
 import { Communities } from "src/views/communities/communities";
