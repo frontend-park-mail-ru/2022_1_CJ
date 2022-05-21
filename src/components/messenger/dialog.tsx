@@ -1,6 +1,7 @@
 import { Component, treact } from "@treact";
 import { DateFromTimestamp } from "src/components/@helpers/date";
 import { UserProfileLink } from "src/components/@helpers/links";
+import { isMobile } from "src/components/@helpers/mobile";
 import { fetchUsers } from "src/components/@helpers/user";
 import { decodeEntity } from "src/components/@helpers/utils";
 import { Link } from "src/components/link";
@@ -71,19 +72,6 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 			);
 		};
 
-		const sendMessage = (event: EventWithTarget<HTMLInputElement, KeyboardEvent>) => {
-			if (event.key === "Enter") {
-				const body = event.target.innerText.trim();
-				if (body.length === 0) {
-					event.preventDefault();
-				} else if (event.shiftKey) {
-					event.preventDefault();
-					event.target.innerText = "";
-					socket.send(JSON.stringify({ dialog_id, body, event: "send" }));
-				}
-			}
-		};
-
 		const chatName = () => {
 			if (dialog.participants.length === 1) {
 				return <Link to={withParameters(Routes.Profile, { user_id: dialog.participants[0] })}>{dialog.name}</Link>;
@@ -91,14 +79,66 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 			return dialog.name;
 		};
 
+		const chatInput = () => {
+			const sendMessageButton = () => {
+				const messageContainer = document.getElementById("message");
+				const body = messageContainer.innerText.trim();
+				if (body.length > 0) {
+					messageContainer.innerText = "";
+					socket.send(JSON.stringify({ dialog_id, body, event: "send" }));
+				}
+			};
+
+			if (isMobile()) {
+				return (
+					<div className="flex flex-c">
+						<div className="flex" style="gap: 0;">
+							<div id="message" className="grow bg-white break-word" style="max-height: 8rem;" contentEditable />
+							<button onClick={sendMessageButton} className="btn btn-white border">
+								send
+							</button>
+						</div>
+					</div>
+				);
+			}
+
+			const sendMessage = (event: EventWithTarget<HTMLInputElement, KeyboardEvent>) => {
+				if (event.key === "Enter") {
+					const body = event.target.innerText.trim();
+					if (body.length === 0) {
+						event.preventDefault();
+					} else if (event.shiftKey) {
+						event.preventDefault();
+						event.target.innerText = "";
+						socket.send(JSON.stringify({ dialog_id, body, event: "send" }));
+					}
+				}
+			};
+
+			return (
+				<div className="flex flex-c">
+					<div className="helper helper-hint pd-1">Send with [shift + enter]</div>
+					<div className="flex" style="gap: 0;">
+						<div
+							id="message"
+							onKeyDown={sendMessage}
+							className="grow bg-white break-word"
+							style="max-height: 8rem;"
+							contentEditable
+						/>
+						<button onClick={sendMessageButton} className="btn btn-white border">
+							send
+						</button>
+					</div>
+				</div>
+			);
+		};
+
 		return (
 			<div className="flex flex-c grow overflow justify-between d-middle" style="width: min(100%, 40rem);">
 				<p className="d-middle bg-white pd-4 border-sm">{chatName()}</p>
 				<div className="dialog flex flex-cr grow overflow">{messages.map(mapMessage)}</div>
-				<div className="flex flex-c">
-					<div className="helper helper-hint pd-1">Send with [shift + enter]</div>
-					<div onKeyDown={sendMessage} className="grow bg-white break-word" style="max-height: 8rem;" contentEditable />
-				</div>
+				{chatInput()}
 			</div>
 		);
 	}

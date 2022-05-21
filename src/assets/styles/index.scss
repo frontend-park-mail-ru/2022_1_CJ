@@ -134,3 +134,9 @@ hr {
 	height: 1px;
 	background-color: var(--clr-border);
 }
+
+@media only screen and (hover: none) and (pointer: coarse) {
+	#mobile {
+		display: none;
+	}
+}
