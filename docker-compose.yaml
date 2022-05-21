@@ -1,6 +1,6 @@
 version: '3.9'
 services:
-  frontend:
+  nginx:
     image: nginx:latest
     ports:
       - "80:80"
