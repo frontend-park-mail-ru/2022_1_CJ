@@ -1,4 +1,4 @@
-import { treact, Component, ModalComponent } from "@treact";
+import { Component, treact } from "@treact";
 import { fromTimestamp } from "src/components/@helpers/time";
 
 export const DateFromTimestamp: Component = ({ timestamp }: { timestamp: number }) => {

@@ -1,6 +1,5 @@
-import { treact, Component, ModalComponent } from "@treact";
+import { Component, treact } from "@treact";
 import { PostAuthorLink } from "src/components/@helpers/links";
-
 import { PostAuthor } from "src/core/@types/post";
 
 export const PostAuthorComponent: Component = ({ author }: { author: PostAuthor }) => {

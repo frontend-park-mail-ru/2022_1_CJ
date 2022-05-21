@@ -1,4 +1,4 @@
-import { treact, Component, ModalComponent } from "@treact";
+import { Component, treact } from "@treact";
 import { ModalCreate } from "src/components/posts/modal";
 
 export const CreatePost: Component = () => {

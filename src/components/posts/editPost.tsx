@@ -1,5 +1,4 @@
-import { treact, Component, ModalComponent } from "@treact";
-
+import { Component, treact } from "@treact";
 import { ModalEdit } from "src/components/posts/modal";
 import { Post } from "src/core/@types/post";
 
