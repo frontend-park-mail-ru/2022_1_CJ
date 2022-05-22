@@ -34,7 +34,8 @@ const getDialogIDByUserID = (dto: GetDialogIDByUserIDRequest) =>
 	fetchAPI.get<GetDialogIDByUserIDResponse>(withQuery(methods.getDialogIDByUserID, dto));
 
 const openWSConnection = (reducer: WSReducer) => {
-	const socket = ws(`ws://${location.hostname}/api/messenger/ws`);
+	const scheme = location.protocol === "https:" ? "wss" : "ws";
+	const socket = ws(`${scheme}://${location.hostname}/api/messenger/ws`);
 
 	socket.onopen = reducer.onopen;
 	socket.onmessage = reducer.onmessage;
