@@ -64,7 +64,9 @@ select {
 #root {
 	@extend .fs-md;
 
-	height: 100vh;
+	position: fixed;
+	height: 100%;
+
 	display: flex;
 	color: var(--clr-text);
 	background-color: var(--clr-bg);
