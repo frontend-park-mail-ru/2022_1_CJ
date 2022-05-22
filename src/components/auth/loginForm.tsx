@@ -1,6 +1,7 @@
 import { treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 import { ValidatorEmail, ValidatorRequired } from "src/components/@helpers/validators";
+import { Description } from "src/components/auth/description";
 import { HelperError } from "src/components/helperError";
 import { Link } from "src/components/link";
 import { Routes } from "src/constants/routes";
@@ -31,38 +32,41 @@ export const LoginForm = () => {
 	});
 
 	return (
-		<form className="form flow border-sm" style="--flow-space: 1.5rem;" onSubmit={handleSubmit}>
-			<div>
-				<span>
-					<input
-						type="text"
-						className="input-field"
-						placeholder="Email"
-						value={data.email}
-						onChange={handleChange("email")}
-					/>
-					{errors.email && <HelperError message={errors.email} />}
-				</span>
-			</div>
-			<div>
-				<span>
-					<input
-						id="password"
-						type="password"
-						className="input-field"
-						placeholder="Password"
-						value={data.password}
-						onChange={handleChange("password")}
-					/>
-					{errors.password && <HelperError message={errors.password} />}
-				</span>
-			</div>
-			<div className="flex flex-r items-center">
-				<button className="btn btn-primary" type="submit">
-					Sign in
-				</button>
-				<Link to={Routes.Signup}>Don't have an account?</Link>
-			</div>
-		</form>
+		<div className="flex grow items-center">
+			<form className="form flow border-sm" style="--flow-space: 1.5rem;" onSubmit={handleSubmit}>
+				<Description />
+				<div>
+					<span>
+						<input
+							type="text"
+							className="input-field"
+							placeholder="Email"
+							value={data.email}
+							onChange={handleChange("email")}
+						/>
+						{errors.email && <HelperError message={errors.email} />}
+					</span>
+				</div>
+				<div>
+					<span>
+						<input
+							id="password"
+							type="password"
+							className="input-field"
+							placeholder="Password"
+							value={data.password}
+							onChange={handleChange("password")}
+						/>
+						{errors.password && <HelperError message={errors.password} />}
+					</span>
+				</div>
+				<div className="flex flex-r items-center">
+					<button className="btn btn-primary" type="submit">
+						Sign in
+					</button>
+					<Link to={Routes.Signup}>Don't have an account?</Link>
+				</div>
+			</form>
+		</div>
 	);
 };

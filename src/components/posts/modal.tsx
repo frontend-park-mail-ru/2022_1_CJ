@@ -29,7 +29,7 @@ export const ModalCreate: ModalComponent = ({ hide }) => {
 
 	return (
 		<div className="modal flex items-center">
-			<div className="flex flex-c d-middle bg-white pd-8 border-sm">
+			<div className="flex flex-c d-middle bg-white pd-8 border-sm" style="width: clamp(15rem, 75%, 30rem);">
 				<span className="cross" onClick={hide} />
 				<div onKeyUp={handleChange} contentEditable style="max-height: 33vh;" />
 				<button onClick={post} className="btn btn-primary d-middle">
@@ -64,7 +64,7 @@ export const ModalEdit: ModalComponent = ({ hide, post }: { post: Post; hide: ()
 
 	return (
 		<div className="modal flex items-center">
-			<div className="flex flex-c d-middle bg-white pd-8 border-sm">
+			<div className="flex flex-c d-middle bg-white pd-8 border-sm" style="width: clamp(15rem, 75%, 30rem);">
 				<span className="cross" onClick={hide} />
 				<div onKeyUp={handleChange} contentEditable style="max-height: 33vh;">
 					{post.message}
