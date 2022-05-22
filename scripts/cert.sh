@@ -1,6 +1,6 @@
 #!/bin/bash
 
-domains=(cj.senago.software)
+domains=(senago.software)
 rsa_key_size=4096
 data_path="./certbot"
 email="" # Adding a valid address is strongly recommended
