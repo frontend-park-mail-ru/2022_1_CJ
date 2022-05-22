@@ -99,13 +99,13 @@ select {
 .wrapper-content {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
 	overflow: auto;
 }
 
 @media only screen and (hover: none) and (pointer: coarse) {
 	.wrapper-content {
 		flex-direction: column-reverse;
+		justify-content: space-between;
 	}
 }
 
