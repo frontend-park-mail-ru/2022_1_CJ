@@ -67,7 +67,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 						<UserProfileLink user={author} />
 						<DateFromTimestamp timestamp={message.created_at} />
 					</span>
-					<p className="flex break-word">{decodeEntity(message.body)}</p>
+					<p className="break-word pre-wrap">{decodeEntity(message.body)}</p>
 				</div>
 			);
 		};

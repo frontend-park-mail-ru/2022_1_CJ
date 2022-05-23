@@ -61,7 +61,7 @@ export const Post: Component = ({ postWrapper }: { postWrapper: PostWrapper }) =
 					<DateFromTimestamp timestamp={post.created_at} />
 				</Link>
 			</div>
-			<p className="break-word">{decodeEntity(post.message)}</p>
+			<p className="break-word pre-wrap">{decodeEntity(post.message)}</p>
 			<div className="flex flex-r">
 				<PostLikeButton postWrapper={postWrapper} />
 				{deleteButton()}
