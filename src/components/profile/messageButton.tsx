@@ -20,7 +20,7 @@ export const MessageButton = ({ user_id }: { user_id: string }) => {
 
 	return (
 		<button onClick={writeMessage} className="btn btn-secondary">
-			Write message
+			Write
 		</button>
 	);
 };

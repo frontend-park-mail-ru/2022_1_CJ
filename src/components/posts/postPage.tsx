@@ -7,7 +7,7 @@ import { getComments } from "src/core/network/api/comments/get";
 import { postAPI } from "src/core/network/api/post";
 
 export const PostPage: Component = ({ post_id }: { post_id: string }) => {
-	const [post, setPost] = treact.useState(null as PostWrapper);
+	const [postWrapper, setPostWrapper] = treact.useState(null as PostWrapper);
 	const [comments, setComments] = treact.useState(null as Post[]);
 
 	const fetchComments = () => {
@@ -15,11 +15,11 @@ export const PostPage: Component = ({ post_id }: { post_id: string }) => {
 	};
 
 	treact.useEffect(() => {
-		postAPI.getPost({ post_id }).then(setPost);
+		postAPI.getPost({ post_id }).then(setPostWrapper);
 		fetchComments();
 	}, []);
 
-	if (!post || !comments) {
+	if (!postWrapper || !comments) {
 		return null;
 	}
 
@@ -28,22 +28,37 @@ export const PostPage: Component = ({ post_id }: { post_id: string }) => {
 		const message = input.innerText;
 		if (message.length > 0) {
 			input.innerText = "";
-			createComment({ post_id, message }).then(fetchComments);
+			createComment({ post_id, message }).then(() => {
+				fetchComments();
+				postAPI.getPost({ post_id }).then(setPostWrapper);
+			});
 		}
 	};
 
+	const showComments = () => {
+		if (comments.length > 0) {
+			return (
+				<div className="dialog flex flex-c grow overflow">
+					<p className="text-center text-light">{postWrapper.post.count_comments} comments</p>
+					{comments.map((comment) => (
+						<CommentComponent post_id={post_id} comment={comment} />
+					))}
+				</div>
+			);
+		}
+		return <p className="text-center text-light">Yet no comments</p>;
+	};
+
 	return (
-		<div className="flex flex-c d-middle">
-			<PostComponent postWrapper={post} />
+		<div className="flex flex-c overflow d-middle">
+			<PostComponent postWrapper={postWrapper} />
 			<div className="flex" style="gap: 0;">
 				<div id="comment" className="grow bg-white break-word" style="max-height: 5rem;" contentEditable />
 				<button onClick={postComment} className="btn btn-white border">
 					send
 				</button>
 			</div>
-			{comments.map((comment) => (
-				<CommentComponent post_id={post_id} comment={comment} />
-			))}
+			{showComments()}
 		</div>
 	);
 };

@@ -2,7 +2,7 @@ import { Component, treact } from "@treact";
 import { DateFromTimestamp } from "src/components/@helpers/date";
 import { navigateTo } from "src/components/@helpers/router";
 import { decodeEntity } from "src/components/@helpers/utils";
-import { Link } from "src/components/link";
+import { Navigate } from "src/components/link";
 import { PostAuthorComponent } from "src/components/posts/author";
 import { EditPost } from "src/components/posts/editPost";
 import { PostLikeButton } from "src/components/posts/likeButton";
@@ -53,14 +53,16 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 	};
 
 	return (
-		<div className="flow bg-white pd-8 border-sm" style="max-width: 75ch;">
+		<div className="flow d-middle bg-white pd-8 border-sm" style="max-width: min(75%, 75ch);">
 			<div className="flex flex-r items-center">
 				<PostAuthorComponent author={post.author} />
-				<Link to={withParameters(Routes.Post, { post_id: post.id })}>
+				<Navigate to={withParameters(Routes.Post, { post_id: post.id })}>
 					<DateFromTimestamp timestamp={post.created_at} />
-				</Link>
+				</Navigate>
 			</div>
-			<p className="break-word pre-wrap">{decodeEntity(post.message)}</p>
+			<Navigate to={withParameters(Routes.Post, { post_id: post.id })}>
+				<p className="break-word pre-wrap">{decodeEntity(post.message)}</p>
+			</Navigate>
 			<div className="flex flex-r">
 				<PostLikeButton postWrapper={postWrapper} />
 				{deleteButton()}

@@ -18,6 +18,7 @@ export type Post = {
 	message: string;
 	images: string[];
 	created_at: number;
+	count_comments: number;
 };
 
 export type PostWrapper = {

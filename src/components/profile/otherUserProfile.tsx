@@ -29,9 +29,11 @@ export const OtherUserProfileInfo: Component = ({ user_id }: { user_id: string }
 			<div className="flex flex-c grow items-center items-stretch">
 				<ProfileInformaitonComponent profileInformation={profileInformation} />
 				<div className="flex flex-r">
-					<div style="width: 15vw;" className="flex flex-c items-center">
-						<FriendButton user_id={user_id} />
-						<MessageButton user_id={user_id} />
+					<div style="width: fit-content;" className="flex flex-c items-center">
+						<div className="flex flex-c items-center bg-white pd-4 border-sm" style="gap: 0.5rem;">
+							<FriendButton user_id={user_id} />
+							<MessageButton user_id={user_id} />
+						</div>
 						<ProfileFriendsList friends={friends} />
 					</div>
 					<ProfilePosts user_id={profile.id} />

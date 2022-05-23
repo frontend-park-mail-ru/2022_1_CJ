@@ -107,7 +107,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 					const body = event.target.innerText.trim();
 					if (body.length === 0) {
 						event.preventDefault();
-					} else if (event.shiftKey) {
+					} else if (!event.shiftKey) {
 						event.preventDefault();
 						event.target.innerText = "";
 						socket.send(JSON.stringify({ dialog_id, body, event: "send" }));
@@ -117,7 +117,6 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 
 			return (
 				<div className="flex flex-c">
-					<div className="helper helper-hint pd-1">Send with [shift + enter]</div>
 					<div className="flex" style="gap: 0;">
 						<div
 							id="message"
