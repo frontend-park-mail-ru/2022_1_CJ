@@ -2,7 +2,7 @@ import { Component, treact } from "@treact";
 import { ControlButton } from "src/components/communities/controlButton";
 import { CreateCommunityPost } from "src/components/communities/createPost";
 import { Link } from "src/components/link";
-import { Post } from "src/components/posts/post";
+import { PostComponent } from "src/components/posts/post";
 import { Spinner } from "src/components/spinner";
 import { Routes, withParameters } from "src/constants/routes";
 import { Community } from "src/core/@types/community";
@@ -23,7 +23,7 @@ export const CommunityComponent: Component = ({ community_id }: { community_id: 
 		});
 	}, []);
 
-	const map = (postWrapper: PostWrapper) => <Post postWrapper={postWrapper} />;
+	const map = (postWrapper: PostWrapper) => <PostComponent postWrapper={postWrapper} />;
 	const list = () => (posts ? posts.map(map) : <Spinner />);
 
 	if (community) {

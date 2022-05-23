@@ -12,7 +12,7 @@ import { communitiesAPI } from "src/core/network/api/communities";
 import { postAPI } from "src/core/network/api/post";
 import { useUserStore } from "src/stores/user";
 
-export const Post: Component = ({ postWrapper }: { postWrapper: PostWrapper }) => {
+export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWrapper }) => {
 	const [userStore] = useUserStore();
 	const { post } = postWrapper;
 
@@ -49,7 +49,6 @@ export const Post: Component = ({ postWrapper }: { postWrapper: PostWrapper }) =
 		if (post.author.id === userStore.user.id) {
 			return <EditPost post={post} />;
 		}
-
 		return null;
 	};
 

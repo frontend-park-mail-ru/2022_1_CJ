@@ -1,5 +1,5 @@
 import { Component, treact } from "@treact";
-import { Post } from "src/components/posts/post";
+import { PostComponent } from "src/components/posts/post";
 import { Spinner } from "src/components/spinner";
 import { PostWrapper } from "src/core/@types/post";
 import { userAPI } from "src/core/network/api/user";
@@ -15,7 +15,7 @@ export const ProfilePosts: Component = ({ user_id }: { user_id: string }) => {
 		return null;
 	}
 
-	const map = (postWrapper: PostWrapper) => <Post postWrapper={postWrapper} />;
+	const map = (postWrapper: PostWrapper) => <PostComponent postWrapper={postWrapper} />;
 	const list = () => (posts ? posts.map(map) : <Spinner />);
 
 	return <div className="flow d-middle overflow">{list()}</div>;
