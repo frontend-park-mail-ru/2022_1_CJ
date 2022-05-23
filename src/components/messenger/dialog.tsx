@@ -4,6 +4,7 @@ import { UserProfileLink } from "src/components/@helpers/links";
 import { isMobile } from "src/components/@helpers/mobile";
 import { fetchUsers } from "src/components/@helpers/user";
 import { decodeEntity } from "src/components/@helpers/utils";
+import { EmojiPickerComponent } from "src/components/emoji/picker";
 import { Link } from "src/components/link";
 import { Spinner } from "src/components/spinner";
 import { Routes, withParameters } from "src/constants/routes";
@@ -89,11 +90,17 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 				}
 			};
 
+			const appendToInput = (value: string) => {
+				const messageContainer = document.getElementById("message");
+				messageContainer.innerText = messageContainer.innerText.concat(value);
+			};
+
 			if (isMobile()) {
 				return (
 					<div className="flex flex-c">
 						<div className="flex" style="gap: 0;">
 							<div id="message" className="grow bg-white break-word" style="max-height: 8rem;" contentEditable />
+							<EmojiPickerComponent output={appendToInput} />
 							<button onClick={sendMessageButton} className="btn btn-white border">
 								send
 							</button>
@@ -125,6 +132,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 							style="max-height: 8rem;"
 							contentEditable
 						/>
+						<EmojiPickerComponent output={appendToInput} />
 						<button onClick={sendMessageButton} className="btn btn-white border">
 							send
 						</button>
