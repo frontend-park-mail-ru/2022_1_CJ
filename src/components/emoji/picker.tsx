@@ -20,9 +20,9 @@ export const EmojiPickerComponent: Component = ({ output }: { output: (emoji: st
 	};
 
 	return (
-		<button onClick={toggle} className="tooltip pointer flex items-center pd-4 bg-white border border-sm">
+		<span onClick={toggle} className="tooltip flex items-center pd-4 bg-white border border-sm">
 			🤗
 			<span className="tooltip-content flex flex-w overflow pd-4 bg-white border-sm">{mapEmojis(emojiSet)}</span>
-		</button>
+		</span>
 	);
 };
