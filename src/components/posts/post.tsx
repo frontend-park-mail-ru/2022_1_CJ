@@ -14,11 +14,11 @@ import { useUserStore } from "src/stores/user";
 
 export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWrapper }) => {
 	const [userStore] = useUserStore();
+	const update = treact.useUpdate();
 	const { post } = postWrapper;
 
-	// TODO: add a better way to refresh
 	const deletePost = () => {
-		postAPI.deletePost({ post_id: post.id }).then(() => navigateTo(Routes.Base));
+		postAPI.deletePost({ post_id: post.id }).then(update);
 	};
 
 	const deleteCommunityPost = () => {

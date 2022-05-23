@@ -13,6 +13,7 @@ const ModalEdit: ModalComponent = ({
 	hide: () => void;
 }) => {
 	const [message, setMessage] = treact.useState("");
+	const update = treact.useUpdate();
 
 	treact.useEffect(() => {
 		const close = (event: KeyboardEvent) => {
@@ -28,9 +29,11 @@ const ModalEdit: ModalComponent = ({
 		setMessage(event.target.innerText);
 	};
 
-	// TODO: add update
 	const edit = () => {
-		editComment({ post_id, comment_id: comment.id, message: message });
+		editComment({ post_id, comment_id: comment.id, message: message }).then(() => {
+			update();
+			hide();
+		});
 	};
 
 	return (

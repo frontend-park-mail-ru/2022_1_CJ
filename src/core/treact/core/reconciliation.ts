@@ -182,6 +182,7 @@ const commitRoot = () => {
 		State.currentRoot = State.wipRoot;
 	}
 	State.wipRoot = null;
+	State.pendingUpdate = false;
 };
 
 export { updateComponent, commitRoot };

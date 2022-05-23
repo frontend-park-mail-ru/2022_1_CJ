@@ -8,9 +8,10 @@ import { useUserStore } from "src/stores/user";
 
 export const CommentComponent: Component = ({ post_id, comment }: { post_id: string; comment: Post }) => {
 	const [userStore] = useUserStore();
+	const update = treact.useUpdate();
 
 	const deletePost = () => {
-		deleteComment({ post_id, comment_id: comment.id });
+		deleteComment({ post_id, comment_id: comment.id }).then(update);
 	};
 
 	const deleteButton = () => {

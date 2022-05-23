@@ -1,12 +1,11 @@
 import { ModalComponent, treact } from "@treact";
-import { navigateTo } from "src/components/@helpers/router";
-import { Routes } from "src/constants/routes";
 import { EventWithTarget } from "src/core/@types/event";
 import { Post } from "src/core/@types/post";
 import { postAPI } from "src/core/network/api/post";
 
 export const ModalCreate: ModalComponent = ({ hide }) => {
 	const [message, setMessage] = treact.useState("");
+	const update = treact.useUpdate();
 
 	treact.useEffect(() => {
 		const close = (event: KeyboardEvent) => {
@@ -22,9 +21,11 @@ export const ModalCreate: ModalComponent = ({ hide }) => {
 		setMessage(event.target.innerText);
 	};
 
-	// TODO: add update
 	const post = () => {
-		postAPI.createPost({ message }).then(() => navigateTo(Routes.Feed));
+		postAPI.createPost({ message }).then(() => {
+			update();
+			hide();
+		});
 	};
 
 	return (
@@ -42,6 +43,7 @@ export const ModalCreate: ModalComponent = ({ hide }) => {
 
 export const ModalEdit: ModalComponent = ({ hide, post }: { post: Post; hide: () => void }) => {
 	const [message, setMessage] = treact.useState("");
+	const update = treact.useUpdate();
 
 	treact.useEffect(() => {
 		const close = (event: KeyboardEvent) => {
@@ -57,9 +59,11 @@ export const ModalEdit: ModalComponent = ({ hide, post }: { post: Post; hide: ()
 		setMessage(event.target.innerText);
 	};
 
-	// TODO: add update
 	const edit = () => {
-		postAPI.editPost({ post_id: post.id, message }).then(() => navigateTo(Routes.Feed));
+		postAPI.editPost({ post_id: post.id, message }).then(() => {
+			update();
+			hide();
+		});
 	};
 
 	return (

@@ -53,6 +53,7 @@ const render = (element: JSX.Element, container: Node) => {
 	State.deletions = [];
 	State.cleanups = [];
 	State.pendingCleanups = [];
+	State.pendingUpdate = false;
 
 	State.nextUnitOfWork = State.wipRoot;
 	window.requestIdleCallback(workLoop);

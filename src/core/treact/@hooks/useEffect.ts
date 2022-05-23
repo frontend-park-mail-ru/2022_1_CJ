@@ -7,7 +7,7 @@ export const useEffect = (callback: () => any, deps: any[]) => {
 		deps,
 	};
 
-	if (!lastHook || !isEqual(lastHook.deps, hook.deps)) {
+	if (!lastHook || !isEqual(lastHook.deps, hook.deps) || State.pendingUpdate) {
 		// Use setTimeout to prevent causing side effects before the first render.
 		setTimeout(() => {
 			const cleanup = callback();

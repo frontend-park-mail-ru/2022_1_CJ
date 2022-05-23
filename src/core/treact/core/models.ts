@@ -40,6 +40,7 @@ type State = {
 	deletions: Fiber[];
 	cleanups?: (() => void)[];
 	pendingCleanups?: (() => void)[];
+	pendingUpdate: boolean;
 
 	nextUnitOfWork?: Fiber;
 };
