@@ -19,7 +19,7 @@ export const ProfilePosts: Component = ({ user_id }: { user_id: string }) => {
 	const list = () => (posts ? posts.map(map) : <Spinner />);
 
 	return (
-		<div className="flex flex-c overflow" style="align-items: flex-end;">
+		<div className="flex flex-c grow overflow" style="align-items: flex-end;">
 			{list()}
 		</div>
 	);

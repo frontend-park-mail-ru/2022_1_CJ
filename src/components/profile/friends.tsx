@@ -8,7 +8,7 @@ export const ProfileFriendsList: Component = ({ friends }: { friends: User[] }) 
 		return (
 			<Link to={withParameters(Routes.Profile, { user_id: user.id })}>
 				<div>
-					<img className="icon d-middle" src={user.image} alt="" />
+					<img className="avatar d-middle" src={user.image} alt="" />
 					<p>{user.name.first}</p>
 				</div>
 			</Link>
