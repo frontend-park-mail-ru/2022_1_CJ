@@ -24,21 +24,26 @@ export const CommunityComponent: Component = ({ community_id }: { community_id: 
 	}, []);
 
 	const map = (postWrapper: PostWrapper) => <PostComponent postWrapper={postWrapper} />;
-	const list = () => (posts ? posts.map(map) : <Spinner />);
+	const list = () => {
+		if (posts) {
+			if (posts.length > 0) {
+				return posts.map(map);
+			}
+			return <p className="text-center text-light">Yet no posts</p>;
+		}
+		return <Spinner />;
+	};
 
 	if (community) {
 		const isAdmin = community.admins?.some((user) => user.id === userStore.user.id);
 		return (
-			<div className="flex flex-c d-middle">
+			<div className="flex flex-c grow d-middle">
 				<p className="fs-lg">{community.name}</p>
 				<p>{community.info}</p>
 				{!isAdmin && <ControlButton community_id={community_id} />}
 				{isAdmin && <Link to={withParameters(Routes.CommunitySettings, { community_id })}>Settings</Link>}
 				{isAdmin && <CreateCommunityPost community_id={community_id} />}
-				<div className="flow">
-					<p>Posts:</p>
-					<div className="flow d-middle">{list()}</div>
-				</div>
+				<div className="flex flex-c items-center">{list()}</div>
 			</div>
 		);
 	}

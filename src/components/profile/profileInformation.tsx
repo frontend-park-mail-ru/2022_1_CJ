@@ -18,9 +18,11 @@ export const ProfileInformaitonComponent: Component = ({
 					{profileInformation.name.first} {profileInformation.name.last}
 				</p>
 				<hr />
-				{profileInformation.location && <p>Location: {profileInformation.location}</p>}
-				{profileInformation.birth_day && <p>Birthday: {profileInformation.birth_day}</p>}
-				<p>Friends: {profileInformation.AmountOfFriends}</p>
+				<span className="text-light">
+					{profileInformation.location && <p>Location: {profileInformation.location}</p>}
+					{profileInformation.birth_day && <p>Birthday: {profileInformation.birth_day}</p>}
+					<p>Friends: {profileInformation.AmountOfFriends}</p>
+				</span>
 			</div>
 		</div>
 	);

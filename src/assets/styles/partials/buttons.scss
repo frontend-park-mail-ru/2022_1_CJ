@@ -11,6 +11,12 @@ $outline-width: 2px;
 	outline-offset: -$outline-width;
 }
 
+@media only screen and (hover: none) and (pointer: coarse) {
+	.btn {
+		padding: 0.25rem;
+	}
+}
+
 .btn-primary {
 	background-color: var(--clr-primary);
 	color: var(--clr-white);

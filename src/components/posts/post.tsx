@@ -1,6 +1,4 @@
 import { Component, treact } from "@treact";
-import { DateFromTimestamp } from "src/components/@helpers/date";
-import { navigateTo } from "src/components/@helpers/router";
 import { decodeEntity } from "src/components/@helpers/utils";
 import { Navigate } from "src/components/link";
 import { PostAuthorComponent } from "src/components/posts/author";
@@ -22,14 +20,14 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 	};
 
 	const deleteCommunityPost = () => {
-		communitiesAPI.deletePost({ community_id: post.author.id, post_id: post.id }).then(() => navigateTo(Routes.Base));
+		communitiesAPI.deletePost({ community_id: post.author.id, post_id: post.id }).then(update);
 	};
 
 	const deleteButton = () => {
 		if (post.author.id === userStore.user.id) {
 			return (
 				<button onClick={deletePost} className="btn btn-negative">
-					Delete post
+					Delete
 				</button>
 			);
 		}
@@ -37,7 +35,7 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 		if (userStore.managedCommunities.some((community) => community.id === post.author.id)) {
 			return (
 				<button onClick={deleteCommunityPost} className="btn btn-negative">
-					Delete community post
+					Delete
 				</button>
 			);
 		}
@@ -53,13 +51,8 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 	};
 
 	return (
-		<div className="flow d-middle bg-white pd-8 border-sm" style="max-width: min(75%, 75ch);">
-			<div className="flex flex-r items-center">
-				<PostAuthorComponent author={post.author} />
-				<Navigate to={withParameters(Routes.Post, { post_id: post.id })}>
-					<DateFromTimestamp timestamp={post.created_at} />
-				</Navigate>
-			</div>
+		<div className="flow bg-white pd-8 border-sm" style="max-width: min(75%, 75ch);">
+			<PostAuthorComponent post={post} />
 			<Navigate to={withParameters(Routes.Post, { post_id: post.id })}>
 				<p className="break-word pre-wrap">{decodeEntity(post.message)}</p>
 			</Navigate>

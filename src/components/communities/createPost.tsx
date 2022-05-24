@@ -1,11 +1,10 @@
 import { Component, ModalComponent, treact } from "@treact";
-import { navigateTo } from "src/components/@helpers/router";
-import { Routes } from "src/constants/routes";
 import { EventWithTarget } from "src/core/@types/event";
 import { communitiesAPI } from "src/core/network/api/communities";
 
 const Modal: ModalComponent = (props) => {
 	const [message, setMessage] = treact.useState("");
+	const update = treact.useUpdate();
 	const hide = props.hide;
 	const community_id = props.community_id as string;
 
@@ -24,7 +23,10 @@ const Modal: ModalComponent = (props) => {
 	};
 
 	const post = () => {
-		communitiesAPI.createCommunityPost({ community_id, message }).then(() => navigateTo(Routes.Feed));
+		communitiesAPI.createCommunityPost({ community_id, message }).then(() => {
+			update();
+			hide();
+		});
 	};
 
 	return (

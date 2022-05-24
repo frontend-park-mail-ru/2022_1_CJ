@@ -1,6 +1,8 @@
 import { Component, treact } from "@treact";
+import { navigateTo } from "src/components/@helpers/router";
 import { CommentComponent } from "src/components/comments/comment";
 import { PostComponent } from "src/components/posts/post";
+import { Routes } from "src/constants/routes";
 import { Post, PostWrapper } from "src/core/@types/post";
 import { createComment } from "src/core/network/api/comments/create";
 import { getComments } from "src/core/network/api/comments/get";
@@ -15,7 +17,7 @@ export const PostPage: Component = ({ post_id }: { post_id: string }) => {
 	};
 
 	treact.useEffect(() => {
-		postAPI.getPost({ post_id }).then(setPostWrapper);
+		postAPI.getPost({ post_id }).then(setPostWrapper, () => navigateTo(Routes.Feed));
 		fetchComments();
 	}, []);
 
@@ -51,7 +53,9 @@ export const PostPage: Component = ({ post_id }: { post_id: string }) => {
 
 	return (
 		<div className="flex flex-c overflow d-middle">
-			<PostComponent postWrapper={postWrapper} />
+			<div className="flex flex-c items-center">
+				<PostComponent postWrapper={postWrapper} />
+			</div>
 			<div className="flex" style="gap: 0;">
 				<div id="comment" className="grow bg-white break-word" style="max-height: 5rem;" contentEditable />
 				<button onClick={postComment} className="btn btn-white border">
