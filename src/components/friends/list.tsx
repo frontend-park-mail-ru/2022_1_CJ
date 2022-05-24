@@ -46,7 +46,7 @@ export const FriendsList: Component = () => {
 		return (
 			<Link to={withParameters(Routes.Profile, { user_id: user.id })}>
 				<div className="flex flex-r items-center" style="width: fit-content;">
-					<img className="icon d-middle" src={user.image} alt="" />
+					<img className="avatar d-middle" src={user.image} alt="" />
 					<p>{fullName}</p>
 				</div>
 			</Link>
