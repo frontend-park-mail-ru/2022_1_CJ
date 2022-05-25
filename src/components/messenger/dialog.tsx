@@ -4,17 +4,17 @@ import { UserProfileLink } from "src/components/@helpers/links";
 import { isMobile } from "src/components/@helpers/mobile";
 import { fetchUsers } from "src/components/@helpers/user";
 import { decodeEntity } from "src/components/@helpers/utils";
-import { EmojiPickerComponent, StickerPickerComponent } from "src/components/emoji/picker";
+import { AttachmentComponent } from "src/components/attachments/attachment";
+import { getFileAttachments } from "src/components/attachments/file";
+import { getImageAttachments } from "src/components/attachments/images";
+import { PickerComponent } from "src/components/emoji/picker";
 import { Link } from "src/components/link";
-import { MessageAttachmentComponent, MessageImageAttachmentComponent } from "src/components/messenger/attachment";
 import { Spinner } from "src/components/spinner";
 import { Routes, withParameters } from "src/constants/routes";
 import { Dialog, Message } from "src/core/@types/dialog";
 import { EventWithTarget } from "src/core/@types/event";
 import { User } from "src/core/@types/user";
-import { uploadFile } from "src/core/network/api/file/upload";
 import { messengerAPI, WSReducer } from "src/core/network/api/messenger";
-import { uploadImage } from "src/core/network/api/static/upload";
 import { useUserStore } from "src/stores/user";
 
 // TODO: refactor this crap
@@ -65,11 +65,12 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 
 	if (socket && participants && dialog && messages) {
 		const showAttachments = (attachments: string[]) => {
-			return attachments.map((attachment) => (
-				<a rel="external" target="_blank" href={`/api/file/get?url=${attachment}`} className="link link-attachment">
+			const list = attachments.map((attachment) => (
+				<a target="_blank" href={`/api/file/get?url=${attachment}`} className="link link-attachment d-middle">
 					{attachment.slice(-10)}
 				</a>
 			));
+			return <div className="flex flex-w fs-sm">{list}</div>;
 		};
 
 		const showImageAttachments = (images: string[]) => {
@@ -79,9 +80,9 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 		const mapMessage = (message: Message) => {
 			const author = participants[message.author_id] || userStore.user;
 			const isAuthor = author.id === userStore.user.id;
-			const style = isAuthor ? "align-self: flex-end" : "align-self: flex-start";
+			const style = isAuthor ? "align-self: flex-end;" : "align-self: flex-start;";
 			return (
-				<div className="flex flex-c bg-white pd-8 border-sm" style={style}>
+				<div className="flex flex-c bg-white pd-8 border-sm" style={style + "max-width: 50%;"}>
 					<span>
 						<UserProfileLink user={author} />
 						<DateFromTimestamp timestamp={message.created_at} />
@@ -100,33 +101,11 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 			return dialog.name;
 		};
 
-		const getAttachments = async () => {
-			const attachments = document.getElementById("attachments") as HTMLInputElement;
-			if (attachments.files.length > 0) {
-				const formData = new FormData();
-				formData.append("file", attachments.files[0]);
-				return uploadFile(formData).then((response) => response.url);
-			}
-			return null;
-		};
-
-		const getImageAttachments = async () => {
-			const attachments = document.getElementById("images") as HTMLInputElement;
-			const images = [] as string[];
-			for (const [, file] of Object.entries(attachments.files)) {
-				const formData = new FormData();
-				formData.append("image", file);
-				const url = await uploadImage(formData).then((response) => response.url);
-				images.push(url);
-			}
-			return images;
-		};
-
 		const chatInput = () => {
 			const sendMessageButton = async () => {
 				const messageContainer = document.getElementById("message");
 				const body = messageContainer.innerText.trim();
-				const attachments = [await getAttachments()];
+				const attachments = await getFileAttachments();
 				const imageAttachments = await getImageAttachments();
 				if (body.length > 0 || attachments.length > 0 || imageAttachments.length > 0) {
 					messageContainer.innerText = "";
@@ -145,16 +124,14 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 
 			if (isMobile()) {
 				return (
-					<div className="flex flex-c">
-						<div className="flex" style="gap: 0;">
+					<div className="flex flex-c no-gap" style="padding: 0 1rem;">
+						<div className="flex no-gap items-center">
 							<div id="message" className="grow bg-white break-word" style="max-height: 8rem;" contentEditable />
-							<MessageImageAttachmentComponent />
-							<MessageAttachmentComponent />
-							<EmojiPickerComponent output={appendToInput} />
-							<StickerPickerComponent output={sendSticker} />
-							<button onClick={sendMessageButton} className="btn btn-white border">
-								send
-							</button>
+							<AttachmentComponent />
+							<PickerComponent appendToInput={appendToInput} sendSticker={sendSticker} />
+							<span onClick={sendMessageButton} className="pointer pd-4 bg-white border border-sm">
+								📩
+							</span>
 						</div>
 					</div>
 				);
@@ -163,7 +140,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 			const sendMessage = async (event: EventWithTarget<HTMLInputElement, KeyboardEvent>) => {
 				if (event.key === "Enter") {
 					const body = event.target.innerText.trim();
-					const attachments = [await getAttachments()];
+					const attachments = await getFileAttachments();
 					const imageAttachments = await getImageAttachments();
 					if (body.length === 0) {
 						event.preventDefault();
@@ -176,29 +153,25 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 			};
 
 			return (
-				<div className="flex flex-c">
-					<div className="flex" style="gap: 0;">
-						<div
-							id="message"
-							onKeyDown={sendMessage}
-							className="grow bg-white break-word"
-							style="max-height: 8rem;"
-							contentEditable
-						/>
-						<MessageImageAttachmentComponent />
-						<MessageAttachmentComponent />
-						<EmojiPickerComponent output={appendToInput} />
-						<StickerPickerComponent output={sendSticker} />
-						<button onClick={sendMessageButton} className="btn btn-white border">
-							send
-						</button>
-					</div>
+				<div className="flex no-gap" style="padding: 0 1rem;">
+					<div
+						id="message"
+						onKeyDown={sendMessage}
+						className="grow bg-white break-word pd-4"
+						style="max-height: 8rem;"
+						contentEditable
+					/>
+					<AttachmentComponent />
+					<PickerComponent appendToInput={appendToInput} sendSticker={sendSticker} />
+					<span onClick={sendMessageButton} className="pointer pd-4 bg-white border border-sm">
+						📩
+					</span>
 				</div>
 			);
 		};
 
 		return (
-			<div className="flex flex-c grow overflow justify-between d-middle" style="width: min(100%, 40rem);">
+			<div className="chat flex flex-c overflow justify-between d-middle">
 				<p className="d-middle bg-white pd-4 border-sm">{chatName()}</p>
 				<div className="dialog flex flex-cr grow overflow">{messages.map(mapMessage)}</div>
 				{chatInput()}

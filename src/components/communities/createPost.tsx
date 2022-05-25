@@ -1,9 +1,8 @@
 import { Component, ModalComponent, treact } from "@treact";
-import { MessageAttachmentComponent, MessageImageAttachmentComponent } from "src/components/messenger/attachment";
+import { FileAttachmentsComponent, getFileAttachments } from "src/components/attachments/file";
+import { getImageAttachments, ImageAttachmentsComponent } from "src/components/attachments/images";
 import { EventWithTarget } from "src/core/@types/event";
 import { communitiesAPI } from "src/core/network/api/communities";
-import { uploadFile } from "src/core/network/api/file/upload";
-import { uploadImage } from "src/core/network/api/static/upload";
 
 const Modal: ModalComponent = (props) => {
 	const [message, setMessage] = treact.useState("");
@@ -25,30 +24,8 @@ const Modal: ModalComponent = (props) => {
 		setMessage(event.target.innerText);
 	};
 
-	const getAttachments = async () => {
-		const attachments = document.getElementById("attachments") as HTMLInputElement;
-		if (attachments.files.length > 0) {
-			const formData = new FormData();
-			formData.append("file", attachments.files[0]);
-			return uploadFile(formData).then((response) => response.url);
-		}
-		return null;
-	};
-
-	const getImageAttachments = async () => {
-		const attachments = document.getElementById("images") as HTMLInputElement;
-		const images = [] as string[];
-		for (const [, file] of Object.entries(attachments.files)) {
-			const formData = new FormData();
-			formData.append("image", file);
-			const url = await uploadImage(formData).then((response) => response.url);
-			images.push(url);
-		}
-		return images;
-	};
-
 	const post = async () => {
-		const attachments = [await getAttachments()];
+		const attachments = await getFileAttachments();
 		const imageAttachments = await getImageAttachments();
 		communitiesAPI.createCommunityPost({ community_id, message, attachments, images: imageAttachments }).then(() => {
 			update();
@@ -62,8 +39,8 @@ const Modal: ModalComponent = (props) => {
 				<span className="cross" onClick={hide} />
 				<div onKeyUp={handleChange} contentEditable />
 				<div className="flex flex-r">
-					<MessageImageAttachmentComponent />
-					<MessageAttachmentComponent />
+					<ImageAttachmentsComponent />
+					<FileAttachmentsComponent />
 				</div>
 				<button onClick={post} className="btn btn-primary d-middle">
 					Post

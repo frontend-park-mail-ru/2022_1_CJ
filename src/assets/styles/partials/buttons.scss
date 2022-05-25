@@ -9,6 +9,7 @@ $outline-width: 2px;
 	width: fit-content;
 	padding: 0.25rem 0.75rem;
 	outline-offset: -$outline-width;
+	user-select: none;
 }
 
 @media only screen and (hover: none) and (pointer: coarse) {

@@ -1,0 +1,9 @@
+.chat {
+	width: min(100%, 50vw);
+}
+
+@media only screen and (hover: none) and (pointer: coarse) {
+	.chat {
+		width: 100%;
+	}
+}

@@ -56,7 +56,7 @@ export const PostPage: Component = ({ post_id }: { post_id: string }) => {
 			<div className="flex flex-c items-center">
 				<PostComponent postWrapper={postWrapper} />
 			</div>
-			<div className="flex" style="gap: 0;">
+			<div className="flex no-gap">
 				<div id="comment" className="grow bg-white break-word" style="max-height: 5rem;" contentEditable />
 				<button onClick={postComment} className="btn btn-white border">
 					send

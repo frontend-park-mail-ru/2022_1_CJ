@@ -18,5 +18,9 @@ export const ProfilePosts: Component = ({ user_id }: { user_id: string }) => {
 	const map = (postWrapper: PostWrapper) => <PostComponent postWrapper={postWrapper} />;
 	const list = () => (posts ? posts.map(map) : <Spinner />);
 
-	return <div className="flex flex-c grow overflow items-center">{list()}</div>;
+	return (
+		<div className="flex flex-c overflow" style="width: min(100%, 60ch);">
+			{list()}
+		</div>
+	);
 };

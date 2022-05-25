@@ -27,10 +27,10 @@ export const CurrentUserProfileInfo: Component = () => {
 		};
 
 		return (
-			<div className="flex flex-c grow items-center items-stretch overflow">
+			<div className="flex flex-c grow overflow">
 				<ProfileInformaitonComponent profileInformation={profileInformation} />
-				<div className="flex flex-r">
-					<div style="width: 15vw;" className="flex flex-c">
+				<div className="flex flex-r justify-between">
+					<div className="flex flex-c grow" style="max-width: 20vw;">
 						<CreatePost />
 						<ProfileFriendsList friends={friends} />
 					</div>

@@ -21,8 +21,12 @@ export const Header = () => {
 								<p className="text-light">
 									{user.name.first} {user.name.last}
 								</p>
-								<Link to={Routes.ProfileSettings}>Settings</Link>
-								<Link to={Routes.Logout}>Sign out</Link>
+								<Link to={Routes.ProfileSettings}>
+									<img src="/static/icons/settings.svg" className="icon" alt="settings" />
+								</Link>
+								<Link to={Routes.Logout}>
+									<img src="/static/icons/signout.svg" className="icon" alt="signout" />
+								</Link>
 							</div>
 						</div>
 					</div>

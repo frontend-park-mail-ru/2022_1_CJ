@@ -27,6 +27,10 @@
 	flex-direction: row-reverse;
 }
 
+.no-gap {
+	gap: 0;
+}
+
 .items-center {
 	align-items: center;
 }
@@ -78,6 +82,7 @@
 
 .pointer {
 	cursor: pointer;
+	user-select: none;
 }
 
 .transparent {
@@ -86,6 +91,10 @@
 
 .bg-white {
 	background-color: var(--clr-white);
+}
+
+.bg-primary-l {
+	background-color: var(--clr-primary-l);
 }
 
 .cross {
@@ -109,14 +118,14 @@
 }
 
 .icon {
-	height: 1.5rem;
+	height: clamp(1.25rem, calc(1.15rem + 0.49vw), 1.5rem);
 	aspect-ratio: 1 / 1;
 	cursor: pointer;
 }
 
 .avatar {
 	@extend .icon;
-	height: 2rem;
+	height: clamp(1.5rem, calc(1.3rem + 0.98vw), 2rem);
 	border-radius: 50%;
 }
 

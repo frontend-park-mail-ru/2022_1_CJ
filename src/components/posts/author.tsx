@@ -9,7 +9,7 @@ export const PostAuthorComponent: Component = ({ post }: { post: Post }) => {
 	return (
 		<div className="flex flex-r items-center">
 			<img className="avatar" src={post.author.image} alt="" />
-			<div className="flex flex-c" style="gap: 0;">
+			<div className="flex flex-c no-gap">
 				<PostAuthorLink author={post.author} />
 				<Navigate to={withParameters(Routes.Post, { post_id: post.id })}>
 					<DateFromTimestamp timestamp={post.created_at} />

@@ -6,6 +6,7 @@
 .tooltip {
 	position: relative;
 	cursor: grab;
+	user-select: none;
 }
 
 .tooltip .tooltip-content {

@@ -1,30 +1,26 @@
 import { Component, treact } from "@treact";
 import { FileSize } from "src/constants/size";
 import { EventWithTarget } from "src/core/@types/event";
+import { uploadImage } from "src/core/network/api/static/upload";
 import { modAlertStore } from "src/stores/alert";
 
-export const MessageAttachmentComponent: Component = () => {
-	const attach = (event: EventWithTarget<HTMLInputElement>) => {
-		if (event.target.files && event.target.files[0]) {
-			const file = event.target.files[0];
-			if (file.size > FileSize.MB) {
-				modAlertStore.set({ message: "File is too large", level: "error" });
-				event.target.value = "";
-			} else {
-				modAlertStore.set({ message: "File is attached", level: "info" });
-			}
-		}
-	};
-
-	return (
-		<label className="flex items-center pd-4 bg-white border border-sm">
-			<input onChange={attach} type="file" id="attachments" accept=".pdf" />
-			📎
-		</label>
-	);
+export const getImageAttachments = async () => {
+	const attachments = document.getElementById("images") as HTMLInputElement;
+	const images = [] as string[];
+	for (const [, file] of Object.entries(attachments.files)) {
+		const formData = new FormData();
+		formData.append("image", file);
+		const url = await uploadImage(formData).then((response) => response.url);
+		images.push(url);
+	}
+	attachments.value = "";
+	attachments.dispatchEvent(new Event("change"));
+	return images;
 };
 
-export const MessageImageAttachmentComponent: Component = () => {
+export const ImageAttachmentsComponent: Component = () => {
+	const [count, setCount] = treact.useState(0);
+
 	const attach = (event: EventWithTarget<HTMLInputElement>) => {
 		if (event.target.files && event.target.files[0]) {
 			if (event.target.files.length > 10) {
@@ -42,14 +38,20 @@ export const MessageImageAttachmentComponent: Component = () => {
 				event.target.value = "";
 			} else {
 				modAlertStore.set({ message: "Files are attached", level: "info" });
+				setCount(event.target.files.length);
 			}
+		} else if (count != 0) {
+			setCount(0);
 		}
 	};
 
 	return (
 		<label className="flex items-center pd-4 bg-white border border-sm">
 			<input onChange={attach} type="file" id="images" accept=".jpg, .jpeg, .png" multiple />
-			🖼️
+			<span>
+				🖼️
+				<span className="text-light">{count}</span>
+			</span>
 		</label>
 	);
 };
