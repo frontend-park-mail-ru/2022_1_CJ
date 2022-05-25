@@ -37,8 +37,8 @@ const Modal: ModalComponent = (props) => {
 		<div className="modal flex items-center">
 			<div className="flex flex-c d-middle bg-white pd-8 border-sm">
 				<span className="cross" onClick={hide} />
-				<div onKeyUp={handleChange} contentEditable />
-				<div className="flex flex-r">
+				<div className="flex flex-r no-gap">
+					<div onKeyUp={handleChange} className="grow" contentEditable style="max-height: 33vh;" />
 					<ImageAttachmentsComponent />
 					<FileAttachmentsComponent />
 				</div>

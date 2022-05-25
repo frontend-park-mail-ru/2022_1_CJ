@@ -70,7 +70,7 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 			<div className="flex flex-r items-center justify-between">
 				<PostAuthorComponent post={post} />
 				{(isAuthor || isFromManagedCommunity) && (
-					<span className="dropdown">
+					<span className="dropdown bg-white">
 						👀
 						<span className="dropdown-content border border-sm" style="right: 0;">
 							<div className="flex flex-c">
