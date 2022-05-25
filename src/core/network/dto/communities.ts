@@ -97,6 +97,16 @@ export type GetManagedCommunitiesResponse = {
 	communities: CommunityShort[];
 };
 
+export type EditCommunityPostRequest = {
+	community_id: string;
+	post_id: string;
+	message?: string;
+	images?: string[];
+	attachments?: string[];
+};
+
+export type EditCommunityPostResponse = BasicResponse;
+
 export type DeleteCommunityPostRequest = {
 	community_id: string;
 	post_id: string;

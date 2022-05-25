@@ -4,6 +4,7 @@ input {
 
 .input-field {
 	@extend .border-sm;
+	color: rgba(0, 0, 0, 0.65);
 	width: 100%;
 	border-style: none;
 	padding: 0.5rem;

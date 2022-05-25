@@ -8,6 +8,8 @@ import {
 	DeleteCommunityPostResponse,
 	DeleteCommunityRequest,
 	DeleteCommunityResponse,
+	EditCommunityPostRequest,
+	EditCommunityPostResponse,
 	EditCommunityRequest,
 	EditCommunityResponse,
 	GetCommunityPostsRequest,
@@ -40,6 +42,7 @@ const methods = {
 	join: "/api/communities/join",
 	leave: "/api/communities/leave",
 	getManagedCommunities: "/api/communities/managed_list",
+	editPost: "/api/communities/post/edit",
 	deletePost: "/api/communities/post/delete",
 };
 
@@ -76,6 +79,8 @@ const leave = (dto: LeaveCommunityRequest) => fetchAPI.get<LeaveCommunityRespons
 const getManagedCommunities = (dto: GetManagedCommunitiesRequest) =>
 	fetchAPI.get<GetManagedCommunitiesResponse>(withQuery(methods.getManagedCommunities, dto));
 
+const editPost = (dto: EditCommunityPostRequest) => fetchAPI.put<EditCommunityPostResponse>(methods.editPost, dto);
+
 const deletePost = (dto: DeleteCommunityPostRequest) =>
 	fetchAPI.delete<DeleteCommunityPostResponse>(withQuery(methods.deletePost, dto));
 
@@ -92,5 +97,6 @@ export const communitiesAPI = {
 	join,
 	leave,
 	getManagedCommunities,
+	editPost,
 	deletePost,
 };

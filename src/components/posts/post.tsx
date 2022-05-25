@@ -1,5 +1,6 @@
 import { Component, treact } from "@treact";
 import { decodeEntity } from "src/components/@helpers/utils";
+import { EditCommunityPost } from "src/components/communities/editPost";
 import { Navigate } from "src/components/link";
 import { PostAuthorComponent } from "src/components/posts/author";
 import { EditPost } from "src/components/posts/editPost";
@@ -49,6 +50,8 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 	const editButton = () => {
 		if (isAuthor) {
 			return <EditPost post={post} />;
+		} else if (isFromManagedCommunity) {
+			return <EditCommunityPost post={post} />;
 		}
 		return null;
 	};
@@ -70,9 +73,9 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 			<div className="flex flex-r items-center justify-between">
 				<PostAuthorComponent post={post} />
 				{(isAuthor || isFromManagedCommunity) && (
-					<span className="dropdown bg-white">
+					<span className="dropdown">
 						👀
-						<span className="dropdown-content border border-sm" style="right: 0;">
+						<span className="dropdown-content border border-sm bg-white" style="right: 0;">
 							<div className="flex flex-c">
 								{deleteButton()}
 								{editButton()}
