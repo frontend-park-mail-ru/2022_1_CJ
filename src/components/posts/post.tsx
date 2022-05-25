@@ -23,20 +23,23 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 		communitiesAPI.deletePost({ community_id: post.author.id, post_id: post.id }).then(update);
 	};
 
+	const isAuthor = post.author.id === userStore.user.id;
+	const isFromManagedCommunity = userStore.managedCommunities.some((community) => community.id === post.author.id);
+
 	const deleteButton = () => {
-		if (post.author.id === userStore.user.id) {
+		if (isAuthor) {
 			return (
-				<button onClick={deletePost} className="btn btn-negative">
+				<span onClick={deletePost} className="btn btn-negative">
 					Delete
-				</button>
+				</span>
 			);
 		}
 
-		if (userStore.managedCommunities.some((community) => community.id === post.author.id)) {
+		if (isFromManagedCommunity) {
 			return (
-				<button onClick={deleteCommunityPost} className="btn btn-negative">
+				<span onClick={deleteCommunityPost} className="btn btn-negative">
 					Delete
-				</button>
+				</span>
 			);
 		}
 
@@ -44,7 +47,7 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 	};
 
 	const editButton = () => {
-		if (post.author.id === userStore.user.id) {
+		if (isAuthor) {
 			return <EditPost post={post} />;
 		}
 		return null;
@@ -64,7 +67,20 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 
 	return (
 		<div className="flow bg-white pd-8 border-sm" style="width: min(100%, 60ch);">
-			<PostAuthorComponent post={post} />
+			<div className="flex flex-r items-center justify-between">
+				<PostAuthorComponent post={post} />
+				{(isAuthor || isFromManagedCommunity) && (
+					<span className="dropdown">
+						👀
+						<span className="dropdown-content border border-sm" style="right: 0;">
+							<div className="flex flex-c">
+								{deleteButton()}
+								{editButton()}
+							</div>
+						</span>
+					</span>
+				)}
+			</div>
 			<Navigate to={withParameters(Routes.Post, { post_id: post.id })}>
 				<p className="break-word pre-wrap">{decodeEntity(post.message)}</p>
 			</Navigate>
@@ -72,8 +88,6 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 			{post.attachments && showAttachments(post.attachments)}
 			<div className="flex flex-r">
 				<PostLikeButton postWrapper={postWrapper} />
-				{deleteButton()}
-				{editButton()}
 			</div>
 		</div>
 	);

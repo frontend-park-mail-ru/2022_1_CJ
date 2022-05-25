@@ -1,0 +1,19 @@
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: block;
+	position: absolute;
+	padding: 0.5rem;
+
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 500ms ease, visibility 500ms ease;
+}
+
+.dropdown:hover .dropdown-content {
+	opacity: 1;
+	visibility: visible;
+}

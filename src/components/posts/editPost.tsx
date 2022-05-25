@@ -7,9 +7,9 @@ export const EditPost: Component = ({ post }: { post: Post }) => {
 	const hide = () => setShow(false);
 	return (
 		<>
-			<button onClick={() => setShow(true)} className="btn btn-white d-middle">
-				Edit post
-			</button>
+			<span onClick={() => setShow(true)} className="btn btn-white d-middle text-center">
+				Edit
+			</span>
 			{show && <ModalEdit post={post} hide={hide} />}
 		</>
 	);
