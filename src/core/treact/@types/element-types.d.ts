@@ -18,7 +18,7 @@ declare namespace JSX {
 	interface HtmlAnchorTag extends HtmlTag {
 		href?: string;
 		target?: string;
-		download?: string;
+		download?: string | boolean;
 		ping?: string;
 		rel?: string;
 		media?: string;
