@@ -52,7 +52,7 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 
 	const showAttachments = (attachments: string[]) => {
 		return attachments.map((attachment) => (
-			<a target="_blank" href={`/api/file/get?url=${attachment}`} className="link link-attachment" download>
+			<a rel="external" target="_blank" href={`/api/file/get?url=${attachment}`} className="link link-attachment">
 				{attachment.slice(-10)}
 			</a>
 		));
@@ -63,7 +63,7 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 	};
 
 	return (
-		<div className="flow bg-white pd-8 border-sm" style="width: min(100%, 75ch);">
+		<div className="flow bg-white pd-8 border-sm" style="width: min(100%, 60ch);">
 			<PostAuthorComponent post={post} />
 			<Navigate to={withParameters(Routes.Post, { post_id: post.id })}>
 				<p className="break-word pre-wrap">{decodeEntity(post.message)}</p>

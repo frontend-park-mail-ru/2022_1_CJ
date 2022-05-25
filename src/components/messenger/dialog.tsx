@@ -66,7 +66,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 	if (socket && participants && dialog && messages) {
 		const showAttachments = (attachments: string[]) => {
 			return attachments.map((attachment) => (
-				<a target="_blank" href={`/api/file/get?url=${attachment}`} className="link link-attachment" download>
+				<a rel="external" target="_blank" href={`/api/file/get?url=${attachment}`} className="link link-attachment">
 					{attachment.slice(-10)}
 				</a>
 			));
