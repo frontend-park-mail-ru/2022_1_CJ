@@ -41,7 +41,11 @@ export const CommunityComponent: Component = ({ community_id }: { community_id: 
 				<p className="fs-lg">{community.name}</p>
 				<p>{community.info}</p>
 				{!isAdmin && <ControlButton community_id={community_id} />}
-				{isAdmin && <Link to={withParameters(Routes.CommunitySettings, { community_id })}>Settings</Link>}
+				{isAdmin && (
+					<div className="d-middle">
+						<Link to={withParameters(Routes.CommunitySettings, { community_id })}>Settings</Link>
+					</div>
+				)}
 				{isAdmin && <CreateCommunityPost community_id={community_id} />}
 				<div className="flex flex-c items-center">{list()}</div>
 			</div>
