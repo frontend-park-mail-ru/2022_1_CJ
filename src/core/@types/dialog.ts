@@ -9,4 +9,5 @@ export type Message = {
 	body: string;
 	created_at: number;
 	attachments: string[];
+	images: string[];
 };
