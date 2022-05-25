@@ -23,6 +23,7 @@ export type CreateCommunityPostRequest = {
 	community_id: string;
 	message: string;
 	images?: string[];
+	attachments?: string[];
 };
 
 export type CreateCommunityPostResponse = BasicResponse;

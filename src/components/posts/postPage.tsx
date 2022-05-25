@@ -52,7 +52,7 @@ export const PostPage: Component = ({ post_id }: { post_id: string }) => {
 	};
 
 	return (
-		<div className="flex flex-c overflow d-middle">
+		<div className="flex flex-c overflow grow d-middle">
 			<div className="flex flex-c items-center">
 				<PostComponent postWrapper={postWrapper} />
 			</div>

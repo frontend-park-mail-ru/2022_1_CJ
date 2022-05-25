@@ -17,6 +17,7 @@ export type Post = {
 	author: PostAuthor;
 	message: string;
 	images: string[];
+	attachments: string[];
 	created_at: number;
 	count_comments: number;
 };

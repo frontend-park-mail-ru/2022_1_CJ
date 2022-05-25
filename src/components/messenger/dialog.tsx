@@ -73,7 +73,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 		};
 
 		const showImageAttachments = (images: string[]) => {
-			return images.map((image) => <img style="height: 1rem; width: 1rem;" src={image} alt="" />);
+			return images.map((image) => <img style="width: 10rem;" className="border-sm" src={image} alt="" />);
 		};
 
 		const mapMessage = (message: Message) => {

@@ -50,12 +50,26 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 		return null;
 	};
 
+	const showAttachments = (attachments: string[]) => {
+		return attachments.map((attachment) => (
+			<a target="_blank" href={`/api/file/get?url=${attachment}`} className="link link-attachment">
+				{attachment.slice(-10)}
+			</a>
+		));
+	};
+
+	const showImageAttachments = (images: string[]) => {
+		return images.map((image) => <img style="width: 100%;" className="border-sm" src={image} alt="" />);
+	};
+
 	return (
-		<div className="flow bg-white pd-8 border-sm" style="max-width: min(75%, 75ch);">
+		<div className="flow bg-white pd-8 border-sm" style="max-width: 75ch;">
 			<PostAuthorComponent post={post} />
 			<Navigate to={withParameters(Routes.Post, { post_id: post.id })}>
 				<p className="break-word pre-wrap">{decodeEntity(post.message)}</p>
 			</Navigate>
+			{post.images && showImageAttachments(post.images)}
+			{post.attachments && showAttachments(post.attachments)}
 			<div className="flex flex-r">
 				<PostLikeButton postWrapper={postWrapper} />
 				{deleteButton()}

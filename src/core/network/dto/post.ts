@@ -4,6 +4,7 @@ import { BasicResponse } from "src/core/network/dto/common";
 export type CreatePostRequest = {
 	message: string;
 	images?: string[];
+	attachments?: string[];
 };
 
 export type CreatePostResponse = BasicResponse;
@@ -18,6 +19,7 @@ export type EditPostRequest = {
 	post_id: string;
 	message?: string;
 	images?: string[];
+	attachments?: string[];
 };
 
 export type EditPostResponse = BasicResponse;
