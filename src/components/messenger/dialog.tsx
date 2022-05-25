@@ -4,7 +4,7 @@ import { UserProfileLink } from "src/components/@helpers/links";
 import { isMobile } from "src/components/@helpers/mobile";
 import { fetchUsers } from "src/components/@helpers/user";
 import { decodeEntity } from "src/components/@helpers/utils";
-import { EmojiPickerComponent } from "src/components/emoji/picker";
+import { EmojiPickerComponent, StickerPickerComponent } from "src/components/emoji/picker";
 import { Link } from "src/components/link";
 import { MessageAttachmentComponent, MessageImageAttachmentComponent } from "src/components/messenger/attachment";
 import { Spinner } from "src/components/spinner";
@@ -139,6 +139,10 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 				messageContainer.innerText = messageContainer.innerText.concat(value);
 			};
 
+			const sendSticker = (url: string) => {
+				socket.send(JSON.stringify({ dialog_id, images: [url], event: "send" }));
+			};
+
 			if (isMobile()) {
 				return (
 					<div className="flex flex-c">
@@ -147,6 +151,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 							<MessageImageAttachmentComponent />
 							<MessageAttachmentComponent />
 							<EmojiPickerComponent output={appendToInput} />
+							<StickerPickerComponent output={sendSticker} />
 							<button onClick={sendMessageButton} className="btn btn-white border">
 								send
 							</button>
@@ -183,6 +188,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 						<MessageImageAttachmentComponent />
 						<MessageAttachmentComponent />
 						<EmojiPickerComponent output={appendToInput} />
+						<StickerPickerComponent output={sendSticker} />
 						<button onClick={sendMessageButton} className="btn btn-white border">
 							send
 						</button>
