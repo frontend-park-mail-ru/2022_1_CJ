@@ -16,9 +16,11 @@
 	@include absolute-width(8rem);
 
 	opacity: 0;
+	visibility: hidden;
 	transition: 0.15s opacity ease-in-out;
 }
 
 .tooltip[active] .tooltip-content {
 	opacity: 1;
+	visibility: visible;
 }

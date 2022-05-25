@@ -6,14 +6,17 @@ import { fetchUsers } from "src/components/@helpers/user";
 import { decodeEntity } from "src/components/@helpers/utils";
 import { EmojiPickerComponent } from "src/components/emoji/picker";
 import { Link } from "src/components/link";
+import { MessageAttachmentComponent } from "src/components/messenger/attachment";
 import { Spinner } from "src/components/spinner";
 import { Routes, withParameters } from "src/constants/routes";
 import { Dialog, Message } from "src/core/@types/dialog";
 import { EventWithTarget } from "src/core/@types/event";
 import { User } from "src/core/@types/user";
+import { uploadFile } from "src/core/network/api/file/upload";
 import { messengerAPI, WSReducer } from "src/core/network/api/messenger";
 import { useUserStore } from "src/stores/user";
 
+// TODO: refactor this crap
 export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string }) => {
 	const [userStore] = useUserStore();
 
@@ -45,6 +48,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 						body: data.body,
 						author_id: data.author_id,
 						created_at: data.created_at,
+						attachments: data.attachments,
 					};
 					messages.unshift(message);
 					setMessages(messages);
@@ -58,6 +62,14 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 	}
 
 	if (socket && participants && dialog && messages) {
+		const showAttachments = (attachments: string[]) => {
+			return attachments.map((attachment) => (
+				<a target="_blank" href={`/api/file/get?url=${attachment}`} className="link link-attachment">
+					{attachment.slice(-10)}
+				</a>
+			));
+		};
+
 		const mapMessage = (message: Message) => {
 			const author = participants[message.author_id] || userStore.user;
 			const isAuthor = author.id === userStore.user.id;
@@ -69,6 +81,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 						<DateFromTimestamp timestamp={message.created_at} />
 					</span>
 					<p className="break-word pre-wrap">{decodeEntity(message.body)}</p>
+					{message.attachments && showAttachments(message.attachments)}
 				</div>
 			);
 		};
@@ -80,13 +93,21 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 			return dialog.name;
 		};
 
+		const getAttachments = async () => {
+			const attachments = document.getElementById("attachments") as HTMLInputElement;
+			const formData = new FormData();
+			formData.append("file", attachments.files[0]);
+			return uploadFile(formData).then((response) => response.url);
+		};
+
 		const chatInput = () => {
-			const sendMessageButton = () => {
+			const sendMessageButton = async () => {
 				const messageContainer = document.getElementById("message");
 				const body = messageContainer.innerText.trim();
-				if (body.length > 0) {
+				const attachments = [await getAttachments()];
+				if (body.length > 0 || attachments.length > 0) {
 					messageContainer.innerText = "";
-					socket.send(JSON.stringify({ dialog_id, body, event: "send" }));
+					socket.send(JSON.stringify({ dialog_id, body, attachments, event: "send" }));
 				}
 			};
 
@@ -100,6 +121,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 					<div className="flex flex-c">
 						<div className="flex" style="gap: 0;">
 							<div id="message" className="grow bg-white break-word" style="max-height: 8rem;" contentEditable />
+							<MessageAttachmentComponent />
 							<EmojiPickerComponent output={appendToInput} />
 							<button onClick={sendMessageButton} className="btn btn-white border">
 								send
@@ -109,15 +131,16 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 				);
 			}
 
-			const sendMessage = (event: EventWithTarget<HTMLInputElement, KeyboardEvent>) => {
+			const sendMessage = async (event: EventWithTarget<HTMLInputElement, KeyboardEvent>) => {
 				if (event.key === "Enter") {
 					const body = event.target.innerText.trim();
+					const attachments = [await getAttachments()];
 					if (body.length === 0) {
 						event.preventDefault();
 					} else if (!event.shiftKey) {
 						event.preventDefault();
 						event.target.innerText = "";
-						socket.send(JSON.stringify({ dialog_id, body, event: "send" }));
+						socket.send(JSON.stringify({ dialog_id, body, attachments, event: "send" }));
 					}
 				}
 			};
@@ -132,6 +155,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 							style="max-height: 8rem;"
 							contentEditable
 						/>
+						<MessageAttachmentComponent />
 						<EmojiPickerComponent output={appendToInput} />
 						<button onClick={sendMessageButton} className="btn btn-white border">
 							send
