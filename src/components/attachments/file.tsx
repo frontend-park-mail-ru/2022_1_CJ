@@ -37,7 +37,7 @@ export const FileAttachmentsComponent: Component = () => {
 
 			modAlertStore.set({ message: "Files are attached", level: "info" });
 			setCount(event.target.files.length);
-		} else if (count != 0) {
+		} else if (count !== 0) {
 			setCount(0);
 		}
 	};

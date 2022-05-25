@@ -15,8 +15,8 @@ export const OtherUserProfileInfo: Component = ({ user_id }: { user_id: string }
 
 	treact.useEffect(async () => {
 		userAPI.getProfile({ user_id }).then((response) => setProfile(response.user_profile));
-		const friends = await friendsAPI.getFriends({ user_id }).then((response) => response.friend_ids || []);
-		fetchUsers(friends).then(setFriends);
+		const friendIDs = await friendsAPI.getFriends({ user_id }).then((response) => response.friend_ids || []);
+		fetchUsers(friendIDs).then(setFriends);
 	}, []);
 
 	if (profile && friends) {

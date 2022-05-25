@@ -29,18 +29,15 @@ export const ImageAttachmentsComponent: Component = () => {
 				return;
 			}
 
-			const size = Object.values(event.target.files)
-				.map((file) => file.size)
-				.reduce((sum, size) => sum + size, 0);
-
-			if (size > 10 * FileSize.MB) {
+			if (Object.values(event.target.files).some((file) => file.size > FileSize.MB)) {
 				modAlertStore.set({ message: "Files are too large", level: "error" });
 				event.target.value = "";
-			} else {
-				modAlertStore.set({ message: "Files are attached", level: "info" });
-				setCount(event.target.files.length);
+				return;
 			}
-		} else if (count != 0) {
+
+			modAlertStore.set({ message: "Files are attached", level: "info" });
+			setCount(event.target.files.length);
+		} else if (count !== 0) {
 			setCount(0);
 		}
 	};

@@ -30,7 +30,7 @@ const ModalEdit: ModalComponent = ({
 	};
 
 	const edit = () => {
-		editComment({ post_id, comment_id: comment.id, message: message }).then(() => {
+		editComment({ post_id, comment_id: comment.id, message }).then(() => {
 			update();
 			hide();
 		});
