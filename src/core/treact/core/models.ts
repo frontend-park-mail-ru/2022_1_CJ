@@ -33,7 +33,7 @@ export type Fiber = {
 };
 
 type State = {
-	root?: Fiber;
+	root: Fiber;
 	wipRoot: Fiber;
 	wipFiber: Fiber;
 	hookIndex: number;

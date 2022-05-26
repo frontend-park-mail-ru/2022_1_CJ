@@ -5,37 +5,37 @@ const isProperty = (key: string) => !isEvent(key) && key !== "children";
 const isNew = (prev: any, next: any) => (key: any) => prev[key] !== next[key];
 const isGone = (next: any) => (key: any) => !(key in next);
 
-const updateNode = (node: Node, prevProps: any, nextProps: any) => {
+const updateNode = (node: Node, prevProps: any, newProps: any) => {
 	// Update changed properties.
 	Object.keys(prevProps)
 		.filter(isProperty)
-		.filter(isGone(nextProps))
+		.filter(isGone(newProps))
 		.forEach((property) => {
 			(node as any)[property] = "";
 		});
 
-	Object.keys(nextProps)
+	Object.keys(newProps)
 		.filter(isProperty)
-		.filter(isNew(prevProps, nextProps))
+		.filter(isNew(prevProps, newProps))
 		.forEach((property) => {
-			(node as any)[property] = nextProps[property];
+			(node as any)[property] = newProps[property];
 		});
 
 	// Update event listeners.
 	Object.keys(prevProps)
 		.filter(isEvent)
-		.filter((key) => !(key in nextProps) || isNew(prevProps, nextProps)(key))
+		.filter((key) => !(key in newProps) || isNew(prevProps, newProps)(key))
 		.forEach((event) => {
 			const eventType = event.toLowerCase().substring(2);
 			node.removeEventListener(eventType, prevProps[event]);
 		});
 
-	Object.keys(nextProps)
+	Object.keys(newProps)
 		.filter(isEvent)
-		.filter(isNew(prevProps, nextProps))
+		.filter(isNew(prevProps, newProps))
 		.forEach((name) => {
 			const eventType = name.toLowerCase().substring(2);
-			node.addEventListener(eventType, nextProps[name]);
+			node.addEventListener(eventType, newProps[name]);
 		});
 };
 
