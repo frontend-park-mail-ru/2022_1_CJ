@@ -9,8 +9,10 @@ export const Communities: Component = () => {
 	return (
 		<AuthMiddleware>
 			<Layout>
-				<div className="flex flex-c">
-					<Link to={Routes.CommunityCreate}>Create community</Link>
+				<div className="flex flex-c space-half">
+					<Link to={Routes.CommunityCreate}>
+						<div className="btn btn-white d-middle">Create community</div>
+					</Link>
 					<CommunitiesList />
 				</div>
 			</Layout>

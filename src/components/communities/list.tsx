@@ -29,7 +29,12 @@ export const CommunitiesList: Component = () => {
 	};
 
 	const map = (cs: CommunityShort) => (
-		<Link to={withParameters(Routes.Community, { community_id: cs.id })}>{cs.name}</Link>
+		<Link to={withParameters(Routes.Community, { community_id: cs.id })}>
+			<div className="flex flex-r items-center text-center">
+				<img className="avatar" src={cs.image} alt="" />
+				{cs.name}
+			</div>
+		</Link>
 	);
 
 	const listCommunities = () => (communities ? communities.map(map) : null);

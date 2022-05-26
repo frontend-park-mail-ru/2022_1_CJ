@@ -87,9 +87,9 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 						<UserProfileLink user={author} />
 						<DateFromTimestamp timestamp={message.created_at} />
 					</span>
-					<p className="break-word pre-wrap">{decodeEntity(message.body)}</p>
-					{message.images && showImageAttachments(message.images)}
-					{message.attachments && showAttachments(message.attachments)}
+					{message.body?.length > 0 && <p className="break-word pre-wrap">{decodeEntity(message.body)}</p>}
+					{message.images?.length > 0 && showImageAttachments(message.images)}
+					{message.attachments?.length > 0 && showAttachments(message.attachments)}
 				</div>
 			);
 		};
@@ -151,7 +151,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 					const imageAttachments = await getImageAttachments();
 					if (body.length === 0) {
 						event.preventDefault();
-					} else if (!event.shiftKey) {
+					} else if ((!event.shiftKey && body.length > 0) || attachments.length > 0 || imageAttachments.length > 0) {
 						event.preventDefault();
 						event.target.innerText = "";
 						socket.send(JSON.stringify({ dialog_id, body, attachments, images: imageAttachments, event: "send" }));
@@ -180,7 +180,9 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 		return (
 			<div className="space-half flex flex-c overflow justify-between d-middle">
 				<p className="d-middle bg-white pd-4 border-sm">{chatName()}</p>
-				<div className="dialog flex flex-cr grow overflow">{messages.map(mapMessage)}</div>
+				<div className="dialog flex flex-cr grow overflow" style="gap: 0.5rem;">
+					{messages.map(mapMessage)}
+				</div>
 				{chatInput()}
 			</div>
 		);

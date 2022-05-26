@@ -74,7 +74,7 @@ export const CommunitySettingsComponent: Component = ({ community_id }: { commun
 
 		const deleteButton = () => (
 			<button onClick={deleteCommunity} className="btn btn-negative d-middle">
-				Delete community
+				Delete
 			</button>
 		);
 
@@ -88,9 +88,7 @@ export const CommunitySettingsComponent: Component = ({ community_id }: { commun
 					</label>
 				</div>
 
-				{deleteButton()}
-
-				<form className="form flow border-sm" style="--flow-space: 1.5rem;" onSubmit={handleSubmit}>
+				<form className="form flex flex-c border-sm" onSubmit={handleSubmit}>
 					<div>
 						<span>
 							<input
@@ -115,10 +113,12 @@ export const CommunitySettingsComponent: Component = ({ community_id }: { commun
 						</span>
 					</div>
 
-					<button className="btn btn-primary" type="submit">
+					<button className="btn btn-primary d-middle" type="submit">
 						Save
 					</button>
 				</form>
+
+				{deleteButton()}
 			</div>
 		);
 	}

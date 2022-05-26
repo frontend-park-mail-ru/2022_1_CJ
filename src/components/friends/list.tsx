@@ -7,7 +7,7 @@ import { User } from "src/core/@types/user";
 import { userAPI } from "src/core/network/api/user";
 import { updateFriendsState, useUserStore } from "src/stores/user";
 
-type Option = "Friends" | "Incoming requests" | "Outcoming requests" | "Search results";
+type Option = "Friends" | "Incoming" | "Outgoing" | "Search results";
 
 export const FriendsList: Component = () => {
 	const [userStore] = useUserStore();
@@ -57,9 +57,9 @@ export const FriendsList: Component = () => {
 		switch (option) {
 			case "Friends":
 				return <>{users.friends.map(map)}</>;
-			case "Incoming requests":
+			case "Incoming":
 				return <>{users.incomingRequests.map(map)}</>;
-			case "Outcoming requests":
+			case "Outgoing":
 				return <>{users.outcomingRequests.map(map)}</>;
 			case "Search results":
 				return <>{searchResults.map(map)}</>;
@@ -76,17 +76,17 @@ export const FriendsList: Component = () => {
 	};
 
 	return (
-		<div className="flex flex-c">
+		<div className="flex flex-c space-half">
 			<input
 				onKeyUp={searchUsers}
 				className="border-no-style border-sm pd-2 bg-white"
 				type="text"
 				placeholder="Search"
 			/>
-			<div className="flex flex-r">
+			<div className="flex flex-r d-middle">
 				{optionButton("Friends", userStore.friends.length)}
-				{optionButton("Incoming requests", userStore.incomingRequests.length)}
-				{optionButton("Outcoming requests", userStore.outcomingRequests.length)}
+				{optionButton("Incoming", userStore.incomingRequests.length)}
+				{optionButton("Outgoing", userStore.outcomingRequests.length)}
 			</div>
 			<div className="flex flex-c">{list()}</div>
 		</div>
