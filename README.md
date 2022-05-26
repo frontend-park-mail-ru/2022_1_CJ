@@ -1,15 +1,17 @@
-# Команда "CJ" | Социальная сеть vk.com
+# Команда "CJ" | Социальная сеть VK
 
-## Общие сведения
+## Сервис
 
-### Авторы
+[senago.software](https://senago.software)
 
-- [Даниил Бахланов](https://github.com/Similization) - Фронтенд
-- [Ринат Хайруллин](https://github.com/rinatkh) - Бэкенд
-- [Частиков Александр](https://github.com/papazloynt) - Бэкенд
-- [Оганес Мирзоян](https://github.com/senago) - Фронтенд
+## Авторы
 
-### Ссылки
+- ~~[Даниил Бахланов](https://github.com/Similization) - Фронтенд~~
+- [Ринат Хайруллин](https://github.com/rinatkh) - backend
+- [Частиков Александр](https://github.com/papazloynt) - backend
+- [Оганес Мирзоян](https://github.com/senago) - fullstask
+
+## Ссылки
 
 - [Backend](https://github.com/go-park-mail-ru/2022_1_CJ)
 - [Frontend](https://github.com/frontend-park-mail-ru/2022_1_CJ)
