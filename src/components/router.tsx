@@ -6,10 +6,14 @@ import { useRouterStore } from "src/stores/router";
 const route = () => {
 	const [routerStore, modRouterStore] = useRouterStore();
 	if (routerStore.state === "online") {
-		// Use setTimeout to defer update of routerStore, so that it reaches the subscribers.
-		setTimeout(() => {
-			modRouterStore.update({ path: pathToRoute(window.location.pathname, Object.values(Routes)) });
-		});
+		if (window.location.pathname.startsWith("/api")) {
+			window.location.href = window.location.href;
+		} else {
+			// Use setTimeout to defer update of routerStore, so that it reaches the subscribers.
+			setTimeout(() => {
+				modRouterStore.update({ path: pathToRoute(window.location.pathname, Object.values(Routes)) });
+			});
+		}
 	} else if (routerStore.state === "offline") {
 		modRouterStore.update({ path: Routes.Offline });
 	}
