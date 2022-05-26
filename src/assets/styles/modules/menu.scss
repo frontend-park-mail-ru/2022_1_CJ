@@ -3,9 +3,24 @@
 	flex-direction: column;
 }
 
+.menu-item {
+	display: flex;
+	flex-direction: row;
+	gap: 0.5rem;
+}
+
 @media only screen and (hover: none) and (pointer: coarse) {
 	.menu {
+		border-radius: 4px;
+		padding: 0.25rem;
 		flex-direction: row;
 		justify-content: space-between;
+		background: white;
+	}
+
+	.menu-item {
+		gap: 0;
+		padding: 0.25rem;
+		text-indent: -9999px;
 	}
 }

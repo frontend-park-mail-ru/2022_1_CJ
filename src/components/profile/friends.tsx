@@ -16,7 +16,7 @@ export const ProfileFriendsList: Component = ({ friends }: { friends: User[] }) 
 	};
 	return (
 		<div className="flex flex-w justify-center bg-white pd-8 border-sm">
-			{friends.length > 0 ? friends.map(map) : <p>Yet no friends</p>}
+			{friends.length > 0 ? friends.map(map) : <p className="text-center">Yet no friends</p>}
 		</div>
 	);
 };
