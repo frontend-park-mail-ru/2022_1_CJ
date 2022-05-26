@@ -1,0 +1,27 @@
+@mixin absolute-width($width) {
+	margin-left: calc($width / -2);
+	width: $width;
+}
+
+.tooltip {
+	position: relative;
+	cursor: grab;
+	user-select: none;
+}
+
+.tooltip .tooltip-content {
+	position: absolute;
+	left: 50%;
+	bottom: 115%;
+	max-height: 8rem;
+	@include absolute-width(8rem);
+
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 500ms ease, visibility 500ms ease;
+}
+
+.tooltip[active] .tooltip-content {
+	opacity: 1;
+	visibility: visible;
+}

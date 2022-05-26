@@ -1,0 +1,28 @@
+$range: 8;
+$base-space: 0.125rem;
+
+:root {
+	@for $i from 1 through $range {
+		--space-#{$i}: #{$i * $base-space};
+	}
+}
+
+@for $i from 1 through $range {
+	.pd-#{$i} {
+		padding: var(--space-#{$i});
+	}
+}
+
+@for $i from 1 through $range {
+	.m-#{$i} {
+		margin: 0 var(--space-#{$i});
+	}
+
+	.mt-#{$i} {
+		margin-top: var(--space-#{$i});
+	}
+
+	.mb-#{$i} {
+		margin-bottom: var(--space-#{$i});
+	}
+}

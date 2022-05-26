@@ -1,0 +1,9 @@
+.space-half {
+	width: min(100%, 50vw);
+}
+
+@media only screen and (hover: none) and (pointer: coarse) {
+	.space-half {
+		width: 100%;
+	}
+}

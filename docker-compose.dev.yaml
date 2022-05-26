@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./dist:/var/www/web
+      - ./src/assets/static:/var/www/web/static
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf/dev.conf:/etc/nginx/conf.d/default.conf
+
+networks:
+  default:
+    name: api
+    external: true

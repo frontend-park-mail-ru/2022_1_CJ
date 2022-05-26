@@ -1,0 +1,150 @@
+@import "./partials/buttons.scss";
+@import "./partials/colors.scss";
+@import "./partials/dropdown.scss";
+@import "./partials/generic.scss";
+@import "./partials/header.scss";
+@import "./partials/inputs.scss";
+@import "./partials/modal.scss";
+@import "./partials/profile.scss";
+@import "./partials/space.scss";
+@import "./partials/tooltip.scss";
+@import "./partials/typography.scss";
+@import "./partials/utilities.scss";
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	scrollbar-width: none;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+	display: none;
+}
+
+ul,
+ol {
+	list-style: none;
+}
+
+html:focus-within {
+	scroll-behavior: smooth;
+}
+
+img,
+picture {
+	max-width: 100%;
+	display: block;
+	object-fit: cover;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html:focus-within {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+#root {
+	@extend .fs-md;
+
+	position: fixed;
+	height: 100%;
+	width: 100%;
+
+	display: flex;
+	color: var(--clr-text);
+	background-color: var(--clr-bg);
+
+	line-height: 1.5;
+	text-rendering: optimizeSpeed;
+	font-family: Arial, sans-serif;
+}
+
+.content {
+	flex-grow: 1;
+	display: grid;
+	grid-template-rows: min-content 1fr;
+}
+
+.content > * {
+	margin-bottom: 1rem;
+}
+
+.wrapper {
+	display: flex;
+	overflow: auto;
+}
+
+.wrapper > * {
+	margin: 0 clamp(0.5rem, calc(-4.18rem + 23.41vw), 12.5rem);
+}
+
+.wrapper-content {
+	display: flex;
+	flex-direction: row;
+	gap: 2rem;
+	overflow: auto;
+}
+
+@media only screen and (hover: none) and (pointer: coarse) {
+	.wrapper-content {
+		flex-direction: column-reverse;
+		justify-content: space-between;
+		gap: 0.75rem;
+	}
+}
+
+a:not([class]) {
+	text-decoration-skip-ink: auto;
+}
+
+a[data-link] * {
+	pointer-events: none;
+}
+
+input[type="file"] {
+	display: none;
+}
+
+::selection {
+	color: white;
+	background: var(--clr-secondary);
+}
+
+@media only screen and (hover: none) and (pointer: coarse) {
+	.wrapper > * {
+		grid-column: col-start 2 / col-start 12;
+	}
+}
+
+hr {
+	border: none;
+	height: 1px;
+	background-color: var(--clr-border);
+}
+
+@media only screen and (hover: none) and (pointer: coarse) {
+	#mobile {
+		display: none;
+	}
+}

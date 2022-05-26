@@ -1,0 +1,66 @@
+$outline-width: 2px;
+
+.btn {
+	@extend .pointer;
+	@extend .border-sm;
+	border: none;
+	outline: none;
+	appearance: none;
+	width: fit-content;
+	padding: 0.25rem 0.75rem;
+	outline-offset: -$outline-width;
+	user-select: none;
+}
+
+@media only screen and (hover: none) and (pointer: coarse) {
+	.btn {
+		padding: 0.25rem 0.5rem;
+	}
+}
+
+.btn-primary {
+	background-color: var(--clr-primary);
+	color: var(--clr-white);
+	box-shadow: 1px 1px 1px var(--clr-primary-l);
+}
+
+.btn-primary:hover {
+	background-color: var(--clr-primary-d);
+}
+
+.btn-secondary {
+	background-color: var(--clr-secondary);
+	color: var(--clr-white);
+	box-shadow: 1px 1px 1px var(--clr-secondary-l);
+}
+
+.btn-secondary:hover {
+	background-color: var(--clr-secondary-d);
+}
+
+.btn-white {
+	color: var(--clr-primary);
+	background-color: var(--clr-white);
+}
+
+.btn-white:hover {
+	outline: $outline-width solid var(--clr-primary);
+}
+
+.btn-transparent {
+	color: var(--clr-text);
+	background-color: transparent;
+}
+
+.btn-transparent:hover {
+	outline: $outline-width solid var(--clr-primary);
+}
+
+.btn-negative {
+	background-color: var(--clr-negative);
+	color: var(--clr-white);
+}
+
+.btn-negative:hover {
+	background-color: var(--clr-negative-d);
+}

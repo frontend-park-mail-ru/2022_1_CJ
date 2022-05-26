@@ -1,0 +1,198 @@
+.flex {
+	display: flex;
+	gap: 1rem;
+}
+
+.grow {
+	flex-grow: 1;
+}
+
+.flex-w {
+	flex-wrap: wrap;
+}
+
+.flex-c {
+	flex-direction: column;
+}
+
+.flex-cr {
+	flex-direction: column-reverse;
+}
+
+.flex-r {
+	flex-direction: row;
+}
+
+.flex-rr {
+	flex-direction: row-reverse;
+}
+
+.no-gap {
+	gap: 0;
+}
+
+.items-center {
+	align-items: center;
+}
+
+.items-stretch {
+	align-items: stretch;
+}
+
+.justify-center {
+	justify-content: center;
+}
+
+.justify-between {
+	justify-content: space-between;
+}
+
+.grid {
+	display: grid;
+	gap: var(--gap, 1rem);
+}
+
+.grid-r {
+	grid-auto-flow: row;
+}
+
+.grid-c {
+	grid-auto-flow: column;
+}
+
+.d-block {
+	display: block;
+}
+
+.d-middle {
+	margin-inline: auto;
+}
+
+.selectable {
+	user-select: text;
+}
+
+.unselectable {
+	user-select: none;
+}
+
+.pointer {
+	cursor: pointer;
+	user-select: none;
+}
+
+.transparent {
+	background: transparent;
+}
+
+.bg-white {
+	background-color: var(--clr-white);
+}
+
+.bg-primary-l {
+	background-color: var(--clr-primary-l);
+}
+
+.cross {
+	cursor: pointer;
+	line-height: 0.5;
+	width: fit-content;
+	margin-left: auto;
+
+	&::after {
+		font-size: 1.75rem;
+		content: "\00D7";
+	}
+}
+
+.form {
+	padding: 1.5rem;
+	place-self: center;
+	margin-inline: auto;
+	background-color: var(--clr-white);
+	max-width: clamp(20rem, 30vw + 5rem, 35rem);
+}
+
+.icon {
+	height: clamp(1.25rem, calc(1.15rem + 0.49vw), 1.5rem);
+	aspect-ratio: 1 / 1;
+	cursor: pointer;
+}
+
+.avatar {
+	@extend .icon;
+	height: clamp(1.5rem, calc(1.3rem + 0.98vw), 2rem);
+	border-radius: 50%;
+}
+
+.overflow {
+	overflow: auto;
+}
+
+.break-word {
+	word-break: break-word;
+}
+
+.pre-wrap {
+	white-space: pre-wrap;
+}
+
+.fit-content {
+	width: fit-content;
+}
+
+.hidden {
+	opacity: 0;
+	visibility: hidden;
+}
+
+.visible {
+	opacity: 1;
+	visibility: visible;
+}
+
+/* -------------------------------- Borders -------------------------------- */
+
+.border {
+	border: 1px solid var(--clr-border);
+}
+
+.border-sm {
+	border-radius: 4px;
+}
+
+.border-md {
+	border-radius: 8px;
+}
+
+.border-no-style {
+	outline: none;
+	border-style: none;
+}
+
+/* -------------------------------- Helpers -------------------------------- */
+
+.helper {
+	@extend .fs-sm;
+	line-height: 1rem;
+	margin-bottom: -1rem;
+}
+
+.helper-error {
+	color: var(--clr-negative);
+}
+
+.helper-hint {
+	@extend .text-light;
+}
+
+/* -------------------------------- Links -------------------------------- */
+
+.link {
+	text-decoration: none;
+	color: var(--clr-primary);
+}
+
+.link:hover {
+	text-decoration: underline;
+}

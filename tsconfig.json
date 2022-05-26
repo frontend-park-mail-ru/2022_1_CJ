@@ -1,0 +1,34 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"lib": ["ESNext", "DOM"],
+
+		"moduleResolution": "node",
+		"composite": true,
+		"declaration": true,
+
+		"alwaysStrict": true,
+		"noImplicitAny": true,
+		"sourceMap": true,
+		"forceConsistentCasingInFileNames": true,
+		"isolatedModules": true,
+		"noUnusedLocals": true,
+		"noImplicitReturns": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitThis": true,
+
+		"jsx": "react",
+		"jsxFactory": "treact.createElement",
+		"jsxFragmentFactory": "treact.createFragmentElement",
+
+		"baseUrl": ".",
+		"rootDir": ".",
+		"outDir": "dist",
+		"paths": {
+			"@treact": ["src/core/treact/treact"]
+		}
+	},
+	"include": ["./src/**/*.ts", "./src/**/*.tsx"]
+}
