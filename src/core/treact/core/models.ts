@@ -1,5 +1,5 @@
 type ComponentProperties = {
-	[key: string]: object | string | number;
+	[key: string]: object | string | number | boolean;
 };
 
 export type Component = (props?: ComponentProperties) => JSX.Element;

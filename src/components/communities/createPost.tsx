@@ -1,4 +1,5 @@
 import { Component, ModalComponent, treact } from "@treact";
+import { CrossComponent } from "src/components/@helpers/cross";
 import { FileAttachmentsComponent, getFileAttachments } from "src/components/attachments/file";
 import { getImageAttachments, ImageAttachmentsComponent } from "src/components/attachments/images";
 import { EventWithTarget } from "src/core/@types/event";
@@ -37,7 +38,7 @@ const Modal: ModalComponent = (props) => {
 	return (
 		<div className="modal flex items-center">
 			<div id="modal" className="flex flex-c d-middle bg-white pd-8 border-sm" style="width: clamp(15rem, 75%, 30rem);">
-				<span className="cross" onClick={hide} />
+				<CrossComponent hide={hide} />
 				<div className="flex flex-r no-gap">
 					<div onKeyUp={handleChange} className="grow" contentEditable style="max-height: 33vh;" />
 					<ImageAttachmentsComponent />

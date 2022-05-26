@@ -1,4 +1,5 @@
 import { Component, ModalComponent, treact } from "@treact";
+import { CrossComponent } from "src/components/@helpers/cross";
 
 const Modal: ModalComponent = (props) => {
 	const hide = props.hide;
@@ -17,9 +18,9 @@ const Modal: ModalComponent = (props) => {
 
 	return (
 		<div className="modal flex items-center">
-			<div id="modal" className="flex flex-c items-center d-middle bg-white pd-8 border-sm" style="width: 90vmin;">
-				<span className="cross" onClick={hide} />
-				<img className="border-sm" src={url} alt="" />
+			<div id="modal" className="flex flex-c items-center d-middle bg-white pd-8 border-sm" style="max-width: 90vmin;">
+				<CrossComponent hide={hide} />
+				<img style="max-width: 75vw; max-height: 75vh;" src={url} alt="" />
 			</div>
 		</div>
 	);

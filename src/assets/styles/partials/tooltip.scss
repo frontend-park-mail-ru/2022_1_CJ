@@ -1,20 +1,15 @@
-@mixin absolute-width($width) {
-	margin-left: calc($width / -2);
-	width: $width;
-}
-
 .tooltip {
 	position: relative;
-	cursor: grab;
+	cursor: pointer;
 	user-select: none;
 }
 
 .tooltip .tooltip-content {
 	position: absolute;
-	left: 50%;
+	right: 0;
 	bottom: 115%;
-	max-height: 8rem;
-	@include absolute-width(8rem);
+	max-height: 16rem;
+	width: 8rem;
 
 	opacity: 0;
 	visibility: hidden;

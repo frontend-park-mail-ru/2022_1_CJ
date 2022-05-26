@@ -1,4 +1,5 @@
 import { Component, ModalComponent, treact } from "@treact";
+import { CrossComponent } from "src/components/@helpers/cross";
 import { EventWithTarget } from "src/core/@types/event";
 import { Post } from "src/core/@types/post";
 import { editComment } from "src/core/network/api/comments/edit";
@@ -40,7 +41,7 @@ const ModalEdit: ModalComponent = ({
 	return (
 		<div className="modal flex items-center">
 			<div id="modal" className="flex flex-c d-middle bg-white pd-8 border-sm" style="width: clamp(15rem, 75%, 30rem);">
-				<span className="cross" onClick={hide} />
+				<CrossComponent hide={hide} />
 				<div onKeyUp={handleChange} contentEditable style="max-height: 33vh;">
 					{comment.message}
 				</div>

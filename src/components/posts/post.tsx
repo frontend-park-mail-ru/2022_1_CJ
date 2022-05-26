@@ -12,7 +12,13 @@ import { communitiesAPI } from "src/core/network/api/communities";
 import { postAPI } from "src/core/network/api/post";
 import { useUserStore } from "src/stores/user";
 
-export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWrapper }) => {
+export const PostComponent: Component = ({
+	postWrapper,
+	disableNavigate,
+}: {
+	postWrapper: PostWrapper;
+	disableNavigate: boolean;
+}) => {
 	const [userStore] = useUserStore();
 	const update = treact.useUpdate();
 	const { post } = postWrapper;
@@ -66,7 +72,7 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 	};
 
 	return (
-		<div className="flex flex-c bg-white pd-8 border-sm" style="gap: 0.5rem; width: min(100%, 60ch);">
+		<div className="post flex flex-c bg-white pd-8 border-sm" style="gap: 0.5rem;">
 			<div className="flex flex-r items-center justify-between">
 				<PostAuthorComponent post={post} />
 				{(isAuthor || isFromManagedCommunity) && (
@@ -76,9 +82,12 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 					</DropdownMenuComponent>
 				)}
 			</div>
-			<Navigate to={withParameters(Routes.Post, { post_id: post.id })}>
-				<p className="break-word pre-wrap">{post.message}</p>
-			</Navigate>
+			{disableNavigate && <p className="message">{post.message}</p>}
+			{!disableNavigate && (
+				<Navigate to={withParameters(Routes.Post, { post_id: post.id })}>
+					<p className="message">{post.message}</p>
+				</Navigate>
+			)}
 			{post.images && showImageAttachments(post.images)}
 			{post.attachments && showAttachments(post.attachments)}
 			<div className="flex flex-r">

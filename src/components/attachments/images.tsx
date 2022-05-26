@@ -53,7 +53,7 @@ export const ImageAttachmentsComponent: Component = () => {
 			<input onChange={attach} type="file" id="images" accept=".jpg, .jpeg, .png" multiple />
 			<span>
 				🖼️
-				<span className="text-light">{count}</span>
+				<span className="text-light pd-2">{count}</span>
 			</span>
 		</label>
 	);

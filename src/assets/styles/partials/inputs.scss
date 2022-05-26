@@ -30,6 +30,7 @@ div[contenteditable] {
 	outline: none;
 	overflow-y: scroll;
 	overflow-wrap: break-word;
+	max-height: 5rem;
 }
 
 div[contenteditable]:empty:focus::before,

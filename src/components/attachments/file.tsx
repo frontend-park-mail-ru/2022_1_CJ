@@ -47,7 +47,7 @@ export const FileAttachmentsComponent: Component = () => {
 			<input onChange={attach} type="file" id="attachments" accept=".pdf" multiple />
 			<span>
 				📎
-				<span className="text-light">{count}</span>
+				<span className="text-light pd-2">{count}</span>
 			</span>
 		</label>
 	);

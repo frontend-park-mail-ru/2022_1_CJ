@@ -40,7 +40,7 @@ export const PostPage: Component = ({ post_id }: { post_id: string }) => {
 	const showComments = () => {
 		if (comments.length > 0) {
 			return (
-				<div className="dialog flex flex-c grow overflow">
+				<div className="flex flex-c grow items-center">
 					<p className="text-center text-light">{postWrapper.post.count_comments} comments</p>
 					{comments.map((comment) => (
 						<CommentComponent post_id={post_id} comment={comment} />
@@ -52,12 +52,12 @@ export const PostPage: Component = ({ post_id }: { post_id: string }) => {
 	};
 
 	return (
-		<div className="flex flex-c overflow d-middle space-half">
+		<div className="flex flex-c overflow d-middle" style="width: min(100%, 60ch);">
 			<div className="flex flex-c items-center">
-				<PostComponent postWrapper={postWrapper} />
+				<PostComponent postWrapper={postWrapper} disableNavigate={true} />
 			</div>
 			<div className="flex no-gap">
-				<div id="comment" className="grow bg-white break-word" style="max-height: 5rem;" contentEditable />
+				<div id="comment" className="bg-white grow break-word" contentEditable />
 				<button onClick={postComment} className="btn btn-white border">
 					send
 				</button>

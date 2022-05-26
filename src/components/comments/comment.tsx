@@ -26,7 +26,7 @@ export const CommentComponent: Component = ({ post_id, comment }: { post_id: str
 	const editButton = () => <EditCommentComponent post_id={post_id} comment={comment} />;
 
 	return (
-		<div className="flex flex-c bg-white pd-4 border-sm">
+		<div className="post flex flex-c bg-white pd-4 border-sm">
 			<div className="flex flex-r items-center justify-between">
 				<div className="flex flex-r items-center">
 					<img className="avatar" src={comment.author.image} alt="" />
@@ -40,7 +40,7 @@ export const CommentComponent: Component = ({ post_id, comment }: { post_id: str
 					</DropdownMenuComponent>
 				)}
 			</div>
-			{comment.message}
+			<p className="message">{comment.message}</p>
 		</div>
 	);
 };

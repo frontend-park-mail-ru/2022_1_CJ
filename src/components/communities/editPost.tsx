@@ -1,4 +1,5 @@
 import { Component, ModalComponent, treact } from "@treact";
+import { CrossComponent } from "src/components/@helpers/cross";
 import { EventWithTarget } from "src/core/@types/event";
 import { Post } from "src/core/@types/post";
 import { communitiesAPI } from "src/core/network/api/communities";
@@ -34,7 +35,7 @@ const Modal: ModalComponent = (props) => {
 	return (
 		<div className="modal flex items-center">
 			<div id="modal" className="flex flex-c d-middle bg-white pd-8 border-sm">
-				<span className="cross" onClick={hide} />
+				<CrossComponent hide={hide} />
 				<div className="flex flex-r no-gap">
 					<div onKeyUp={handleChange} className="grow" contentEditable style="max-height: 33vh;">
 						{post.message}

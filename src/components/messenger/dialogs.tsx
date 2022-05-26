@@ -16,5 +16,17 @@ export const Dialogs: Component = () => {
 		</div>
 	);
 
-	return <div className="flex flex-c grow items-center">{dialogs.length > 0 ? dialogs.map(map) : "Yet no chats"}</div>;
+	const showDialogs = (list: Dialog[]) => {
+		if (list?.length > 0) {
+			return (
+				<div className="flex flex-c grow">
+					<div className="bold">Dialogs</div>
+					{list.map(map)}
+				</div>
+			);
+		}
+		return <p className="text-center text-light">Yet no chats</p>;
+	};
+
+	return showDialogs(dialogs);
 };

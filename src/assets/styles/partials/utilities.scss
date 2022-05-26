@@ -98,11 +98,6 @@
 	line-height: 0.5;
 	width: fit-content;
 	margin-left: auto;
-
-	&::after {
-		font-size: 1.75rem;
-		content: "\00D7";
-	}
 }
 
 .form {
@@ -195,4 +190,8 @@
 
 .link:hover {
 	text-decoration: underline;
+}
+
+.post {
+	width: min(100%, 60ch);
 }
