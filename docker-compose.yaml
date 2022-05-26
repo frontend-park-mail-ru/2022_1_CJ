@@ -8,9 +8,10 @@ services:
     volumes:
       - ./dist:/var/www/web
       - ./src/assets/static:/var/www/web/static
-      - ./nginx/conf/prod.conf:/etc/nginx/conf.d/default.conf
       - ./certbot/www:/var/www/certbot
       - ./certbot/conf:/etc/letsencrypt
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf/prod.conf:/etc/nginx/conf.d/default.conf
 
   certbot:
     image: certbot/certbot:latest
