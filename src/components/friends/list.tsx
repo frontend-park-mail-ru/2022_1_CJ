@@ -55,9 +55,9 @@ export const FriendsList: Component = () => {
 		);
 	};
 
-	const show = (users: User[]) => {
-		if (users?.length > 0) {
-			return users.map(map);
+	const show = (set: User[]) => {
+		if (set?.length > 0) {
+			return set.map(map);
 		}
 		return <p className="text-center text-light">Empty</p>;
 	};
