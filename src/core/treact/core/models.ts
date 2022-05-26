@@ -20,21 +20,22 @@ export enum FiberAction {
 }
 
 export type Fiber = {
+	type?: Component | keyof JSX.IntrinsicElements | "TEXT_ELEMENT";
 	props: any;
-	alternate?: Fiber;
 	node?: Node;
-	type?: keyof JSX.IntrinsicElements | "TEXT_ELEMENT" | Component;
+	hooks?: any[];
 	action?: FiberAction;
+
 	parent?: Fiber;
 	child?: Fiber;
 	sibling?: Fiber;
-	hooks?: any[];
+	ancestor?: Fiber;
 };
 
 type State = {
-	wipRoot?: Fiber;
+	root?: Fiber;
+	wipRoot: Fiber;
 	wipFiber: Fiber;
-	currentRoot: Fiber;
 	hookIndex: number;
 
 	deletions: Fiber[];

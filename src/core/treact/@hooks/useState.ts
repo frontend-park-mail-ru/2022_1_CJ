@@ -17,11 +17,11 @@ export const useState = <T>(initial: T): [T, StateSetter<T>] => {
 
 	const setState: StateSetter<T> = (action: SetStateAction<T>) => {
 		hook.queue.push(action);
-		if (State.currentRoot) {
+		if (State.root) {
 			State.wipRoot = {
-				node: State.currentRoot.node,
-				props: State.currentRoot.props,
-				alternate: State.currentRoot,
+				node: State.root.node,
+				props: State.root.props,
+				ancestor: State.root,
 			};
 			State.nextUnitOfWork = State.wipRoot;
 			State.deletions = [];

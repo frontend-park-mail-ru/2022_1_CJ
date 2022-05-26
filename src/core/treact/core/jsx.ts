@@ -47,7 +47,7 @@ const render = (element: JSX.Element, container: Node) => {
 			children: [element],
 		},
 		hooks: [],
-		alternate: State.currentRoot,
+		ancestor: State.root,
 	};
 
 	State.deletions = [];
