@@ -67,7 +67,7 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 	};
 
 	return (
-		<div className="flow bg-white pd-8 border-sm" style="width: min(100%, 60ch);">
+		<div className="flex flex-c bg-white pd-8 border-sm" style="gap: 0.5rem; width: min(100%, 60ch);">
 			<div className="flex flex-r items-center justify-between">
 				<PostAuthorComponent post={post} />
 				{(isAuthor || isFromManagedCommunity) && (

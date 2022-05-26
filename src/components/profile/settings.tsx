@@ -79,7 +79,7 @@ export const ProfileSettingsBlock: Component = () => {
 				</label>
 			</div>
 
-			<form className="form flow border-sm" style="--flow-space: 1.5rem;" onSubmit={handleSubmit}>
+			<form className="form flex flex-c border-sm" style="gap: 1.5rem;" onSubmit={handleSubmit}>
 				<div className="flex flex-r">
 					<span>
 						<input
