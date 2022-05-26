@@ -1,7 +1,8 @@
 import { Component, treact } from "@treact";
 import { ControlButton } from "src/components/communities/controlButton";
 import { CreateCommunityPost } from "src/components/communities/createPost";
-import { Link } from "src/components/link";
+import { CommunityInformaitonComponent } from "src/components/communities/information";
+import { Navigate } from "src/components/link";
 import { PostComponent } from "src/components/posts/post";
 import { Spinner } from "src/components/spinner";
 import { Routes, withParameters } from "src/constants/routes";
@@ -38,15 +39,18 @@ export const CommunityComponent: Component = ({ community_id }: { community_id: 
 		const isAdmin = community.admins?.some((user) => user.id === userStore.user.id);
 		return (
 			<div className="flex flex-c grow d-middle">
-				<p className="fs-lg">{community.name}</p>
-				<p>{community.info}</p>
+				<CommunityInformaitonComponent community={community} />
 				{!isAdmin && <ControlButton community_id={community_id} />}
 				{isAdmin && (
-					<div className="d-middle">
-						<Link to={withParameters(Routes.CommunitySettings, { community_id })}>Settings</Link>
+					<div className="flex flex-r">
+						<div className="d-middle">
+							<Navigate to={withParameters(Routes.CommunitySettings, { community_id })}>
+								<div className="btn btn-white d-middle">Settings</div>
+							</Navigate>
+						</div>
+						<CreateCommunityPost community_id={community_id} />
 					</div>
 				)}
-				{isAdmin && <CreateCommunityPost community_id={community_id} />}
 				<div className="flex flex-c items-center">{list()}</div>
 			</div>
 		);

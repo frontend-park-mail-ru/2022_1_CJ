@@ -55,9 +55,9 @@ export const CreateCommunityPost: Component = ({ community_id }: { community_id:
 	const hide = () => setShow(false);
 	return (
 		<>
-			<button onClick={() => setShow(true)} className="btn btn-white d-middle">
+			<div onClick={() => setShow(true)} className="btn btn-white d-middle">
 				Create post
-			</button>
+			</div>
 			{show && <Modal hide={hide} community_id={community_id} />}
 		</>
 	);
