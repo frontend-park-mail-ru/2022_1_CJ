@@ -96,7 +96,14 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 
 		const chatName = () => {
 			if (dialog.participants.length === 1) {
-				return <Link to={withParameters(Routes.Profile, { user_id: dialog.participants[0] })}>{dialog.name}</Link>;
+				const participantID = dialog.participants[0];
+				const participant = participants[participantID];
+				return (
+					<div className="flex flex-r items-center">
+						<img className="avatar" src={participant.image} alt="" />
+						<Link to={withParameters(Routes.Profile, { user_id: participantID })}>{dialog.name}</Link>
+					</div>
+				);
 			}
 			return dialog.name;
 		};

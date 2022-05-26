@@ -1,4 +1,5 @@
 import { Component, treact } from "@treact";
+import { DropdownMenuComponent } from "src/components/@helpers/dropdown";
 import { decodeEntity } from "src/components/@helpers/utils";
 import { EditCommunityPost } from "src/components/communities/editPost";
 import { Navigate } from "src/components/link";
@@ -73,15 +74,10 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 			<div className="flex flex-r items-center justify-between">
 				<PostAuthorComponent post={post} />
 				{(isAuthor || isFromManagedCommunity) && (
-					<span className="dropdown">
-						👀
-						<span className="dropdown-content border border-sm bg-white" style="right: 0;">
-							<div className="flex flex-c">
-								{deleteButton()}
-								{editButton()}
-							</div>
-						</span>
-					</span>
+					<DropdownMenuComponent>
+						{deleteButton()}
+						{editButton()}
+					</DropdownMenuComponent>
 				)}
 			</div>
 			<Navigate to={withParameters(Routes.Post, { post_id: post.id })}>
