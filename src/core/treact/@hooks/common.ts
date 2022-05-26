@@ -11,5 +11,5 @@ export const getLastHook = () => {
 	if (State.wipFiber?.ancestor?.hooks) {
 		return State.wipFiber.ancestor.hooks[State.hookIndex];
 	}
-	return undefined;
+	return null;
 };
