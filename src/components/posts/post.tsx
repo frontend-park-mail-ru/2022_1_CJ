@@ -1,6 +1,5 @@
 import { Component, treact } from "@treact";
 import { DropdownMenuComponent } from "src/components/@helpers/dropdown";
-import { decodeEntity } from "src/components/@helpers/utils";
 import { showImageAttachments } from "src/components/attachments/images";
 import { EditCommunityPost } from "src/components/communities/editPost";
 import { Navigate } from "src/components/link";
@@ -78,7 +77,7 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 				)}
 			</div>
 			<Navigate to={withParameters(Routes.Post, { post_id: post.id })}>
-				<p className="break-word pre-wrap">{decodeEntity(post.message)}</p>
+				<p className="break-word pre-wrap">{post.message}</p>
 			</Navigate>
 			{post.images && showImageAttachments(post.images)}
 			{post.attachments && showAttachments(post.attachments)}

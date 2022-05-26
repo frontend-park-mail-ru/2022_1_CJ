@@ -45,11 +45,31 @@ const withCSRFToken = (url: string, token: string) => withQuery(url, { [headers.
 
 const getCookieValue = (name: string) => document.cookie.match("(^|;)\\s*" + name + "\\s*=\\s*([^;]+)")?.pop() || "";
 
+export const decodeEntity = (str: string) => {
+	const doc = new DOMParser().parseFromString(str, "text/html");
+	return doc.documentElement.textContent;
+};
+
+const walkJSON = (json: any): void => {
+	Object.entries(json).forEach(([key, value]) => {
+		if (typeof value === "object") {
+			decodeJSON(value);
+		} else if (typeof value === "string") {
+			json[key] = decodeEntity(value);
+		}
+	});
+};
+
+const decodeJSON = (json: any): any => {
+	walkJSON(json);
+	return json;
+};
+
 const http = async <T>(url: string, config: RequestInit): Promise<T> => {
 	const csrfToken = getCookieValue(headers.csrf);
 	const request = new Request(withCSRFToken(url, csrfToken), { ...defaultOptions, ...config });
 	const response = await fetch(request);
-	const promise = response.json().catch(() => {});
+	const promise = response.json().then(decodeJSON, () => {});
 	if (!response.ok) {
 		const json = await promise;
 		throw new CodedError(json.message || response.statusText, response.status);

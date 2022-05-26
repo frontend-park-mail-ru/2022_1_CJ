@@ -3,7 +3,6 @@ import { DateFromTimestamp } from "src/components/@helpers/date";
 import { UserProfileLink } from "src/components/@helpers/links";
 import { isMobile } from "src/components/@helpers/mobile";
 import { fetchUsers } from "src/components/@helpers/user";
-import { decodeEntity } from "src/components/@helpers/utils";
 import { AttachmentComponent } from "src/components/attachments/attachment";
 import { getFileAttachments } from "src/components/attachments/file";
 import { getImageAttachments, showImageAttachments } from "src/components/attachments/images";
@@ -78,12 +77,12 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 			const isAuthor = author.id === userStore.user.id;
 			const style = isAuthor ? "align-self: flex-end;" : "align-self: flex-start;";
 			return (
-				<div className="flex flex-c bg-white pd-8 border-sm" style={style + "max-width: 50%;"}>
+				<div className="flex flex-c bg-white pd-8 border-sm" style={style + "max-width: 75%;"}>
 					<span>
 						<UserProfileLink user={author} />
 						<DateFromTimestamp timestamp={message.created_at} />
 					</span>
-					{message.body?.length > 0 && <p className="break-word pre-wrap">{decodeEntity(message.body)}</p>}
+					{message.body?.length > 0 && <p className="break-word pre-wrap">{message.body}</p>}
 					{message.images?.length > 0 && showImageAttachments(message.images)}
 					{message.attachments?.length > 0 && showAttachments(message.attachments)}
 				</div>
@@ -127,7 +126,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 
 			if (isMobile()) {
 				return (
-					<div className="flex flex-c no-gap" style="padding: 0 1rem;">
+					<div className="flex flex-c no-gap bg-white border-sm" style="padding: 0.25rem;">
 						<div className="flex no-gap items-center">
 							<div id="message" className="grow bg-white break-word" style="max-height: 8rem;" contentEditable />
 							<AttachmentComponent />
@@ -156,7 +155,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 			};
 
 			return (
-				<div className="flex no-gap" style="padding: 0 1rem;">
+				<div className="flex no-gap bg-white" style="padding: 0 1rem;">
 					<div
 						id="message"
 						onKeyDown={sendMessage}
