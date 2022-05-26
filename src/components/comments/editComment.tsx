@@ -14,6 +14,7 @@ const ModalEdit: ModalComponent = ({
 }) => {
 	const [message, setMessage] = treact.useState("");
 	const update = treact.useUpdate();
+	treact.useClickOutside("modal", hide);
 
 	treact.useEffect(() => {
 		const close = (event: KeyboardEvent) => {
@@ -38,7 +39,7 @@ const ModalEdit: ModalComponent = ({
 
 	return (
 		<div className="modal flex items-center">
-			<div className="flex flex-c d-middle bg-white pd-8 border-sm" style="width: clamp(15rem, 75%, 30rem);">
+			<div id="modal" className="flex flex-c d-middle bg-white pd-8 border-sm" style="width: clamp(15rem, 75%, 30rem);">
 				<span className="cross" onClick={hide} />
 				<div onKeyUp={handleChange} contentEditable style="max-height: 33vh;">
 					{comment.message}

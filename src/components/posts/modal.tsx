@@ -8,6 +8,7 @@ import { postAPI } from "src/core/network/api/post";
 export const ModalCreate: ModalComponent = ({ hide }) => {
 	const [message, setMessage] = treact.useState("");
 	const update = treact.useUpdate();
+	treact.useClickOutside("modal", hide);
 
 	treact.useEffect(() => {
 		const close = (event: KeyboardEvent) => {
@@ -34,7 +35,7 @@ export const ModalCreate: ModalComponent = ({ hide }) => {
 
 	return (
 		<div className="modal flex items-center">
-			<div className="flex flex-c d-middle bg-white pd-8 border-sm" style="width: clamp(15rem, 75%, 30rem);">
+			<div id="modal" className="flex flex-c d-middle bg-white pd-8 border-sm" style="width: clamp(15rem, 75%, 30rem);">
 				<span className="cross" onClick={hide} />
 				<div className="flex flex-r no-gap">
 					<div onKeyUp={handleChange} className="grow" contentEditable style="max-height: 33vh;" />
@@ -52,6 +53,7 @@ export const ModalCreate: ModalComponent = ({ hide }) => {
 export const ModalEdit: ModalComponent = ({ hide, post }: { post: Post; hide: () => void }) => {
 	const [message, setMessage] = treact.useState("");
 	const update = treact.useUpdate();
+	treact.useClickOutside("modal", hide);
 
 	treact.useEffect(() => {
 		const close = (event: KeyboardEvent) => {
@@ -76,7 +78,7 @@ export const ModalEdit: ModalComponent = ({ hide, post }: { post: Post; hide: ()
 
 	return (
 		<div className="modal flex items-center">
-			<div className="flex flex-c d-middle bg-white pd-8 border-sm" style="width: clamp(15rem, 75%, 30rem);">
+			<div id="modal" className="flex flex-c d-middle bg-white pd-8 border-sm" style="width: clamp(15rem, 75%, 30rem);">
 				<span className="cross" onClick={hide} />
 				<div onKeyUp={handleChange} contentEditable style="max-height: 33vh;">
 					{post.message}

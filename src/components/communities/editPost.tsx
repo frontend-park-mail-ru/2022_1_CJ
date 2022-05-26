@@ -8,6 +8,7 @@ const Modal: ModalComponent = (props) => {
 	const update = treact.useUpdate();
 	const hide = props.hide;
 	const post = props.post as Post;
+	treact.useClickOutside("modal", hide);
 
 	treact.useEffect(() => {
 		const close = (event: KeyboardEvent) => {
@@ -32,7 +33,7 @@ const Modal: ModalComponent = (props) => {
 
 	return (
 		<div className="modal flex items-center">
-			<div className="flex flex-c d-middle bg-white pd-8 border-sm">
+			<div id="modal" className="flex flex-c d-middle bg-white pd-8 border-sm">
 				<span className="cross" onClick={hide} />
 				<div className="flex flex-r no-gap">
 					<div onKeyUp={handleChange} className="grow" contentEditable style="max-height: 33vh;">

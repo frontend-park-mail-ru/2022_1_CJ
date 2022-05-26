@@ -3,6 +3,7 @@ import { Component, ModalComponent, treact } from "@treact";
 const Modal: ModalComponent = (props) => {
 	const hide = props.hide;
 	const url = props.url as string;
+	treact.useClickOutside("modal", hide);
 
 	treact.useEffect(() => {
 		const close = (event: KeyboardEvent) => {
@@ -16,7 +17,7 @@ const Modal: ModalComponent = (props) => {
 
 	return (
 		<div className="modal flex items-center">
-			<div className="flex flex-c items-center d-middle bg-white pd-8 border-sm" style="width: 90vmin;">
+			<div id="modal" className="flex flex-c items-center d-middle bg-white pd-8 border-sm" style="width: 90vmin;">
 				<span className="cross" onClick={hide} />
 				<img className="border-sm" src={url} alt="" />
 			</div>
