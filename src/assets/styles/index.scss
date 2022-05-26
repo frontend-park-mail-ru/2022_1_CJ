@@ -102,6 +102,7 @@ select {
 .wrapper-content {
 	display: flex;
 	flex-direction: row;
+	gap: 2rem;
 	overflow: auto;
 }
 
@@ -109,6 +110,7 @@ select {
 	.wrapper-content {
 		flex-direction: column-reverse;
 		justify-content: space-between;
+		gap: 0.75rem;
 	}
 }
 

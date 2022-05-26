@@ -51,13 +51,15 @@ export const decodeEntity = (str: string) => {
 };
 
 const walkJSON = (json: any): void => {
-	Object.entries(json).forEach(([key, value]) => {
-		if (typeof value === "object") {
-			decodeJSON(value);
-		} else if (typeof value === "string") {
-			json[key] = decodeEntity(value);
-		}
-	});
+	if (json) {
+		Object.entries(json).forEach(([key, value]) => {
+			if (typeof value === "object") {
+				decodeJSON(value);
+			} else if (typeof value === "string") {
+				json[key] = decodeEntity(value);
+			}
+		});
+	}
 };
 
 const decodeJSON = (json: any): any => {

@@ -31,7 +31,9 @@ export const CurrentUserProfileInfo: Component = () => {
 				<ProfileInformaitonComponent profileInformation={profileInformation} />
 				<div className="flex flex-r justify-between">
 					<div className="flex flex-c grow" style="max-width: 20vw;">
-						<CreatePost />
+						<div className="flex flex-r justify-center bg-white pd-4 border-sm">
+							<CreatePost />
+						</div>
 						<ProfileFriendsList friends={friends} />
 					</div>
 					<ProfilePosts user_id={userStore.user.id} />

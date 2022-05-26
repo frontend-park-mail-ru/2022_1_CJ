@@ -1,6 +1,7 @@
 .menu {
 	display: flex;
 	flex-direction: column;
+	flex-shrink: 0;
 }
 
 .menu-item {

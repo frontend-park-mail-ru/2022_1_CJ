@@ -9,7 +9,7 @@ export const Layout: Component = (props) => {
 		<div className="content">
 			<Header />
 			<div className="wrapper">
-				<div className="wrapper-content mt-8 mb-8 grow" style="gap: 4vw">
+				<div className="wrapper-content mt-8 mb-8 grow">
 					{userStore.status === UserStatus.Authorized && <Menu />}
 					<div className="flex grow overflow items-stretch">{props.children}</div>
 				</div>

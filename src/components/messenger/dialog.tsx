@@ -126,7 +126,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 
 			if (isMobile()) {
 				return (
-					<div className="flex flex-c no-gap bg-white border-sm" style="padding: 0.25rem;">
+					<div className="flex flex-c no-gap border-sm" style="padding: 0.25rem;">
 						<div className="flex no-gap items-center">
 							<div id="message" className="grow bg-white break-word" style="max-height: 8rem;" contentEditable />
 							<AttachmentComponent />
@@ -155,7 +155,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 			};
 
 			return (
-				<div className="flex no-gap bg-white" style="padding: 0 1rem;">
+				<div className="flex no-gap" style="padding: 0 1rem;">
 					<div
 						id="message"
 						onKeyDown={sendMessage}

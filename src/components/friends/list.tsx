@@ -44,25 +44,34 @@ export const FriendsList: Component = () => {
 	const map = (user: User) => {
 		const fullName = `${user.name.first} ${user.name.last}`;
 		return (
-			<Link to={withParameters(Routes.Profile, { user_id: user.id })}>
-				<div className="flex flex-r items-center" style="width: fit-content;">
-					<img className="avatar d-middle" src={user.image} alt="" />
-					<p>{fullName}</p>
-				</div>
-			</Link>
+			<div className="flex flex-c items-center">
+				<Link to={withParameters(Routes.Profile, { user_id: user.id })}>
+					<div className="flex flex-r items-center">
+						<img className="avatar d-middle" src={user.image} alt="" />
+						<p>{fullName}</p>
+					</div>
+				</Link>
+			</div>
 		);
+	};
+
+	const show = (users: User[]) => {
+		if (users?.length > 0) {
+			return users.map(map);
+		}
+		return <p className="text-center text-light">Empty</p>;
 	};
 
 	const list = () => {
 		switch (option) {
 			case "Friends":
-				return <>{users.friends.map(map)}</>;
+				return show(users.friends);
 			case "Incoming":
-				return <>{users.incomingRequests.map(map)}</>;
+				return show(users.incomingRequests);
 			case "Outgoing":
-				return <>{users.outcomingRequests.map(map)}</>;
+				return show(users.outcomingRequests);
 			case "Search results":
-				return <>{searchResults.map(map)}</>;
+				return show(searchResults);
 		}
 	};
 
@@ -88,7 +97,7 @@ export const FriendsList: Component = () => {
 				{optionButton("Incoming", userStore.incomingRequests.length)}
 				{optionButton("Outgoing", userStore.outcomingRequests.length)}
 			</div>
-			<div className="flex flex-c">{list()}</div>
+			<div className="flex flex-c pd-4 border-sm bg-white overflow">{list()}</div>
 		</div>
 	);
 };

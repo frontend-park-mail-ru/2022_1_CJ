@@ -28,9 +28,9 @@ export const OtherUserProfileInfo: Component = ({ user_id }: { user_id: string }
 		return (
 			<div className="flex flex-c grow items-center items-stretch">
 				<ProfileInformaitonComponent profileInformation={profileInformation} />
-				<div className="flex flex-r">
-					<div style="width: fit-content;" className="flex flex-c items-center">
-						<div className="flex flex-c items-center bg-white pd-4 border-sm" style="gap: 0.5rem;">
+				<div className="flex flex-r justify-between">
+					<div className="flex flex-c grow" style="max-width: 20vw;">
+						<div className="flex flex-r justify-center bg-white pd-4 border-sm">
 							<FriendButton user_id={user_id} />
 							<MessageButton user_id={user_id} />
 						</div>
