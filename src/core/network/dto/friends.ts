@@ -16,7 +16,7 @@ export type AcceptFriendRequestRequest = {
 export type AcceptFriendRequestResponse = BasicResponse;
 
 export type GetFriendsRequest = {
-	user_id?: string;
+	user_id: string;
 };
 export type GetFriendsResponse = {
 	friend_ids: string[];

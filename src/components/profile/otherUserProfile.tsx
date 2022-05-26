@@ -26,7 +26,7 @@ export const OtherUserProfileInfo: Component = ({ user_id }: { user_id: string }
 		};
 
 		return (
-			<div className="flex flex-c grow items-center items-stretch">
+			<div className="flex flex-c grow">
 				<ProfileInformaitonComponent profileInformation={profileInformation} />
 				<div className="flex flex-r justify-between">
 					<div className="flex flex-c grow" style="max-width: 20vw;">

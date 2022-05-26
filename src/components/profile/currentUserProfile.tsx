@@ -27,7 +27,7 @@ export const CurrentUserProfileInfo: Component = () => {
 		};
 
 		return (
-			<div className="flex flex-c grow overflow">
+			<div className="flex flex-c grow">
 				<ProfileInformaitonComponent profileInformation={profileInformation} />
 				<div className="flex flex-r justify-between">
 					<div className="flex flex-c grow" style="max-width: 20vw;">

@@ -41,19 +41,16 @@ export const FriendsList: Component = () => {
 		}
 	};
 
-	const map = (user: User) => {
-		const fullName = `${user.name.first} ${user.name.last}`;
-		return (
-			<div className="flex flex-c items-center">
-				<Link to={withParameters(Routes.Profile, { user_id: user.id })}>
-					<div className="flex flex-r items-center">
-						<img className="avatar d-middle" src={user.image} alt="" />
-						<p>{fullName}</p>
-					</div>
-				</Link>
+	const map = (user: User) => (
+		<Link to={withParameters(Routes.Profile, { user_id: user.id })}>
+			<div className="flex flex-r items-center">
+				<img className="avatar" src={user.image} alt="" />
+				<p>
+					{user.name.first} {user.name.last}
+				</p>
 			</div>
-		);
-	};
+		</Link>
+	);
 
 	const show = (set: User[]) => {
 		if (set?.length > 0) {

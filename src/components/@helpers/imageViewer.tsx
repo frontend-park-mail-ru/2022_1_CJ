@@ -18,7 +18,7 @@ const Modal: ModalComponent = (props) => {
 
 	return (
 		<div className="modal flex items-center">
-			<div id="modal" className="flex flex-c items-center d-middle bg-white pd-8 border-sm" style="max-width: 90vmin;">
+			<div id="modal" className="flex flex-c no-gap items-center d-middle bg-white pd-8 border-sm">
 				<CrossComponent hide={hide} />
 				<img style="max-width: 75vw; max-height: 75vh;" src={url} alt="" />
 			</div>

@@ -33,14 +33,12 @@ export const CommunitiesList: Component = () => {
 	};
 
 	const map = (cs: CommunityShort) => (
-		<div className="flex flex-c items-center">
-			<Link to={withParameters(Routes.Community, { community_id: cs.id })}>
-				<div className="flex flex-r items-center">
-					<img className="avatar" src={cs.image} alt="" />
-					{cs.name}
-				</div>
-			</Link>
-		</div>
+		<Link to={withParameters(Routes.Community, { community_id: cs.id })}>
+			<div className="flex flex-r items-center">
+				<img className="avatar" src={cs.image} alt="" />
+				{cs.name}
+			</div>
+		</Link>
 	);
 
 	const show = (set: CommunityShort[]) => {

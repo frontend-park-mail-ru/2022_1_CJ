@@ -33,7 +33,7 @@ const revokeRequest = (dto: RevokeFriendRequestRequest) =>
 const acceptRequest = (dto: AcceptFriendRequestRequest) =>
 	fetchAPI.post<AcceptFriendRequestResponse>(methods.acceptRequest, dto);
 
-const getFriends = (dto: GetFriendsRequest) => fetchAPI.get<GetFriendsResponse>(withQuery(methods.getFriends, dto));
+const getFriends = (dto?: GetFriendsRequest) => fetchAPI.get<GetFriendsResponse>(withQuery(methods.getFriends, dto));
 
 const deleteFriend = (dto: DeleteFriendRequest) =>
 	fetchAPI.delete<DeleteFriendResponse>(withQuery(methods.deleteFriend, dto));

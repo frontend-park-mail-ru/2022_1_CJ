@@ -28,9 +28,9 @@ div[contenteditable] {
 	@extend .border;
 	@extend .border-sm;
 	outline: none;
+	max-height: 5rem;
 	overflow-y: scroll;
 	overflow-wrap: break-word;
-	max-height: 5rem;
 }
 
 div[contenteditable]:empty:focus::before,

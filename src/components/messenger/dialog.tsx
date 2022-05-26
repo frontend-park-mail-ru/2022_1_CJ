@@ -125,10 +125,19 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 			};
 
 			if (isMobile()) {
+				const preventEmptyLines = async (event: EventWithTarget<HTMLInputElement, KeyboardEvent>) => {
+					if (event.key === "Enter") {
+						const body = event.target.innerText.trim();
+						if (body.length === 0) {
+							event.preventDefault();
+						}
+					}
+				};
+
 				return (
-					<div className="flex flex-c no-gap border-sm" style="padding: 0.25rem;">
-						<div className="flex no-gap items-center">
-							<div id="message" className="grow bg-white break-word" style="max-height: 8rem;" contentEditable />
+					<div className="flex flex-r no-gap items-center">
+						<div onKeyDown={preventEmptyLines} id="message" className="grow bg-white" contentEditable />
+						<div className="flex flex-r no-gap" style="align-self: flex-end;">
 							<AttachmentComponent />
 							<PickerComponent appendToInput={appendToInput} sendSticker={sendSticker} />
 							<span onClick={sendMessageButton} className="pointer pd-4 bg-white border border-sm">
@@ -155,19 +164,15 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 			};
 
 			return (
-				<div className="flex no-gap" style="padding: 0 1rem;">
-					<div
-						id="message"
-						onKeyDown={sendMessage}
-						className="grow bg-white break-word pd-4"
-						style="max-height: 8rem;"
-						contentEditable
-					/>
-					<AttachmentComponent />
-					<PickerComponent appendToInput={appendToInput} sendSticker={sendSticker} />
-					<span onClick={sendMessageButton} className="pointer pd-4 bg-white border border-sm">
-						📩
-					</span>
+				<div className="flex flex-r no-gap">
+					<div id="message" onKeyDown={sendMessage} className="grow bg-white" contentEditable />
+					<div className="flex flex-r no-gap" style="align-self: flex-end;">
+						<AttachmentComponent />
+						<PickerComponent appendToInput={appendToInput} sendSticker={sendSticker} />
+						<span onClick={sendMessageButton} className="pointer pd-4 bg-white border border-sm">
+							📩
+						</span>
+					</div>
 				</div>
 			);
 		};
