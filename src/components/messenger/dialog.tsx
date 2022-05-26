@@ -6,7 +6,7 @@ import { fetchUsers } from "src/components/@helpers/user";
 import { decodeEntity } from "src/components/@helpers/utils";
 import { AttachmentComponent } from "src/components/attachments/attachment";
 import { getFileAttachments } from "src/components/attachments/file";
-import { getImageAttachments } from "src/components/attachments/images";
+import { getImageAttachments, showImageAttachments } from "src/components/attachments/images";
 import { PickerComponent } from "src/components/emoji/picker";
 import { Link } from "src/components/link";
 import { Spinner } from "src/components/spinner";
@@ -71,10 +71,6 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 				</a>
 			));
 			return <div className="flex flex-w fs-sm">{list}</div>;
-		};
-
-		const showImageAttachments = (images: string[]) => {
-			return images.map((image) => <img style="width: 10rem;" className="border-sm" src={image} alt="" />);
 		};
 
 		const mapMessage = (message: Message) => {

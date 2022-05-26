@@ -1,4 +1,5 @@
 import { Component, treact } from "@treact";
+import { ImageViewerComponent } from "src/components/@helpers/imageViewer";
 import { FileSize } from "src/constants/size";
 import { EventWithTarget } from "src/core/@types/event";
 import { uploadImage } from "src/core/network/api/static/upload";
@@ -16,6 +17,11 @@ export const getImageAttachments = async () => {
 	attachments.value = "";
 	attachments.dispatchEvent(new Event("change"));
 	return images;
+};
+
+export const showImageAttachments = (images: string[]) => {
+	const list = images.map((image) => <ImageViewerComponent url={image} />);
+	return <div className="flex flex-w">{list}</div>;
 };
 
 export const ImageAttachmentsComponent: Component = () => {

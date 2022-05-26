@@ -1,6 +1,7 @@
 import { Component, treact } from "@treact";
 import { DropdownMenuComponent } from "src/components/@helpers/dropdown";
 import { decodeEntity } from "src/components/@helpers/utils";
+import { showImageAttachments } from "src/components/attachments/images";
 import { EditCommunityPost } from "src/components/communities/editPost";
 import { Navigate } from "src/components/link";
 import { PostAuthorComponent } from "src/components/posts/author";
@@ -63,10 +64,6 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 				{attachment.slice(-10)}
 			</a>
 		));
-	};
-
-	const showImageAttachments = (images: string[]) => {
-		return images.map((image) => <img style="width: 100%;" className="border-sm" src={image} alt="" />);
 	};
 
 	return (
