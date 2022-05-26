@@ -71,8 +71,8 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 				<PostAuthorComponent post={post} />
 				{(isAuthor || isFromManagedCommunity) && (
 					<DropdownMenuComponent>
-						{deleteButton()}
 						{editButton()}
+						{deleteButton()}
 					</DropdownMenuComponent>
 				)}
 			</div>

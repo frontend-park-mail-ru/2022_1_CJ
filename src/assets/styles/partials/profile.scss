@@ -1,5 +1,5 @@
 .profile-picture {
-	height: 12.5vw;
+	height: clamp(5rem, calc(3.05rem + 9.76vw), 10rem);
 	aspect-ratio: 1 / 1;
 	border-radius: 8px;
 }

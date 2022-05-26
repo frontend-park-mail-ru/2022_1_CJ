@@ -1,5 +1,6 @@
 import { Component, treact } from "@treact";
 import { DateFromTimestamp } from "src/components/@helpers/date";
+import { DropdownMenuComponent } from "src/components/@helpers/dropdown";
 import { UserProfileLink } from "src/components/@helpers/links";
 import { EditCommentComponent } from "src/components/comments/editComment";
 import { Post } from "src/core/@types/post";
@@ -14,36 +15,32 @@ export const CommentComponent: Component = ({ post_id, comment }: { post_id: str
 		deleteComment({ post_id, comment_id: comment.id }).then(update);
 	};
 
-	const deleteButton = () => {
-		if (comment.author.id === userStore.user.id) {
-			return (
-				<button onClick={deletePost} className="btn btn-negative">
-					Delete
-				</button>
-			);
-		}
-		return null;
-	};
+	const isAuthor = comment.author.id === userStore.user.id;
 
-	const editButton = () => {
-		if (comment.author.id === userStore.user.id) {
-			return <EditCommentComponent post_id={post_id} comment={comment} />;
-		}
-		return null;
-	};
+	const deleteButton = () => (
+		<button onClick={deletePost} className="btn btn-negative">
+			Delete
+		</button>
+	);
+
+	const editButton = () => <EditCommentComponent post_id={post_id} comment={comment} />;
 
 	return (
 		<div className="flex flex-c bg-white pd-4 border-sm">
-			<div className="flex flex-r items-center">
-				<img className="avatar" src={comment.author.image} alt="" />
-				<UserProfileLink user={comment.author} />
-				<DateFromTimestamp timestamp={comment.created_at} />
+			<div className="flex flex-r items-center justify-between">
+				<div className="flex flex-r items-center">
+					<img className="avatar" src={comment.author.image} alt="" />
+					<UserProfileLink user={comment.author} />
+					<DateFromTimestamp timestamp={comment.created_at} />
+				</div>
+				{isAuthor && (
+					<DropdownMenuComponent>
+						{editButton()}
+						{deleteButton()}
+					</DropdownMenuComponent>
+				)}
 			</div>
 			{comment.message}
-			<div className="flex flex-r">
-				{deleteButton()}
-				{editButton()}
-			</div>
 		</div>
 	);
 };
