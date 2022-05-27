@@ -129,7 +129,7 @@ export const SignupForm = () => {
 				data-telegram-login="cj_oauth_bot"
 				data-size="large"
 				data-radius="4"
-				data-auth-url="senago.software/api/oauth/telegram"
+				data-auth-url="/api/oauth/telegram"
 			></script>
 		</div>
 	);
