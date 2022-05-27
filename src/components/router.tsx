@@ -4,13 +4,10 @@ import { Routes } from "src/constants/routes";
 import { fetchAPI } from "src/core/network/api/common";
 import { useRouterStore } from "src/stores/router";
 
-const route = () => {
+export const route = () => {
 	if (window.location.pathname.startsWith("/api")) {
-		console.log("fetch", window.location.pathname.concat(window.location.search));
-		fetchAPI.get(window.location.pathname.concat(window.location.search)).then(
-			() => navigateTo(Routes.Base),
-			() => navigateTo(Routes.Base)
-		);
+		fetchAPI.get(location.pathname.concat(window.location.search)).then(() => navigateTo(Routes.Base));
+		return;
 	}
 
 	const [routerStore, modRouterStore] = useRouterStore();
