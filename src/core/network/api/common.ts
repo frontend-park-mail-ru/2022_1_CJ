@@ -1,4 +1,5 @@
 import { CodedError } from "src/core/modules/error";
+import { BasicResponse } from "src/core/network/dto/common";
 
 export const httpStatus = {
 	Ok: 200,
@@ -79,22 +80,22 @@ const http = async <T>(url: string, config: RequestInit): Promise<T> => {
 	return promise;
 };
 
-const get = async <T>(url: string, config?: RequestInit) => {
+const get = async <T = BasicResponse>(url: string, config?: RequestInit) => {
 	const init = { method: httpMethod.GET, ...config };
 	return http<T>(url, init);
 };
 
-const _delete = async <T>(url: string, config?: RequestInit) => {
+const _delete = async <T = BasicResponse>(url: string, config?: RequestInit) => {
 	const init = { method: httpMethod.DELETE, ...config };
 	return http<T>(url, init);
 };
 
-const post = async <T>(url: string, body: object, config?: RequestInit) => {
+const post = async <T = BasicResponse>(url: string, body: object, config?: RequestInit) => {
 	const init = { method: httpMethod.POST, body: JSON.stringify(body), ...config };
 	return http<T>(url, init);
 };
 
-const postFormData = async <T>(url: string, body: FormData) => {
+const postFormData = async <T = BasicResponse>(url: string, body: FormData) => {
 	const init = {
 		method: httpMethod.POST,
 		body,
