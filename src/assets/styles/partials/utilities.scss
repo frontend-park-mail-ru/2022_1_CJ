@@ -1,3 +1,5 @@
+@import "./mixins.scss";
+
 .flex {
 	display: flex;
 	gap: 1rem;
@@ -105,18 +107,18 @@
 	place-self: center;
 	margin-inline: auto;
 	background-color: var(--clr-white);
-	max-width: clamp(20rem, 30vw + 5rem, 35rem);
+	@include clampify(max-width, 300, 500);
 }
 
 .icon {
-	height: clamp(1.25rem, calc(1.15rem + 0.49vw), 1.5rem);
+	@include clampify(height, 20, 24);
 	aspect-ratio: 1 / 1;
 	cursor: pointer;
 }
 
 .avatar {
 	@extend .icon;
-	height: clamp(1.5rem, calc(1.3rem + 0.98vw), 2rem);
+	@include clampify(height, 24, 36);
 	border-radius: 50%;
 }
 

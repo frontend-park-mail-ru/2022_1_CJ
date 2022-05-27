@@ -1,5 +1,7 @@
+@import "./mixins.scss";
+
 .profile-picture {
-	height: clamp(5rem, calc(3.05rem + 9.76vw), 10rem);
+	@include clampify(height, 80, 160);
 	aspect-ratio: 1 / 1;
 	border-radius: 8px;
 }

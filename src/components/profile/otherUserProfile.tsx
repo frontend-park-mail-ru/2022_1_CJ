@@ -30,7 +30,7 @@ export const OtherUserProfileInfo: Component = ({ user_id }: { user_id: string }
 				<ProfileInformaitonComponent profileInformation={profileInformation} />
 				<div className="flex flex-r justify-between">
 					<div className="flex flex-c grow" style="max-width: 20vw;">
-						<div className="flex flex-r justify-center bg-white pd-4 border-sm">
+						<div className="flex flex-w justify-center bg-white pd-4 border-sm">
 							<FriendButton user_id={user_id} />
 							<MessageButton user_id={user_id} />
 						</div>
