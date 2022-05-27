@@ -127,7 +127,7 @@ export const SignupForm = () => {
 				async
 				src="https://telegram.org/js/telegram-widget.js?19"
 				data-telegram-login="cj_oauth_bot"
-				data-size="large"
+				data-size="medium"
 				data-radius="4"
 				data-auth-url="/api/oauth/telegram"
 			></script>
