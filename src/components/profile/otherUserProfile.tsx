@@ -17,7 +17,7 @@ export const OtherUserProfileInfo: Component = ({ user_id }: { user_id: string }
 		userAPI.getProfile({ user_id }).then((response) => setProfile(response.user_profile));
 		const friendIDs = await friendsAPI.getFriends({ user_id }).then((response) => response.friend_ids || []);
 		fetchUsers(friendIDs).then(setFriends);
-	}, []);
+	}, [user_id]);
 
 	if (profile && friends) {
 		const profileInformation: ProfileInformation = {

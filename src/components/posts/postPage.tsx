@@ -19,7 +19,7 @@ export const PostPage: Component = ({ post_id }: { post_id: string }) => {
 	treact.useEffect(() => {
 		postAPI.getPost({ post_id }).then(setPostWrapper, () => navigateTo(Routes.Feed));
 		fetchComments();
-	}, []);
+	}, [post_id]);
 
 	if (!postWrapper || !comments) {
 		return null;

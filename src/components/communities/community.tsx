@@ -22,7 +22,7 @@ export const CommunityComponent: Component = ({ community_id }: { community_id: 
 		communitiesAPI.getManagedCommunities({ user_id: userStore.user.id }).then((response) => {
 			modUserStore.update({ managedCommunities: response.communities || [] });
 		});
-	}, []);
+	}, [community_id]);
 
 	const map = (postWrapper: PostWrapper) => <PostComponent postWrapper={postWrapper} />;
 	const list = () => {

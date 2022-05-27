@@ -6,11 +6,11 @@ import { fetchAPI } from "src/core/network/api/common";
 type RouterState = "online" | "offline";
 
 export type RouterStore = {
-	path: string;
+	route: string;
 	state: RouterState;
 };
 
-const getInitialPath = () => {
+const getInitialRoute = () => {
 	if (window.location.pathname.startsWith("/api")) {
 		fetchAPI.get(location.pathname.concat(window.location.search)).then(() => navigateTo(Routes.Base));
 		return Routes.Base;
@@ -19,6 +19,6 @@ const getInitialPath = () => {
 };
 
 export const [useRouterStore] = treact.createStore({
-	path: getInitialPath(),
+	route: getInitialRoute(),
 	state: window.navigator.onLine ? "online" : "offline",
 } as RouterStore);

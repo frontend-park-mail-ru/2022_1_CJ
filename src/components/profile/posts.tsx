@@ -9,7 +9,7 @@ export const ProfilePosts: Component = ({ user_id }: { user_id: string }) => {
 
 	treact.useEffect(() => {
 		userAPI.getPosts({ user_id }).then((response) => setPosts(response.posts));
-	}, []);
+	}, [user_id]);
 
 	if (!posts) {
 		return null;

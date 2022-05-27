@@ -10,7 +10,7 @@ export const ControlButton: Component = ({ community_id }: { community_id: strin
 			const list = response.communities || [];
 			setCommunities(list.map((cs) => cs.id));
 		});
-	}, []);
+	}, [community_id]);
 
 	const join = () => {
 		communitiesAPI.join({ community_id }).then(() => setCommunities([...communities, community_id]));

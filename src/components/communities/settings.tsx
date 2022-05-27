@@ -32,7 +32,7 @@ export const CommunitySettingsComponent: Component = ({ community_id }: { commun
 				navigateTo(Routes.Communities);
 			}
 		});
-	}, []);
+	}, [community_id]);
 
 	if (community) {
 		const { handleSubmit, handleChange, data } = treact.useForm<profileSettings>({

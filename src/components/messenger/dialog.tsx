@@ -33,7 +33,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 			const mapping = Object.fromEntries(users.map((user) => [user.id, user]));
 			setParticipants(mapping);
 		});
-	}, []);
+	}, [dialog_id]);
 
 	if (participants && dialog && messages) {
 		const wsReducer: WSReducer = {
@@ -59,7 +59,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 
 		treact.useEffect(() => {
 			messengerAPI.openWSConnection(wsReducer);
-		}, []);
+		}, [dialog_id]);
 	}
 
 	if (socket && participants && dialog && messages) {
