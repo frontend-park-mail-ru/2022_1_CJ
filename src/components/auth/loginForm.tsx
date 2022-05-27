@@ -7,7 +7,6 @@ import { Link } from "src/components/link";
 import { Routes } from "src/constants/routes";
 import { handleError } from "src/core/modules/error";
 import { authAPi } from "src/core/network/api/auth";
-import { AuthenticateThroguhTelegram } from "src/core/network/api/oauth/telegram";
 
 type loginForm = {
 	email: string;
@@ -73,7 +72,8 @@ export const LoginForm = () => {
 				src="https://telegram.org/js/telegram-widget.js?19"
 				data-telegram-login="cj_oauth_bot"
 				data-size="large"
-				data-onauth={AuthenticateThroguhTelegram}
+				data-radius="4"
+				data-auth-url="senago.software/api/oauth/telegram"
 			></script>
 		</div>
 	);

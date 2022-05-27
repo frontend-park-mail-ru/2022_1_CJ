@@ -4,6 +4,10 @@ import { Routes } from "src/constants/routes";
 import { useRouterStore } from "src/stores/router";
 
 const route = () => {
+	if (window.location.pathname.startsWith("/api")) {
+		return;
+	}
+
 	const [routerStore, modRouterStore] = useRouterStore();
 	if (routerStore.state === "online") {
 		// Use setTimeout to defer update of routerStore, so that it reaches the subscribers.
