@@ -18,7 +18,11 @@ const updateNode = (node: Node, prevProps: any, newProps: any) => {
 		.filter(isProperty)
 		.filter(isNew(prevProps, newProps))
 		.forEach((property) => {
-			(node as any)[property] = newProps[property];
+			if (node instanceof HTMLScriptElement) {
+				node.setAttribute(property, newProps[property]);
+			} else {
+				(node as any)[property] = newProps[property];
+			}
 		});
 
 	// Update event listeners.

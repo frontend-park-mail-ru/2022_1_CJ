@@ -53,7 +53,7 @@ export const SignupForm = () => {
 	});
 
 	return (
-		<div className="flex grow items-center">
+		<div className="flex flex-c grow items-center justify-center">
 			<form className="form flex flex-c border-sm" style="gap: 1.5rem;" onSubmit={handleSubmit}>
 				<Description />
 				<div className="flex flex-r">
@@ -123,6 +123,13 @@ export const SignupForm = () => {
 					<Link to={Routes.Login}>Already have an account?</Link>
 				</div>
 			</form>
+			<script
+				async
+				src="https://telegram.org/js/telegram-widget.js?19"
+				data-telegram-login="cj_oauth_bot"
+				data-size="large"
+				data-auth-url="senago.software/api/oauth/telegram"
+			></script>
 		</div>
 	);
 };

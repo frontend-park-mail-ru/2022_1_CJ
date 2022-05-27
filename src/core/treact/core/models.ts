@@ -21,7 +21,7 @@ export enum FiberAction {
 
 export type Fiber = {
 	type?: Component | keyof JSX.IntrinsicElements | "TEXT_ELEMENT";
-	props: any;
+	props?: any;
 	node?: Node;
 	hooks?: any[];
 	action?: FiberAction;

@@ -255,9 +255,9 @@ declare namespace JSX {
 		src?: string;
 		type?: string;
 		charset?: string;
-		async?: string;
-		defer?: string;
-		crossorigin?: string;
+		async?: string | boolean;
+		defer?: string | boolean;
+		crossorigin?: string | boolean;
 		integrity?: string;
 		text?: string;
 	}
