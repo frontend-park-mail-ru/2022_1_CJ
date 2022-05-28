@@ -5,12 +5,12 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="manifest" href="./manifest.webmanifest" />
+		<script defer type="module" src="./index.ts"></script>
 	</head>
 	<body tabindex="-1">
 		<noscript>You need to enable JavaScript to run this app.</noscript>
 		<div id="root"></div>
 		<div id="mobile"></div>
-		<script type="module" src="./index.ts"></script>
 		<script>
 			if ("serviceWorker" in navigator) {
 				const sw = "/sw.js";
