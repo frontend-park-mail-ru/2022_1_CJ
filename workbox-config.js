@@ -5,5 +5,4 @@ module.exports = {
 	swDest: "dist/sw.js",
 	clientsClaim: true,
 	skipWaiting: true,
-	navigateFallback: "/index.html",
 };
