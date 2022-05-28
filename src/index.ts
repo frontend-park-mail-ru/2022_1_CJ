@@ -25,9 +25,4 @@ if (window.location.pathname.startsWith("/api")) {
 		modRouterStore.update({ state: "online" });
 		triggerRoute();
 	};
-
-	window.onerror = (message: any, uri: string, lineNumber: number, columnNumber?: number): boolean => {
-		console.log(`${message} - ${uri}:${lineNumber}:${columnNumber}`);
-		return true;
-	};
 }
