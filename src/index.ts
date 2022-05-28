@@ -6,7 +6,7 @@ import { useRouterStore } from "src/stores/router";
 import "/src/assets/styles/index.scss";
 
 if (window.location.pathname.startsWith("/api")) {
-	fetchAPI.get(location.pathname.concat(window.location.search)).then(() => window.location.replace("/"));
+	fetchAPI.get(location.pathname.concat(window.location.search));
 } else {
 	const root = document.getElementById("root") || document.body;
 
