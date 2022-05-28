@@ -21,6 +21,16 @@ const performUnitOfWork = (fiber: Fiber) => {
 	return nextUnitOfWork(fiber);
 };
 
+export const requestIdleCallback = (handler: (deadline: IdleDeadline) => void) => {
+	const start = Date.now();
+	return setTimeout(() => {
+		handler({
+			didTimeout: false,
+			timeRemaining: () => Math.max(0, 50 - (Date.now() - start)),
+		});
+	});
+};
+
 const workLoop = (deadline: IdleDeadline) => {
 	let shouldYield = false;
 	while (State.nextUnitOfWork && !shouldYield) {
@@ -29,10 +39,10 @@ const workLoop = (deadline: IdleDeadline) => {
 	}
 
 	if (!State.nextUnitOfWork && State.wipRoot) {
-		commitRoot();
+		window.requestAnimationFrame(commitRoot);
 	}
 
-	window.requestIdleCallback(workLoop, { timeout: 500 });
+	requestIdleCallback(workLoop);
 };
 
 export { workLoop };
