@@ -1,12 +1,12 @@
 import { Component, treact } from "@treact";
-import { pathToRoute } from "src/components/@helpers/router";
+import { navigateTo, pathToRoute } from "src/components/@helpers/router";
 import { Routes } from "src/constants/routes";
 import { fetchAPI } from "src/core/network/api/common";
 import { useRouterStore } from "src/stores/router";
 
 export const route = () => {
 	if (window.location.pathname.startsWith("/api")) {
-		fetchAPI.get(location.pathname.concat(window.location.search)).then(window.location.reload);
+		fetchAPI.get(location.pathname.concat(window.location.search)).then(() => navigateTo(Routes.Base));
 		return;
 	}
 

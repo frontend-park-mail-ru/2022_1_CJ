@@ -11,9 +11,9 @@
 		<noscript>You need to enable JavaScript to run this app.</noscript>
 		<div id="root"></div>
 		<div id="mobile"></div>
-		<script>
+		<script type="text/javascript">
 			if ("serviceWorker" in navigator) {
-				const sw = "/sw.js";
+				const sw = "./sw.js";
 				navigator.serviceWorker.register(sw);
 			}
 		</script>
