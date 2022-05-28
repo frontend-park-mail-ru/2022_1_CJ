@@ -56,7 +56,7 @@ const render = (element: JSX.Element, container: Node) => {
 	State.pendingUpdate = false;
 
 	State.nextUnitOfWork = State.wipRoot;
-	window.requestIdleCallback(workLoop);
+	window.requestIdleCallback(workLoop, { timeout: 500 });
 };
 
 export { createFragmentElement, createElement, render };

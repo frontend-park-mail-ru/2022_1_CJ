@@ -32,7 +32,7 @@ const workLoop = (deadline: IdleDeadline) => {
 		commitRoot();
 	}
 
-	window.requestIdleCallback(workLoop);
+	window.requestIdleCallback(workLoop, { timeout: 500 });
 };
 
 export { workLoop };
