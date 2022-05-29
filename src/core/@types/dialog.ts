@@ -2,6 +2,7 @@ export type Dialog = {
 	dialog_id: string;
 	name: string;
 	participants: string[];
+	image: string;
 };
 
 export type Message = {

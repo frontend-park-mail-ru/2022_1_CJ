@@ -11,7 +11,8 @@ export const Dialogs: Component = () => {
 	}, []);
 
 	const map = (dialog: Dialog) => (
-		<div className="bg-white border-sm pd-4">
+		<div className="flex flex-r items-center bg-white border-sm pd-4">
+			<img className="avatar" src={dialog.image} alt="" />
 			<Link to={withParameters(Routes.Dialog, { dialog_id: dialog.dialog_id })}>{dialog.name}</Link>
 		</div>
 	);

@@ -21,7 +21,7 @@ const performUnitOfWork = (fiber: Fiber) => {
 	return nextUnitOfWork(fiber);
 };
 
-export const requestIdleCallback = (handler: (deadline: IdleDeadline) => void) => {
+const requestIdleCallback = (handler: (deadline: IdleDeadline) => void) => {
 	const start = Date.now();
 	return setTimeout(() => {
 		handler({
@@ -39,10 +39,12 @@ const workLoop = (deadline: IdleDeadline) => {
 	}
 
 	if (!State.nextUnitOfWork && State.wipRoot) {
-		window.requestAnimationFrame(commitRoot);
+		commitRoot();
 	}
 
 	requestIdleCallback(workLoop);
 };
 
-export { workLoop };
+export const startWorkLoop = () => {
+	requestIdleCallback(workLoop);
+};
