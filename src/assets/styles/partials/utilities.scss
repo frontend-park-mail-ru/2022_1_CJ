@@ -197,3 +197,7 @@
 .post {
 	width: min(100%, 60ch);
 }
+
+.image {
+	@include clampify(max-width, 160, 320);
+}

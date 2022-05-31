@@ -27,7 +27,7 @@ export const ProfilePosts: Component = ({ user_id }: { user_id: string }) => {
 	};
 
 	return (
-		<div className="flex flex-c overflow" style="width: min(100%, 60ch);">
+		<div className="flex flex-c" style="width: min(100%, 60ch);">
 			{list()}
 		</div>
 	);

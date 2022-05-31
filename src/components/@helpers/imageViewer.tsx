@@ -31,13 +31,7 @@ export const ImageViewerComponent: Component = ({ url }: { url: string }) => {
 	const hide = () => setShow(false);
 	return (
 		<>
-			<img
-				onClick={() => setShow(true)}
-				style="max-width: 8rem;"
-				className="border-sm d-middle pointer"
-				src={url}
-				alt=""
-			/>
+			<img onClick={() => setShow(true)} className="image border-sm d-middle pointer" src={url} alt="" />
 			{show && <Modal hide={hide} url={url} />}
 		</>
 	);
