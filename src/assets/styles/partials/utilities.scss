@@ -107,7 +107,7 @@
 	place-self: center;
 	margin-inline: auto;
 	background-color: var(--clr-white);
-	@include clampify(max-width, 300, 500);
+	max-width: 500px;
 }
 
 .icon {

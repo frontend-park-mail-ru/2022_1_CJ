@@ -16,6 +16,10 @@
 	@include clampify(font-size, 18, 24);
 }
 
+.fs-xlg {
+	@include clampify(font-size, 24, 32);
+}
+
 .uppercase {
 	text-transform: uppercase;
 }

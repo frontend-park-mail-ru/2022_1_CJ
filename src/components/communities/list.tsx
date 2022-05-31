@@ -41,19 +41,19 @@ export const CommunitiesList: Component = () => {
 		</Link>
 	);
 
-	const show = (set: CommunityShort[]) => {
+	const show = (set: CommunityShort[], messageOnEmpty: string) => {
 		if (set?.length > 0) {
 			return set.map(map);
 		}
-		return <p className="text-center text-light">Empty</p>;
+		return <p className="text-center text-light">{messageOnEmpty}</p>;
 	};
 
 	const listCommunities = () => {
 		switch (option) {
 			case "Communities":
-				return show(communities);
+				return show(communities, "Yet no managed or followed communities");
 			case "Search results":
-				return show(searchResults);
+				return show(searchResults, "No results");
 		}
 	};
 

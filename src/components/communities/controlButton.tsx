@@ -34,11 +34,11 @@ export const ControlButton: Component = ({ community_id }: { community_id: strin
 		}
 
 		return (
-			<button onClick={join} className="btn btn-secondary">
+			<button onClick={join} className="btn btn-primary">
 				Join
 			</button>
 		);
 	};
 
-	return <div>{button()}</div>;
+	return <div className="d-middle">{button()}</div>;
 };
