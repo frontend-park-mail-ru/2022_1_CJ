@@ -19,10 +19,6 @@ export const LoginForm = () => {
 			email: ValidatorEmail,
 			password: ValidatorRequired,
 		},
-		initialValues: {
-			email: "test@test.com",
-			password: "test",
-		},
 		onSubmit: () => {
 			authAPi.loginUser(data).then(
 				() => navigateTo(Routes.Feed),

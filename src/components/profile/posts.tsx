@@ -8,7 +8,7 @@ export const ProfilePosts: Component = ({ user_id }: { user_id: string }) => {
 	const [posts, setPosts] = treact.useState(null as PostWrapper[]);
 
 	treact.useEffect(() => {
-		userAPI.getPosts({ user_id }).then((response) => setPosts(response.posts));
+		userAPI.getPosts({ user_id }).then((response) => setPosts(response.posts || []));
 	}, [user_id]);
 
 	if (!posts) {
@@ -16,7 +16,15 @@ export const ProfilePosts: Component = ({ user_id }: { user_id: string }) => {
 	}
 
 	const map = (postWrapper: PostWrapper) => <PostComponent postWrapper={postWrapper} />;
-	const list = () => (posts ? posts.map(map) : <Spinner />);
+	const list = () => {
+		if (posts) {
+			if (posts.length > 0) {
+				return posts.map(map);
+			}
+			return <p className="text-center text-light">Yet no posts</p>;
+		}
+		return <Spinner />;
+	};
 
 	return (
 		<div className="flex flex-c overflow" style="width: min(100%, 60ch);">
