@@ -31,7 +31,30 @@ export const ImageViewerComponent: Component = ({ url }: { url: string }) => {
 	const hide = () => setShow(false);
 	return (
 		<>
-			<img onClick={() => setShow(true)} style="max-width: 8rem;" className="border-sm d-middle" src={url} alt="" />
+			<img
+				onClick={() => setShow(true)}
+				style="max-width: 8rem;"
+				className="border-sm d-middle pointer"
+				src={url}
+				alt=""
+			/>
+			{show && <Modal hide={hide} url={url} />}
+		</>
+	);
+};
+
+export const CommunityImageViewerComponent: Component = ({ url }: { url: string }) => {
+	const [show, setShow] = treact.useState(false);
+	const hide = () => setShow(false);
+	return (
+		<>
+			<img
+				onClick={() => setShow(true)}
+				style="background-size: cover; max-height: 8rem;"
+				className="border-sm pointer"
+				src={url}
+				alt=""
+			/>
 			{show && <Modal hide={hide} url={url} />}
 		</>
 	);
