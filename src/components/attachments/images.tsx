@@ -49,7 +49,7 @@ export const ImageAttachmentsComponent: Component = () => {
 	};
 
 	return (
-		<label className="flex items-center pd-4 bg-white border border-sm">
+		<label className="flex flex-r items-center pd-4 bg-white border border-sm" style="height: fit-content;">
 			<input onChange={attach} type="file" id="images" accept=".jpg, .jpeg, .png" multiple />
 			<span>
 				🖼️

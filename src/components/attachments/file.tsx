@@ -43,7 +43,7 @@ export const FileAttachmentsComponent: Component = () => {
 	};
 
 	return (
-		<label id="attachment-label" className="flex items-center pd-4 bg-white border border-sm">
+		<label className="flex flex-r items-center pd-4 bg-white border border-sm" style="height: fit-content;">
 			<input onChange={attach} type="file" id="attachments" accept=".pdf" multiple />
 			<span>
 				📎
