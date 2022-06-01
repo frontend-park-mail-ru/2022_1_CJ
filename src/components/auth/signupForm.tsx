@@ -1,6 +1,7 @@
 import { treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 import { ValidatorEmail, ValidatorRequired } from "src/components/@helpers/validators";
+import { Composition } from "src/components/auth/composition";
 import { Description } from "src/components/auth/description";
 import { HelperError } from "src/components/helperError";
 import { Link } from "src/components/link";
@@ -44,32 +45,36 @@ export const SignupForm = () => {
 	});
 
 	return (
-		<div className="flex flex-c grow items-center justify-center">
-			<form className="form flex flex-c border-sm" style="gap: 1.5rem;" onSubmit={handleSubmit}>
+		<div className="flex flex-c grow items-center justify-between" style="gap: 2rem;">
+			<span className="mt-4">
 				<Description />
-				<div className="flex flex-r">
-					<span>
-						<input
-							type="text"
-							className="input-field"
-							placeholder="First name"
-							value={data.firstname}
-							onChange={handleChange("firstname")}
-						/>
-						{errors.firstname && <HelperError message={errors.firstname} />}
-					</span>
-					<span>
-						<input
-							type="text"
-							className="input-field"
-							placeholder="Last name"
-							value={data.lastname}
-							onChange={handleChange("lastname")}
-						/>
-						{errors.lastname && <HelperError message={errors.lastname} />}
-					</span>
-				</div>
-				<div>
+			</span>
+
+			<div className="flex flex-c grow items-center no-gap">
+				<form className="form flex flex-c border-sm" onSubmit={handleSubmit}>
+					<div className="flex flex-r justify-between">
+						<span>
+							<input
+								type="text"
+								className="input-field"
+								placeholder="First name"
+								value={data.firstname}
+								onChange={handleChange("firstname")}
+							/>
+							{errors.firstname && <HelperError message={errors.firstname} />}
+						</span>
+						<span>
+							<input
+								type="text"
+								className="input-field"
+								placeholder="Last name"
+								value={data.lastname}
+								onChange={handleChange("lastname")}
+							/>
+							{errors.lastname && <HelperError message={errors.lastname} />}
+						</span>
+					</div>
+
 					<span>
 						<input
 							type="text"
@@ -80,48 +85,53 @@ export const SignupForm = () => {
 						/>
 						{errors.email && <HelperError message={errors.email} />}
 					</span>
-				</div>
-				<div className="flex flex-c">
-					<div className="flex flex-r">
-						<span>
-							<input
-								id="password"
-								type="password"
-								className="input-field"
-								placeholder="Password"
-								value={data.password}
-								onChange={handleChange("password")}
-							/>
-							{errors.password && <HelperError message={errors.password} />}
-						</span>
-						<span>
-							<input
-								type="password"
-								className="input-field"
-								placeholder="Confirm"
-								value={data.passwordConfirmation}
-								onChange={handleChange("passwordConfirmation")}
-							/>
-							{errors.passwordConfirmation && <HelperError message={errors.passwordConfirmation} />}
-						</span>
+
+					<div className="flex flex-c">
+						<div className="flex flex-r justify-between">
+							<span>
+								<input
+									id="password"
+									type="password"
+									className="input-field"
+									placeholder="Password"
+									value={data.password}
+									onChange={handleChange("password")}
+								/>
+								{errors.password && <HelperError message={errors.password} />}
+							</span>
+							<span>
+								<input
+									type="password"
+									className="input-field"
+									placeholder="Confirm"
+									value={data.passwordConfirmation}
+									onChange={handleChange("passwordConfirmation")}
+								/>
+								{errors.passwordConfirmation && <HelperError message={errors.passwordConfirmation} />}
+							</span>
+						</div>
+						<div className="helper helper-hint">Use 8 or more characters with a mix of letters, numbers & symbols</div>
 					</div>
-					<div className="helper helper-hint">Use 8 or more characters with a mix of letters, numbers & symbols</div>
-				</div>
-				<div className="flex flex-r items-center">
-					<button className="btn btn-primary" type="submit">
-						Sign up
-					</button>
-					<Link to={Routes.Login}>Already have an account?</Link>
-				</div>
-			</form>
-			<script
-				async
-				src="https://telegram.org/js/telegram-widget.js?19"
-				data-telegram-login="cj_oauth_bot"
-				data-size="medium"
-				data-radius="4"
-				data-auth-url="/api/oauth/telegram"
-			></script>
+
+					<div className="flex flex-r items-center">
+						<button className="btn btn-primary" type="submit">
+							Sign up
+						</button>
+						<Link to={Routes.Login}>Already have an account?</Link>
+					</div>
+				</form>
+
+				<script
+					async
+					src="https://telegram.org/js/telegram-widget.js?19"
+					data-telegram-login="cj_oauth_bot"
+					data-size="medium"
+					data-radius="4"
+					data-auth-url="/api/oauth/telegram"
+				></script>
+			</div>
+
+			<Composition />
 		</div>
 	);
 };

@@ -104,10 +104,9 @@
 
 .form {
 	padding: 1.5rem;
-	place-self: center;
-	margin-inline: auto;
-	background-color: var(--clr-white);
-	max-width: 500px;
+	background-color: transparent;
+	gap: 1.25rem;
+	@include clampify(max-width, 300, 450);
 }
 
 .icon {

@@ -1,6 +1,7 @@
 import { treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 import { ValidatorEmail, ValidatorRequired } from "src/components/@helpers/validators";
+import { Composition } from "src/components/auth/composition";
 import { Description } from "src/components/auth/description";
 import { HelperError } from "src/components/helperError";
 import { Link } from "src/components/link";
@@ -28,11 +29,14 @@ export const LoginForm = () => {
 	});
 
 	return (
-		<div className="flex flex-c grow items-center justify-center">
-			<form className="form flex flex-c border-sm" style="gap: 1.5rem;" onSubmit={handleSubmit}>
+		<div className="flex flex-c grow items-center justify-between" style="gap: 2rem;">
+			<span className="mt-4">
 				<Description />
-				<div>
-					<span>
+			</span>
+
+			<div className="flex flex-c grow items-center no-gap">
+				<form className="form flex flex-c border-sm" onSubmit={handleSubmit}>
+					<div>
 						<input
 							type="text"
 							className="input-field"
@@ -41,10 +45,8 @@ export const LoginForm = () => {
 							onChange={handleChange("email")}
 						/>
 						{errors.email && <HelperError message={errors.email} />}
-					</span>
-				</div>
-				<div>
-					<span>
+					</div>
+					<div>
 						<input
 							id="password"
 							type="password"
@@ -54,23 +56,26 @@ export const LoginForm = () => {
 							onChange={handleChange("password")}
 						/>
 						{errors.password && <HelperError message={errors.password} />}
-					</span>
-				</div>
-				<div className="flex flex-r items-center">
-					<button className="btn btn-primary" type="submit">
-						Sign in
-					</button>
-					<Link to={Routes.Signup}>Don't have an account?</Link>
-				</div>
-			</form>
-			<script
-				async
-				src="https://telegram.org/js/telegram-widget.js?19"
-				data-telegram-login="cj_oauth_bot"
-				data-size="medium"
-				data-radius="4"
-				data-auth-url="/api/oauth/telegram"
-			></script>
+					</div>
+					<div className="flex flex-r items-center">
+						<button className="btn btn-primary" type="submit">
+							Sign in
+						</button>
+						<Link to={Routes.Signup}>Don't have an account?</Link>
+					</div>
+				</form>
+
+				<script
+					async
+					src="https://telegram.org/js/telegram-widget.js?19"
+					data-telegram-login="cj_oauth_bot"
+					data-size="medium"
+					data-radius="4"
+					data-auth-url="/api/oauth/telegram"
+				></script>
+			</div>
+
+			<Composition />
 		</div>
 	);
 };

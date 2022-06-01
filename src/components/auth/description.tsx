@@ -2,7 +2,7 @@ import { Component, treact } from "@treact";
 
 export const Description: Component = () => {
 	return (
-		<span>
+		<span className="flex flex-c no-gap">
 			<p className="fs-xlg text-primary bold text-center">Social Network CJ</p>
 			<p className="text-light text-center">Chat, share, and keep in touch with the world</p>
 			<div className="flex flex-r justify-center">

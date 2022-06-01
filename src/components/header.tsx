@@ -31,7 +31,6 @@ export const Header = () => {
 						</div>
 					</div>
 				)}
-				{!user && <Link to={Routes.Login}>Sign in</Link>}
 			</div>
 		</header>
 	);
