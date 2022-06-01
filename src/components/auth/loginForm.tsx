@@ -6,7 +6,7 @@ import { HelperError } from "src/components/helperError";
 import { Link } from "src/components/link";
 import { Routes } from "src/constants/routes";
 import { handleError } from "src/core/modules/error";
-import { authAPi } from "src/core/network/api/auth";
+import { loginUser } from "src/core/network/api/auth/loginUser";
 
 type loginForm = {
 	email: string;
@@ -20,7 +20,7 @@ export const LoginForm = () => {
 			password: ValidatorRequired,
 		},
 		onSubmit: () => {
-			authAPi.loginUser(data).then(
+			loginUser(data).then(
 				() => navigateTo(Routes.Feed),
 				(err) => handleError(err)
 			);

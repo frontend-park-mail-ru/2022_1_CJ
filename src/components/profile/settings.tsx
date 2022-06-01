@@ -4,8 +4,9 @@ import { Routes, withParameters } from "src/constants/routes";
 import { FileSize } from "src/constants/size";
 import { EventWithTarget } from "src/core/@types/event";
 import { UserProfile } from "src/core/@types/user";
-import { userAPI } from "src/core/network/api/user";
-import { EditUserProfileRequest } from "src/core/network/dto/user";
+import { apiUserEditProfile } from "src/core/network/api/user/editProfile";
+import { apiUserGetProfile } from "src/core/network/api/user/getProfile";
+import { apiUserUpdatePhoto } from "src/core/network/api/user/updatePhoto";
 import { modAlertStore } from "src/stores/alert";
 
 type profileSettings = {
@@ -21,7 +22,7 @@ export const ProfileSettingsBlock: Component = () => {
 	const [profile, setProfile] = treact.useState(null as UserProfile);
 
 	treact.useEffect(() => {
-		userAPI.getProfile().then((response) => {
+		apiUserGetProfile().then((response) => {
 			setProfile(response.user_profile);
 			setImage(response.user_profile.avatar);
 		});
@@ -44,21 +45,19 @@ export const ProfileSettingsBlock: Component = () => {
 				const input = document.getElementById("photo") as HTMLInputElement;
 				const formData = new FormData();
 				formData.append("photo", input.files[0]);
-				await userAPI.updatePhoto(formData);
+				await apiUserUpdatePhoto(formData);
 			}
 
-			const dto: EditUserProfileRequest = {
+			apiUserEditProfile({
 				name: { first: data.firstname, last: data.lastname },
 				phone: data.phone,
 				location: data.location,
 				birth_day: data.birth_day,
-			};
-
-			userAPI.editProfile(dto).then(() => navigateTo(withParameters(Routes.Profile, { user_id: profile.id })));
+			}).then(() => navigateTo(withParameters(Routes.Profile, { user_id: profile.id })));
 		},
 	});
 
-	const updatePhoto = (event: EventWithTarget<HTMLInputElement>) => {
+	const updateImage = (event: EventWithTarget<HTMLInputElement>) => {
 		if (event.target.files && event.target.files[0]) {
 			const file = event.target.files[0];
 			if (file.size > FileSize.MB) {
@@ -74,7 +73,7 @@ export const ProfileSettingsBlock: Component = () => {
 			<div className="flex flex-c items-center bg-white pd-8 border-sm">
 				<img className="avatar" src={image} alt="" style="height: 10rem;" />
 				<label className="btn">
-					<input onChange={updatePhoto} type="file" id="photo" accept=".jpg, .jpeg, .png" />
+					<input onChange={updateImage} type="file" id="photo" accept=".jpg, .jpeg, .png" />
 					Upload
 				</label>
 			</div>

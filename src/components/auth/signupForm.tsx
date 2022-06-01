@@ -6,8 +6,7 @@ import { HelperError } from "src/components/helperError";
 import { Link } from "src/components/link";
 import { Routes } from "src/constants/routes";
 import { handleError } from "src/core/modules/error";
-import { authAPi } from "src/core/network/api/auth";
-import { SignupUserRequest } from "src/core/network/dto/auth";
+import { signupUser } from "src/core/network/api/auth/signupUser";
 
 type signupForm = {
 	firstname: string;
@@ -33,12 +32,11 @@ export const SignupForm = () => {
 			},
 		},
 		onSubmit: () => {
-			const dto: SignupUserRequest = {
+			signupUser({
 				name: { first: data.firstname, last: data.lastname },
 				email: data.email,
 				password: data.password,
-			};
-			authAPi.signupUser(dto).then(
+			}).then(
 				() => navigateTo(Routes.Feed),
 				(err) => handleError(err)
 			);

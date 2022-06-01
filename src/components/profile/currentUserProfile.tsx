@@ -6,7 +6,7 @@ import { ProfilePosts } from "src/components/profile/posts";
 import { ProfileInformaitonComponent, ProfileInformation } from "src/components/profile/profileInformation";
 import { Spinner } from "src/components/spinner";
 import { User, UserProfile } from "src/core/@types/user";
-import { userAPI } from "src/core/network/api/user";
+import { apiUserGetProfile } from "src/core/network/api/user/getProfile";
 import { useUserStore } from "src/stores/user";
 
 export const CurrentUserProfileInfo: Component = () => {
@@ -15,7 +15,7 @@ export const CurrentUserProfileInfo: Component = () => {
 	const [profile, setProfile] = treact.useState(null as UserProfile);
 
 	treact.useEffect(() => {
-		userAPI.getProfile({ user_id: userStore.user.id }).then((response) => setProfile(response.user_profile));
+		apiUserGetProfile({ user_id: userStore.user.id }).then((response) => setProfile(response.user_profile));
 		fetchUsers(userStore.friends).then((users) => {
 			setFriends(users);
 		});

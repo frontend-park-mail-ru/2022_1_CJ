@@ -1,4 +1,5 @@
 import { UserName } from "src/core/@types/user";
+import { fetchAPI } from "src/core/network/api/common";
 import { BasicResponse } from "src/core/network/dto/common";
 
 export type SignupUserRequest = {
@@ -9,9 +10,4 @@ export type SignupUserRequest = {
 
 export type SignupUserResponse = BasicResponse;
 
-export type LoginUserRequest = {
-	email: string;
-	password: string;
-};
-
-export type LoginUserResponse = BasicResponse;
+export const signupUser = (dto: SignupUserRequest) => fetchAPI.post<SignupUserResponse>("/api/auth/signup", dto);

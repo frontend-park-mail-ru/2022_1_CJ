@@ -4,7 +4,7 @@ import { Link } from "src/components/link";
 import { Routes, withParameters } from "src/constants/routes";
 import { EventWithTarget } from "src/core/@types/event";
 import { User } from "src/core/@types/user";
-import { userAPI } from "src/core/network/api/user";
+import { apiUserSearch } from "src/core/network/api/user/search";
 import { updateFriendsState, useUserStore } from "src/stores/user";
 
 type Option = "Friends" | "Incoming" | "Outgoing" | "Search results";
@@ -29,12 +29,12 @@ export const FriendsList: Component = () => {
 		setUsers({ friends, incomingRequests, outcomingRequests });
 	}, [userStore]);
 
-	const searchUsers = (event: EventWithTarget<HTMLInputElement, KeyboardEvent>) => {
+	const search = (event: EventWithTarget<HTMLInputElement, KeyboardEvent>) => {
 		if (event.key === "Enter") {
 			setOption("Search results");
 			const selector = event.target.value;
 			if (selector.length > 0) {
-				userAPI.searchUsers({ selector }).then((response) => setSearchResults(response.users || []));
+				apiUserSearch({ selector }).then((response) => setSearchResults(response.users || []));
 			} else {
 				setSearchResults([]);
 			}
@@ -83,12 +83,7 @@ export const FriendsList: Component = () => {
 
 	return (
 		<div className="flex flex-c space-half">
-			<input
-				onKeyUp={searchUsers}
-				className="border-no-style border-sm pd-2 bg-white"
-				type="text"
-				placeholder="Search"
-			/>
+			<input onKeyUp={search} className="border-no-style border-sm pd-2 bg-white" type="text" placeholder="Search" />
 			<div className="flex flex-r d-middle">
 				{optionButton("Friends", userStore.friends.length)}
 				{optionButton("Incoming", userStore.incomingRequests.length)}

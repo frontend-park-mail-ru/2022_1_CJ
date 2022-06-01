@@ -3,7 +3,7 @@ import { PostComponent } from "src/components/posts/post";
 import { Spinner } from "src/components/spinner";
 import { PostWrapper } from "src/core/@types/post";
 import { communitiesAPI } from "src/core/network/api/communities";
-import { userAPI } from "src/core/network/api/user";
+import { apiUserGetFeed } from "src/core/network/api/user/getFeed";
 import { useUserStore } from "src/stores/user";
 
 export const FeedPosts: Component = () => {
@@ -11,7 +11,7 @@ export const FeedPosts: Component = () => {
 	const [posts, setPosts] = treact.useState(null as PostWrapper[]);
 
 	treact.useEffect(() => {
-		userAPI.getFeed().then((response) => {
+		apiUserGetFeed().then((response) => {
 			setPosts(response.posts || []);
 		});
 		communitiesAPI.getManagedCommunities({ user_id: userStore.user.id }).then((response) => {
