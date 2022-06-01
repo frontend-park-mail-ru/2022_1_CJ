@@ -6,7 +6,7 @@ import { Routes } from "src/constants/routes";
 import { Post, PostWrapper } from "src/core/@types/post";
 import { createComment } from "src/core/network/api/comments/create";
 import { getComments } from "src/core/network/api/comments/get";
-import { postAPI } from "src/core/network/api/post";
+import { apiPostGetPost } from "src/core/network/api/post/get";
 
 export const PostPage: Component = ({ post_id }: { post_id: string }) => {
 	const [postWrapper, setPostWrapper] = treact.useState(null as PostWrapper);
@@ -17,7 +17,7 @@ export const PostPage: Component = ({ post_id }: { post_id: string }) => {
 	};
 
 	treact.useEffect(() => {
-		postAPI.getPost({ post_id }).then(setPostWrapper, () => navigateTo(Routes.Feed));
+		apiPostGetPost({ post_id }).then(setPostWrapper, () => navigateTo(Routes.Feed));
 		fetchComments();
 	}, [post_id]);
 
@@ -32,7 +32,7 @@ export const PostPage: Component = ({ post_id }: { post_id: string }) => {
 			input.innerText = "";
 			createComment({ post_id, message }).then(() => {
 				fetchComments();
-				postAPI.getPost({ post_id }).then(setPostWrapper);
+				apiPostGetPost({ post_id }).then(setPostWrapper);
 			});
 		}
 	};

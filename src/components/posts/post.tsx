@@ -9,7 +9,7 @@ import { PostLikeButton } from "src/components/posts/likeButton";
 import { Routes, withParameters } from "src/constants/routes";
 import { PostWrapper } from "src/core/@types/post";
 import { communitiesAPI } from "src/core/network/api/communities";
-import { postAPI } from "src/core/network/api/post";
+import { apiPostDeletePost } from "src/core/network/api/post/delete";
 import { useUserStore } from "src/stores/user";
 
 export const PostComponent: Component = ({
@@ -24,7 +24,7 @@ export const PostComponent: Component = ({
 	const { post } = postWrapper;
 
 	const deletePost = () => {
-		postAPI.deletePost({ post_id: post.id }).then(update);
+		apiPostDeletePost({ post_id: post.id }).then(update);
 	};
 
 	const deleteCommunityPost = () => {

@@ -4,7 +4,8 @@ import { FileAttachmentsComponent, getFileAttachments } from "src/components/att
 import { getImageAttachments, ImageAttachmentsComponent } from "src/components/attachments/images";
 import { EventWithTarget } from "src/core/@types/event";
 import { Post } from "src/core/@types/post";
-import { postAPI } from "src/core/network/api/post";
+import { apiPostCreatePost } from "src/core/network/api/post/create";
+import { apiPostEditPost } from "src/core/network/api/post/edit";
 
 export const ModalCreate: ModalComponent = ({ hide }) => {
 	const [message, setMessage] = treact.useState("");
@@ -28,7 +29,7 @@ export const ModalCreate: ModalComponent = ({ hide }) => {
 	const post = async () => {
 		const attachments = await getFileAttachments();
 		const imageAttachments = await getImageAttachments();
-		postAPI.createPost({ message, images: imageAttachments, attachments }).then(() => {
+		apiPostCreatePost({ message, images: imageAttachments, attachments }).then(() => {
 			update();
 			hide();
 		});
@@ -73,7 +74,7 @@ export const ModalEdit: ModalComponent = ({ hide, post }: { post: Post; hide: ()
 	};
 
 	const edit = () => {
-		postAPI.editPost({ post_id: post.id, message }).then(() => {
+		apiPostEditPost({ post_id: post.id, message }).then(() => {
 			update();
 			hide();
 		});
