@@ -20,7 +20,7 @@ const createEmitter = <T>() => {
 
 export const createStore = <T>(initialState: T): [UseStoreFunction<T>, StoreModifier<T>] => {
 	let store = initialState;
-	const emitter = createEmitter();
+	const emitter = createEmitter<T>();
 
 	const set: StateSetter<T> = (action) => {
 		store = action instanceof Function ? action(store) : action;

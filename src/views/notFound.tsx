@@ -1,12 +1,15 @@
 import { Component, treact } from "@treact";
-import { Layout } from "src/components/layout";
+import { Navigate } from "src/components/link";
+import { Routes } from "src/constants/routes";
+import "/src/assets/styles/modules/not_found.scss";
 
 export const NotFound: Component = () => {
 	return (
-		<Layout>
-			<div>
-				<p>Not Found</p>
-			</div>
-		</Layout>
+		<div className="flex flex-c grow items-center justify-center">
+			<p className="hero-title">404</p>
+			<p className="hero-title">
+				<Navigate to={Routes.Base}>Go back</Navigate>
+			</p>
+		</div>
 	);
 };
