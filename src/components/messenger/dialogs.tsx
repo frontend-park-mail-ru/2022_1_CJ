@@ -2,12 +2,12 @@ import { Component, treact } from "@treact";
 import { Link } from "src/components/link";
 import { Routes, withParameters } from "src/constants/routes";
 import { Dialog } from "src/core/@types/dialog";
-import { messengerAPI } from "src/core/network/api/messenger";
+import { apiMessengerGetDialogs } from "src/core/network/api/messenger/getDialogs";
 
 export const Dialogs: Component = () => {
 	const [dialogs, setDialogs] = treact.useState([] as Dialog[]);
 	treact.useEffect(() => {
-		messengerAPI.getDialogs().then((response) => setDialogs(response.dialogs || []));
+		apiMessengerGetDialogs().then((response) => setDialogs(response.dialogs || []));
 	}, []);
 
 	const map = (dialog: Dialog) => (

@@ -1,11 +1,12 @@
 import { treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 import { Routes, withParameters } from "src/constants/routes";
-import { messengerAPI } from "src/core/network/api/messenger";
+import { apiMessengerCreateDialog } from "src/core/network/api/messenger/createDialog";
+import { apiMessengerGetDialogIDByUserID } from "src/core/network/api/messenger/getDialogIDByUserID";
 
 export const MessageButton = ({ user_id }: { user_id: string }) => {
 	const createDialog = async () => {
-		const response = await messengerAPI.createDialog({
+		const response = await apiMessengerCreateDialog({
 			name: "dialog",
 			author_ids: [user_id],
 		});
@@ -13,7 +14,7 @@ export const MessageButton = ({ user_id }: { user_id: string }) => {
 	};
 
 	const writeMessage = async () => {
-		const response = await messengerAPI.getDialogIDByUserID({ user_id });
+		const response = await apiMessengerGetDialogIDByUserID({ user_id });
 		const dialog_id = response ? response.dialog_id : await createDialog();
 		navigateTo(withParameters(Routes.Dialog, { dialog_id }));
 	};

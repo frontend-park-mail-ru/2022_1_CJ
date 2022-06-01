@@ -13,7 +13,8 @@ import { Routes, withParameters } from "src/constants/routes";
 import { Dialog, Message } from "src/core/@types/dialog";
 import { EventWithTarget } from "src/core/@types/event";
 import { User } from "src/core/@types/user";
-import { messengerAPI, WSReducer } from "src/core/network/api/messenger";
+import { apiMessengerGetDialog } from "src/core/network/api/messenger/getDialog";
+import { apiMessengerOpenWS, WSReducer } from "src/core/network/api/messenger/openWS";
 import { useUserStore } from "src/stores/user";
 
 // TODO: refactor this crap
@@ -26,7 +27,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 	const [socket, setSocket] = treact.useState(null as WebSocket);
 
 	treact.useEffect(async () => {
-		const response = await messengerAPI.getDialog({ dialog_id });
+		const response = await apiMessengerGetDialog({ dialog_id });
 		setDialog(response.dialog);
 		setMessages(response.messages || []);
 		fetchUsers(response.dialog.participants).then((users) => {
@@ -58,7 +59,7 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 		};
 
 		treact.useEffect(() => {
-			messengerAPI.openWSConnection(wsReducer);
+			apiMessengerOpenWS(wsReducer);
 		}, [dialog_id]);
 	}
 
