@@ -1,15 +1,18 @@
 import { Component, treact } from "@treact";
 
+const span = (str: string) => <span className="text-primary">{str}</span>;
+
 export const Description: Component = () => {
 	return (
 		<span className="flex flex-c no-gap">
 			<p className="fs-xlg text-primary bold text-center">Social Network CJ</p>
-			<p className="text-light text-center">Chat, share, and keep in touch with the world</p>
-			<div className="flex flex-r justify-center">
-				<img src="/static/icons/messages.svg" className="icon" alt="" />
-				<img src="/static/icons/search.svg" className="icon" alt="" />
-				<img src="/static/icons/communities.svg" className="icon" alt="" />
-			</div>
+			<p className="text-light text-center" style="max-width: min(500px, 85vw);">
+				Is a place where you can {span("chat")} and {span("share")} with your friends,
+				<p>
+					Create {span("communities")}, make {span("your own history")}, and {span("keep in touch")} with the whole
+					world!
+				</p>
+			</p>
 		</span>
 	);
 };

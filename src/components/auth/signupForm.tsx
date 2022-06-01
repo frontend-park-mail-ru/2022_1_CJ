@@ -110,10 +110,10 @@ export const SignupForm = () => {
 								{errors.passwordConfirmation && <HelperError message={errors.passwordConfirmation} />}
 							</span>
 						</div>
-						<div className="helper helper-hint">Use 8 or more characters with a mix of letters, numbers & symbols</div>
+						<div className="helper helper-hint">At least 8 characters, mix of letters, numbers & symbols</div>
 					</div>
 
-					<div className="flex flex-r items-center">
+					<div className="flex flex-r items-center mt-2">
 						<button className="btn btn-primary" type="submit">
 							Sign up
 						</button>
