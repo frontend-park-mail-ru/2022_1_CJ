@@ -8,9 +8,9 @@ import { createComment } from "src/core/network/api/comments/create";
 import { getComments } from "src/core/network/api/comments/get";
 import { apiPostGetPost } from "src/core/network/api/post/get";
 
-export const PostPage: Component = ({ post_id }: { post_id: string }) => {
-	const [postWrapper, setPostWrapper] = treact.useState(null as PostWrapper);
-	const [comments, setComments] = treact.useState(null as Post[]);
+export const PostPage: Component<{ post_id: string }> = ({ post_id }) => {
+	const [postWrapper, setPostWrapper] = treact.useState<PostWrapper>();
+	const [comments, setComments] = treact.useState<Post[]>();
 
 	const fetchComments = () => {
 		getComments({ post_id }).then((response) => setComments(response.comments || []));
@@ -26,7 +26,7 @@ export const PostPage: Component = ({ post_id }: { post_id: string }) => {
 	}
 
 	const postComment = () => {
-		const input = document.getElementById("comment");
+		const input = document.getElementById("comment") as HTMLInputElement;
 		const message = input.innerText;
 		if (message.length > 0) {
 			input.innerText = "";

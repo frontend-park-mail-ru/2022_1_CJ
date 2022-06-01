@@ -2,7 +2,7 @@ import { Component, treact } from "@treact";
 import { CommunityImageViewerComponent } from "src/components/@helpers/imageViewer";
 import { Community } from "src/core/@types/community";
 
-export const CommunityInformaitonComponent: Component = ({ community }: { community: Community }) => {
+export const CommunityInformaitonComponent: Component<{ community: Community }> = ({ community }) => {
 	return (
 		<div className="flex flex-c bg-white pd-8 border-sm">
 			<CommunityImageViewerComponent url={community.image} />

@@ -23,7 +23,7 @@ export type UserStore = {
 };
 
 export const userStoreInitialState: UserStore = {
-	user: null,
+	user: {} as User,
 	status: UserStatus.Unset,
 
 	friends: [],

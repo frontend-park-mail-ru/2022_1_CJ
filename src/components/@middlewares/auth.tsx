@@ -10,15 +10,16 @@ export enum AuthMiddlewarePolicy {
 	Unauthorized,
 }
 
-export const AuthMiddleware: Component = (props) => {
+export const AuthMiddleware: Component<{ policy?: AuthMiddlewarePolicy }> = ({
+	children,
+	policy = AuthMiddlewarePolicy.Authorized,
+}) => {
 	const [userStore, modUserStore] = useUserStore();
-	const { children } = props;
-	const policy = props.policy || AuthMiddlewarePolicy.Authorized;
 
 	treact.useEffect(() => {
 		apiUserGetData().then(
 			(response) => modUserStore.update({ user: response.user, status: UserStatus.Authorized }),
-			() => modUserStore.update({ user: null, status: UserStatus.Unauthorized })
+			() => modUserStore.update({ user: undefined, status: UserStatus.Unauthorized })
 		);
 	}, []);
 

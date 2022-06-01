@@ -8,7 +8,7 @@ const handleClick = (to: string) => (event: MouseEvent) => {
 	}
 };
 
-export const Link: Component = ({ to, children }: { to: string; children: object }) => {
+export const Link: Component<{ to: string }> = ({ to, children }) => {
 	return (
 		<span className="link d-block pointer" onClick={handleClick(to)}>
 			{children}
@@ -16,7 +16,7 @@ export const Link: Component = ({ to, children }: { to: string; children: object
 	);
 };
 
-export const Navigate: Component = ({ to, children }: { to: string; children: object }) => {
+export const Navigate: Component<{ to: string }> = ({ to, children }) => {
 	return (
 		<span className="d-block pointer no-decoration" onClick={handleClick(to)}>
 			{children}

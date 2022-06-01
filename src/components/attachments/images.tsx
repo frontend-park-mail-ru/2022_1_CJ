@@ -6,16 +6,20 @@ import { uploadImage } from "src/core/network/api/static/upload";
 import { modAlertStore } from "src/stores/alert";
 
 export const getImageAttachments = async () => {
-	const attachments = document.getElementById("images") as HTMLInputElement;
 	const images = [] as string[];
-	for (const [, file] of Object.entries(attachments.files)) {
-		const formData = new FormData();
-		formData.append("image", file);
-		const url = await uploadImage(formData).then((response) => response.url);
-		images.push(url);
+
+	const attachments = document.getElementById("images") as HTMLInputElement;
+	if (attachments.files) {
+		for (const file of Object.values(attachments.files)) {
+			const formData = new FormData();
+			formData.append("image", file);
+			const url = await uploadImage(formData).then((response) => response.url);
+			images.push(url);
+		}
+		attachments.value = "";
+		attachments.dispatchEvent(new Event("change"));
 	}
-	attachments.value = "";
-	attachments.dispatchEvent(new Event("change"));
+
 	return images;
 };
 

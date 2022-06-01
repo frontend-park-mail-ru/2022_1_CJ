@@ -5,7 +5,7 @@ import { apiFriendsRevokeRequest } from "src/core/network/api/friends/revokeRequ
 import { apiFriendsSendRequest } from "src/core/network/api/friends/sendRequest";
 import { updateFriendsState, useUserStore } from "src/stores/user";
 
-export const FriendButton: Component = ({ user_id }: { user_id: string }) => {
+export const FriendButton: Component<{ user_id: string }> = ({ user_id }) => {
 	const [userStore] = useUserStore();
 
 	const addFriend = () => {

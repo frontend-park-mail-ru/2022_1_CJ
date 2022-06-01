@@ -4,8 +4,8 @@ import { Spinner } from "src/components/spinner";
 import { PostWrapper } from "src/core/@types/post";
 import { apiUserGetPosts } from "src/core/network/api/user/getPosts";
 
-export const ProfilePosts: Component = ({ user_id }: { user_id: string }) => {
-	const [posts, setPosts] = treact.useState(null as PostWrapper[]);
+export const ProfilePosts: Component<{ user_id: string }> = ({ user_id }) => {
+	const [posts, setPosts] = treact.useState<PostWrapper[]>();
 
 	treact.useEffect(() => {
 		apiUserGetPosts({ user_id }).then((response) => setPosts(response.posts || []));

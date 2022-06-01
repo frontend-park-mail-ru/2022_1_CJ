@@ -8,7 +8,7 @@ import { useUserStore } from "src/stores/user";
 
 export const FeedPosts: Component = () => {
 	const [userStore, modUserStore] = useUserStore();
-	const [posts, setPosts] = treact.useState(null as PostWrapper[]);
+	const [posts, setPosts] = treact.useState<PostWrapper[]>();
 
 	treact.useEffect(() => {
 		apiUserGetFeed().then((response) => {

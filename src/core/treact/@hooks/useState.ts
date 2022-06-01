@@ -1,7 +1,7 @@
 import { getLastHook } from "src/core/treact/@hooks/common";
 import { State } from "src/core/treact/core/models";
 
-export type SetStateAction<T> = ((prevState: T) => T) | T;
+export type SetStateAction<T> = ((prevState?: T) => T) | T | undefined;
 export type StateSetter<T> = (action: SetStateAction<T>) => void;
 
 const causeUpdate = () => {
@@ -16,7 +16,7 @@ const causeUpdate = () => {
 	}
 };
 
-export const useState = <T>(initial: T): [T, StateSetter<T>] => {
+export const useState = <T>(initial?: T): [T, StateSetter<T>] => {
 	const lastHook = getLastHook();
 	const hook = {
 		queue: lastHook?.queue || [],

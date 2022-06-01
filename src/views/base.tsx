@@ -10,7 +10,7 @@ export const Base: Component = () => {
 	treact.useEffect(() => {
 		apiUserGetData().then(
 			(response) => modUserStore.update({ user: response.user, status: UserStatus.Authorized }),
-			() => modUserStore.update({ user: null, status: UserStatus.Unauthorized })
+			() => modUserStore.update({ user: undefined, status: UserStatus.Unauthorized })
 		);
 	}, []);
 

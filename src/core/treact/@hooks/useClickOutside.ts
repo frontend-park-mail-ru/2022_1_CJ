@@ -1,10 +1,9 @@
-import { EventWithTarget } from "src/core/@types/event";
 import { useEffect } from "src/core/treact/@hooks/useEffect";
 
 export const useClickOutside = (id: string, callback: () => void) => {
-	const handleClick = (event: EventWithTarget<HTMLElement>) => {
+	const handleClick = (event: MouseEvent) => {
 		const ref = document.getElementById(id);
-		if (ref && !ref.contains(event.target)) {
+		if (ref && !ref.contains(event.target as Node)) {
 			callback();
 		}
 	};

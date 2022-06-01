@@ -5,7 +5,7 @@ import { apiLikesGet } from "src/core/network/api/likes/get";
 import { apiLikesIncrease } from "src/core/network/api/likes/increase";
 import { apiLikesReduce } from "src/core/network/api/likes/reduce";
 
-export const PostLikeButton: Component = ({ postWrapper }: { postWrapper: PostWrapper }) => {
+export const PostLikeButton: Component<{ postWrapper: PostWrapper }> = ({ postWrapper }) => {
 	const [likes, setLikes] = treact.useState(postWrapper.likes);
 	const iconSrc = likes.my_like ? Icons.LikePressed : Icons.Like;
 

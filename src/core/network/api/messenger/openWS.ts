@@ -11,10 +11,21 @@ export const apiMessengerOpenWS = (reducer: WSReducer) => {
 	const scheme = location.protocol === "https:" ? "wss" : "ws";
 	const socket = ws(`${scheme}://${location.hostname}/api/messenger/ws`);
 
-	socket.onopen = reducer.onopen;
-	socket.onmessage = reducer.onmessage;
-	socket.onclose = reducer.onclose;
-	socket.onerror = reducer.onerror;
+	if (reducer.onopen) {
+		socket.onopen = reducer.onopen;
+	}
+
+	if (reducer.onmessage) {
+		socket.onmessage = reducer.onmessage;
+	}
+
+	if (reducer.onclose) {
+		socket.onclose = reducer.onclose;
+	}
+
+	if (reducer.onerror) {
+		socket.onerror = reducer.onerror;
+	}
 
 	return socket;
 };

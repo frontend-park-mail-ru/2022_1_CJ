@@ -12,13 +12,10 @@ import { communitiesAPI } from "src/core/network/api/communities";
 import { apiPostDeletePost } from "src/core/network/api/post/delete";
 import { useUserStore } from "src/stores/user";
 
-export const PostComponent: Component = ({
-	postWrapper,
-	disableNavigate,
-}: {
+export const PostComponent: Component<{
 	postWrapper: PostWrapper;
-	disableNavigate: boolean;
-}) => {
+	disableNavigate?: boolean;
+}> = ({ postWrapper, disableNavigate = false }) => {
 	const [userStore] = useUserStore();
 	const update = treact.useUpdate();
 	const { post } = postWrapper;

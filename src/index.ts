@@ -11,7 +11,10 @@ if (window.location.pathname.startsWith("/api")) {
 	const root = document.getElementById("root") || document.body;
 
 	document.addEventListener("DOMContentLoaded", () => {
-		treact.render(App(), root);
+		const app = App({});
+		if (app) {
+			treact.render(app, root);
+		}
 	});
 
 	window.onoffline = () => {

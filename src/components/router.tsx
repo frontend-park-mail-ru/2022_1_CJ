@@ -12,8 +12,8 @@ export const route = () => {
 
 	const [routerStore, modRouterStore] = useRouterStore();
 	if (routerStore.state === "online") {
-		// Use setTimeout to defer update of routerStore, so that it reaches the subscribers.
-		setTimeout(() => {
+		// Use window.setTimeout to defer update of routerStore, so that it reaches the subscribers.
+		window.setTimeout(() => {
 			modRouterStore.update({ route: pathToRoute(window.location.pathname, Object.values(Routes)) });
 		});
 	} else if (routerStore.state === "offline") {

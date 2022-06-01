@@ -5,7 +5,7 @@ import { Navigate } from "src/components/link";
 import { Routes, withParameters } from "src/constants/routes";
 import { Post } from "src/core/@types/post";
 
-export const PostAuthorComponent: Component = ({ post }: { post: Post }) => {
+export const PostAuthorComponent: Component<{ post: Post }> = ({ post }) => {
 	return (
 		<div className="flex flex-r items-center">
 			<img className="avatar" src={post.author.image} alt="" />

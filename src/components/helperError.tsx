@@ -1,6 +1,5 @@
 import { Component, treact } from "@treact";
 
-export const HelperError: Component = (props) => {
-	const { message } = props;
+export const HelperError: Component<{ message?: string }> = ({ message }) => {
 	return <p className="helper helper-error">{message || "error"}</p>;
 };

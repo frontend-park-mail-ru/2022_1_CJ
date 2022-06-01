@@ -18,13 +18,13 @@ import { apiMessengerOpenWS, WSReducer } from "src/core/network/api/messenger/op
 import { useUserStore } from "src/stores/user";
 
 // TODO: refactor this crap
-export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string }) => {
+export const DialogComponent: Component<{ dialog_id: string }> = ({ dialog_id }) => {
 	const [userStore] = useUserStore();
 
-	const [dialog, setDialog] = treact.useState(null as Dialog);
-	const [messages, setMessages] = treact.useState(null as Message[]);
-	const [participants, setParticipants] = treact.useState(null as { [key: string]: User });
-	const [socket, setSocket] = treact.useState(null as WebSocket);
+	const [dialog, setDialog] = treact.useState<Dialog>();
+	const [messages, setMessages] = treact.useState<Message[]>();
+	const [participants, setParticipants] = treact.useState<{ [key: string]: User }>();
+	const [socket, setSocket] = treact.useState<WebSocket>();
 
 	treact.useEffect(async () => {
 		const response = await apiMessengerGetDialog({ dialog_id });
@@ -106,18 +106,22 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 		const chatInput = () => {
 			const sendMessageButton = async () => {
 				const messageContainer = document.getElementById("message");
-				const body = messageContainer.innerText.trim();
-				const attachments = await getFileAttachments();
-				const imageAttachments = await getImageAttachments();
-				if (body.length > 0 || attachments.length > 0 || imageAttachments.length > 0) {
-					messageContainer.innerText = "";
-					socket.send(JSON.stringify({ dialog_id, body, attachments, images: imageAttachments, event: "send" }));
+				if (messageContainer) {
+					const body = messageContainer.innerText.trim();
+					const attachments = await getFileAttachments();
+					const imageAttachments = await getImageAttachments();
+					if (body.length > 0 || attachments.length > 0 || imageAttachments.length > 0) {
+						messageContainer.innerText = "";
+						socket.send(JSON.stringify({ dialog_id, body, attachments, images: imageAttachments, event: "send" }));
+					}
 				}
 			};
 
 			const appendToInput = (value: string) => {
 				const messageContainer = document.getElementById("message");
-				messageContainer.innerText = messageContainer.innerText.concat(value);
+				if (messageContainer) {
+					messageContainer.innerText = messageContainer.innerText.concat(value);
+				}
 			};
 
 			const sendSticker = (url: string) => {

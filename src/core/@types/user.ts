@@ -1,6 +1,6 @@
 export type UserName = {
-	first: string;
-	last: string;
+	first?: string;
+	last?: string;
 };
 
 export type User = {

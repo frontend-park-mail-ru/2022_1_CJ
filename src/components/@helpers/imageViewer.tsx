@@ -1,9 +1,7 @@
 import { Component, ModalComponent, treact } from "@treact";
 import { CrossComponent } from "src/components/@helpers/cross";
 
-const Modal: ModalComponent = (props) => {
-	const hide = props.hide;
-	const url = props.url as string;
+const Modal: ModalComponent<{ url: string }> = ({ hide, url }) => {
 	treact.useClickOutside("modal", hide);
 
 	treact.useEffect(() => {
@@ -26,7 +24,7 @@ const Modal: ModalComponent = (props) => {
 	);
 };
 
-export const ImageViewerComponent: Component = ({ url }: { url: string }) => {
+export const ImageViewerComponent: Component<{ url: string }> = ({ url }) => {
 	const [show, setShow] = treact.useState(false);
 	const hide = () => setShow(false);
 	return (
@@ -37,7 +35,7 @@ export const ImageViewerComponent: Component = ({ url }: { url: string }) => {
 	);
 };
 
-export const CommunityImageViewerComponent: Component = ({ url }: { url: string }) => {
+export const CommunityImageViewerComponent: Component<{ url: string }> = ({ url }) => {
 	const [show, setShow] = treact.useState(false);
 	const hide = () => setShow(false);
 	return (

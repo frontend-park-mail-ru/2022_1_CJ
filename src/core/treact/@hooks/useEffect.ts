@@ -8,8 +8,8 @@ export const useEffect = (callback: () => any, deps: any[]) => {
 	};
 
 	if (!lastHook || !isEqual(lastHook.deps, hook.deps) || State.pendingUpdate) {
-		// Use setTimeout to prevent causing side effects before the first render.
-		setTimeout(() => {
+		// Use window.setTimeout to prevent causing side effects before the first render.
+		window.setTimeout(() => {
 			const cleanup = callback();
 			if (cleanup instanceof Function) {
 				State.cleanups.push(cleanup);

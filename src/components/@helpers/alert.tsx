@@ -4,17 +4,17 @@ import "/src/assets/styles/modules/alert.scss";
 
 export const Alert: Component = () => {
 	const [alertStore, modAlertStore] = useAlertStore();
-	const [timeoutID, setTimeoutID] = treact.useState(null as number);
+	const [timeoutID, setTimeoutID] = treact.useState(NaN as number);
 
 	if (alertStore) {
 		treact.useEffect(() => {
 			clearTimeout(timeoutID);
-			setTimeoutID(setTimeout(() => modAlertStore.set(null), 2500));
+			setTimeoutID(window.setTimeout(() => modAlertStore.set(undefined), 2500));
 		}, [alertStore]);
 
 		const hide = () => {
 			clearTimeout(timeoutID);
-			modAlertStore.set(null);
+			modAlertStore.set(undefined);
 		};
 
 		return (
@@ -23,5 +23,6 @@ export const Alert: Component = () => {
 			</div>
 		);
 	}
+
 	return null;
 };

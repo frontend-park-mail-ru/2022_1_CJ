@@ -9,9 +9,9 @@ import { User, UserProfile } from "src/core/@types/user";
 import { apiFriendsGet } from "src/core/network/api/friends/get";
 import { apiUserGetProfile } from "src/core/network/api/user/getProfile";
 
-export const OtherUserProfileInfo: Component = ({ user_id }: { user_id: string }) => {
-	const [profile, setProfile] = treact.useState(null as UserProfile);
-	const [friends, setFriends] = treact.useState(null as User[]);
+export const OtherUserProfileInfo: Component<{ user_id: string }> = ({ user_id }) => {
+	const [profile, setProfile] = treact.useState<UserProfile>();
+	const [friends, setFriends] = treact.useState<User[]>();
 
 	treact.useEffect(async () => {
 		apiUserGetProfile({ user_id }).then((response) => setProfile(response.user_profile));

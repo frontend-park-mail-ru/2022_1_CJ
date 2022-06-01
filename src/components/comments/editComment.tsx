@@ -4,15 +4,7 @@ import { EventWithTarget } from "src/core/@types/event";
 import { Post } from "src/core/@types/post";
 import { editComment } from "src/core/network/api/comments/edit";
 
-const ModalEdit: ModalComponent = ({
-	hide,
-	post_id,
-	comment,
-}: {
-	post_id: string;
-	comment: Post;
-	hide: () => void;
-}) => {
+const ModalEdit: ModalComponent<{ post_id: string; comment: Post }> = ({ post_id, comment, hide }) => {
 	const [message, setMessage] = treact.useState("");
 	const update = treact.useUpdate();
 	treact.useClickOutside("modal", hide);
@@ -53,7 +45,7 @@ const ModalEdit: ModalComponent = ({
 	);
 };
 
-export const EditCommentComponent: Component = ({ post_id, comment }: { post_id: string; comment: Post }) => {
+export const EditCommentComponent: Component<{ post_id: string; comment: Post }> = ({ post_id, comment }) => {
 	const [show, setShow] = treact.useState(false);
 	const hide = () => setShow(false);
 	return (

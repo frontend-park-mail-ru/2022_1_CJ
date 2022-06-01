@@ -11,10 +11,10 @@ import { PostWrapper } from "src/core/@types/post";
 import { communitiesAPI } from "src/core/network/api/communities";
 import { useUserStore } from "src/stores/user";
 
-export const CommunityComponent: Component = ({ community_id }: { community_id: string }) => {
+export const CommunityComponent: Component<{ community_id: string }> = ({ community_id }) => {
 	const [userStore, modUserStore] = useUserStore();
-	const [community, setCommunity] = treact.useState(null as Community);
-	const [posts, setPosts] = treact.useState(null as PostWrapper[]);
+	const [community, setCommunity] = treact.useState<Community>();
+	const [posts, setPosts] = treact.useState<PostWrapper[]>();
 
 	treact.useEffect(async () => {
 		communitiesAPI.getCommunity({ community_id }).then((response) => setCommunity(response.community));

@@ -2,8 +2,8 @@ import { Component, treact } from "@treact";
 import { Spinner } from "src/components/spinner";
 import { communitiesAPI } from "src/core/network/api/communities";
 
-export const ControlButton: Component = ({ community_id }: { community_id: string }) => {
-	const [communities, setCommunities] = treact.useState(null as string[]);
+export const ControlButton: Component<{ community_id: string }> = ({ community_id }) => {
+	const [communities, setCommunities] = treact.useState<string[]>();
 
 	treact.useEffect(() => {
 		communitiesAPI.list().then((response) => {

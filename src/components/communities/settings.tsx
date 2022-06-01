@@ -15,10 +15,10 @@ type profileSettings = {
 	info?: string;
 };
 
-export const CommunitySettingsComponent: Component = ({ community_id }: { community_id: string }) => {
+export const CommunitySettingsComponent: Component<{ community_id: string }> = ({ community_id }) => {
 	const [userStore, modUserStore] = useUserStore();
 	const [image, setImage] = treact.useState("");
-	const [community, setCommunity] = treact.useState(null as Community);
+	const [community, setCommunity] = treact.useState<Community>();
 
 	treact.useEffect(() => {
 		communitiesAPI.getCommunity({ community_id }).then((response) => {
@@ -43,9 +43,11 @@ export const CommunitySettingsComponent: Component = ({ community_id }: { commun
 			onSubmit: async () => {
 				if (community.image !== image && image.length > 0) {
 					const input = document.getElementById("photo") as HTMLInputElement;
-					const formData = new FormData();
-					formData.append("photo", input.files[0]);
-					await communitiesAPI.updatePhoto({ data: formData, community_id });
+					if (input.files) {
+						const formData = new FormData();
+						formData.append("photo", input.files[0]);
+						await communitiesAPI.updatePhoto({ data: formData, community_id });
+					}
 				}
 
 				const dto: EditCommunityRequest = {

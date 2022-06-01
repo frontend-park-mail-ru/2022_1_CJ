@@ -3,7 +3,7 @@ import { CurrentUserProfileInfo } from "src/components/profile/currentUserProfil
 import { OtherUserProfileInfo } from "src/components/profile/otherUserProfile";
 import { updateFriendsState, useUserStore } from "src/stores/user";
 
-export const ProfileInfo: Component = ({ user_id }: { user_id: string }) => {
+export const ProfileInfo: Component<{ user_id: string }> = ({ user_id }) => {
 	const [userStore] = useUserStore();
 
 	treact.useEffect(updateFriendsState, []);

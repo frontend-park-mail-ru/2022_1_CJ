@@ -5,11 +5,9 @@ import { getImageAttachments, ImageAttachmentsComponent } from "src/components/a
 import { EventWithTarget } from "src/core/@types/event";
 import { communitiesAPI } from "src/core/network/api/communities";
 
-const Modal: ModalComponent = (props) => {
+const Modal: ModalComponent<{ community_id: string }> = ({ hide, community_id }) => {
 	const [message, setMessage] = treact.useState("");
 	const update = treact.useUpdate();
-	const hide = props.hide;
-	const community_id = props.community_id as string;
 	treact.useClickOutside("modal", hide);
 
 	treact.useEffect(() => {
@@ -52,7 +50,7 @@ const Modal: ModalComponent = (props) => {
 	);
 };
 
-export const CreateCommunityPost: Component = ({ community_id }: { community_id: string }) => {
+export const CreateCommunityPost: Component<{ community_id: string }> = ({ community_id }) => {
 	const [show, setShow] = treact.useState(false);
 	const hide = () => setShow(false);
 	return (

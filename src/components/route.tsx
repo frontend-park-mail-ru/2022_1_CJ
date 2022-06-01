@@ -1,8 +1,7 @@
 import { Component, treact } from "@treact";
-import { Routes } from "src/constants/routes";
 import { useRouterStore } from "src/stores/router";
 
-export const Route: Component = ({ to, component }: { to: keyof typeof Routes; component: Component }) => {
+export const Route: Component<{ to: string; component: Component }> = ({ to, component }) => {
 	const [routerStore] = useRouterStore();
-	return <>{routerStore.route === to ? component() : null}</>;
+	return <>{routerStore.route === to ? component({}) : null}</>;
 };

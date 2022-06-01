@@ -4,11 +4,9 @@ import { EventWithTarget } from "src/core/@types/event";
 import { Post } from "src/core/@types/post";
 import { communitiesAPI } from "src/core/network/api/communities";
 
-const Modal: ModalComponent = (props) => {
+const Modal: ModalComponent<{ post: Post }> = ({ hide, post }) => {
 	const [message, setMessage] = treact.useState("");
 	const update = treact.useUpdate();
-	const hide = props.hide;
-	const post = props.post as Post;
 	treact.useClickOutside("modal", hide);
 
 	treact.useEffect(() => {
@@ -49,7 +47,7 @@ const Modal: ModalComponent = (props) => {
 	);
 };
 
-export const EditCommunityPost: Component = ({ post }: { post: Post }) => {
+export const EditCommunityPost: Component<{ post: Post }> = ({ post }) => {
 	const [show, setShow] = treact.useState(false);
 	const hide = () => setShow(false);
 	return (

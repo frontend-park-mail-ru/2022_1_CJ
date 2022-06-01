@@ -54,7 +54,7 @@ export const ModalCreate: ModalComponent = ({ hide }) => {
 	);
 };
 
-export const ModalEdit: ModalComponent = ({ hide, post }: { post: Post; hide: () => void }) => {
+export const ModalEdit: ModalComponent<{ post: Post }> = ({ hide, post }) => {
 	const [message, setMessage] = treact.useState("");
 	const update = treact.useUpdate();
 	treact.useClickOutside("modal", hide);

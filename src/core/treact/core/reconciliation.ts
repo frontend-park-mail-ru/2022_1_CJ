@@ -86,19 +86,19 @@ const commitWork = (fiber?: Fiber) => {
 
 const reconcileChildren = (root: Fiber, children: any) => {
 	let index = 0;
-	let prevSibling: Fiber | null;
+	let prevSibling: Fiber | undefined;
 	let oldFiber = root.ancestor?.child;
 
 	while (index < children.length || oldFiber) {
 		const child = children[index];
 		const isSameType = oldFiber && child && oldFiber.type === child.type;
 
-		const newFiber = ((): Fiber | null => {
+		const newFiber = ((): Fiber | undefined => {
 			if (isSameType) {
 				return {
-					type: oldFiber ? oldFiber.type : null,
+					type: oldFiber?.type,
 					props: child.props,
-					node: oldFiber ? oldFiber.node : null,
+					node: oldFiber?.node,
 					parent: root,
 					ancestor: oldFiber,
 					action: FiberAction.Update,
@@ -109,14 +109,12 @@ const reconcileChildren = (root: Fiber, children: any) => {
 				return {
 					type: child.type,
 					props: child.props,
-					node: null,
 					parent: root,
-					ancestor: null,
 					action: FiberAction.Create,
 				};
 			}
 
-			return null;
+			return undefined;
 		})();
 
 		if (oldFiber && !isSameType) {
@@ -132,7 +130,7 @@ const reconcileChildren = (root: Fiber, children: any) => {
 
 		++index;
 		prevSibling = newFiber;
-		oldFiber = oldFiber?.sibling || null;
+		oldFiber = oldFiber?.sibling;
 	}
 };
 
@@ -179,7 +177,7 @@ const performCleanup = () => {
 };
 
 const resetState = () => {
-	State.wipRoot = null;
+	State.wipRoot = undefined;
 	State.pendingUpdate = false;
 };
 

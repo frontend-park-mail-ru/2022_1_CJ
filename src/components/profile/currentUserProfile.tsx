@@ -11,8 +11,8 @@ import { useUserStore } from "src/stores/user";
 
 export const CurrentUserProfileInfo: Component = () => {
 	const [userStore] = useUserStore();
-	const [friends, setFriends] = treact.useState(null as User[]);
-	const [profile, setProfile] = treact.useState(null as UserProfile);
+	const [friends, setFriends] = treact.useState<User[]>();
+	const [profile, setProfile] = treact.useState<UserProfile>();
 
 	treact.useEffect(() => {
 		apiUserGetProfile({ user_id: userStore.user.id }).then((response) => setProfile(response.user_profile));

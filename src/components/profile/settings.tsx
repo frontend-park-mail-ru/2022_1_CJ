@@ -19,7 +19,7 @@ type profileSettings = {
 
 export const ProfileSettingsBlock: Component = () => {
 	const [image, setImage] = treact.useState("");
-	const [profile, setProfile] = treact.useState(null as UserProfile);
+	const [profile, setProfile] = treact.useState<UserProfile>();
 
 	treact.useEffect(() => {
 		apiUserGetProfile().then((response) => {
@@ -43,9 +43,11 @@ export const ProfileSettingsBlock: Component = () => {
 		onSubmit: async () => {
 			if (profile.avatar !== image && image.length > 0) {
 				const input = document.getElementById("photo") as HTMLInputElement;
-				const formData = new FormData();
-				formData.append("photo", input.files[0]);
-				await apiUserUpdatePhoto(formData);
+				if (input.files) {
+					const formData = new FormData();
+					formData.append("photo", input.files[0]);
+					await apiUserUpdatePhoto(formData);
+				}
 			}
 
 			apiUserEditProfile({

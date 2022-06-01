@@ -5,16 +5,20 @@ import { uploadFile } from "src/core/network/api/file/upload";
 import { modAlertStore } from "src/stores/alert";
 
 export const getFileAttachments = async () => {
-	const attachments = document.getElementById("attachments") as HTMLInputElement;
 	const files = [] as string[];
-	for (const [, file] of Object.entries(attachments.files)) {
-		const formData = new FormData();
-		formData.append("file", file);
-		const url = await uploadFile(formData).then((response) => response.url);
-		files.push(url);
+
+	const attachments = document.getElementById("attachments") as HTMLInputElement;
+	if (attachments.files) {
+		for (const file of Object.values(attachments.files)) {
+			const formData = new FormData();
+			formData.append("file", file);
+			const url = await uploadFile(formData).then((response) => response.url);
+			files.push(url);
+		}
+		attachments.value = "";
+		attachments.dispatchEvent(new Event("change"));
 	}
-	attachments.value = "";
-	attachments.dispatchEvent(new Event("change"));
+
 	return files;
 };
 
