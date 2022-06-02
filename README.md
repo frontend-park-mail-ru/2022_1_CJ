@@ -9,7 +9,7 @@
 - ~~[Даниил Бахланов](https://github.com/Similization) - Фронтенд~~
 - [Ринат Хайруллин](https://github.com/rinatkh) - backend
 - [Частиков Александр](https://github.com/papazloynt) - backend
-- [Оганес Мирзоян](https://github.com/senago) - fullstask
+- [Оганес Мирзоян](https://github.com/senago) - fullstack
 
 ## Ссылки
 
