@@ -45,7 +45,7 @@ export const SignupForm = () => {
 	});
 
 	return (
-		<div className="flex flex-c grow items-center justify-between" style="gap: 2rem;">
+		<div className="flex flex-c grow items-center justify-between" style="gap: 2rem; position: relative;">
 			<span className="mt-4">
 				<Description />
 			</span>
