@@ -1,11 +1,12 @@
 import { Component, treact } from "@treact";
 import { Link } from "src/components/link";
+import { Spinner } from "src/components/spinner";
 import { Routes, withParameters } from "src/constants/routes";
 import { Dialog } from "src/core/@types/dialog";
 import { apiMessengerGetDialogs } from "src/core/network/api/messenger/getDialogs";
 
 export const Dialogs: Component = () => {
-	const [dialogs, setDialogs] = treact.useState([] as Dialog[]);
+	const [dialogs, setDialogs] = treact.useState<Dialog[]>();
 	treact.useEffect(() => {
 		apiMessengerGetDialogs().then((response) => setDialogs(response.dialogs || []));
 	}, []);
@@ -16,6 +17,10 @@ export const Dialogs: Component = () => {
 			<Link to={withParameters(Routes.Dialog, { dialog_id: dialog.dialog_id })}>{dialog.name}</Link>
 		</div>
 	);
+
+	if (!dialogs) {
+		return <Spinner />;
+	}
 
 	const showDialogs = (list: Dialog[]) => {
 		if (list?.length > 0) {

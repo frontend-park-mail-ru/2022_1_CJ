@@ -59,7 +59,7 @@ export const SignupForm = () => {
 								className="input-field"
 								placeholder="First name"
 								value={data.firstname}
-								onChange={handleChange("firstname")}
+								onKeyUp={handleChange("firstname")}
 							/>
 							{errors.firstname && <HelperError message={errors.firstname} />}
 						</span>
@@ -69,7 +69,7 @@ export const SignupForm = () => {
 								className="input-field"
 								placeholder="Last name"
 								value={data.lastname}
-								onChange={handleChange("lastname")}
+								onKeyUp={handleChange("lastname")}
 							/>
 							{errors.lastname && <HelperError message={errors.lastname} />}
 						</span>
@@ -81,7 +81,7 @@ export const SignupForm = () => {
 							className="input-field"
 							placeholder="Email"
 							value={data.email}
-							onChange={handleChange("email")}
+							onKeyUp={handleChange("email")}
 						/>
 						{errors.email && <HelperError message={errors.email} />}
 					</span>
@@ -95,7 +95,7 @@ export const SignupForm = () => {
 									className="input-field"
 									placeholder="Password"
 									value={data.password}
-									onChange={handleChange("password")}
+									onKeyUp={handleChange("password")}
 								/>
 								{errors.password && <HelperError message={errors.password} />}
 							</span>
@@ -105,7 +105,7 @@ export const SignupForm = () => {
 									className="input-field"
 									placeholder="Confirm"
 									value={data.passwordConfirmation}
-									onChange={handleChange("passwordConfirmation")}
+									onKeyUp={handleChange("passwordConfirmation")}
 								/>
 								{errors.passwordConfirmation && <HelperError message={errors.passwordConfirmation} />}
 							</span>

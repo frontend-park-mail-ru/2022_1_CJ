@@ -42,7 +42,7 @@ export const LoginForm = () => {
 							className="input-field"
 							placeholder="Email"
 							value={data.email}
-							onChange={handleChange("email")}
+							onKeyUp={handleChange("email")}
 						/>
 						{errors.email && <HelperError message={errors.email} />}
 					</div>
@@ -53,7 +53,7 @@ export const LoginForm = () => {
 							className="input-field"
 							placeholder="Password"
 							value={data.password}
-							onChange={handleChange("password")}
+							onKeyUp={handleChange("password")}
 						/>
 						{errors.password && <HelperError message={errors.password} />}
 					</div>
