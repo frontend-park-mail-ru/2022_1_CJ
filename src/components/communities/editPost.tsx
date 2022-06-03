@@ -2,7 +2,7 @@ import { Component, ModalComponent, treact } from "@treact";
 import { CrossComponent } from "src/components/@helpers/cross";
 import { EventWithTarget } from "src/core/@types/event";
 import { Post } from "src/core/@types/post";
-import { communitiesAPI } from "src/core/network/api/communities";
+import { apiCommunitiesEditPost } from "src/core/network/api/communities/editPost";
 
 const Modal: ModalComponent<{ post: Post }> = ({ hide, post }) => {
 	const [message, setMessage] = treact.useState("");
@@ -24,7 +24,7 @@ const Modal: ModalComponent<{ post: Post }> = ({ hide, post }) => {
 	};
 
 	const save = async () => {
-		communitiesAPI.editPost({ community_id: post.author.id, post_id: post.id, message }).then(() => {
+		apiCommunitiesEditPost({ community_id: post.author.id, post_id: post.id, message }).then(() => {
 			update();
 			hide();
 		});

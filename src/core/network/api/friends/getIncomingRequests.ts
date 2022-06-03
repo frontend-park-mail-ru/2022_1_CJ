@@ -1,6 +1,6 @@
 import { fetchAPI } from "src/core/network/api/common";
 
-export type Response = {
+type Response = {
 	request_ids: string[];
 };
 

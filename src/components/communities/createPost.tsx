@@ -3,7 +3,7 @@ import { CrossComponent } from "src/components/@helpers/cross";
 import { FileAttachmentsComponent, getFileAttachments } from "src/components/attachments/file";
 import { getImageAttachments, ImageAttachmentsComponent } from "src/components/attachments/images";
 import { EventWithTarget } from "src/core/@types/event";
-import { communitiesAPI } from "src/core/network/api/communities";
+import { apiCommunitiesCreatePost } from "src/core/network/api/communities/createPost";
 
 const Modal: ModalComponent<{ community_id: string }> = ({ hide, community_id }) => {
 	const [message, setMessage] = treact.useState("");
@@ -27,7 +27,7 @@ const Modal: ModalComponent<{ community_id: string }> = ({ hide, community_id })
 	const post = async () => {
 		const attachments = await getFileAttachments();
 		const imageAttachments = await getImageAttachments();
-		communitiesAPI.createCommunityPost({ community_id, message, attachments, images: imageAttachments }).then(() => {
+		apiCommunitiesCreatePost({ community_id, message, attachments, images: imageAttachments }).then(() => {
 			update();
 			hide();
 		});

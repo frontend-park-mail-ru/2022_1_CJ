@@ -1,6 +1,6 @@
 import { fetchAPI } from "src/core/network/api/common";
 
-export type Request = {
+type Request = {
 	to: string;
 };
 

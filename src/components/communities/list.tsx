@@ -3,7 +3,8 @@ import { Link } from "src/components/link";
 import { Routes, withParameters } from "src/constants/routes";
 import { CommunityShort } from "src/core/@types/community";
 import { EventWithTarget } from "src/core/@types/event";
-import { communitiesAPI } from "src/core/network/api/communities";
+import { apiCommunitiesList } from "src/core/network/api/communities/list";
+import { apiCommunitiesSearch } from "src/core/network/api/communities/search";
 
 type Option = "Communities" | "Search results";
 
@@ -13,7 +14,7 @@ export const CommunitiesList: Component = () => {
 	const [option, setOption] = treact.useState("Communities" as Option);
 
 	treact.useEffect(() => {
-		communitiesAPI.list().then((response) => setCommunities(response.communities || []));
+		apiCommunitiesList().then((response) => setCommunities(response.communities || []));
 	}, []);
 
 	const searchCommunities = (event: EventWithTarget<HTMLInputElement, KeyboardEvent>) => {
@@ -23,7 +24,7 @@ export const CommunitiesList: Component = () => {
 
 		const selector = event.target.value;
 		if (selector.length > 0) {
-			communitiesAPI.searchCommunities({ selector }).then((response) => {
+			apiCommunitiesSearch({ selector }).then((response) => {
 				setSearchResults(response.communities || []);
 				setOption("Search results");
 			});

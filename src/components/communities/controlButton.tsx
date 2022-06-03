@@ -1,23 +1,25 @@
 import { Component, treact } from "@treact";
 import { Spinner } from "src/components/spinner";
-import { communitiesAPI } from "src/core/network/api/communities";
+import { apiCommunitiesJoin } from "src/core/network/api/communities/join";
+import { apiCommunitiesLeave } from "src/core/network/api/communities/leave";
+import { apiCommunitiesList } from "src/core/network/api/communities/list";
 
 export const ControlButton: Component<{ community_id: string }> = ({ community_id }) => {
 	const [communities, setCommunities] = treact.useState<string[]>();
 
 	treact.useEffect(() => {
-		communitiesAPI.list().then((response) => {
+		apiCommunitiesList().then((response) => {
 			const list = response.communities || [];
 			setCommunities(list.map((cs) => cs.id));
 		});
 	}, [community_id]);
 
 	const join = () => {
-		communitiesAPI.join({ community_id }).then(() => setCommunities([...communities, community_id]));
+		apiCommunitiesJoin({ community_id }).then(() => setCommunities([...communities, community_id]));
 	};
 
 	const leave = () => {
-		communitiesAPI.leave({ community_id }).then(() => setCommunities(communities.filter((id) => id !== community_id)));
+		apiCommunitiesLeave({ community_id }).then(() => setCommunities(communities.filter((id) => id !== community_id)));
 	};
 
 	const button = () => {

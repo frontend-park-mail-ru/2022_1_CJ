@@ -106,6 +106,7 @@
 	padding: 1.5rem;
 	background-color: transparent;
 	gap: 1.25rem;
+	margin-inline: auto;
 	@include clampify(max-width, 300, 450);
 }
 

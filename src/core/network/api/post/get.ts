@@ -1,7 +1,7 @@
 import { PostWrapper } from "src/core/@types/post";
 import { fetchAPI, withQuery } from "src/core/network/api/common";
 
-export type Request = {
+type Request = {
 	post_id: string;
 };
 

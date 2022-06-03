@@ -1,10 +1,10 @@
 import { fetchAPI, withQuery } from "src/core/network/api/common";
 
-export type Request = {
+type Request = {
 	user_id: string;
 };
 
-export type Response = {
+type Response = {
 	friend_ids: string[];
 };
 

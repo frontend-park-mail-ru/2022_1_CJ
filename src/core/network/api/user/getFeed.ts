@@ -1,7 +1,7 @@
 import { PostWrapper } from "src/core/@types/post";
 import { fetchAPI } from "src/core/network/api/common";
 
-export type Response = {
+type Response = {
 	posts: PostWrapper[];
 };
 

@@ -1,5 +1,6 @@
 import { CodedError } from "src/core/modules/error";
-import { BasicResponse } from "src/core/network/dto/common";
+
+export type BasicResponse = {};
 
 export const httpStatus = {
 	Ok: 200,

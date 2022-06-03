@@ -6,7 +6,7 @@ import { Layout } from "src/components/layout";
 import { Routes } from "src/constants/routes";
 
 export const Community: Component = () => {
-	const community_id = getParams(Routes.Community)["community_id"];
+	const { community_id } = getParams(Routes.Community);
 	return (
 		<AuthMiddleware>
 			<Layout>

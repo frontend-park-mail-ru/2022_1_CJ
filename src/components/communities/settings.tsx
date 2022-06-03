@@ -5,8 +5,11 @@ import { Routes } from "src/constants/routes";
 import { FileSize } from "src/constants/size";
 import { Community } from "src/core/@types/community";
 import { EventWithTarget } from "src/core/@types/event";
-import { communitiesAPI } from "src/core/network/api/communities";
-import { EditCommunityRequest } from "src/core/network/dto/communities";
+import { apiCommunitiesDelete } from "src/core/network/api/communities/delete";
+import { apiCommunitiesEdit } from "src/core/network/api/communities/edit";
+import { apiCommunitiesGet } from "src/core/network/api/communities/get";
+import { apiCommunitiesGetManaged } from "src/core/network/api/communities/getManaged";
+import { apiCommunitiesUpdatePhoto } from "src/core/network/api/communities/updatePhoto";
 import { modAlertStore } from "src/stores/alert";
 import { useUserStore } from "src/stores/user";
 
@@ -21,11 +24,11 @@ export const CommunitySettingsComponent: Component<{ community_id: string }> = (
 	const [community, setCommunity] = treact.useState<Community>();
 
 	treact.useEffect(() => {
-		communitiesAPI.getCommunity({ community_id }).then((response) => {
+		apiCommunitiesGet({ community_id }).then((response) => {
 			setCommunity(response.community);
 			setImage(response.community.image);
 		});
-		communitiesAPI.getManagedCommunities({ user_id: userStore.user.id }).then((response) => {
+		apiCommunitiesGetManaged({ user_id: userStore.user.id }).then((response) => {
 			const managedCommunities = response.communities || [];
 			modUserStore.update({ managedCommunities });
 			if (!managedCommunities.some((cs) => cs.id === community_id)) {
@@ -46,16 +49,11 @@ export const CommunitySettingsComponent: Component<{ community_id: string }> = (
 					if (input.files) {
 						const formData = new FormData();
 						formData.append("photo", input.files[0]);
-						await communitiesAPI.updatePhoto({ data: formData, community_id });
+						await apiCommunitiesUpdatePhoto({ data: formData, community_id });
 					}
 				}
 
-				const dto: EditCommunityRequest = {
-					...data,
-					community_id,
-				};
-
-				communitiesAPI.editCommunity(dto).then(() => navigateTo(Routes.Communities));
+				apiCommunitiesEdit({ ...data, community_id }).then(() => navigateTo(Routes.Communities));
 			},
 		});
 
@@ -71,7 +69,7 @@ export const CommunitySettingsComponent: Component<{ community_id: string }> = (
 		};
 
 		const deleteCommunity = () => {
-			communitiesAPI.deleteCommunity({ community_id }).then(() => navigateTo(Routes.Communities));
+			apiCommunitiesDelete({ community_id }).then(() => navigateTo(Routes.Communities));
 		};
 
 		const deleteButton = () => (

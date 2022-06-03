@@ -1,11 +1,11 @@
 import { User } from "src/core/@types/user";
 import { fetchAPI, withQuery } from "src/core/network/api/common";
 
-export type Request = {
+type Request = {
 	selector: string;
 };
 
-export type Response = {
+type Response = {
 	users: User[];
 };
 

@@ -1,11 +1,11 @@
 import { UserProfile } from "src/core/@types/user";
 import { fetchAPI, withQuery } from "src/core/network/api/common";
 
-export type Request = {
+type Request = {
 	user_id: string;
 };
 
-export type Response = {
+type Response = {
 	user_profile: UserProfile;
 };
 
