@@ -17,7 +17,7 @@ export const CreateCommunity: Component = () => {
 	});
 
 	return (
-		<form className="form flex flex-c border-sm" style="gap: 1.5rem;" onSubmit={handleSubmit}>
+		<form className="form flex flex-c border-sm" style="width: 100%; gap: 1.5rem;" onSubmit={handleSubmit}>
 			<div>
 				<span>
 					<input

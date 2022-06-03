@@ -105,7 +105,7 @@ const reconcileChildren = (root: Fiber, children: any) => {
 				};
 			}
 
-			if (child && !isSameType) {
+			if (child) {
 				return {
 					type: child.type,
 					props: child.props,

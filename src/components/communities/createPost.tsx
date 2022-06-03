@@ -39,8 +39,10 @@ const Modal: ModalComponent<{ community_id: string }> = ({ hide, community_id })
 				<CrossComponent hide={hide} />
 				<div className="flex flex-r no-gap">
 					<div onKeyUp={handleChange} className="grow" contentEditable style="max-height: 33vh;" />
-					<ImageAttachmentsComponent />
-					<FileAttachmentsComponent />
+					<div className="flex flex-r no-gap" style="flex-shrink: 0; align-self: flex-end;">
+						<ImageAttachmentsComponent />
+						<FileAttachmentsComponent />
+					</div>
 				</div>
 				<button onClick={post} className="btn btn-primary d-middle">
 					Post

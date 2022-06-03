@@ -89,6 +89,12 @@ export const PostComponent: Component<{
 			{post.attachments && showAttachments(post.attachments)}
 			<div className="flex flex-r">
 				<PostLikeButton postWrapper={postWrapper} />
+				<Navigate to={withParameters(Routes.Post, { post_id: post.id })}>
+					<div className="flex flex-r items-center" style="gap: 0.125rem;">
+						<img src="/static/icons/comment.svg" className="icon" alt="" />
+						<p className="text-light unselectable">{post.count_comments}</p>
+					</div>
+				</Navigate>
 			</div>
 		</div>
 	);

@@ -58,9 +58,9 @@ export const PostPage: Component<{ post_id: string }> = ({ post_id }) => {
 			</div>
 			<div className="flex no-gap">
 				<div id="comment" className="bg-white grow break-word" contentEditable />
-				<button onClick={postComment} className="btn btn-white border">
-					send
-				</button>
+				<div onClick={postComment} className="pd-4 bg-white border border-sm">
+					<img className="icon" src="/static/icons/send.svg" />
+				</div>
 			</div>
 			{showComments()}
 		</div>

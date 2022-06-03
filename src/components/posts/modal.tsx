@@ -41,7 +41,7 @@ export const ModalCreate: ModalComponent = ({ hide }) => {
 				<CrossComponent hide={hide} />
 				<div className="flex flex-r no-gap">
 					<div onKeyUp={handleChange} className="grow" contentEditable style="max-height: 33vh;" />
-					<div className="flex flex-r no-gap" style="align-self: flex-end;">
+					<div className="flex flex-r no-gap" style="flex-shrink: 0; align-self: flex-end;">
 						<ImageAttachmentsComponent />
 						<FileAttachmentsComponent />
 					</div>

@@ -37,5 +37,5 @@ div[contenteditable]:empty:focus::before,
 div[contenteditable]:empty::before {
 	@extend .fs-sm;
 	@extend .text-light;
-	content: "Type a message...";
+	content: "Share your thoughts...";
 }
