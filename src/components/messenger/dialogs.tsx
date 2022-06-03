@@ -31,7 +31,7 @@ export const Dialogs: Component = () => {
 				</div>
 			);
 		}
-		return <p className="text-center text-light">Yet no chats</p>;
+		return <p className="grow text-center text-light">Yet no chats</p>;
 	};
 
 	return showDialogs(dialogs);

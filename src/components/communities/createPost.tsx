@@ -27,10 +27,12 @@ const Modal: ModalComponent<{ community_id: string }> = ({ hide, community_id })
 	const post = async () => {
 		const attachments = await getFileAttachments();
 		const imageAttachments = await getImageAttachments();
-		apiCommunitiesCreatePost({ community_id, message, attachments, images: imageAttachments }).then(() => {
-			update();
-			hide();
-		});
+		apiCommunitiesCreatePost({ community_id, message: message.trim(), attachments, images: imageAttachments }).then(
+			() => {
+				update();
+				hide();
+			}
+		);
 	};
 
 	return (

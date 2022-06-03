@@ -21,20 +21,23 @@ export const FeedPosts: Component = () => {
 		});
 	}, []);
 
-	treact.useEffect(() => {
-		if (page > amountOfPages) {
-			return;
-		}
-
-		apiUserGetFeed({ page, limit }).then((response) => {
-			setAmountOfPages(response.amount_pages);
-			if (posts) {
-				setPosts([...posts, ...(response.posts || [])]);
-			} else {
-				setPosts(response.posts || []);
+	treact.useEffect(
+		(updating) => {
+			if (page > amountOfPages) {
+				return;
 			}
-		});
-	}, [page]);
+
+			apiUserGetFeed({ page, limit }).then((response) => {
+				setAmountOfPages(response.amount_pages);
+				if (posts && !updating) {
+					setPosts([...posts, ...(response.posts || [])]);
+				} else {
+					setPosts(response.posts || []);
+				}
+			});
+		},
+		[page]
+	);
 
 	const handleObserver: IntersectionObserverCallback = (entries) => {
 		const target = entries[0];

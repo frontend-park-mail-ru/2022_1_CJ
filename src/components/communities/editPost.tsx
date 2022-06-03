@@ -1,5 +1,7 @@
 import { Component, ModalComponent, treact } from "@treact";
 import { CrossComponent } from "src/components/@helpers/cross";
+import { FileAttachmentsComponent, getFileAttachments } from "src/components/attachments/file";
+import { getImageAttachments, ImageAttachmentsComponent } from "src/components/attachments/images";
 import { EventWithTarget } from "src/core/@types/event";
 import { Post } from "src/core/@types/post";
 import { apiCommunitiesEditPost } from "src/core/network/api/communities/editPost";
@@ -24,7 +26,14 @@ const Modal: ModalComponent<{ post: Post }> = ({ hide, post }) => {
 	};
 
 	const save = async () => {
-		apiCommunitiesEditPost({ community_id: post.author.id, post_id: post.id, message }).then(() => {
+		const [attachments, imageAttachments] = await Promise.all([getFileAttachments(), getImageAttachments()]);
+		apiCommunitiesEditPost({
+			community_id: post.author.id,
+			post_id: post.id,
+			message: message.trim(),
+			attachments,
+			images: imageAttachments,
+		}).then(() => {
 			update();
 			hide();
 		});
@@ -32,11 +41,15 @@ const Modal: ModalComponent<{ post: Post }> = ({ hide, post }) => {
 
 	return (
 		<div className="modal flex items-center">
-			<div id="modal" className="flex flex-c d-middle bg-white pd-8 border-sm">
+			<div id="modal" className="flex flex-c d-middle bg-white pd-8 border-sm" style="width: clamp(15rem, 75%, 30rem);">
 				<CrossComponent hide={hide} />
 				<div className="flex flex-r no-gap">
 					<div onKeyUp={handleChange} className="grow" contentEditable style="max-height: 33vh;">
 						{post.message}
+					</div>
+					<div className="flex flex-r no-gap" style="flex-shrink: 0; align-self: flex-end;">
+						<ImageAttachmentsComponent />
+						<FileAttachmentsComponent />
 					</div>
 				</div>
 				<button onClick={save} className="btn btn-primary d-middle">

@@ -6,9 +6,8 @@ import { Description } from "src/components/auth/description";
 import { HelperError } from "src/components/helperError";
 import { Link } from "src/components/link";
 import { Routes } from "src/constants/routes";
-import { handleError } from "src/core/modules/error";
+import { capitalize } from "src/core/modules/error";
 import { loginUser } from "src/core/network/api/auth/loginUser";
-import { useAlertStore } from "src/stores/alert";
 
 type loginForm = {
 	email: string;
@@ -16,7 +15,7 @@ type loginForm = {
 };
 
 export const LoginForm = () => {
-	const [alertStore] = useAlertStore();
+	const [error, setError] = treact.useState("");
 	const { handleSubmit, handleChange, data, errors } = treact.useForm<loginForm>({
 		validators: {
 			email: ValidatorEmail,
@@ -25,7 +24,7 @@ export const LoginForm = () => {
 		onSubmit: () => {
 			loginUser(data).then(
 				() => navigateTo(Routes.Feed),
-				(err) => handleError(err)
+				(err) => setError(capitalize(err.message) || "Error")
 			);
 		},
 	});
@@ -51,7 +50,7 @@ export const LoginForm = () => {
 							onKeyUp={handleChange("password")}
 						/>
 						{errors.password && <HelperError message={errors.password} />}
-						{alertStore?.level === "error" && <HelperError message={alertStore.message} />}
+						{error && <HelperError message={error} />}
 					</div>
 
 					<div className="flex flex-r items-center">
