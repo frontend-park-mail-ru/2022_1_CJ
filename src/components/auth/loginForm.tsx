@@ -8,6 +8,7 @@ import { Link } from "src/components/link";
 import { Routes } from "src/constants/routes";
 import { handleError } from "src/core/modules/error";
 import { loginUser } from "src/core/network/api/auth/loginUser";
+import { useAlertStore } from "src/stores/alert";
 
 type loginForm = {
 	email: string;
@@ -15,6 +16,7 @@ type loginForm = {
 };
 
 export const LoginForm = () => {
+	const [alertStore] = useAlertStore();
 	const { handleSubmit, handleChange, data, errors } = treact.useForm<loginForm>({
 		validators: {
 			email: ValidatorEmail,
@@ -49,7 +51,9 @@ export const LoginForm = () => {
 							onKeyUp={handleChange("password")}
 						/>
 						{errors.password && <HelperError message={errors.password} />}
+						{alertStore?.level === "error" && <HelperError message={alertStore.message} />}
 					</div>
+
 					<div className="flex flex-r items-center">
 						<button className="btn btn-primary" type="submit">
 							Sign in

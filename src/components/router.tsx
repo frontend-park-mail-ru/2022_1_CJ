@@ -2,6 +2,7 @@ import { Component, treact } from "@treact";
 import { pathToRoute } from "src/components/@helpers/router";
 import { Routes } from "src/constants/routes";
 import { fetchAPI } from "src/core/network/api/common";
+import { useAlertStore } from "src/stores/alert";
 import { useRouterStore } from "src/stores/router";
 
 export const route = () => {
@@ -10,8 +11,10 @@ export const route = () => {
 		return;
 	}
 
+	const [, modAlertStore] = useAlertStore();
 	const [routerStore, modRouterStore] = useRouterStore();
 	if (routerStore.state === "online") {
+		modAlertStore.set(undefined);
 		modRouterStore.update({ route: pathToRoute(window.location.pathname, Object.values(Routes)) });
 	} else if (routerStore.state === "offline") {
 		modRouterStore.update({ route: Routes.Offline });

@@ -3,19 +3,25 @@ import { useAlertStore } from "src/stores/alert";
 import "/src/assets/styles/modules/alert.scss";
 
 export const Alert: Component = () => {
-	const [alertStore, modAlertStore] = useAlertStore();
+	const [alertStore] = useAlertStore();
+	const [active, setActive] = treact.useState(true);
 	const [timeoutID, setTimeoutID] = treact.useState(NaN as number);
 
 	if (alertStore) {
-		treact.useEffect(() => {
-			clearTimeout(timeoutID);
-			setTimeoutID(window.setTimeout(() => modAlertStore.set(undefined), 4000));
-		}, [alertStore]);
-
 		const hide = () => {
 			clearTimeout(timeoutID);
-			modAlertStore.set(undefined);
+			setActive(false);
 		};
+
+		treact.useEffect(() => {
+			setActive(true);
+			clearTimeout(timeoutID);
+			setTimeoutID(window.setTimeout(hide, 3000));
+		}, [alertStore]);
+
+		if (!active) {
+			return null;
+		}
 
 		return (
 			<div onClick={hide} className={`alert alert-${alertStore.level}`}>

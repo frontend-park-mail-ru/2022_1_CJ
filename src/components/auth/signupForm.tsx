@@ -8,6 +8,7 @@ import { Link } from "src/components/link";
 import { Routes } from "src/constants/routes";
 import { handleError } from "src/core/modules/error";
 import { signupUser } from "src/core/network/api/auth/signupUser";
+import { useAlertStore } from "src/stores/alert";
 
 type signupForm = {
 	firstname: string;
@@ -18,6 +19,7 @@ type signupForm = {
 };
 
 export const SignupForm = () => {
+	const [alertStore] = useAlertStore();
 	const { handleSubmit, handleChange, data, errors } = treact.useForm<signupForm>({
 		validators: {
 			firstname: ValidatorRequired,
@@ -92,6 +94,8 @@ export const SignupForm = () => {
 						</div>
 						<div className="helper helper-hint">At least 8 characters, mix of letters, numbers & symbols</div>
 					</div>
+
+					{alertStore?.level === "error" && <HelperError message={alertStore.message} />}
 
 					<div className="flex flex-r items-center mt-2">
 						<button className="btn btn-primary" type="submit">
