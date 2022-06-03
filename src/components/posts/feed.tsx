@@ -9,18 +9,63 @@ import { useUserStore } from "src/stores/user";
 export const FeedPosts: Component = () => {
 	const [userStore, modUserStore] = useUserStore();
 	const [posts, setPosts] = treact.useState<PostWrapper[]>();
+	const [page, setPage] = treact.useState(1);
+
+	const limit = 10;
+	const [amountOfPages, setAmountOfPages] = treact.useState(1);
 
 	treact.useEffect(() => {
-		apiUserGetFeed().then((response) => {
-			setPosts(response.posts || []);
-		});
 		apiCommunitiesGetManaged({ user_id: userStore.user.id }).then((response) => {
 			modUserStore.update({ managedCommunities: response.communities || [] });
 		});
 	}, []);
 
+	treact.useEffect(() => {
+		if (page > amountOfPages) {
+			return;
+		}
+
+		apiUserGetFeed({ page, limit }).then((response) => {
+			setAmountOfPages(response.amount_pages);
+			if (posts) {
+				setPosts([...posts, ...(response.posts || [])]);
+			} else {
+				setPosts(response.posts || []);
+			}
+		});
+	}, [page]);
+
+	const handleObserver: IntersectionObserverCallback = (entries) => {
+		const target = entries[0];
+		if (target.isIntersecting) {
+			setPage(page + 1);
+		}
+	};
+
+	treact.useEffect(() => {
+		const observer = new IntersectionObserver(handleObserver, {
+			root: null,
+			rootMargin: "0px",
+			threshold: 0,
+		});
+		const loader = document.getElementById("loader");
+		if (loader) {
+			observer.observe(loader);
+		}
+	}, [posts]);
+
 	const map = (postWrapper: PostWrapper) => <PostComponent postWrapper={postWrapper} />;
-	const list = () => (posts ? posts.map(map) : <Spinner />);
+	const list = () => {
+		if (!posts) {
+			return <Spinner />;
+		}
+		return (
+			<>
+				{posts.map(map)}
+				<div id="loader">{page > amountOfPages ? "" : "..."}</div>
+			</>
+		);
+	};
 
 	return <div className="flex flex-c grow overflow items-center">{list()}</div>;
 };
