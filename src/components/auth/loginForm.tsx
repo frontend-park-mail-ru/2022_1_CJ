@@ -37,13 +37,7 @@ export const LoginForm = () => {
 			<div className="flex flex-c grow items-center no-gap">
 				<form className="form flex flex-c border-sm" onSubmit={handleSubmit}>
 					<div>
-						<input
-							type="text"
-							className="input-field"
-							placeholder="Email"
-							value={data.email}
-							onChange={handleChange("email")}
-						/>
+						<input type="text" className="input-field" placeholder="Email" onKeyUp={handleChange("email")} />
 						{errors.email && <HelperError message={errors.email} />}
 					</div>
 					<div>
@@ -52,8 +46,7 @@ export const LoginForm = () => {
 							type="password"
 							className="input-field"
 							placeholder="Password"
-							value={data.password}
-							onChange={handleChange("password")}
+							onKeyUp={handleChange("password")}
 						/>
 						{errors.password && <HelperError message={errors.password} />}
 					</div>

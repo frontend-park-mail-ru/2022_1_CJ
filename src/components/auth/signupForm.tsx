@@ -54,35 +54,17 @@ export const SignupForm = () => {
 				<form className="form flex flex-c border-sm" onSubmit={handleSubmit}>
 					<div className="flex flex-r justify-between">
 						<span>
-							<input
-								type="text"
-								className="input-field"
-								placeholder="First name"
-								value={data.firstname}
-								onChange={handleChange("firstname")}
-							/>
+							<input type="text" className="input-field" placeholder="First name" onKeyUp={handleChange("firstname")} />
 							{errors.firstname && <HelperError message={errors.firstname} />}
 						</span>
 						<span>
-							<input
-								type="text"
-								className="input-field"
-								placeholder="Last name"
-								value={data.lastname}
-								onChange={handleChange("lastname")}
-							/>
+							<input type="text" className="input-field" placeholder="Last name" onKeyUp={handleChange("lastname")} />
 							{errors.lastname && <HelperError message={errors.lastname} />}
 						</span>
 					</div>
 
 					<span>
-						<input
-							type="text"
-							className="input-field"
-							placeholder="Email"
-							value={data.email}
-							onChange={handleChange("email")}
-						/>
+						<input type="text" className="input-field" placeholder="Email" onKeyUp={handleChange("email")} />
 						{errors.email && <HelperError message={errors.email} />}
 					</span>
 
@@ -94,8 +76,7 @@ export const SignupForm = () => {
 									type="password"
 									className="input-field"
 									placeholder="Password"
-									value={data.password}
-									onChange={handleChange("password")}
+									onKeyUp={handleChange("password")}
 								/>
 								{errors.password && <HelperError message={errors.password} />}
 							</span>
@@ -104,8 +85,7 @@ export const SignupForm = () => {
 									type="password"
 									className="input-field"
 									placeholder="Confirm"
-									value={data.passwordConfirmation}
-									onChange={handleChange("passwordConfirmation")}
+									onKeyUp={handleChange("passwordConfirmation")}
 								/>
 								{errors.passwordConfirmation && <HelperError message={errors.passwordConfirmation} />}
 							</span>
