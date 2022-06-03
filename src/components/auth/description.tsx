@@ -1,6 +1,6 @@
 import { Component, treact } from "@treact";
 
-const span = (str: string) => <span className="text-primary">{str}</span>;
+const span = (str: string) => <span style="color: #fb0e55;">{str}</span>;
 
 export const Description: Component = () => {
 	return (

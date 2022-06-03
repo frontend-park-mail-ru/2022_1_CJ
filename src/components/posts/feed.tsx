@@ -1,4 +1,5 @@
 import { Component, treact } from "@treact";
+import { CreatePost } from "src/components/posts/createPost";
 import { PostComponent } from "src/components/posts/post";
 import { Spinner } from "src/components/spinner";
 import { PostWrapper } from "src/core/@types/post";
@@ -67,5 +68,10 @@ export const FeedPosts: Component = () => {
 		);
 	};
 
-	return <div className="flex flex-c grow overflow items-center">{list()}</div>;
+	return (
+		<div className="flex flex-c grow overflow items-center">
+			<CreatePost />
+			{list()}
+		</div>
+	);
 };
