@@ -2,6 +2,7 @@
 	position: relative;
 	cursor: pointer;
 	user-select: none;
+	-webkit-tap-highlight-color: transparent;
 }
 
 .tooltip .tooltip-content {
@@ -12,12 +13,9 @@
 	width: 10rem;
 	max-height: 16rem;
 
-	opacity: 0;
 	visibility: hidden;
-	transition: opacity 500ms ease, visibility 500ms ease;
 }
 
 .tooltip[active] .tooltip-content {
-	opacity: 1;
 	visibility: visible;
 }

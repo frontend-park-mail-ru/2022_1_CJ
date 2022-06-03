@@ -4,6 +4,11 @@
 	"description": "CJ Frontend - VK Social Network",
 	"source": "src/index.ts",
 	"license": "ISC",
+	"browserslist": [
+		"defaults",
+		"not IE 11",
+		"maintained node versions"
+	],
 	"scripts": {
 		"build": "parcel build src/index.html",
 		"build:watch": "parcel watch src/index.html",
