@@ -32,12 +32,12 @@ export const CreateCommunity: Component = () => {
 			</div>
 			<div>
 				<span>
-					<input
-						type="text"
+					<textarea
 						className="input-field"
 						placeholder="Information"
-						value={data.info}
-						onChange={handleChange("info")}
+						rows="3"
+						onKeyDown={handleChange("info")}
+						style="resize: vertical;"
 					/>
 					{errors.info && <HelperError message={errors.info} />}
 				</span>

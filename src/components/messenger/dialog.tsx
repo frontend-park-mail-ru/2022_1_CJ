@@ -174,7 +174,7 @@ export const DialogComponent: Component<{ dialog_id: string }> = ({ dialog_id })
 						<AttachmentComponent />
 						<PickerComponent appendToInput={appendToInput} sendSticker={sendSticker} />
 						<span onClick={sendMessageButton} className="pointer pd-4 bg-white border border-sm">
-							<img onClick={sendMessageButton} className="icon" src="/static/icons/send.svg" />
+							<img className="icon" src="/static/icons/send.svg" />
 						</span>
 					</div>
 				</div>
