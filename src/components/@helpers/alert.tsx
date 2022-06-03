@@ -9,7 +9,7 @@ export const Alert: Component = () => {
 	if (alertStore) {
 		treact.useEffect(() => {
 			clearTimeout(timeoutID);
-			setTimeoutID(window.setTimeout(() => modAlertStore.set(undefined), 2500));
+			setTimeoutID(window.setTimeout(() => modAlertStore.set(undefined), 4000));
 		}, [alertStore]);
 
 		const hide = () => {
