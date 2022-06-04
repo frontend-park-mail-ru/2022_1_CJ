@@ -29,7 +29,7 @@ export const DialogComponent: Component<{ dialog_id: string }> = ({ dialog_id })
 	treact.useEffect(async () => {
 		const response = await apiMessengerGetDialog({ dialog_id });
 		setDialog(response.dialog);
-		setMessages(response.messages || []);
+		setMessages(response.messages?.reverse() || []);
 		fetchUsers(response.dialog.participants).then((users) => {
 			const mapping = Object.fromEntries(users.map((user) => [user.id, user]));
 			setParticipants(mapping);
@@ -185,7 +185,7 @@ export const DialogComponent: Component<{ dialog_id: string }> = ({ dialog_id })
 			<div className="space-half flex flex-c overflow justify-between d-middle">
 				<p className="d-middle bg-white pd-4 border-sm">{chatName()}</p>
 				<div className="dialog flex flex-cr grow overflow" style="gap: 0.5rem;">
-					{messages.reverse().map(mapMessage)}
+					{messages.map(mapMessage)}
 				</div>
 				{chatInput()}
 			</div>
