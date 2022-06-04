@@ -18,7 +18,7 @@ const Modal: ModalComponent<{ url: string }> = ({ hide, url }) => {
 		<div className="modal flex items-center">
 			<div id="modal" className="flex flex-c no-gap items-center d-middle bg-white pd-8 border-sm">
 				<CrossComponent hide={hide} />
-				<img style="max-width: 75vw; max-height: 75vh;" src={url} alt="" />
+				<img style="max-width: 75vw; max-height: 75vh;" className="border-sm" src={url} alt="" />
 			</div>
 		</div>
 	);
