@@ -49,7 +49,7 @@ export const FeedPosts: Component = () => {
 	treact.useEffect(() => {
 		const observer = new IntersectionObserver(handleObserver, {
 			root: null,
-			rootMargin: "0px",
+			rootMargin: "20px",
 			threshold: 0,
 		});
 		const loader = document.getElementById("loader");
