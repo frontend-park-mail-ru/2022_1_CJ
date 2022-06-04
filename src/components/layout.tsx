@@ -5,15 +5,24 @@ import { UserStatus, useUserStore } from "src/stores/user";
 
 export const Layout: Component = (props) => {
 	const [userStore] = useUserStore();
+	if (userStore.status === UserStatus.Authorized) {
+		return (
+			<div className="content">
+				<Header />
+				<div className="wrapper">
+					<div className="wrapper-content mt-8 mb-8 grow">
+						<Menu />
+						<div className="flex grow overflow items-stretch">{props.children}</div>
+					</div>
+				</div>
+			</div>
+		);
+	}
+
 	return (
 		<div className="content">
 			<Header />
-			<div className="wrapper">
-				<div className="wrapper-content mt-8 mb-8 grow">
-					{userStore.status === UserStatus.Authorized && <Menu />}
-					<div className="flex grow overflow items-stretch">{props.children}</div>
-				</div>
-			</div>
+			{props.children}
 		</div>
 	);
 };

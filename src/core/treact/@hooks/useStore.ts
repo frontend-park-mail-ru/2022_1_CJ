@@ -9,7 +9,7 @@ type UseStoreFunction<T> = () => [T, StoreModifier<T>];
 const createEmitter = <T>() => {
 	const subscriptions = new Map();
 	return {
-		emit: (store: T) => subscriptions.forEach((listener) => listener(store)),
+		emit: (store?: T) => subscriptions.forEach((listener) => listener(store)),
 		subscribe: (listener: (store: T) => void) => {
 			const key = Symbol();
 			subscriptions.set(key, listener);
@@ -18,9 +18,9 @@ const createEmitter = <T>() => {
 	};
 };
 
-export const createStore = <T>(initialState: T): [UseStoreFunction<T>, StoreModifier<T>] => {
+export const createStore = <T>(initialState?: T): [UseStoreFunction<T>, StoreModifier<T>] => {
 	let store = initialState;
-	const emitter = createEmitter();
+	const emitter = createEmitter<T>();
 
 	const set: StateSetter<T> = (action) => {
 		store = action instanceof Function ? action(store) : action;
@@ -28,7 +28,7 @@ export const createStore = <T>(initialState: T): [UseStoreFunction<T>, StoreModi
 	};
 
 	const update: UpdateStoreFunction<T> = (partial) => {
-		store = { ...store, ...partial };
+		store = { ...store, ...partial } as T;
 		emitter.emit(store);
 	};
 

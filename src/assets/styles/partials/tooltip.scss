@@ -1,27 +1,21 @@
-@mixin absolute-width($width) {
-	margin-left: calc($width / -2);
-	width: $width;
-}
-
 .tooltip {
 	position: relative;
-	cursor: grab;
+	cursor: pointer;
 	user-select: none;
+	-webkit-tap-highlight-color: transparent;
 }
 
 .tooltip .tooltip-content {
-	position: absolute;
-	left: 50%;
+	right: 0;
 	bottom: 115%;
-	max-height: 8rem;
-	@include absolute-width(8rem);
+	position: absolute;
 
-	opacity: 0;
+	width: 10rem;
+	max-height: 16rem;
+
 	visibility: hidden;
-	transition: opacity 500ms ease, visibility 500ms ease;
 }
 
 .tooltip[active] .tooltip-content {
-	opacity: 1;
 	visibility: visible;
 }

@@ -9,7 +9,7 @@
 - ~~[Даниил Бахланов](https://github.com/Similization) - Фронтенд~~
 - [Ринат Хайруллин](https://github.com/rinatkh) - backend
 - [Частиков Александр](https://github.com/papazloynt) - backend
-- [Оганес Мирзоян](https://github.com/senago) - fullstask
+- [Оганес Мирзоян](https://github.com/senago) - fullstack
 
 ## Ссылки
 
@@ -28,6 +28,8 @@
 8. https://freshman.tech/snippets/typescript/fix-value-not-exist-eventtarget/
 9. https://stephanwagner.me/only-css-loading-spinner
 10. https://piccalil.li/blog/a-modern-css-reset
-11. https://observablehq.com/@saneef/fluid-typography-css-clamp-value-generator
-12. https://www.30secondsofcode.org/
-13. https://pentacent.medium.com/nginx-and-lets-encrypt-with-docker-in-less-than-5-minutes-b4b8a60d3a71
+11. https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/
+12. https://observablehq.com/@saneef/fluid-typography-css-clamp-value-generator
+13. https://www.30secondsofcode.org/
+14. https://pentacent.medium.com/nginx-and-lets-encrypt-with-docker-in-less-than-5-minutes-b4b8a60d3a71
+15. https://core.telegram.org/widgets/login

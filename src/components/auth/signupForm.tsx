@@ -1,13 +1,13 @@
 import { treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 import { ValidatorEmail, ValidatorRequired } from "src/components/@helpers/validators";
+import { Composition } from "src/components/auth/composition";
 import { Description } from "src/components/auth/description";
 import { HelperError } from "src/components/helperError";
 import { Link } from "src/components/link";
 import { Routes } from "src/constants/routes";
-import { handleError } from "src/core/modules/error";
-import { authAPi } from "src/core/network/api/auth";
-import { SignupUserRequest } from "src/core/network/dto/auth";
+import { capitalize } from "src/core/modules/error";
+import { signupUser } from "src/core/network/api/auth/signupUser";
 
 type signupForm = {
 	firstname: string;
@@ -18,6 +18,7 @@ type signupForm = {
 };
 
 export const SignupForm = () => {
+	const [error, setError] = treact.useState("");
 	const { handleSubmit, handleChange, data, errors } = treact.useForm<signupForm>({
 		validators: {
 			firstname: ValidatorRequired,
@@ -32,97 +33,87 @@ export const SignupForm = () => {
 				message: "Passwords mismatch",
 			},
 		},
-		initialValues: {
-			firstname: "testname",
-			lastname: "testsurname",
-			email: "test@test.com",
-			password: "test",
-			passwordConfirmation: "test",
-		},
 		onSubmit: () => {
-			const dto: SignupUserRequest = {
+			signupUser({
 				name: { first: data.firstname, last: data.lastname },
 				email: data.email,
 				password: data.password,
-			};
-			authAPi.signupUser(dto).then(
+			}).then(
 				() => navigateTo(Routes.Feed),
-				(err) => handleError(err)
+				(err) => setError(capitalize(err.message) || "Error")
 			);
 		},
 	});
 
 	return (
-		<div className="flex grow items-center">
-			<form className="form flex flex-c border-sm" style="gap: 1.5rem;" onSubmit={handleSubmit}>
+		<div className="flex flex-c grow items-center justify-between" style="gap: 2rem;">
+			<span className="mt-4">
 				<Description />
-				<div className="flex flex-r">
-					<span>
-						<input
-							type="text"
-							className="input-field"
-							placeholder="First name"
-							value={data.firstname}
-							onChange={handleChange("firstname")}
-						/>
-						{errors.firstname && <HelperError message={errors.firstname} />}
-					</span>
-					<span>
-						<input
-							type="text"
-							className="input-field"
-							placeholder="Last name"
-							value={data.lastname}
-							onChange={handleChange("lastname")}
-						/>
-						{errors.lastname && <HelperError message={errors.lastname} />}
-					</span>
-				</div>
-				<div>
-					<span>
-						<input
-							type="text"
-							className="input-field"
-							placeholder="Email"
-							value={data.email}
-							onChange={handleChange("email")}
-						/>
-						{errors.email && <HelperError message={errors.email} />}
-					</span>
-				</div>
-				<div className="flex flex-c">
-					<div className="flex flex-r">
+			</span>
+
+			<div className="flex flex-c grow items-center no-gap">
+				<form className="form flex flex-c border-sm" onSubmit={handleSubmit}>
+					<div className="flex flex-r justify-between">
 						<span>
-							<input
-								id="password"
-								type="password"
-								className="input-field"
-								placeholder="Password"
-								value={data.password}
-								onChange={handleChange("password")}
-							/>
-							{errors.password && <HelperError message={errors.password} />}
+							<input type="text" className="input-field" placeholder="First name" onKeyUp={handleChange("firstname")} />
+							{errors.firstname && <HelperError message={errors.firstname} />}
 						</span>
 						<span>
-							<input
-								type="password"
-								className="input-field"
-								placeholder="Confirm"
-								value={data.passwordConfirmation}
-								onChange={handleChange("passwordConfirmation")}
-							/>
-							{errors.passwordConfirmation && <HelperError message={errors.passwordConfirmation} />}
+							<input type="text" className="input-field" placeholder="Last name" onKeyUp={handleChange("lastname")} />
+							{errors.lastname && <HelperError message={errors.lastname} />}
 						</span>
 					</div>
-					<div className="helper helper-hint">Use 8 or more characters with a mix of letters, numbers & symbols</div>
-				</div>
-				<div className="flex flex-r items-center">
-					<button className="btn btn-primary" type="submit">
-						Sign up
-					</button>
-					<Link to={Routes.Login}>Already have an account?</Link>
-				</div>
-			</form>
+
+					<span>
+						<input type="text" className="input-field" placeholder="Email" onKeyUp={handleChange("email")} />
+						{errors.email && <HelperError message={errors.email} />}
+					</span>
+
+					<div className="flex flex-c">
+						<div className="flex flex-r justify-between">
+							<span>
+								<input
+									id="password"
+									type="password"
+									className="input-field"
+									placeholder="Password"
+									onKeyUp={handleChange("password")}
+								/>
+								{errors.password && <HelperError message={errors.password} />}
+							</span>
+							<span>
+								<input
+									type="password"
+									className="input-field"
+									placeholder="Confirm"
+									onKeyUp={handleChange("passwordConfirmation")}
+								/>
+								{errors.passwordConfirmation && <HelperError message={errors.passwordConfirmation} />}
+							</span>
+						</div>
+						<div className="helper helper-hint">At least 8 characters, mix of letters, numbers & symbols</div>
+						{error && <HelperError message={error} />}
+					</div>
+
+					<div className="flex flex-r items-center mt-2">
+						<button className="btn btn-primary" type="submit">
+							Sign up
+						</button>
+						<Link to={Routes.Login}>Already have an account?</Link>
+					</div>
+				</form>
+
+				<script
+					async
+					src="https://telegram.org/js/telegram-widget.js?19"
+					data-telegram-login="cj_oauth_bot"
+					data-size="medium"
+					data-radius="4"
+					data-auth-url="/api/oauth/telegram"
+				></script>
+			</div>
+
+			<Composition />
 		</div>
 	);
 };

@@ -3,8 +3,7 @@ import { navigateTo } from "src/components/@helpers/router";
 import { ValidatorRequired } from "src/components/@helpers/validators";
 import { HelperError } from "src/components/helperError";
 import { Routes } from "src/constants/routes";
-import { communitiesAPI } from "src/core/network/api/communities";
-import { CreateCommunityRequest } from "src/core/network/dto/communities";
+import { apiCommunitiesCreate, CreateCommunityRequest } from "src/core/network/api/communities/create";
 
 export const CreateCommunity: Component = () => {
 	const { handleSubmit, handleChange, data, errors } = treact.useForm<CreateCommunityRequest>({
@@ -13,32 +12,26 @@ export const CreateCommunity: Component = () => {
 			info: ValidatorRequired,
 		},
 		onSubmit: () => {
-			communitiesAPI.createCommunity(data).then(() => navigateTo(Routes.Communities));
+			apiCommunitiesCreate(data).then(() => navigateTo(Routes.Communities));
 		},
 	});
 
 	return (
-		<form className="form flex flex-c border-sm" style="gap: 1.5rem;" onSubmit={handleSubmit}>
+		<form className="form flex flex-c border-sm" style="width: 100%; gap: 1.5rem;" onSubmit={handleSubmit}>
 			<div>
 				<span>
-					<input
-						type="text"
-						className="input-field"
-						placeholder="Name"
-						value={data.name}
-						onChange={handleChange("name")}
-					/>
+					<input type="text" className="input-field" placeholder="Name" onKeyUp={handleChange("name")} />
 					{errors.name && <HelperError message={errors.name} />}
 				</span>
 			</div>
 			<div>
 				<span>
-					<input
-						type="text"
+					<textarea
 						className="input-field"
 						placeholder="Information"
-						value={data.info}
-						onChange={handleChange("info")}
+						rows="3"
+						onKeyUp={handleChange("info")}
+						style="resize: vertical;"
 					/>
 					{errors.info && <HelperError message={errors.info} />}
 				</span>

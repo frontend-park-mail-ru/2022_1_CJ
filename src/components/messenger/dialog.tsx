@@ -13,27 +13,28 @@ import { Routes, withParameters } from "src/constants/routes";
 import { Dialog, Message } from "src/core/@types/dialog";
 import { EventWithTarget } from "src/core/@types/event";
 import { User } from "src/core/@types/user";
-import { messengerAPI, WSReducer } from "src/core/network/api/messenger";
+import { apiMessengerGetDialog } from "src/core/network/api/messenger/getDialog";
+import { apiMessengerOpenWS, WSReducer } from "src/core/network/api/messenger/openWS";
 import { useUserStore } from "src/stores/user";
 
 // TODO: refactor this crap
-export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string }) => {
+export const DialogComponent: Component<{ dialog_id: string }> = ({ dialog_id }) => {
 	const [userStore] = useUserStore();
 
-	const [dialog, setDialog] = treact.useState(null as Dialog);
-	const [messages, setMessages] = treact.useState(null as Message[]);
-	const [participants, setParticipants] = treact.useState(null as { [key: string]: User });
-	const [socket, setSocket] = treact.useState(null as WebSocket);
+	const [dialog, setDialog] = treact.useState<Dialog>();
+	const [messages, setMessages] = treact.useState<Message[]>();
+	const [participants, setParticipants] = treact.useState<{ [key: string]: User }>();
+	const [socket, setSocket] = treact.useState<WebSocket>();
 
 	treact.useEffect(async () => {
-		const response = await messengerAPI.getDialog({ dialog_id });
+		const response = await apiMessengerGetDialog({ dialog_id });
 		setDialog(response.dialog);
-		setMessages(response.messages || []);
+		setMessages(response.messages?.reverse() || []);
 		fetchUsers(response.dialog.participants).then((users) => {
 			const mapping = Object.fromEntries(users.map((user) => [user.id, user]));
 			setParticipants(mapping);
 		});
-	}, []);
+	}, [dialog_id]);
 
 	if (participants && dialog && messages) {
 		const wsReducer: WSReducer = {
@@ -58,8 +59,8 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 		};
 
 		treact.useEffect(() => {
-			messengerAPI.openWSConnection(wsReducer);
-		}, []);
+			apiMessengerOpenWS(wsReducer);
+		}, [dialog_id]);
 	}
 
 	if (socket && participants && dialog && messages) {
@@ -92,10 +93,9 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 		const chatName = () => {
 			if (dialog.participants.length === 1) {
 				const participantID = dialog.participants[0];
-				const participant = participants[participantID];
 				return (
 					<div className="flex flex-r items-center">
-						<img className="avatar" src={participant.image} alt="" />
+						<img className="avatar" src={dialog.image} alt="" />
 						<Link to={withParameters(Routes.Profile, { user_id: participantID })}>{dialog.name}</Link>
 					</div>
 				);
@@ -106,18 +106,22 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 		const chatInput = () => {
 			const sendMessageButton = async () => {
 				const messageContainer = document.getElementById("message");
-				const body = messageContainer.innerText.trim();
-				const attachments = await getFileAttachments();
-				const imageAttachments = await getImageAttachments();
-				if (body.length > 0 || attachments.length > 0 || imageAttachments.length > 0) {
-					messageContainer.innerText = "";
-					socket.send(JSON.stringify({ dialog_id, body, attachments, images: imageAttachments, event: "send" }));
+				if (messageContainer) {
+					const body = messageContainer.innerText.trim();
+					const attachments = await getFileAttachments();
+					const imageAttachments = await getImageAttachments();
+					if (body.length > 0 || attachments.length > 0 || imageAttachments.length > 0) {
+						messageContainer.innerText = "";
+						socket.send(JSON.stringify({ dialog_id, body, attachments, images: imageAttachments, event: "send" }));
+					}
 				}
 			};
 
 			const appendToInput = (value: string) => {
 				const messageContainer = document.getElementById("message");
-				messageContainer.innerText = messageContainer.innerText.concat(value);
+				if (messageContainer) {
+					messageContainer.innerText = messageContainer.innerText.concat(value);
+				}
 			};
 
 			const sendSticker = (url: string) => {
@@ -125,14 +129,23 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 			};
 
 			if (isMobile()) {
+				const preventEmptyLines = async (event: EventWithTarget<HTMLInputElement, KeyboardEvent>) => {
+					if (event.key === "Enter") {
+						const body = event.target.innerText.trim();
+						if (body.length === 0) {
+							event.preventDefault();
+						}
+					}
+				};
+
 				return (
-					<div className="flex flex-c no-gap border-sm" style="padding: 0.25rem;">
-						<div className="flex no-gap items-center">
-							<div id="message" className="grow bg-white break-word" style="max-height: 8rem;" contentEditable />
+					<div className="flex flex-r no-gap items-center">
+						<div onKeyDown={preventEmptyLines} id="message" className="grow bg-white" contentEditable />
+						<div className="flex flex-r no-gap" style="align-self: flex-end;">
 							<AttachmentComponent />
 							<PickerComponent appendToInput={appendToInput} sendSticker={sendSticker} />
-							<span onClick={sendMessageButton} className="pointer pd-4 bg-white border border-sm">
-								📩
+							<span onClick={sendMessageButton} className="pd-4 bg-white border border-sm">
+								<img className="icon" src="/static/icons/send.svg" />
 							</span>
 						</div>
 					</div>
@@ -155,19 +168,15 @@ export const DialogComponent: Component = ({ dialog_id }: { dialog_id: string })
 			};
 
 			return (
-				<div className="flex no-gap" style="padding: 0 1rem;">
-					<div
-						id="message"
-						onKeyDown={sendMessage}
-						className="grow bg-white break-word pd-4"
-						style="max-height: 8rem;"
-						contentEditable
-					/>
-					<AttachmentComponent />
-					<PickerComponent appendToInput={appendToInput} sendSticker={sendSticker} />
-					<span onClick={sendMessageButton} className="pointer pd-4 bg-white border border-sm">
-						📩
-					</span>
+				<div className="flex flex-r no-gap">
+					<div id="message" onKeyDown={sendMessage} className="grow bg-white" contentEditable />
+					<div className="flex flex-r no-gap" style="align-self: flex-end;">
+						<AttachmentComponent />
+						<PickerComponent appendToInput={appendToInput} sendSticker={sendSticker} />
+						<span onClick={sendMessageButton} className="pointer pd-4 bg-white border border-sm">
+							<img className="icon" src="/static/icons/send.svg" />
+						</span>
+					</div>
 				</div>
 			);
 		};

@@ -8,8 +8,8 @@ export const isEqual = (a: object, b: object) => {
 };
 
 export const getLastHook = () => {
-	if (State.wipFiber?.alternate?.hooks) {
-		return State.wipFiber.alternate.hooks[State.hookIndex];
+	if (State.wipFiber?.ancestor?.hooks) {
+		return State.wipFiber.ancestor.hooks[State.hookIndex];
 	}
-	return undefined;
+	return null;
 };

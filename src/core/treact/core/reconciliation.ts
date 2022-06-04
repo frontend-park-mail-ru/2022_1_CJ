@@ -5,37 +5,41 @@ const isProperty = (key: string) => !isEvent(key) && key !== "children";
 const isNew = (prev: any, next: any) => (key: any) => prev[key] !== next[key];
 const isGone = (next: any) => (key: any) => !(key in next);
 
-const updateNode = (node: Node, prevProps: any, nextProps: any) => {
+const updateNode = (node: Node, prevProps: any, newProps: any) => {
 	// Update changed properties.
 	Object.keys(prevProps)
 		.filter(isProperty)
-		.filter(isGone(nextProps))
+		.filter(isGone(newProps))
 		.forEach((property) => {
 			(node as any)[property] = "";
 		});
 
-	Object.keys(nextProps)
+	Object.keys(newProps)
 		.filter(isProperty)
-		.filter(isNew(prevProps, nextProps))
+		.filter(isNew(prevProps, newProps))
 		.forEach((property) => {
-			(node as any)[property] = nextProps[property];
+			if (node instanceof HTMLScriptElement) {
+				node.setAttribute(property, newProps[property]);
+			} else {
+				(node as any)[property] = newProps[property];
+			}
 		});
 
 	// Update event listeners.
 	Object.keys(prevProps)
 		.filter(isEvent)
-		.filter((key) => !(key in nextProps) || isNew(prevProps, nextProps)(key))
+		.filter((key) => !(key in newProps) || isNew(prevProps, newProps)(key))
 		.forEach((event) => {
 			const eventType = event.toLowerCase().substring(2);
 			node.removeEventListener(eventType, prevProps[event]);
 		});
 
-	Object.keys(nextProps)
+	Object.keys(newProps)
 		.filter(isEvent)
-		.filter(isNew(prevProps, nextProps))
+		.filter(isNew(prevProps, newProps))
 		.forEach((name) => {
 			const eventType = name.toLowerCase().substring(2);
-			node.addEventListener(eventType, nextProps[name]);
+			node.addEventListener(eventType, newProps[name]);
 		});
 };
 
@@ -71,8 +75,8 @@ const commitWork = (fiber?: Fiber) => {
 	const { action } = fiber;
 	if (action === FiberAction.Create && fiber.node && parentNode) {
 		parentNode.appendChild(fiber.node);
-	} else if (action === FiberAction.Update && fiber.node && fiber.alternate) {
-		updateNode(fiber.node, fiber.alternate.props, fiber.props);
+	} else if (action === FiberAction.Update && fiber.node && fiber.ancestor) {
+		updateNode(fiber.node, fiber.ancestor.props, fiber.props);
 	} else if (action === FiberAction.Delete && parentNode) {
 		commitDelete(fiber);
 	}
@@ -80,67 +84,64 @@ const commitWork = (fiber?: Fiber) => {
 	commitWork(fiber.sibling);
 };
 
-const reconcileChildren = (wipFiber: Fiber, elements: any) => {
+const reconcileChildren = (root: Fiber, children: any) => {
 	let index = 0;
-	let oldFiber = wipFiber.alternate && wipFiber.alternate.child;
-	let prevSibling: Fiber | null;
-	while (index < elements.length || oldFiber) {
-		const element = elements[index];
-		const sameType = oldFiber && element && element.type === oldFiber.type;
-		const newFiber = ((): Fiber | null => {
-			if (sameType) {
+	let prevSibling: Fiber | undefined;
+	let oldFiber = root.ancestor?.child;
+
+	while (index < children.length || oldFiber) {
+		const child = children[index];
+		const isSameType = oldFiber && child && oldFiber.type === child.type;
+
+		const newFiber = ((): Fiber | undefined => {
+			if (isSameType) {
 				return {
-					type: oldFiber ? oldFiber.type : null,
-					props: element.props,
-					node: oldFiber ? oldFiber.node : null,
-					parent: wipFiber,
-					alternate: oldFiber,
+					type: oldFiber?.type,
+					props: child.props,
+					node: oldFiber?.node,
+					parent: root,
+					ancestor: oldFiber,
 					action: FiberAction.Update,
 				};
 			}
 
-			if (element && !sameType) {
+			if (child) {
 				return {
-					type: element.type,
-					props: element.props,
-					node: null,
-					parent: wipFiber,
-					alternate: null,
+					type: child.type,
+					props: child.props,
+					parent: root,
 					action: FiberAction.Create,
 				};
 			}
 
-			return null;
+			return undefined;
 		})();
 
-		if (oldFiber && !sameType) {
+		if (oldFiber && !isSameType) {
 			oldFiber.action = FiberAction.Delete;
 			State.deletions.push(oldFiber);
 		}
 
-		if (oldFiber) {
-			oldFiber = oldFiber.sibling;
-		}
-
 		if (index === 0) {
-			wipFiber.child = newFiber;
-		} else if (element && prevSibling) {
+			root.child = newFiber;
+		} else if (child && prevSibling) {
 			prevSibling.sibling = newFiber;
 		}
 
-		prevSibling = newFiber;
 		++index;
+		prevSibling = newFiber;
+		oldFiber = oldFiber?.sibling;
 	}
 };
 
-const resetState = (fiber: Fiber) => {
+const resetContext = (fiber: Fiber) => {
 	State.wipFiber = fiber;
 	State.hookIndex = 0;
 	State.wipFiber.hooks = [];
 };
 
 const updateFunctionComponent = (fiber: Fiber) => {
-	resetState(fiber);
+	resetContext(fiber);
 	const results = (fiber.type as Component)(fiber.props);
 	const children = Array.isArray(results) ? results : [results];
 	reconcileChildren(fiber, children);
@@ -172,17 +173,21 @@ const performCleanup = () => {
 	State.pendingCleanups.forEach((cleanup) => cleanup());
 	State.pendingCleanups = State.cleanups;
 	State.cleanups = [];
+	State.deletions.forEach(commitWork);
+};
+
+const resetState = () => {
+	State.wipRoot = undefined;
+	State.pendingUpdate = false;
 };
 
 const commitRoot = () => {
 	performCleanup();
-	State.deletions.forEach(commitWork);
 	if (State.wipRoot?.child) {
 		commitWork(State.wipRoot.child);
-		State.currentRoot = State.wipRoot;
+		State.root = State.wipRoot;
 	}
-	State.wipRoot = null;
-	State.pendingUpdate = false;
+	resetState();
 };
 
 export { updateComponent, commitRoot };

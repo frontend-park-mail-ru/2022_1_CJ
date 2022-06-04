@@ -6,7 +6,7 @@ export const CreatePost: Component = () => {
 	const hide = () => setShow(false);
 	return (
 		<>
-			<button onClick={() => setShow(true)} className="btn btn-secondary d-middle">
+			<button onClick={() => setShow(true)} className="btn btn-white d-middle">
 				Create post
 			</button>
 			{show && <ModalCreate hide={hide} />}

@@ -6,10 +6,11 @@ import { ProfileInfo } from "src/components/profile/info";
 import { Routes } from "src/constants/routes";
 
 export const Profile: Component = () => {
+	const { user_id } = getParams(Routes.Profile);
 	return (
 		<AuthMiddleware>
 			<Layout>
-				<ProfileInfo {...getParams(Routes.Profile)} />
+				<ProfileInfo user_id={user_id} />
 			</Layout>
 		</AuthMiddleware>
 	);

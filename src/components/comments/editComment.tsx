@@ -1,19 +1,13 @@
 import { Component, ModalComponent, treact } from "@treact";
+import { CrossComponent } from "src/components/@helpers/cross";
 import { EventWithTarget } from "src/core/@types/event";
 import { Post } from "src/core/@types/post";
 import { editComment } from "src/core/network/api/comments/edit";
 
-const ModalEdit: ModalComponent = ({
-	hide,
-	post_id,
-	comment,
-}: {
-	post_id: string;
-	comment: Post;
-	hide: () => void;
-}) => {
+const ModalEdit: ModalComponent<{ post_id: string; comment: Post }> = ({ post_id, comment, hide }) => {
 	const [message, setMessage] = treact.useState("");
 	const update = treact.useUpdate();
+	treact.useClickOutside("modal", hide);
 
 	treact.useEffect(() => {
 		const close = (event: KeyboardEvent) => {
@@ -38,8 +32,8 @@ const ModalEdit: ModalComponent = ({
 
 	return (
 		<div className="modal flex items-center">
-			<div className="flex flex-c d-middle bg-white pd-8 border-sm" style="width: clamp(15rem, 75%, 30rem);">
-				<span className="cross" onClick={hide} />
+			<div id="modal" className="flex flex-c d-middle bg-white pd-8 border-sm" style="width: clamp(15rem, 75%, 30rem);">
+				<CrossComponent hide={hide} />
 				<div onKeyUp={handleChange} contentEditable style="max-height: 33vh;">
 					{comment.message}
 				</div>
@@ -51,7 +45,7 @@ const ModalEdit: ModalComponent = ({
 	);
 };
 
-export const EditCommentComponent: Component = ({ post_id, comment }: { post_id: string; comment: Post }) => {
+export const EditCommentComponent: Component<{ post_id: string; comment: Post }> = ({ post_id, comment }) => {
 	const [show, setShow] = treact.useState(false);
 	const hide = () => setShow(false);
 	return (

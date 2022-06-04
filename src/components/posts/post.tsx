@@ -8,21 +8,24 @@ import { EditPost } from "src/components/posts/editPost";
 import { PostLikeButton } from "src/components/posts/likeButton";
 import { Routes, withParameters } from "src/constants/routes";
 import { PostWrapper } from "src/core/@types/post";
-import { communitiesAPI } from "src/core/network/api/communities";
-import { postAPI } from "src/core/network/api/post";
+import { apiCommunitiesDeletePost } from "src/core/network/api/communities/deletePost";
+import { apiPostDeletePost } from "src/core/network/api/post/delete";
 import { useUserStore } from "src/stores/user";
 
-export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWrapper }) => {
+export const PostComponent: Component<{
+	postWrapper: PostWrapper;
+	disableNavigate?: boolean;
+}> = ({ postWrapper, disableNavigate = false }) => {
 	const [userStore] = useUserStore();
 	const update = treact.useUpdate();
 	const { post } = postWrapper;
 
 	const deletePost = () => {
-		postAPI.deletePost({ post_id: post.id }).then(update);
+		apiPostDeletePost({ post_id: post.id }).then(update);
 	};
 
 	const deleteCommunityPost = () => {
-		communitiesAPI.deletePost({ community_id: post.author.id, post_id: post.id }).then(update);
+		apiCommunitiesDeletePost({ community_id: post.author.id, post_id: post.id }).then(update);
 	};
 
 	const isAuthor = post.author.id === userStore.user.id;
@@ -66,7 +69,7 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 	};
 
 	return (
-		<div className="flex flex-c bg-white pd-8 border-sm" style="gap: 0.5rem; width: min(100%, 60ch);">
+		<div className="post flex flex-c bg-white pd-8 border-sm" style="gap: 0.5rem;">
 			<div className="flex flex-r items-center justify-between">
 				<PostAuthorComponent post={post} />
 				{(isAuthor || isFromManagedCommunity) && (
@@ -76,13 +79,22 @@ export const PostComponent: Component = ({ postWrapper }: { postWrapper: PostWra
 					</DropdownMenuComponent>
 				)}
 			</div>
-			<Navigate to={withParameters(Routes.Post, { post_id: post.id })}>
-				<p className="break-word pre-wrap">{post.message}</p>
-			</Navigate>
+			{disableNavigate && <p className="message">{post.message}</p>}
+			{!disableNavigate && (
+				<Navigate to={withParameters(Routes.Post, { post_id: post.id })}>
+					<p className="message">{post.message}</p>
+				</Navigate>
+			)}
 			{post.images && showImageAttachments(post.images)}
 			{post.attachments && showAttachments(post.attachments)}
 			<div className="flex flex-r">
 				<PostLikeButton postWrapper={postWrapper} />
+				<Navigate to={withParameters(Routes.Post, { post_id: post.id })}>
+					<div className="flex flex-r items-center" style="gap: 0.125rem;">
+						<img src="/static/icons/comment.svg" className="icon" alt="" />
+						<p className="text-light unselectable">{post.count_comments}</p>
+					</div>
+				</Navigate>
 			</div>
 		</div>
 	);

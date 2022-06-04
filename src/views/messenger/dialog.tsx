@@ -6,10 +6,11 @@ import { DialogComponent } from "src/components/messenger/dialog";
 import { Routes } from "src/constants/routes";
 
 export const MessengerDialog: Component = () => {
+	const { dialog_id } = getParams(Routes.Dialog);
 	return (
 		<AuthMiddleware>
 			<Layout>
-				<DialogComponent {...getParams(Routes.Dialog)} />
+				<DialogComponent dialog_id={dialog_id} />
 			</Layout>
 		</AuthMiddleware>
 	);

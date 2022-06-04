@@ -1,0 +1,12 @@
+$xmin: 320;
+$xmax: 1920;
+
+@function remify($value) {
+	@return calc($value / 16) * 1rem;
+}
+
+@mixin clampify($property, $ymin, $ymax) {
+	$viewport: calc(100 * ($ymax - $ymin) / ($xmax - $xmin)) * 1vw;
+	$rem: remify(calc(($xmax * $ymin - $xmin * $ymax) / ($xmax - $xmin)));
+	#{$property}: clamp(remify($ymin), $viewport + $rem, remify($ymax));
+}

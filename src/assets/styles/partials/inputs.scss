@@ -28,6 +28,7 @@ div[contenteditable] {
 	@extend .border;
 	@extend .border-sm;
 	outline: none;
+	max-height: 5rem;
 	overflow-y: scroll;
 	overflow-wrap: break-word;
 }
@@ -36,5 +37,5 @@ div[contenteditable]:empty:focus::before,
 div[contenteditable]:empty::before {
 	@extend .fs-sm;
 	@extend .text-light;
-	content: "Type a message...";
+	content: "Share your thoughts...";
 }

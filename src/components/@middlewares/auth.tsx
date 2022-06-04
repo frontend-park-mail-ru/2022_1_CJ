@@ -2,7 +2,7 @@ import { Component, treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 import { Spinner } from "src/components/spinner";
 import { Routes } from "src/constants/routes";
-import { userAPI } from "src/core/network/api/user";
+import { apiUserGetData } from "src/core/network/api/user/getData";
 import { UserStatus, useUserStore } from "src/stores/user";
 
 export enum AuthMiddlewarePolicy {
@@ -10,15 +10,16 @@ export enum AuthMiddlewarePolicy {
 	Unauthorized,
 }
 
-export const AuthMiddleware: Component = (props) => {
+export const AuthMiddleware: Component<{ policy?: AuthMiddlewarePolicy }> = ({
+	children,
+	policy = AuthMiddlewarePolicy.Authorized,
+}) => {
 	const [userStore, modUserStore] = useUserStore();
-	const { children } = props;
-	const policy = props.policy || AuthMiddlewarePolicy.Authorized;
 
 	treact.useEffect(() => {
-		userAPI.getUserData().then(
+		apiUserGetData().then(
 			(response) => modUserStore.update({ user: response.user, status: UserStatus.Authorized }),
-			() => modUserStore.update({ user: null, status: UserStatus.Unauthorized })
+			() => modUserStore.update({ user: undefined, status: UserStatus.Unauthorized })
 		);
 	}, []);
 

@@ -8,21 +8,23 @@ import { Spinner } from "src/components/spinner";
 import { Routes, withParameters } from "src/constants/routes";
 import { Community } from "src/core/@types/community";
 import { PostWrapper } from "src/core/@types/post";
-import { communitiesAPI } from "src/core/network/api/communities";
+import { apiCommunitiesGet } from "src/core/network/api/communities/get";
+import { apiCommunitiesGetManaged } from "src/core/network/api/communities/getManaged";
+import { apiCommunitiesGetPosts } from "src/core/network/api/communities/getPosts";
 import { useUserStore } from "src/stores/user";
 
-export const CommunityComponent: Component = ({ community_id }: { community_id: string }) => {
+export const CommunityComponent: Component<{ community_id: string }> = ({ community_id }) => {
 	const [userStore, modUserStore] = useUserStore();
-	const [community, setCommunity] = treact.useState(null as Community);
-	const [posts, setPosts] = treact.useState(null as PostWrapper[]);
+	const [community, setCommunity] = treact.useState<Community>();
+	const [posts, setPosts] = treact.useState<PostWrapper[]>();
 
 	treact.useEffect(async () => {
-		communitiesAPI.getCommunity({ community_id }).then((response) => setCommunity(response.community));
-		communitiesAPI.getCommunityPosts({ community_id }).then((response) => setPosts(response.posts || []));
-		communitiesAPI.getManagedCommunities({ user_id: userStore.user.id }).then((response) => {
+		apiCommunitiesGet({ community_id }).then((response) => setCommunity(response.community));
+		apiCommunitiesGetPosts({ community_id }).then((response) => setPosts(response.posts || []));
+		apiCommunitiesGetManaged({ user_id: userStore.user.id }).then((response) => {
 			modUserStore.update({ managedCommunities: response.communities || [] });
 		});
-	}, []);
+	}, [community_id]);
 
 	const map = (postWrapper: PostWrapper) => <PostComponent postWrapper={postWrapper} />;
 	const list = () => {

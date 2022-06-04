@@ -1,24 +1,27 @@
 import { Component, treact } from "@treact";
-import { friendsAPI } from "src/core/network/api/friends";
+import { apiFriendsAcceptRequest } from "src/core/network/api/friends/acceptRequest";
+import { apiFriendsDeleteFriend } from "src/core/network/api/friends/delete";
+import { apiFriendsRevokeRequest } from "src/core/network/api/friends/revokeRequest";
+import { apiFriendsSendRequest } from "src/core/network/api/friends/sendRequest";
 import { updateFriendsState, useUserStore } from "src/stores/user";
 
-export const FriendButton: Component = ({ user_id }: { user_id: string }) => {
+export const FriendButton: Component<{ user_id: string }> = ({ user_id }) => {
 	const [userStore] = useUserStore();
 
 	const addFriend = () => {
-		friendsAPI.sendRequest({ to: user_id }).then(updateFriendsState);
+		apiFriendsSendRequest({ to: user_id }).then(updateFriendsState);
 	};
 
 	const acceptFriend = () => {
-		friendsAPI.acceptRequest({ from: user_id }).then(updateFriendsState);
+		apiFriendsAcceptRequest({ from: user_id }).then(updateFriendsState);
 	};
 
 	const unfollow = () => {
-		friendsAPI.revokeRequest({ to: user_id }).then(updateFriendsState);
+		apiFriendsRevokeRequest({ to: user_id }).then(updateFriendsState);
 	};
 
 	const unfriend = () => {
-		friendsAPI.deleteFriend({ friend_id: user_id }).then(updateFriendsState);
+		apiFriendsDeleteFriend({ friend_id: user_id }).then(updateFriendsState);
 	};
 
 	if (userStore.friends.includes(user_id)) {

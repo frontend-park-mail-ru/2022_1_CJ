@@ -1,13 +1,15 @@
 import { Component, ModalComponent, treact } from "@treact";
+import { CrossComponent } from "src/components/@helpers/cross";
+import { FileAttachmentsComponent, getFileAttachments } from "src/components/attachments/file";
+import { getImageAttachments, ImageAttachmentsComponent } from "src/components/attachments/images";
 import { EventWithTarget } from "src/core/@types/event";
 import { Post } from "src/core/@types/post";
-import { communitiesAPI } from "src/core/network/api/communities";
+import { apiCommunitiesEditPost } from "src/core/network/api/communities/editPost";
 
-const Modal: ModalComponent = (props) => {
+const Modal: ModalComponent<{ post: Post }> = ({ hide, post }) => {
 	const [message, setMessage] = treact.useState("");
 	const update = treact.useUpdate();
-	const hide = props.hide;
-	const post = props.post as Post;
+	treact.useClickOutside("modal", hide);
 
 	treact.useEffect(() => {
 		const close = (event: KeyboardEvent) => {
@@ -24,7 +26,14 @@ const Modal: ModalComponent = (props) => {
 	};
 
 	const save = async () => {
-		communitiesAPI.editPost({ community_id: post.author.id, post_id: post.id, message }).then(() => {
+		const [attachments, imageAttachments] = await Promise.all([getFileAttachments(), getImageAttachments()]);
+		apiCommunitiesEditPost({
+			community_id: post.author.id,
+			post_id: post.id,
+			message: message.trim(),
+			attachments,
+			images: imageAttachments,
+		}).then(() => {
 			update();
 			hide();
 		});
@@ -32,11 +41,15 @@ const Modal: ModalComponent = (props) => {
 
 	return (
 		<div className="modal flex items-center">
-			<div className="flex flex-c d-middle bg-white pd-8 border-sm">
-				<span className="cross" onClick={hide} />
+			<div id="modal" className="flex flex-c d-middle bg-white pd-8 border-sm" style="width: clamp(15rem, 75%, 30rem);">
+				<CrossComponent hide={hide} />
 				<div className="flex flex-r no-gap">
 					<div onKeyUp={handleChange} className="grow" contentEditable style="max-height: 33vh;">
 						{post.message}
+					</div>
+					<div className="flex flex-r no-gap" style="flex-shrink: 0; align-self: flex-end;">
+						<ImageAttachmentsComponent />
+						<FileAttachmentsComponent />
 					</div>
 				</div>
 				<button onClick={save} className="btn btn-primary d-middle">
@@ -47,7 +60,7 @@ const Modal: ModalComponent = (props) => {
 	);
 };
 
-export const EditCommunityPost: Component = ({ post }: { post: Post }) => {
+export const EditCommunityPost: Component<{ post: Post }> = ({ post }) => {
 	const [show, setShow] = treact.useState(false);
 	const hide = () => setShow(false);
 	return (

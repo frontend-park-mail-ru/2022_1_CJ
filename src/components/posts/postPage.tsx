@@ -6,33 +6,33 @@ import { Routes } from "src/constants/routes";
 import { Post, PostWrapper } from "src/core/@types/post";
 import { createComment } from "src/core/network/api/comments/create";
 import { getComments } from "src/core/network/api/comments/get";
-import { postAPI } from "src/core/network/api/post";
+import { apiPostGetPost } from "src/core/network/api/post/get";
 
-export const PostPage: Component = ({ post_id }: { post_id: string }) => {
-	const [postWrapper, setPostWrapper] = treact.useState(null as PostWrapper);
-	const [comments, setComments] = treact.useState(null as Post[]);
+export const PostPage: Component<{ post_id: string }> = ({ post_id }) => {
+	const [postWrapper, setPostWrapper] = treact.useState<PostWrapper>();
+	const [comments, setComments] = treact.useState<Post[]>();
 
 	const fetchComments = () => {
 		getComments({ post_id }).then((response) => setComments(response.comments || []));
 	};
 
 	treact.useEffect(() => {
-		postAPI.getPost({ post_id }).then(setPostWrapper, () => navigateTo(Routes.Feed));
+		apiPostGetPost({ post_id }).then(setPostWrapper, () => navigateTo(Routes.Feed));
 		fetchComments();
-	}, []);
+	}, [post_id]);
 
 	if (!postWrapper || !comments) {
 		return null;
 	}
 
 	const postComment = () => {
-		const input = document.getElementById("comment");
+		const input = document.getElementById("comment") as HTMLInputElement;
 		const message = input.innerText;
 		if (message.length > 0) {
 			input.innerText = "";
 			createComment({ post_id, message }).then(() => {
 				fetchComments();
-				postAPI.getPost({ post_id }).then(setPostWrapper);
+				apiPostGetPost({ post_id }).then(setPostWrapper);
 			});
 		}
 	};
@@ -40,7 +40,7 @@ export const PostPage: Component = ({ post_id }: { post_id: string }) => {
 	const showComments = () => {
 		if (comments.length > 0) {
 			return (
-				<div className="dialog flex flex-c grow overflow">
+				<div className="flex flex-c grow items-center">
 					<p className="text-center text-light">{postWrapper.post.count_comments} comments</p>
 					{comments.map((comment) => (
 						<CommentComponent post_id={post_id} comment={comment} />
@@ -52,15 +52,15 @@ export const PostPage: Component = ({ post_id }: { post_id: string }) => {
 	};
 
 	return (
-		<div className="flex flex-c overflow d-middle space-half">
+		<div className="flex flex-c overflow d-middle" style="width: min(100%, 60ch);">
 			<div className="flex flex-c items-center">
-				<PostComponent postWrapper={postWrapper} />
+				<PostComponent postWrapper={postWrapper} disableNavigate={true} />
 			</div>
 			<div className="flex no-gap">
-				<div id="comment" className="grow bg-white break-word" style="max-height: 5rem;" contentEditable />
-				<button onClick={postComment} className="btn btn-white border">
-					send
-				</button>
+				<div id="comment" className="bg-white grow break-word" contentEditable />
+				<div onClick={postComment} className="pd-4 bg-white border border-sm">
+					<img className="icon" src="/static/icons/send.svg" />
+				</div>
 			</div>
 			{showComments()}
 		</div>

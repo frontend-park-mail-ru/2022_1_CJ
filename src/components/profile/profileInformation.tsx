@@ -5,11 +5,9 @@ export type ProfileInformation = UserProfile & {
 	AmountOfFriends: number;
 };
 
-export const ProfileInformaitonComponent: Component = ({
-	profileInformation,
-}: {
+export const ProfileInformaitonComponent: Component<{
 	profileInformation: ProfileInformation;
-}) => {
+}> = ({ profileInformation }) => {
 	return (
 		<div className="flex flex-r bg-white pd-8 border-sm">
 			<img className="profile-picture" src={profileInformation.avatar} alt="" />

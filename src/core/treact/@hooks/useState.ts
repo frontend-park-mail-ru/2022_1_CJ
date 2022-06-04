@@ -1,14 +1,26 @@
 import { getLastHook } from "src/core/treact/@hooks/common";
 import { State } from "src/core/treact/core/models";
 
-export type SetStateAction<T> = ((prevState: T) => T) | T;
+export type SetStateAction<T> = ((prevState?: T) => T) | T | undefined;
 export type StateSetter<T> = (action: SetStateAction<T>) => void;
 
-export const useState = <T>(initial: T): [T, StateSetter<T>] => {
+const causeUpdate = () => {
+	if (State.root) {
+		State.wipRoot = {
+			node: State.root.node,
+			props: State.root.props,
+			ancestor: State.root,
+		};
+		State.deletions = [];
+		State.nextUnitOfWork = State.wipRoot;
+	}
+};
+
+export const useState = <T>(initial?: T): [T, StateSetter<T>] => {
 	const lastHook = getLastHook();
 	const hook = {
-		state: lastHook?.state || initial,
 		queue: lastHook?.queue || [],
+		state: lastHook?.state || initial,
 	};
 
 	hook.queue.forEach((action: SetStateAction<T>) => {
@@ -17,15 +29,7 @@ export const useState = <T>(initial: T): [T, StateSetter<T>] => {
 
 	const setState: StateSetter<T> = (action: SetStateAction<T>) => {
 		hook.queue.push(action);
-		if (State.currentRoot) {
-			State.wipRoot = {
-				node: State.currentRoot.node,
-				props: State.currentRoot.props,
-				alternate: State.currentRoot,
-			};
-			State.nextUnitOfWork = State.wipRoot;
-			State.deletions = [];
-		}
+		causeUpdate();
 	};
 
 	if (State.wipFiber?.hooks) {

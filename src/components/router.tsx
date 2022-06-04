@@ -1,17 +1,23 @@
 import { Component, treact } from "@treact";
 import { pathToRoute } from "src/components/@helpers/router";
 import { Routes } from "src/constants/routes";
+import { fetchAPI } from "src/core/network/api/common";
+import { useAlertStore } from "src/stores/alert";
 import { useRouterStore } from "src/stores/router";
 
-const route = () => {
+export const route = () => {
+	if (window.location.pathname.startsWith("/api")) {
+		fetchAPI.get(location.pathname.concat(window.location.search));
+		return;
+	}
+
+	const [, modAlertStore] = useAlertStore();
 	const [routerStore, modRouterStore] = useRouterStore();
 	if (routerStore.state === "online") {
-		// Use setTimeout to defer update of routerStore, so that it reaches the subscribers.
-		setTimeout(() => {
-			modRouterStore.update({ path: pathToRoute(window.location.pathname, Object.values(Routes)) });
-		});
+		modAlertStore.set(undefined);
+		modRouterStore.update({ route: pathToRoute(window.location.pathname, Object.values(Routes)) });
 	} else if (routerStore.state === "offline") {
-		modRouterStore.update({ path: Routes.Offline });
+		modRouterStore.update({ route: Routes.Offline });
 	}
 };
 

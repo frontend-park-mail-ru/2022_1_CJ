@@ -6,8 +6,4 @@
 	position: fixed;
 	z-index: 1;
 	background-color: rgba(0, 0, 0, 0.5);
-
-	& > * {
-		width: clamp(35%, 75vw, 75% - 30vw);
-	}
 }

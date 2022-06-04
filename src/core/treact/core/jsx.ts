@@ -1,4 +1,4 @@
-import { workLoop } from "src/core/treact/core/loop";
+import { startWorkLoop } from "src/core/treact/core/loop";
 import { Component, Fiber, Node, State } from "src/core/treact/core/models";
 
 const unwind = <T>(children: T | T[], out: T[]) => {
@@ -47,7 +47,7 @@ const render = (element: JSX.Element, container: Node) => {
 			children: [element],
 		},
 		hooks: [],
-		alternate: State.currentRoot,
+		ancestor: State.root,
 	};
 
 	State.deletions = [];
@@ -56,7 +56,7 @@ const render = (element: JSX.Element, container: Node) => {
 	State.pendingUpdate = false;
 
 	State.nextUnitOfWork = State.wipRoot;
-	window.requestIdleCallback(workLoop);
+	startWorkLoop();
 };
 
 export { createFragmentElement, createElement, render };

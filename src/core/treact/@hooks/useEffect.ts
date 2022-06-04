@@ -1,20 +1,22 @@
 import { getLastHook, isEqual } from "src/core/treact/@hooks/common";
 import { State } from "src/core/treact/core/models";
 
-export const useEffect = (callback: () => any, deps: any[]) => {
+export const useEffect = (callback: (updating?: boolean) => any, deps: any[]) => {
 	const lastHook = getLastHook();
 	const hook = {
 		deps,
 	};
 
 	if (!lastHook || !isEqual(lastHook.deps, hook.deps) || State.pendingUpdate) {
-		// Use setTimeout to prevent causing side effects before the first render.
-		setTimeout(() => {
-			const cleanup = callback();
+		const closure = (updating: boolean) => () => {
+			const cleanup = callback(updating);
 			if (cleanup instanceof Function) {
 				State.cleanups.push(cleanup);
 			}
-		});
+		};
+
+		// Use window.setTimeout to prevent causing side effects before the first render.
+		window.setTimeout(closure(State.pendingUpdate));
 	}
 
 	if (State.wipFiber?.hooks) {

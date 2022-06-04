@@ -1,4 +1,5 @@
 import { useCallback } from "src/core/treact/@hooks/useCallback";
+import { useClickOutside } from "src/core/treact/@hooks/useClickOutside";
 import { useEffect } from "src/core/treact/@hooks/useEffect";
 import { useForm } from "src/core/treact/@hooks/useForm";
 import { useMemo } from "src/core/treact/@hooks/useMemo";
@@ -18,6 +19,7 @@ export const treact = {
 	createStore,
 	useForm,
 	useUpdate,
+	useClickOutside,
 };
 
 export type { Component, ModalComponent } from "src/core/treact/core/models";

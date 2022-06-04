@@ -2,7 +2,7 @@ import { Component, treact } from "@treact";
 
 type State = "hidden" | "visible";
 
-export const DropdownMenuComponent: Component = (props) => {
+export const DropdownMenuComponent: Component = ({ children }) => {
 	const [state, setState] = treact.useState("hidden" as State);
 	return (
 		<span className="dropdown">
@@ -13,7 +13,7 @@ export const DropdownMenuComponent: Component = (props) => {
 				alt=""
 			/>
 			<span className={`dropdown-content border border-sm bg-white ${state}`} style="right: 0;">
-				<div className="flex flex-c">{props.children}</div>
+				<div className="flex flex-c">{children}</div>
 			</span>
 		</span>
 	);

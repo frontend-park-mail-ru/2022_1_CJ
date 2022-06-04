@@ -1,16 +1,16 @@
 import { Component, treact } from "@treact";
 import { navigateTo } from "src/components/@helpers/router";
 import { Routes } from "src/constants/routes";
-import { userAPI } from "src/core/network/api/user";
+import { apiUserGetData } from "src/core/network/api/user/getData";
 import { UserStatus, useUserStore } from "src/stores/user";
 
 export const Base: Component = () => {
 	const [userStore, modUserStore] = useUserStore();
 
 	treact.useEffect(() => {
-		userAPI.getUserData().then(
+		apiUserGetData().then(
 			(response) => modUserStore.update({ user: response.user, status: UserStatus.Authorized }),
-			() => modUserStore.update({ user: null, status: UserStatus.Unauthorized })
+			() => modUserStore.update({ user: undefined, status: UserStatus.Unauthorized })
 		);
 	}, []);
 

@@ -1,7 +1,9 @@
 import { treact } from "@treact";
 import { CommunityShort } from "src/core/@types/community";
 import { User } from "src/core/@types/user";
-import { friendsAPI } from "src/core/network/api/friends";
+import { apiFriendsGet } from "src/core/network/api/friends/get";
+import { apiFriendsGetIncomingRequests } from "src/core/network/api/friends/getIncomingRequests";
+import { apiFriendsGetOutcomingRequests } from "src/core/network/api/friends/getOutcomingRequests";
 
 export enum UserStatus {
 	Unset,
@@ -21,7 +23,7 @@ export type UserStore = {
 };
 
 export const userStoreInitialState: UserStore = {
-	user: null,
+	user: {} as User,
 	status: UserStatus.Unset,
 
 	friends: [],
@@ -35,9 +37,9 @@ export const [useUserStore, modUserStore] = treact.createStore(userStoreInitialS
 
 export const updateFriendsState = () =>
 	Promise.all([
-		friendsAPI.getFriends().then((response) => response.friend_ids || []),
-		friendsAPI.getIncomingFriendRequests().then((response) => response.request_ids || []),
-		friendsAPI.getOutcomingFriendRequests().then((response) => response.request_ids || []),
+		apiFriendsGet().then((response) => response.friend_ids || []),
+		apiFriendsGetIncomingRequests().then((response) => response.request_ids || []),
+		apiFriendsGetOutcomingRequests().then((response) => response.request_ids || []),
 	]).then(([friends, incomingRequests, outcomingRequests]) => {
 		modUserStore.update({ friends, incomingRequests, outcomingRequests });
 	});

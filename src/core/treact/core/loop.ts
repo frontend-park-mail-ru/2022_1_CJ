@@ -1,14 +1,14 @@
 import { Fiber, State } from "src/core/treact/core/models";
 import { commitRoot, updateComponent } from "src/core/treact/core/reconciliation";
 
-const nextUnitOfWork = (fiber: Fiber) => {
+const nextUnitOfWork = (fiber?: Fiber) => {
 	while (fiber) {
 		if (fiber.sibling) {
 			return fiber.sibling;
 		}
 		fiber = fiber.parent;
 	}
-	return null;
+	return undefined;
 };
 
 const performUnitOfWork = (fiber: Fiber) => {
@@ -19,6 +19,16 @@ const performUnitOfWork = (fiber: Fiber) => {
 	}
 
 	return nextUnitOfWork(fiber);
+};
+
+const requestIdleCallback = (handler: (deadline: IdleDeadline) => void) => {
+	const start = Date.now();
+	return window.setTimeout(() => {
+		handler({
+			didTimeout: false,
+			timeRemaining: () => Math.max(0, 50 - (Date.now() - start)),
+		});
+	});
 };
 
 const workLoop = (deadline: IdleDeadline) => {
@@ -32,7 +42,9 @@ const workLoop = (deadline: IdleDeadline) => {
 		commitRoot();
 	}
 
-	window.requestIdleCallback(workLoop);
+	requestIdleCallback(workLoop);
 };
 
-export { workLoop };
+export const startWorkLoop = () => {
+	requestIdleCallback(workLoop);
+};

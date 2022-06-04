@@ -1,3 +1,5 @@
+@import "./mixins.scss";
+
 .flex {
 	display: flex;
 	gap: 1rem;
@@ -98,30 +100,25 @@
 	line-height: 0.5;
 	width: fit-content;
 	margin-left: auto;
-
-	&::after {
-		font-size: 1.75rem;
-		content: "\00D7";
-	}
 }
 
 .form {
 	padding: 1.5rem;
-	place-self: center;
+	background-color: transparent;
+	gap: 1.25rem;
 	margin-inline: auto;
-	background-color: var(--clr-white);
-	max-width: clamp(20rem, 30vw + 5rem, 35rem);
+	@include clampify(max-width, 300, 450);
 }
 
 .icon {
-	height: clamp(1.25rem, calc(1.15rem + 0.49vw), 1.5rem);
+	@include clampify(height, 20, 24);
 	aspect-ratio: 1 / 1;
 	cursor: pointer;
 }
 
 .avatar {
 	@extend .icon;
-	height: clamp(1.5rem, calc(1.3rem + 0.98vw), 2rem);
+	@include clampify(height, 24, 36);
 	border-radius: 50%;
 }
 
@@ -195,4 +192,12 @@
 
 .link:hover {
 	text-decoration: underline;
+}
+
+.post {
+	width: min(100%, 60ch);
+}
+
+.image {
+	@include clampify(max-width, 160, 320);
 }

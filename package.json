@@ -3,6 +3,12 @@
 	"version": "1.0.0",
 	"description": "CJ Frontend - VK Social Network",
 	"source": "src/index.ts",
+	"license": "ISC",
+	"browserslist": [
+		"defaults",
+		"not IE 11",
+		"maintained node versions"
+	],
 	"scripts": {
 		"build": "parcel build src/index.html",
 		"build:watch": "parcel watch src/index.html",
@@ -11,7 +17,6 @@
 		"check": "tsc --noEmit",
 		"clean": "rm -rf ./dist/*"
 	},
-	"license": "ISC",
 	"devDependencies": {
 		"@parcel/packager-raw-url": "^2.5.0",
 		"@parcel/transformer-sass": "^2.4.1",

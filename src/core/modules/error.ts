@@ -8,7 +8,7 @@ export class CodedError extends Error {
 	}
 }
 
-const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+export const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
 export const handleError = (err: Error) => {
 	modAlertStore.set({ message: capitalize(err.message), level: "error" });

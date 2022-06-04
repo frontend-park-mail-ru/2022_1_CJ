@@ -3,7 +3,8 @@ import { Link } from "src/components/link";
 import { Routes, withParameters } from "src/constants/routes";
 import { CommunityShort } from "src/core/@types/community";
 import { EventWithTarget } from "src/core/@types/event";
-import { communitiesAPI } from "src/core/network/api/communities";
+import { apiCommunitiesList } from "src/core/network/api/communities/list";
+import { apiCommunitiesSearch } from "src/core/network/api/communities/search";
 
 type Option = "Communities" | "Search results";
 
@@ -13,7 +14,7 @@ export const CommunitiesList: Component = () => {
 	const [option, setOption] = treact.useState("Communities" as Option);
 
 	treact.useEffect(() => {
-		communitiesAPI.list().then((response) => setCommunities(response.communities || []));
+		apiCommunitiesList().then((response) => setCommunities(response.communities || []));
 	}, []);
 
 	const searchCommunities = (event: EventWithTarget<HTMLInputElement, KeyboardEvent>) => {
@@ -23,7 +24,7 @@ export const CommunitiesList: Component = () => {
 
 		const selector = event.target.value;
 		if (selector.length > 0) {
-			communitiesAPI.searchCommunities({ selector }).then((response) => {
+			apiCommunitiesSearch({ selector }).then((response) => {
 				setSearchResults(response.communities || []);
 				setOption("Search results");
 			});
@@ -33,29 +34,27 @@ export const CommunitiesList: Component = () => {
 	};
 
 	const map = (cs: CommunityShort) => (
-		<div className="flex flex-c items-center">
-			<Link to={withParameters(Routes.Community, { community_id: cs.id })}>
-				<div className="flex flex-r items-center">
-					<img className="avatar" src={cs.image} alt="" />
-					{cs.name}
-				</div>
-			</Link>
-		</div>
+		<Link to={withParameters(Routes.Community, { community_id: cs.id })}>
+			<div className="flex flex-r items-center">
+				<img className="avatar" src={cs.image} alt="" />
+				{cs.name}
+			</div>
+		</Link>
 	);
 
-	const show = (set: CommunityShort[]) => {
+	const show = (set: CommunityShort[], messageOnEmpty: string) => {
 		if (set?.length > 0) {
 			return set.map(map);
 		}
-		return <p className="text-center text-light">Empty</p>;
+		return <p className="text-center text-light">{messageOnEmpty}</p>;
 	};
 
 	const listCommunities = () => {
 		switch (option) {
 			case "Communities":
-				return show(communities);
+				return show(communities, "Yet no managed or followed communities");
 			case "Search results":
-				return show(searchResults);
+				return show(searchResults, "No results");
 		}
 	};
 

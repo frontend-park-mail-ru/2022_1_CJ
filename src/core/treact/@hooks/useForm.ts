@@ -37,7 +37,7 @@ export const useForm = <T extends Partial<Record<keyof T, any>> = {}>(options: {
 			for (const key in validators) {
 				const value = data[key] || "";
 				const validator = validators[key];
-				if (!validator.isValid(value)) {
+				if (validator && !validator.isValid(value)) {
 					valid = false;
 					newErrors[key] = validator.message;
 				}

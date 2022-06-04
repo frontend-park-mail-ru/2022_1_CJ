@@ -3,10 +3,9 @@ import { State } from "src/core/treact/core/models";
 
 export const useMemo = <T>(compute: () => T, deps: any[]): T => {
 	const lastHook = getLastHook();
-
 	const hook = {
-		value: null as any,
 		deps,
+		value: null as any,
 	};
 
 	if (lastHook) {

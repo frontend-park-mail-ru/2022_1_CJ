@@ -1,10 +1,10 @@
 type ComponentProperties = {
-	[key: string]: object | string | number;
+	children?: any;
 };
 
-export type Component = (props?: ComponentProperties) => JSX.Element;
+export type Component<T = {}> = (props: ComponentProperties & T) => JSX.Element | null;
 
-export type ModalComponent = (props?: ComponentProperties & { hide: () => void }) => JSX.Element;
+export type ModalComponent<T = {}> = (props: ComponentProperties & { hide: () => void } & T) => JSX.Element | null;
 
 export type Node = HTMLElement | Text;
 
@@ -20,26 +20,27 @@ export enum FiberAction {
 }
 
 export type Fiber = {
-	props: any;
-	alternate?: Fiber;
+	type?: Component<any> | keyof JSX.IntrinsicElements | "TEXT_ELEMENT";
+	props?: any;
 	node?: Node;
-	type?: keyof JSX.IntrinsicElements | "TEXT_ELEMENT" | Component;
+	hooks?: any[];
 	action?: FiberAction;
+
 	parent?: Fiber;
 	child?: Fiber;
 	sibling?: Fiber;
-	hooks?: any[];
+	ancestor?: Fiber;
 };
 
 type State = {
+	root: Fiber;
 	wipRoot?: Fiber;
 	wipFiber: Fiber;
-	currentRoot: Fiber;
 	hookIndex: number;
 
 	deletions: Fiber[];
-	cleanups?: (() => void)[];
-	pendingCleanups?: (() => void)[];
+	cleanups: (() => void)[];
+	pendingCleanups: (() => void)[];
 	pendingUpdate: boolean;
 
 	nextUnitOfWork?: Fiber;

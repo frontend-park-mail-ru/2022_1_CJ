@@ -5,8 +5,11 @@ import { Routes } from "src/constants/routes";
 import { FileSize } from "src/constants/size";
 import { Community } from "src/core/@types/community";
 import { EventWithTarget } from "src/core/@types/event";
-import { communitiesAPI } from "src/core/network/api/communities";
-import { EditCommunityRequest } from "src/core/network/dto/communities";
+import { apiCommunitiesDelete } from "src/core/network/api/communities/delete";
+import { apiCommunitiesEdit } from "src/core/network/api/communities/edit";
+import { apiCommunitiesGet } from "src/core/network/api/communities/get";
+import { apiCommunitiesGetManaged } from "src/core/network/api/communities/getManaged";
+import { apiCommunitiesUpdatePhoto } from "src/core/network/api/communities/updatePhoto";
 import { modAlertStore } from "src/stores/alert";
 import { useUserStore } from "src/stores/user";
 
@@ -15,45 +18,38 @@ type profileSettings = {
 	info?: string;
 };
 
-export const CommunitySettingsComponent: Component = ({ community_id }: { community_id: string }) => {
+export const CommunitySettingsComponent: Component<{ community_id: string }> = ({ community_id }) => {
 	const [userStore, modUserStore] = useUserStore();
 	const [image, setImage] = treact.useState("");
-	const [community, setCommunity] = treact.useState(null as Community);
+	const [community, setCommunity] = treact.useState<Community>();
 
 	treact.useEffect(() => {
-		communitiesAPI.getCommunity({ community_id }).then((response) => {
+		apiCommunitiesGet({ community_id }).then((response) => {
 			setCommunity(response.community);
 			setImage(response.community.image);
 		});
-		communitiesAPI.getManagedCommunities({ user_id: userStore.user.id }).then((response) => {
+		apiCommunitiesGetManaged({ user_id: userStore.user.id }).then((response) => {
 			const managedCommunities = response.communities || [];
 			modUserStore.update({ managedCommunities });
 			if (!managedCommunities.some((cs) => cs.id === community_id)) {
 				navigateTo(Routes.Communities);
 			}
 		});
-	}, []);
+	}, [community_id]);
 
 	if (community) {
 		const { handleSubmit, handleChange, data } = treact.useForm<profileSettings>({
-			initialValues: {
-				name: community.name,
-				info: community.info,
-			},
 			onSubmit: async () => {
 				if (community.image !== image && image.length > 0) {
 					const input = document.getElementById("photo") as HTMLInputElement;
-					const formData = new FormData();
-					formData.append("photo", input.files[0]);
-					await communitiesAPI.updatePhoto({ data: formData, community_id });
+					if (input.files) {
+						const formData = new FormData();
+						formData.append("photo", input.files[0]);
+						await apiCommunitiesUpdatePhoto({ data: formData, community_id });
+					}
 				}
 
-				const dto: EditCommunityRequest = {
-					...data,
-					community_id,
-				};
-
-				communitiesAPI.editCommunity(dto).then(() => navigateTo(Routes.Communities));
+				apiCommunitiesEdit({ ...data, community_id }).then(() => navigateTo(Routes.Communities));
 			},
 		});
 
@@ -69,7 +65,7 @@ export const CommunitySettingsComponent: Component = ({ community_id }: { commun
 		};
 
 		const deleteCommunity = () => {
-			communitiesAPI.deleteCommunity({ community_id }).then(() => navigateTo(Routes.Communities));
+			apiCommunitiesDelete({ community_id }).then(() => navigateTo(Routes.Communities));
 		};
 
 		const deleteButton = () => (
@@ -95,21 +91,23 @@ export const CommunitySettingsComponent: Component = ({ community_id }: { commun
 								type="text"
 								className="input-field"
 								placeholder="Name"
-								value={data.name}
-								onChange={handleChange("name")}
+								value={community.name}
+								onKeyUp={handleChange("name")}
 							/>
 						</span>
 					</div>
 
 					<div>
 						<span>
-							<input
-								type="text"
+							<textarea
 								className="input-field"
 								placeholder="Information"
-								value={data.info}
-								onChange={handleChange("info")}
-							/>
+								rows="3"
+								onKeyUp={handleChange("info")}
+								style="resize: vertical;"
+							>
+								{community.info}
+							</textarea>
 						</span>
 					</div>
 

@@ -4,13 +4,10 @@ import { emojiSet, stickers } from "src/components/emoji/set";
 
 type Type = "emoji" | "sticker";
 
-export const PickerComponent: Component = ({
-	appendToInput,
-	sendSticker,
-}: {
+export const PickerComponent: Component<{
 	appendToInput: (emoji: string) => void;
 	sendSticker: (url: string) => void;
-}) => {
+}> = ({ appendToInput, sendSticker }) => {
 	const [type, setType] = treact.useState("emoji" as Type);
 
 	const list = () => {
