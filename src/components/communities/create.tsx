@@ -20,13 +20,7 @@ export const CreateCommunity: Component = () => {
 		<form className="form flex flex-c border-sm" style="width: 100%; gap: 1.5rem;" onSubmit={handleSubmit}>
 			<div>
 				<span>
-					<input
-						type="text"
-						className="input-field"
-						placeholder="Name"
-						value={data.name}
-						onChange={handleChange("name")}
-					/>
+					<input type="text" className="input-field" placeholder="Name" onKeyUp={handleChange("name")} />
 					{errors.name && <HelperError message={errors.name} />}
 				</span>
 			</div>
@@ -36,7 +30,7 @@ export const CreateCommunity: Component = () => {
 						className="input-field"
 						placeholder="Information"
 						rows="3"
-						onKeyDown={handleChange("info")}
+						onKeyUp={handleChange("info")}
 						style="resize: vertical;"
 					/>
 					{errors.info && <HelperError message={errors.info} />}

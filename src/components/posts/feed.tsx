@@ -23,7 +23,7 @@ export const FeedPosts: Component = () => {
 
 	treact.useEffect(
 		(updating) => {
-			if (page > amountOfPages) {
+			if (page > amountOfPages && !updating) {
 				return;
 			}
 

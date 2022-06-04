@@ -33,13 +33,6 @@ export const ProfileSettingsBlock: Component = () => {
 	}
 
 	const { handleSubmit, handleChange, data } = treact.useForm<profileSettings>({
-		initialValues: {
-			firstname: profile.name.first,
-			lastname: profile.name.last,
-			phone: profile.phone,
-			location: profile.location,
-			birth_day: profile.birth_day,
-		},
 		onSubmit: async () => {
 			if (profile.avatar !== image && image.length > 0) {
 				const input = document.getElementById("photo") as HTMLInputElement;
@@ -87,8 +80,8 @@ export const ProfileSettingsBlock: Component = () => {
 							type="text"
 							className="input-field"
 							placeholder="First name"
-							value={data.firstname}
-							onChange={handleChange("firstname")}
+							value={profile.name.first}
+							onKeyUp={handleChange("firstname")}
 						/>
 					</span>
 					<span>
@@ -96,8 +89,8 @@ export const ProfileSettingsBlock: Component = () => {
 							type="text"
 							className="input-field"
 							placeholder="Last name"
-							value={data.lastname}
-							onChange={handleChange("lastname")}
+							value={profile.name.last}
+							onKeyUp={handleChange("lastname")}
 						/>
 					</span>
 				</div>
@@ -108,8 +101,8 @@ export const ProfileSettingsBlock: Component = () => {
 							type="text"
 							className="input-field"
 							placeholder="Phone"
-							value={data.phone}
-							onChange={handleChange("phone")}
+							value={profile.phone}
+							onKeyUp={handleChange("phone")}
 						/>
 					</span>
 				</div>
@@ -120,8 +113,8 @@ export const ProfileSettingsBlock: Component = () => {
 							type="text"
 							className="input-field"
 							placeholder="Location"
-							value={data.location}
-							onChange={handleChange("location")}
+							value={profile.location}
+							onKeyUp={handleChange("location")}
 						/>
 					</span>
 				</div>
@@ -132,8 +125,8 @@ export const ProfileSettingsBlock: Component = () => {
 							type="text"
 							className="input-field"
 							placeholder="Birthday"
-							value={data.birth_day}
-							onChange={handleChange("birth_day")}
+							value={profile.birth_day}
+							onKeyUp={handleChange("birth_day")}
 						/>
 					</span>
 				</div>

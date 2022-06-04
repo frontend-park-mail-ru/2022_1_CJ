@@ -39,10 +39,6 @@ export const CommunitySettingsComponent: Component<{ community_id: string }> = (
 
 	if (community) {
 		const { handleSubmit, handleChange, data } = treact.useForm<profileSettings>({
-			initialValues: {
-				name: community.name,
-				info: community.info,
-			},
 			onSubmit: async () => {
 				if (community.image !== image && image.length > 0) {
 					const input = document.getElementById("photo") as HTMLInputElement;
@@ -95,21 +91,23 @@ export const CommunitySettingsComponent: Component<{ community_id: string }> = (
 								type="text"
 								className="input-field"
 								placeholder="Name"
-								value={data.name}
-								onChange={handleChange("name")}
+								value={community.name}
+								onKeyUp={handleChange("name")}
 							/>
 						</span>
 					</div>
 
 					<div>
 						<span>
-							<input
-								type="text"
+							<textarea
 								className="input-field"
 								placeholder="Information"
-								value={data.info}
-								onChange={handleChange("info")}
-							/>
+								rows="3"
+								onKeyUp={handleChange("info")}
+								style="resize: vertical;"
+							>
+								{community.info}
+							</textarea>
 						</span>
 					</div>
 
